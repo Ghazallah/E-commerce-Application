@@ -2,7 +2,7 @@
 2B is an E-commerce application that allows to buy and cell 
 mobile phones, laptops and their acccessories.
 This application is being developed for educational purpose.
-#Developers
+## Developers
 1. Ahmed Abdelkarim
 2. Azza Anter
 3. Mohammed ElHosainy
