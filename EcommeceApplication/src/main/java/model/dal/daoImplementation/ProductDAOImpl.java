@@ -5,12 +5,12 @@
  */
 package model.dal.daoImplementation;
 
-import model.dal.dao.UserDAO;
+import model.dal.dao.ProductDAO;
 
 /**
  *
  * @author ghazallah
  */
-public class UserDAOImplementation implements UserDAO{
+public class ProductDAOImpl implements ProductDAO{
     
 }

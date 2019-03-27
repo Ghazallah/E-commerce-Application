@@ -12,13 +12,13 @@ import model.dal.dao.OrderDAO;
 import model.dal.dao.ProductDAO;
 import model.dal.dao.ShippingDAO;
 import model.dal.dao.UserDAO;
-import model.dal.daoImplementation.BrandDAOImplemenation;
-import model.dal.daoImplementation.CategoryDAOImplementation;
-import model.dal.daoImplementation.CouponsDAOImplementation;
-import model.dal.daoImplementation.OrderDAOImplementation;
-import model.dal.daoImplementation.ProductDAOImplementation;
-import model.dal.daoImplementation.ShippingDAOImplementation;
-import model.dal.daoImplementation.UserDAOImplementation;
+import model.dal.daoImplementation.BrandDAOImpl;
+import model.dal.daoImplementation.CategoryDAOImpl;
+import model.dal.daoImplementation.CouponsDAOImpl;
+import model.dal.daoImplementation.OrderDAOImpl;
+import model.dal.daoImplementation.ProductDAOImpl;
+import model.dal.daoImplementation.ShippingDAOImpl;
+import model.dal.daoImplementation.UserDAOImpl;
 
 /**
  *
@@ -28,37 +28,37 @@ public class HibernateDAOFactory implements DAOFactory {
 
     @Override
     public UserDAO getUserDAO() {
-        return new UserDAOImplementation();
+        return new UserDAOImpl();
     }
 
     @Override
     public CategoryDAO getCategoryDAO() {
-        return new CategoryDAOImplementation();
+        return new CategoryDAOImpl();
     }
 
     @Override
     public BrandDAO getBrandDAO() {
-        return new BrandDAOImplemenation();
+        return new BrandDAOImpl();
     }
 
     @Override
     public CouponsDAO getCouponsDAO() {
-        return new CouponsDAOImplementation();
+        return new CouponsDAOImpl();
     }
 
     @Override
     public OrderDAO getOrderDAO() {
-        return new OrderDAOImplementation();
+        return new OrderDAOImpl();
     }
 
     @Override
     public ProductDAO getProductDAO() {
-        return new ProductDAOImplementation();
+        return new ProductDAOImpl();
     }
 
     @Override
     public ShippingDAO getShippingDAO() {
-        return new ShippingDAOImplementation();
+        return new ShippingDAOImpl();
     }
 
 }

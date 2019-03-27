@@ -11,6 +11,6 @@ import model.dal.dao.OrderDAO;
  *
  * @author ghazallah
  */
-public class OrderDAOImplementation implements OrderDAO{
+public class OrderDAOImpl implements OrderDAO{
     
 }

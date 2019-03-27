@@ -11,6 +11,6 @@ import model.dal.dao.CategoryDAO;
  *
  * @author ghazallah
  */
-public class CategoryDAOImplementation implements CategoryDAO{
+public class CategoryDAOImpl implements CategoryDAO{
     
 }

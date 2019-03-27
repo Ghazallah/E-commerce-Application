@@ -5,12 +5,12 @@
  */
 package model.dal.daoImplementation;
 
-import model.dal.dao.ShippingDAO;
+import model.dal.dao.BrandDAO;
 
 /**
  *
  * @author ghazallah
  */
-public class ShippingDAOImplementation implements ShippingDAO{
+public class BrandDAOImpl implements BrandDAO{
     
 }

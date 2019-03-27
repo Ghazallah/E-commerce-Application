@@ -5,12 +5,12 @@
  */
 package model.dal.daoImplementation;
 
-import model.dal.dao.CouponsDAO;
+import model.dal.dao.ShippingDAO;
 
 /**
  *
  * @author ghazallah
  */
-public class CouponsDAOImplementation implements CouponsDAO{
+public class ShippingDAOImpl implements ShippingDAO{
     
 }
