@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package services.userServices;
+package controller.brandServlets;
 
 /**
  *
  * @author ghazallah
  */
-public class RegisterService {
+public class CreateBrand {
     
 }
