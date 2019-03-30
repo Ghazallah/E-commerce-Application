@@ -5,10 +5,20 @@
  */
 package model.dal.dao;
 
+import model.entity.Brand;
+
 /**
  *
  * @author ghazallah
  */
 public interface BrandDAO {
-    
+
+    public void create(Brand brand);
+
+    public Brand retreive();
+
+    public void update(Brand brand);
+
+    public void delete(Brand brand);
+
 }

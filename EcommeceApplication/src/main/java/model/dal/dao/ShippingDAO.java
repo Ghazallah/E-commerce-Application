@@ -5,10 +5,20 @@
  */
 package model.dal.dao;
 
+import model.entity.Shipping;
+
 /**
  *
  * @author ghazallah
  */
 public interface ShippingDAO {
-    
+
+    public void create(Shipping shipping);
+
+    public Shipping retrieve();
+
+    public void update(Shipping shipping);
+
+    public void delete(Shipping shipping);
+
 }

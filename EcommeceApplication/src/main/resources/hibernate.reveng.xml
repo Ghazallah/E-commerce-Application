@@ -41,17 +41,17 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="ecommerce"/>
-  <table-filter match-name="user_has_coupon"/>
-  <table-filter match-name="category"/>
-  <table-filter match-name="user"/>
-  <table-filter match-name="order_has_products"/>
-  <table-filter match-name="product_details"/>
   <table-filter match-name="product"/>
-  <table-filter match-name="cart"/>
-  <table-filter match-name="wishlist"/>
-  <table-filter match-name="shipping"/>
-  <table-filter match-name="brand"/>
-  <table-filter match-name="order"/>
-  <table-filter match-name="coupon"/>
   <table-filter match-name="user_credit"/>
+  <table-filter match-name="order"/>
+  <table-filter match-name="category"/>
+  <table-filter match-name="order_has_products"/>
+  <table-filter match-name="coupon"/>
+  <table-filter match-name="user"/>
+  <table-filter match-name="wishlist"/>
+  <table-filter match-name="cart"/>
+  <table-filter match-name="shipping"/>
+  <table-filter match-name="product_details"/>
+  <table-filter match-name="user_has_coupon"/>
+  <table-filter match-name="brand"/>
 </hibernate-reverse-engineering>

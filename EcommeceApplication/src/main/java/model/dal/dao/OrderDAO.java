@@ -5,10 +5,19 @@
  */
 package model.dal.dao;
 
+import model.entity.Order;
+
 /**
  *
  * @author ghazallah
  */
 public interface OrderDAO {
-    
+
+    public void create(Order order);
+
+    public Order retreive();
+
+    public void update(Order order);
+
+    public void delete(Order order);
 }

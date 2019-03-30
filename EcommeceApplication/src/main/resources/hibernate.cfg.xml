@@ -46,18 +46,18 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ecommerce?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">admin</property>
     <property name="hibernate.connection.password">admin</property>
-    <mapping class="model.dal.entity.CartId"/>
-    <mapping class="model.dal.entity.UserCredit"/>
-    <mapping class="model.dal.entity.Cart"/>
-    <mapping class="model.dal.entity.Shipping"/>
-    <mapping class="model.dal.entity.Category"/>
-    <mapping class="model.dal.entity.Product"/>
-    <mapping class="model.dal.entity.ProductDetails"/>
-    <mapping class="model.dal.entity.User"/>
-    <mapping class="model.dal.entity.OrderHasProducts"/>
-    <mapping class="model.dal.entity.OrderHasProductsId"/>
-    <mapping class="model.dal.entity.Coupon"/>
-    <mapping class="model.dal.entity.Order"/>
-    <mapping class="model.dal.entity.Brand"/>
+    <mapping class="model.entity.Order"/>
+    <mapping class="model.entity.CartId"/>
+    <mapping class="model.entity.Shipping"/>
+    <mapping class="model.entity.Category"/>
+    <mapping class="model.entity.OrderHasProductsId"/>
+    <mapping class="model.entity.OrderHasProducts"/>
+    <mapping class="model.entity.ProductDetails"/>
+    <mapping class="model.entity.Brand"/>
+    <mapping class="model.entity.User"/>
+    <mapping class="model.entity.Product"/>
+    <mapping class="model.entity.UserCredit"/>
+    <mapping class="model.entity.Coupon"/>
+    <mapping class="model.entity.Cart"/>
   </session-factory>
 </hibernate-configuration>

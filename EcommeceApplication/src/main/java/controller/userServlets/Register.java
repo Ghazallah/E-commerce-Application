@@ -3,22 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.dal.dao;
+package controller.userServlets;
 
-import model.entity.User;
+import controller.*;
+import javax.servlet.http.HttpServlet;
 
 /**
  *
  * @author ghazallah
  */
-public interface UserDAO {
-
-    public void create(User user);
-
-    public User retrieve();
-
-    public void update(User user);
-
-    public void delete(User user);
-
+public class Register extends HttpServlet{
+     
+    
 }

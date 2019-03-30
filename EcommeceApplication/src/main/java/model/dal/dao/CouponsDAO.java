@@ -5,10 +5,19 @@
  */
 package model.dal.dao;
 
+import model.entity.Coupon;
+
 /**
  *
  * @author ghazallah
  */
 public interface CouponsDAO {
-    
+
+    public void create(Coupon coupon);
+
+    public Coupon retrieve();
+
+    public void update(Coupon coupon);
+
+    public void delete(Coupon coupon);
 }

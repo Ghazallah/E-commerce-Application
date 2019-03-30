@@ -1,5 +1,5 @@
-package model.dal.entity;
-// Generated Mar 26, 2019, 6:28:36 PM by Hibernate Tools 4.3.1
+package model.entity;
+// Generated Mar 30, 2019, 4:19:02 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;

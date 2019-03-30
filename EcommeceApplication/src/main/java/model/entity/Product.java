@@ -1,5 +1,5 @@
-package model.dal.entity;
-// Generated Mar 26, 2019, 6:28:36 PM by Hibernate Tools 4.3.1
+package model.entity;
+// Generated Mar 30, 2019, 4:19:02 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -28,7 +28,6 @@ public class Product  implements java.io.Serializable {
 
      private int pid;
      private Brand brand;
-     private Category category;
      private String name;
      private Double price;
      private Integer quantity;
@@ -46,10 +45,9 @@ public class Product  implements java.io.Serializable {
     public Product(int pid) {
         this.pid = pid;
     }
-    public Product(int pid, Brand brand, Category category, String name, Double price, Integer quantity, String description, String discount, Set<Cart> carts, Set<User> users, Set<OrderHasProducts> orderHasProductses, ProductDetails productDetails) {
+    public Product(int pid, Brand brand, String name, Double price, Integer quantity, String description, String discount, Set<Cart> carts, Set<User> users, Set<OrderHasProducts> orderHasProductses, ProductDetails productDetails) {
        this.pid = pid;
        this.brand = brand;
-       this.category = category;
        this.name = name;
        this.price = price;
        this.quantity = quantity;
@@ -81,16 +79,6 @@ public class Product  implements java.io.Serializable {
     
     public void setBrand(Brand brand) {
         this.brand = brand;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="categoryID")
-    public Category getCategory() {
-        return this.category;
-    }
-    
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     
