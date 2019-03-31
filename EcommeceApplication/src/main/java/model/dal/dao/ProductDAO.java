@@ -5,10 +5,20 @@
  */
 package model.dal.dao;
 
+import model.entity.Product;
+
 /**
  *
  * @author ghazallah
  */
 public interface ProductDAO {
-    
+
+    public void create(Product product);
+
+    public Product retreive();
+
+    public void update(Product product);
+
+    public void delete(Product product);
+
 }

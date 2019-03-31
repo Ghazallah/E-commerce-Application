@@ -5,10 +5,20 @@
  */
 package model.dal.dao;
 
+import model.entity.Category;
+
 /**
  *
  * @author ghazallah
  */
 public interface CategoryDAO {
-    
+
+    public void create(Category category);
+
+    public Category retreive();
+
+    public void update(Category category);
+
+    public void delete(Category category);
+
 }
