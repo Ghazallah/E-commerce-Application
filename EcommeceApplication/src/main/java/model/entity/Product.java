@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -61,7 +63,7 @@ public class Product  implements java.io.Serializable {
    
      @Id 
 
-    
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="pid", unique=true, nullable=false)
     public int getPid() {
         return this.pid;
