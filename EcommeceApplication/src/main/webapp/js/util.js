@@ -1,4 +1,4 @@
-// filter scrollbar
+/* ================   PerfectScrollbar ======================*/
 $('.js-pscroll').each(function () {
     $(this).css('position', 'relative');
     $(this).css('overflow', 'hidden');
@@ -13,7 +13,7 @@ $('.js-pscroll').each(function () {
     })
 });
 
-<!--================   sweetalert ======================-->
+/*================   sweetalert ======================*/
 
 $('.js-addwish-b2').on('click', function (e) {
     e.preventDefault();
@@ -45,7 +45,7 @@ $('.js-addcart-detail').each(function () {
     });
 });
 
-<!--================   select2 ======================-->
+/*-================   select2 ======================*/
 $(".js-select2").each(function () {
     $(this).select2({
         minimumResultsForSearch: 20,
@@ -53,11 +53,11 @@ $(".js-select2").each(function () {
     });
 });
 
-<!--================   parallax100 ======================-->
+/*-================   parallax100 ======================-*/
 $('.parallax100').parallax100();
 
 
-<!--================   magnificPopup ======================-->
+/*-================   magnificPopup ======================-*/
 $('.gallery-lb').each(function () { // the containers for all your galleries
     $(this).magnificPopup({
         delegate: 'a', // the selector for gallery item
