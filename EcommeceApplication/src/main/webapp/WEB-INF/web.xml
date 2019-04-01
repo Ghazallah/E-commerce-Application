@@ -16,10 +16,10 @@
     <!--login filter-->
     <filter>
         <filter-name>LoginFilter</filter-name>
-        <filter-class>filters.LoggingFilter</filter-class>
+        <filter-class>filters.LoginFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>LoggingFilter</filter-name>
+        <filter-name>LoginFilter</filter-name>
         <url-pattern>/login</url-pattern> 
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>REQUEST</dispatcher>
