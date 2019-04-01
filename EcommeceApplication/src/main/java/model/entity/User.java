@@ -40,11 +40,11 @@ public class User  implements java.io.Serializable {
      private String picture;
      private String password;
      private Integer role;
-     private Set<Cart> carts = new HashSet<Cart>(0);
+     private Set<Cart> carts = new HashSet<>(0);
      private UserCredit userCredit;
-     private Set<Product> products = new HashSet<Product>(0);
-     private Set<Order> orders = new HashSet<Order>(0);
-     private Set<Coupon> coupons = new HashSet<Coupon>(0);
+     private Set<Product> products = new HashSet<>(0);
+     private Set<Order> orders = new HashSet<>(0);
+     private Set<Coupon> coupons = new HashSet<>(0);
 
     public User() {
     }
@@ -97,7 +97,7 @@ public class User  implements java.io.Serializable {
     }
 
     
-    @Column(name="email", nullable=false)
+    @Column(name="email",unique = true, nullable=false)
     public String getEmail() {
         return this.email;
     }

@@ -5,33 +5,89 @@
  */
 package model.dal.daoImplementation;
 
+import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import model.dal.dao.UserDAO;
+import model.entity.Category;
 import model.entity.User;
+import model.util.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
  * @author ghazallah
  */
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
     @Override
     public void create(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.persist(user);
+            session.getTransaction().commit();
+            session.close();
+        }
     }
 
     @Override
-    public User retrieve() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public User retrieve(String email) {
+        User user;
+         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
+            query.select(root).where(builder.equal(root.get("email"), email));
+            Query<User> q = session.createQuery(query);
+            user= q.uniqueResult();
+            session.getTransaction().commit();
+            session.close();
+        }
+         
+         return user;
     }
 
     @Override
     public void update(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.saveOrUpdate(user);
+            session.getTransaction().commit();
+            session.close();
+        }
     }
 
     @Override
     public void delete(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.delete(user);
+            session.getTransaction().commit();
+            session.close();
+        }
     }
-    
+
+    @Override
+    public List<User> retrieveAllUsers() {
+
+        List<User> userList;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
+            query.select(root);
+            Query<User> q = session.createQuery(query);
+            userList= q.getResultList();
+            session.getTransaction().commit();
+            session.close();
+        }
+       
+        
+        return userList;
+    }
+
 }
