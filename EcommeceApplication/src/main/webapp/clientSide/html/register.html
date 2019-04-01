@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section class="registerForm">
+    <div class="container py-4 px-md-0 d-flex">
+        <div class="w-100">
+            <div class="row row-grid justify-content-center justify-content-lg-between align-items-center">
+                <div class="col">
+                    <div class="card zindex-100 mb-0">
+                        <div class="card-body px-md-5 py-5">
+                            <div class="mb-5">
+                                <h6 class="h3">Create account</h6>
+                                <p class="text-muted mb-0">Please fill the following information to register</p>
+                            </div>
+                            <span class="clearfix"></span>
+                            <form role="form" action ="clientSide/jsp/register.jsp" method="post">
+                                <div class="form-group">
+                                    <label class="form-control-label">Email address</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-user"></i></span> </div>
+                                        <input type="email" class="form-control" placeholder="name@example.com" name ="email">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="form-control-label">Password</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-key"></i></span> </div>
+                                        <input type="password" class="form-control" placeholder="********" name ="password">
+                                        <div class="input-group-append"> </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">Confirm password</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-key"></i></span> </div>
+                                        <input type="password" class="form-control" id="input-password-confirm" placeholder="********">
+                                    </div>
+                                </div>
+                                <div class="my-4">
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input type="checkbox" class="custom-control-input" id="check-terms">
+                                        <label class="custom-control-label" for="check-terms">I agree to the <a href="#">terms and conditions</a></label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="check-privacy">
+                                        <label class="custom-control-label" for="check-privacy">I agree to the <a href="#">privacy policy</a></label>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary skew"> <span class="btn-inner--text skew">Create my account</span> <span class="btn-inner--icon"><i class="far fa-long-arrow-alt-right"></i></span> </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer px-md-5 fs-16"><small>Already have an acocunt?</small> <a href="#" class="small font-weight-bold loginModal">Sign in</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </body>
+</html>

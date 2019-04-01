@@ -5,6 +5,7 @@
  */
 package model.dal.dao;
 
+import java.util.List;
 import model.entity.User;
 
 /**
@@ -15,10 +16,12 @@ public interface UserDAO {
 
     public void create(User user);
 
-    public User retrieve();
+    public User retrieve(String email);
 
     public void update(User user);
 
     public void delete(User user);
+    
+    public List<User> retrieveAllUsers();
 
 }

@@ -25,8 +25,8 @@ public class UserCredit  implements java.io.Serializable {
 
      private int id;
      private User user;
-     private Integer creditcard;
-     private String wallet;
+     private String creditcard;
+     private Integer wallet;
 
     public UserCredit() {
     }
@@ -35,7 +35,7 @@ public class UserCredit  implements java.io.Serializable {
     public UserCredit(User user) {
         this.user = user;
     }
-    public UserCredit(User user, Integer creditcard, String wallet) {
+    public UserCredit(User user, String creditcard, Integer wallet) {
        this.user = user;
        this.creditcard = creditcard;
        this.wallet = wallet;
@@ -64,21 +64,21 @@ public class UserCredit  implements java.io.Serializable {
 
     
     @Column(name="creditcard")
-    public Integer getCreditcard() {
+    public String getCreditcard() {
         return this.creditcard;
     }
     
-    public void setCreditcard(Integer creditcard) {
+    public void setCreditcard(String creditcard) {
         this.creditcard = creditcard;
     }
 
     
     @Column(name="wallet")
-    public String getWallet() {
+    public Integer getWallet() {
         return this.wallet;
     }
     
-    public void setWallet(String wallet) {
+    public void setWallet(Integer wallet) {
         this.wallet = wallet;
     }
 

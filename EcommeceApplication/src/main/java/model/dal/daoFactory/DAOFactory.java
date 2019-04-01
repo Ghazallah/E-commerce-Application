@@ -11,6 +11,7 @@ import model.dal.dao.CouponsDAO;
 import model.dal.dao.OrderDAO;
 import model.dal.dao.ProductDAO;
 import model.dal.dao.ShippingDAO;
+import model.dal.dao.UserCreditDAO;
 import model.dal.dao.UserDAO;
 
 /**
@@ -32,4 +33,6 @@ public interface DAOFactory {
     public ProductDAO getProductDAO();
 
     public ShippingDAO getShippingDAO();
+    
+    public UserCreditDAO getUserCreditDAO();
 }

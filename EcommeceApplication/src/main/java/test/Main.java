@@ -5,7 +5,13 @@
  */
 package test;
 
+import model.dal.dao.UserCreditDAO;
+import model.dal.dao.UserDAO;
+import model.dal.daoFactory.DAOFactory;
+import model.dal.daoFactory.HibernateDAOFactory;
 import model.entity.Category;
+import model.entity.User;
+import model.entity.UserCredit;
 import model.util.HibernateUtil;
 import org.hibernate.Session;
 
@@ -14,16 +20,19 @@ import org.hibernate.Session;
  * @author ghazallah
  */
 public class Main {
+
     public static void main(String[] args) {
-        
-        
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Category category = new Category();
-            category.setName("laptop");
-            session.beginTransaction();
-            session.persist(category);
-            session.getTransaction().commit();
-        }
+
+        DAOFactory factory = new HibernateDAOFactory();
+        UserDAO userDAO = factory.getUserDAO();
+        User user = new User();
+        user.setName("ghazallah");
+        user.setEmail("ghazallah64");
+        user.setPassword("123");
+        user.setPhone("0100");
+        user.setPicture("pic");
+        userDAO.create(user);
+
     }
-    
+
 }
