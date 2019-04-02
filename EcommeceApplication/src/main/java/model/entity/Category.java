@@ -53,7 +53,8 @@ public class Category  implements java.io.Serializable {
     }
 
     
-    @Column(name="name")
+  
+    @Column(name="name", unique=true, nullable=false)
     public String getName() {
         return this.name;
     }

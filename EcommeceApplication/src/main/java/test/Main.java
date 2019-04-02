@@ -5,6 +5,7 @@
  */
 package test;
 
+import java.util.Date;
 import model.dal.dao.UserCreditDAO;
 import model.dal.dao.UserDAO;
 import model.dal.daoFactory.DAOFactory;
@@ -26,9 +27,16 @@ public class Main {
         DAOFactory factory = new HibernateDAOFactory();
         UserDAO userDAO = factory.getUserDAO();
         User user = new User();
-        user =userDAO.retrieve("ghazallah64");
+        user.setAddress("adres1s");
+        user.setBirthday(new Date());
+        user.setPassword("1234");
         user.setRole(1);
-        userDAO.update(user);
+        user.setEmail("ghazallah65@gmail.com");
+        user.setPicture("picture");
+        user.setName("ghazallah1");
+        user.setPhone("01000");
+        userDAO.create(user);
+        
     }
 
 }
