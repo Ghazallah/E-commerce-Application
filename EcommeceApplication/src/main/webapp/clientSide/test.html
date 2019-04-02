@@ -41,111 +41,125 @@
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<br>
-<div class="container">
-  <h2>Toggleable Pills</h2>
-  <br>
-  
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div id="home" class="container tab-pane active"><br>
-      <h3>HOME</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-    <div id="menu1" class="container tab-pane fade"><br>
-      <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div id="menu2" class="container tab-pane fade"><br>
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
-  </div>
-</div>
 
-<!-- Nav pills -->
-<ul class="nav nav-pills" role="tablist">
-  <li class="nav-item"> <a class="nav-link active" data-toggle="pill" href="#home">Home</a> </li>
-  <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#menu1">Menu 1</a> </li>
-  <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#menu2">Menu 2</a> </li>
-</ul>
+<header class="header-account-page bg-primary d-flex align-items-end"> 
+  <!-- Header container -->
+  <div class="container">
+   
+    <form name="basicform" id="basicform" method="post" action="#">
+      
+      <!-- id will be unique, but class name will be same -->
+      <div id="sf1" class="frm">
+        <fieldset>
+          <legend>Step 1 of 3</legend>
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="uname">Your Name: </label>
+            <div class="col-lg-6">
+              <input type="text" placeholder="Your Name" id="uname" name="uname" class="form-control" autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2"> 
+              <!-- open1 is given in the class that is binded with the click event -->
+              <button class="btn btn-primary open1" type="button">Next <span class="fa fa-arrow-right"></span></button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      
+      <!-- id will be unique, but class name will be same -->
+      <div id="sf2" class="frm" style="display: none;">
+        <fieldset>
+          <legend>Step 2 of 3</legend>
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="uemail">Your Email: </label>
+            <div class="col-lg-6">
+              <input type="text" placeholder="Your Email" id="uemail" name="uemail" class="form-control" autocomplete="off">
+            </div>
+          </div>
+          <div class="clearfix" style="height: 10px;clear: both;"></div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2"> 
+              <!-- back2 unique class name  -->
+              <button class="btn btn-warning back2" type="button"><span class="fa fa-arrow-left"></span> Back</button>
+              <!-- open2 unique class name -->
+              <button class="btn btn-primary open2" type="button">Next <span class="fa fa-arrow-right"></span></button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      
+      <!-- id will be unique, but class name will be same -->
+      <div id="sf3" class="frm" style="display: none;">
+        <fieldset>
+          <legend>Step 3 of 3</legend>
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="upass1">Password: </label>
+            <div class="col-lg-6">
+              <input type="password" placeholder="Your Password" id="upass1" name="upass1" class="form-control" autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="upass1">Confirm Password: </label>
+            <div class="col-lg-6">
+              <input type="password" placeholder="Confirm Password" id="upass2" name="upass2" class="form-control" autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2"> 
+              <!-- Unique class name -->
+              <button class="btn btn-warning back3" type="button"><span class="fa fa-arrow-left"></span> Back</button>
+              <!-- Unique class name -->
+              <button class="btn btn-primary open3" type="button">Submit </button>
+              <img src="spinner.gif" alt="" id="loader" style="display: none"> </div>
+          </div>
+        </fieldset>
+      </div>
+    </form>
+  </div>
+</header>
+
+
+
+
+
+
+
 
 <!-- Footer -->
 <footer>
-  <div id="footer-bar" class="flex align-center">
-    <ul class="nav nav-pills" role="tablist">
-     
-      <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#home">
+  <div id="footer-bar">
+    <ul class="nav nav-pills justify-content-around flex-nowrap" role="tablist">
+      <li class="nav-item"> <a class="nav-link active" data-toggle="pill" href="#home">
         <div id="footer-home" class="footer-item">
-          <div class="flex direction-column align-center justify-center">
-          	<span class="ti-home"></span> <span class="footer-text">Home</span>
-          </div>
+          <div class="flex direction-column align-center justify-center"> <span class="ti-home"></span> <span class="footer-text">Home</span> </div>
         </div>
-        </a> 
-      </li>
-      
-       <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#menu1">
+        </a> </li>
+      <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#home">
         <div id="footer-category" class="footer-item">
-          <div class="flex direction-column align-center justify-center"> 
-          <span class="ti-list"></span> <span class="footer-text">Category</span> </div>
+          <div class="flex direction-column align-center justify-center"> <span class="ti-list"></span> <span class="footer-text">Category</span> </div>
         </div>
-        </a> 
-      </li>
-      
-       <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#menu2">
+        </a> </li>
+      <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#menu1">
         <div id="footer-wishlist" class="footer-item">
-          <div class="flex direction-column align-center justify-center"> 
-          <span class="ti-heart"></span> <span class="footer-text">Wishlist</span> </div>
+          <div class="flex direction-column align-center justify-center"> <span class="ti-heart"></span> <span class="footer-text">Wishlist</span> </div>
         </div>
-        </a> 
-      </li>
-      
-       <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#home">
+        </a> </li>
+      <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#menu2">
         <div id="footer-cart" class="footer-item">
-          <div class="flex direction-column align-center justify-center"> 
-          <span class="ti-shopping-cart-full"></span> <span class="footer-text">Shopping Cart</span> </div>
+          <div class="flex direction-column align-center justify-center"> <span class="ti-shopping-cart-full"></span> <span class="footer-text">Shopping Cart</span> </div>
         </div>
-        </a> 
-      </li>
-      
-       <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#home">
+        </a> </li>
+      <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#home">
         <div id="footer-account" class="footer-item">
-          <div class="flex direction-column align-center justify-center"> 
-          <span class="ti-user"></span> <span class="footer-text">Account</span> </div>
+          <div class="flex direction-column align-center justify-center"> <span class="ti-user"></span> <span class="footer-text">Account</span> </div>
         </div>
-        </a> 
-      </li>
-     
+        </a> </li>
     </ul>
   </div>
-  <!--
-    <div id="footer-category" class="footer-item"> 
-      <a  href="#" class="flex direction-column align-center justify-center">
-      <li class="ti-list"></li>
-      <span class="footer-text">Category</span> </a> 
-    </div>
-    
-    <div id="footer-wishlist" class="footer-item"> 
-      <a href="#" class="flex direction-column align-center justify-center">
-      <li class="ti-heart"></li>
-      <span class="footer-text">Wishlist</span> </a> 
-    </div>
-    
-    <div id="footer-cart" class="footer-item"> 
-      <a  href="#" class="flex direction-column align-center justify-center">
-      <li class="ti-shopping-cart-full"></li>
-      <span class="footer-text">Shopping Cart</span> </a> 
-    </div>
-    
-    <div id="footer-account" class="footer-item"> 
-      <a href="#" class="flex direction-column align-center justify-center">
-      <li class="ti-user"></li>
-      <span class="footer-text">Account</span> </a> 
-    </div>
-  </div>
-  --> 
 </footer>
 
 <!--================   Vendors JS ======================--> 
@@ -176,6 +190,17 @@
 <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script> 
 <!--===============================================================================================--> 
 <script src="js/util.js"></script> 
-<script src="js/main.js"></script>
+<script src="js/main.js"></script> 
+<script src="script.js"></script>
+
+<script type="text/javascript" src="jquery.validate.js"></script>
+<script type="text/javascript">
+
+</script>
+
+
+
+
+
 </body>
 </html>

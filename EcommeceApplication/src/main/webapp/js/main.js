@@ -268,8 +268,8 @@
     
     /*==================================================================
     [ Show modal1 ]*/
-    $('.js-show-modal1').on('click',function(e){
-        e.preventDefault();
+    $('.js-show-modal1').on('click',function(){
+        event.preventDefault();
         $('.js-modal1').addClass('show-modal1');
     });
 
