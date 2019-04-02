@@ -4532,19 +4532,17 @@ ul, ol {
 	width: 100%;
 }
 .cart-item-name{
-	font-size: 4vw;
+	font-size: 14px;
 	font-weight: bold;
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 }
 
 .cart-item-cost{
-	font-size: 3vw;
 	font-weight: bold;
 	font-style: italic;
 	text-decoration:line-through;
 }
 .cart-item-discount{
-	font-size: 3vw;
 	color: red;
 	font-weight: bold;
 }
