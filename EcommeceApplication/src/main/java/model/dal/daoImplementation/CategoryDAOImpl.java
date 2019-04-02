@@ -41,7 +41,7 @@ public class CategoryDAOImpl implements CategoryDAO {
         List<Category> categoryList = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Criteria criteria = session.createCriteria(Category.class);
-            categoryList = (ArrayList<Category>) criteria.list();
+            categoryList = criteria.list();
             System.out.println("ssss");
             session.close();
         } catch (HibernateException ex) {

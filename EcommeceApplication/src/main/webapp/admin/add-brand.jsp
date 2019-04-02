@@ -21,16 +21,16 @@
         <title>SB Admin - add brand</title>
 
         <!-- Custom fonts for this template-->
-        <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
         <!-- Custom styles for this template-->
-        <link href="../css/sb-admin.css" rel="stylesheet">
+        <link href="resources/css/sb-admin.css" rel="stylesheet">
 
         <!-- Font Icon -->
-        <link rel="stylesheet" href="../fonts/material-icon/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="resources/fonts/material-icon/css/material-design-iconic-font.min.css">
 
         <!-- Main css -->
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="resources/css/style.css">
 
     </head>
 
@@ -58,7 +58,7 @@
 
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!--<i class="fas fa-user-circle fa-fw">--><img src="../images/client.png" width="70px" height="70px" /></i>
+                        <!--<i class="fas fa-user-circle fa-fw">--><img src="resources/images/client.png" width="70px" height="70px" /></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Update Profile</a>
@@ -212,8 +212,8 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
