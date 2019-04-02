@@ -5,10 +5,41 @@
  */
 package services;
 
+import exceptions.UniqueExceptionEmplementation;
+import java.util.List;
+import javax.servlet.annotation.WebServlet;
+import model.dal.dao.CategoryDAO;
+import model.dal.daoFactory.HibernateDAOFactory;
+import model.entity.Category;
+
 /**
  *
  * @author ghazallah
  */
+@WebServlet(value = "/CategoryServices")
 public class CategoryServices {
-    
+
+    CategoryDAO categoryDAO = new HibernateDAOFactory().getCategoryDAO();
+
+    public void setCategoryName(String categoryName) throws UniqueExceptionEmplementation {
+        Category category = new Category();
+        category.setName(categoryName);
+        categoryDAO.create(category);
+    }
+
+    public List<Category> getAllCategories() {
+        List<Category> categoryList = categoryDAO.retreive();
+        return categoryList;
+    }
+
+    public void updateCategoryName(int id, String categoryName) throws UniqueExceptionEmplementation {
+        Category category = new Category();
+        categoryDAO.update(id, categoryName);
+    }
+
+    public void deleteCategory(int id) throws UniqueExceptionEmplementation {
+        Category category = new Category();
+        categoryDAO.delete(id);
+    }
+
 }

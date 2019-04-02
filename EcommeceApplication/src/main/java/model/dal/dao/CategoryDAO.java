@@ -5,6 +5,9 @@
  */
 package model.dal.dao;
 
+import exceptions.UniqueExceptionEmplementation;
+import java.util.ArrayList;
+import java.util.List;
 import model.entity.Category;
 
 /**
@@ -13,12 +16,12 @@ import model.entity.Category;
  */
 public interface CategoryDAO {
 
-    public void create(Category category);
+    public void create(Category category) throws UniqueExceptionEmplementation;
 
-    public Category retreive();
+    public List<Category> retreive();
 
-    public void update(Category category);
+    public void update(int id , String categoryName)throws UniqueExceptionEmplementation;
 
-    public void delete(Category category);
+    public void delete(int id);
 
 }
