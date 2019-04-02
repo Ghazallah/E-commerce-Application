@@ -84,15 +84,15 @@ public class Login extends HttpServlet {
         String email = userLoginDTO.getEmail();
         String password = userLoginDTO.getPassword();
         User user = userDAO.retrieve(email);
-        if (user == null ||password==null|| !password.equals(user.getPassword())){
+        if (user == null || password == null || !password.equals(user.getPassword())) {
             response.sendRedirect("login.html?error=true");
-        }else {
+        } else {
             session = request.getSession(true);
-            if (user.getRole() ==1){
-                
-                out.println ("admin");
-            }else {
-                out.println ("user");
+            if (user.getRole() == 1) {
+
+                response.sendRedirect("../../admin/admin.jsp");
+            } else {
+                response.sendRedirect("../index.html");
             }
         }
 

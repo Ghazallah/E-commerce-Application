@@ -5,6 +5,7 @@
  */
 package model.dal.dao;
 
+import java.util.List;
 import model.entity.Product;
 
 /**
@@ -20,5 +21,7 @@ public interface ProductDAO {
     public void update(Product product);
 
     public void delete(Product product);
+    
+    public List<Product> retreiveAllProducts();
 
 }

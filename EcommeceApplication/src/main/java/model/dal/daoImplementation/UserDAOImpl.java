@@ -54,7 +54,7 @@ public class UserDAOImpl implements UserDAO {
     public void update(User user) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.saveOrUpdate(user);
+            session.update(user);
             session.getTransaction().commit();
             session.close();
         }

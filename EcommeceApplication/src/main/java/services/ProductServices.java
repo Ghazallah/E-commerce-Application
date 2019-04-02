@@ -5,10 +5,24 @@
  */
 package services;
 
+import java.util.List;
+import model.dal.dao.ProductDAO;
+import model.dal.daoFactory.DAOFactory;
+import model.dal.daoFactory.HibernateDAOFactory;
+import model.entity.Product;
+
 /**
  *
  * @author ghazallah
  */
 public class ProductServices {
+    private DAOFactory dAOFactory = new HibernateDAOFactory();
+    private ProductDAO productDAO =dAOFactory.getProductDAO();
+    
+    public List<Product> getAllProducts(){
+        
+        return productDAO.retreiveAllProducts();
+        
+    }
     
 }
