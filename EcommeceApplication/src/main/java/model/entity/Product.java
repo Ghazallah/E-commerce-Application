@@ -35,9 +35,9 @@ public class Product  implements java.io.Serializable {
      private Integer quantity;
      private String description;
      private String discount;
-     private Set<Cart> carts = new HashSet<Cart>(0);
-     private Set<User> users = new HashSet<User>(0);
-     private Set<OrderHasProducts> orderHasProductses = new HashSet<OrderHasProducts>(0);
+     private Set<Cart> carts = new HashSet<>(0);
+     private Set<User> users = new HashSet<>(0);
+     private Set<OrderHasProducts> orderHasProductses = new HashSet<>(0);
      private ProductDetails productDetails;
 
     public Product() {

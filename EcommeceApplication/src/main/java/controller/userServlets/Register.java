@@ -23,13 +23,8 @@ public class Register extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        System.out.println("here");
-        
         HttpSession session = request.getSession();
-        
         User user = (User) session.getAttribute("user");
-        System.out.println(user.getEmail());
         UserServices service = new UserServices();
         service.createUser(user);
     }

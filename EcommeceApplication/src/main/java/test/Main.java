@@ -26,13 +26,9 @@ public class Main {
         DAOFactory factory = new HibernateDAOFactory();
         UserDAO userDAO = factory.getUserDAO();
         User user = new User();
-        user.setName("ghazallah");
-        user.setEmail("ghazallah64");
-        user.setPassword("123");
-        user.setPhone("0100");
-        user.setPicture("pic");
-        userDAO.create(user);
-
+        user =userDAO.retrieve("ghazallah64");
+        user.setRole(1);
+        userDAO.update(user);
     }
 
 }
