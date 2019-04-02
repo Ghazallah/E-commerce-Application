@@ -92,7 +92,7 @@ public class Login extends HttpServlet {
 
                 response.sendRedirect("../../admin/admin.jsp");
             } else {
-                response.sendRedirect("../index.html");
+                response.sendRedirect("../index.jsp");
             }
         }
 

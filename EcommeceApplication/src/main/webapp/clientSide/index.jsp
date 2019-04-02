@@ -1,3 +1,4 @@
+<%@page contentType="text/html; ISO-8859-1" pageEncoding="utf-8" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -47,6 +48,7 @@
 
 <!-- Main Page -->
 <main class="tab-content"> 
+  <!-- ------------------------------------------------ --> 
   <!-- ------------------------------------------------ --> 
   <!-- ------------------------------------------------ --> 
   <!--===================== Pages ======================--> 
@@ -1140,51 +1142,7 @@
     <!-- Login Modal -->
     <div id="loginpage" class="iziModal"> 
       <!-- Modal content -->
-      <section class="loginForm">
-        <div class="container py-4 px-md-0 d-flex">
-          <div class="w-100">
-            <div class="row row-grid justify-content-center justify-content-lg-between align-items-center">
-              <div class="col">
-                <div class="card zindex-100 mb-0">
-                  <div class="card-body px-md-5 py-5">
-                    <div class="mb-5">
-                      <h6 class="h3 cl11">Login</h6>
-                      <p class="text-muted mb-0">Sign in to your account to continue.</p>
-                    </div>
-                    <span class="clearfix"></span>
-                    <form role="form">
-                      <div class="form-group">
-                        <label class="form-control-label">Email address</label>
-                        <div class="input-group input-group-merge">
-                          <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-user"></i></span> </div>
-                          <input type="email" class="form-control" id="input-email" placeholder="name@example.com">
-                        </div>
-                      </div>
-                      <div class="form-group mb-4">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div>
-                            <label class="form-control-label">Password</label>
-                          </div>
-                          <div class="mb-2"> </div>
-                        </div>
-                        <div class="input-group input-group-merge">
-                          <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-key"></i></span> </div>
-                          <input type="password" class="form-control" id="input-password" placeholder="Password">
-                          <div class="input-group-append"> </div>
-                        </div>
-                      </div>
-                      <div class="mt-4">
-                        <button type="button" class="btn btn-sm btn-primary btn-icon px-5 py-2 sk skew"><span class="btn-inner--text">Sign in &nbsp; </span><span class="btn-inner--icon"><em class="ti-arrow-right fs-11"></em></span></button>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="card-footer px-md-5 fs-16"><small>Not registered?</small> <a href="#" class="small font-weight-bold registerModal">Create account</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <%@ include file="html/login.html" %>
     </div>
     
     <!-- Register Modal -->
@@ -1638,10 +1596,10 @@
   
   <!-- Cart Page -->
   <section id="cartpage" class="active-menu tab-pane fade active">
-    <header class="header-account-page bg-primary d-flex align-items-end pt-2" style="border-left:2px dotted red"> 
+    <header class="header-account-page d-flex align-items-end" style="background-color: #425e80"> 
       <!-- Header container -->
       <div class="container">
-        <div class="row">
+        <div class="row p-b-10 p-t-10">
           <div class=" col-lg-12"> 
             <!-- Salute + Small stats -->
             <div class="row align-items-center mb-4">
@@ -1649,12 +1607,12 @@
             </div>
             <!-- Account navigation -->
             <div class="d-flex">
-              <div class="btn-group btn-group-nav " role="group" aria-label="Basic example">
+              <div class="btn-group btn-group-nav shadow" role="group" aria-label="Basic example">
                 <div class="btn-group" role="group">
-                  <div class="btn btn-white btn-icon cl0 cart-form-active"> <span class="btn-inner--icon"><i class="ti-shopping-cart-full"></i></span> <span class="btn-inner--text fs-9">Cart</span> </div>
-                  <div class="btn btn-white btn-icon cl0"> <span class="btn-inner--icon"><i class="ti-user"></i></span> <span class="btn-inner--text fs-9">Customer</span> </div>
-                  <div class="btn btn-white btn-icon cl0"> <span class="btn-inner--icon"><i class="ti-truck"></i></span> <span class="btn-inner--text fs-9">Shipping</span> </div>
-                  <div class="btn btn-white btn-icon cl0"> <span class="btn-inner--icon"><i class="ti-credit-card"></i></span> <span class="btn-inner--text fs-9">Payment</span> </div>
+                  <div class="btn btn-white btn-icon cl0 cart-form-active"> <span class="btn-inner--icon"><i class="ti-shopping-cart-full"></i></span> <span class="btn-inner--text fs-10">Cart</span> </div>
+                  <div class="btn btn-white btn-icon cl0"> <span class="btn-inner--icon"><i class="ti-user"></i></span> <span class="btn-inner--text fs-10">Customer</span> </div>
+                  <div class="btn btn-white btn-icon cl0"> <span class="btn-inner--icon"><i class="ti-truck"></i></span> <span class="btn-inner--text fs-10">Shipping</span> </div>
+                  <div class="btn btn-white btn-icon cl0"> <span class="btn-inner--icon"><i class="ti-credit-card"></i></span> <span class="btn-inner--text fs-10">Payment</span> </div>
                 </div>
               </div>
             </div>
@@ -1662,101 +1620,28 @@
         </div>
       </div>
     </header>
-    <main class="p-b-100"> 
+    
+    <main> 
       <!-- Cart multi-form submition -->
       <form name="cartform" id="cartform" method="post" action="#">
         
         <!-- id will be unique, but class name will be same -->
-        <div id="sf1" class="frm container-fluid">
-          <div id="cart-products">
-            <div class="cart-item pt-4">
-              <div class="row">
-                <div class="col-5"> <img src="images/banner_2_product.png"> </div>
-                <div class="col-7">
-                  <div class="row"><span class="cart-item-name">Lenovo y5070 - Black</span></div>
-                  <div class="row mt-2"><span class="cart-item-cost">EGP 5,750</span></div>
-                  <div class="row mt-1"><span class="cart-item-discount">EGP 3,500</span></div>
-                </div>
-              </div>
-              <div class="row mt-3 d-block">
-                <div class="m-l-30 float-left"><a href="#"><i class="ti-trash fs-22"></i></a></div>
-                <div class="m-r-20 pb-2 float-right">
-                  <div class="wrap-num-product flex-w">
-                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"> <i class="fs-10 zmdi zmdi-minus"></i></div>
-                    <input class="txt-center num-product" type="number" name="num-product" value="1">
-                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"><em class="fs-10 zmdi zmdi-plus"></em></div>
-                  </div>
-                </div>
+        <div id="sf1" class="frm">
+          <fieldset>
+            <legend>Step 1 of 3</legend>
+            <div class="form-group">
+              <label class="col-lg-2 control-label" for="uname">Your Name: </label>
+              <div class="col-lg-6">
+                <input type="text" placeholder="Your Name" id="uname" name="uname" class="form-control" autocomplete="off">
               </div>
             </div>
-            <div class="cart-item pt-4">
-              <div class="row">
-                <div class="col-5"> <img src="images/banner_2_product.png"> </div>
-                <div class="col-7">
-                  <div class="row"><span class="cart-item-name">Lenovo y5070 - Black</span></div>
-                  <div class="row mt-2"><span class="cart-item-cost">EGP 5,750</span></div>
-                  <div class="row mt-1"><span class="cart-item-discount">EGP 3,500</span></div>
-                </div>
-              </div>
-              <div class="row mt-3 d-block">
-                <div class="m-l-30 float-left"><a href="#"><i class="ti-trash fs-22"></i></a></div>
-                <div class="m-r-20 pb-2 float-right">
-                  <div class="wrap-num-product flex-w">
-                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"> <i class="fs-10 zmdi zmdi-minus"></i></div>
-                    <input class="txt-center num-product" type="number" name="num-product" value="1">
-                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"><em class="fs-10 zmdi zmdi-plus"></em></div>
-                  </div>
-                </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2"> 
+                <!-- open1 is given in the class that is binded with the click event -->
+                <button class="btn btn-primary open1" type="button">Next <span class="fa fa-arrow-right"></span></button>
               </div>
             </div>
-            <div class="cart-item pt-4">
-              <div class="row">
-                <div class="col-5"> <img src="images/banner_2_product.png"> </div>
-                <div class="col-7">
-                  <div class="row"><span class="cart-item-name">Lenovo y5070 - Black</span></div>
-                  <div class="row mt-2"><span class="cart-item-cost">EGP 5,750</span></div>
-                  <div class="row mt-1"><span class="cart-item-discount">EGP 3,500</span></div>
-                </div>
-              </div>
-              <div class="row mt-3 d-block">
-                <div class="m-l-30 float-left"><a href="#"><i class="ti-trash fs-22"></i></a></div>
-                <div class="m-r-20 pb-2 float-right">
-                  <div class="wrap-num-product flex-w">
-                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"> <i class="fs-10 zmdi zmdi-minus"></i></div>
-                    <input class="txt-center num-product" type="number" name="num-product" value="1">
-                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"><em class="fs-10 zmdi zmdi-plus"></em></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="cart-item pt-4">
-              <div class="row">
-                <div class="col-5"> <img src="images/banner_2_product.png"> </div>
-                <div class="col-7">
-                  <div class="row"><span class="cart-item-name">Lenovo y5070 - Black</span></div>
-                  <div class="row mt-2"><span class="cart-item-cost">EGP 5,750</span></div>
-                  <div class="row mt-1"><span class="cart-item-discount">EGP 3,500</span></div>
-                </div>
-              </div>
-              <div class="row mt-3 d-block">
-                <div class="m-l-30 float-left"><a href="#"><i class="ti-trash fs-22"></i></a></div>
-                <div class="m-r-20 pb-2 float-right">
-                  <div class="wrap-num-product flex-w">
-                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"> <i class="fs-10 zmdi zmdi-minus"></i></div>
-                    <input class="txt-center num-product" type="number" name="num-product" value="1">
-                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"><em class="fs-10 zmdi zmdi-plus"></em></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-          <div class="form-group">
-            <div class="float-right"> 
-              <!-- open1 is given in the class that is binded with the click event -->
-              <button class="btn btn-primary open1" type="button">Next <span class="fa fa-arrow-right"></span></button>
-            </div>
-          </div>
+          </fieldset>
         </div>
         
         <!-- id will be unique, but class name will be same -->
