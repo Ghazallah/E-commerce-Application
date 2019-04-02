@@ -23,6 +23,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>clientSide/index.html</welcome-file>
+        <welcome-file>clientSide/html/register.html</welcome-file>
     </welcome-file-list>
     <!--login filter-->
     <filter>

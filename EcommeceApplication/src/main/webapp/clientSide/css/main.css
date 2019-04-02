@@ -498,7 +498,7 @@ body {
     min-width: 15px;
     height: 15px;
     padding: 0 3px;
-    background-color: #717fe0;
+    background-color: #cf062a;
 }
 
 /*---------------------------------------------*/
@@ -1747,11 +1747,11 @@ button.mfp-close {
 /*//////////////////////////////////////////////////////////////////
 [ Num Product ]*/
 .wrap-num-product {
-    width: 140px;
-    height: 45px;
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    overflow: hidden;
+	width: 140px;
+	height: 35px;
+	border: 1px solid #e6e6e6;
+	border-radius: 3px;
+	overflow: hidden;
 }
 
 .btn-num-product-up, .btn-num-product-down {
@@ -2090,7 +2090,7 @@ input.num-product::-webkit-outer-spin-button, input.num-product::-webkit-inner-s
 }
 
 .cl3 {
-    color: #666;
+	color: #FF0206;
 }
 
 .cl4 {
@@ -4246,7 +4246,7 @@ ul, ol {
     padding: 0 3px;
     left: 30px;
     top: -12px;
-    background-color: #717fe0;
+    background-color: #cf062a;
     border-radius: 50px;
 }
 
@@ -4268,33 +4268,37 @@ ul, ol {
 }
 
 .header-searchbar {
-    width: 100%;
-    height: 50px;
+	width: 100%;
+	height: 35px;
+	overflow: hidden;
 }
 
 .header-searchbar .searchhere {
-    padding: 10px;
-    font-size: 16px;
-    float: left;
-    width: 80%;
-    background: #ffffff;
-    transform: skew(-5deg);
+	padding: 10px;
+	font-size: 12px;
+	float: left;
+	width: 80%;
+	background: #ffffff;
+	transform: skew(-5deg);
 }
 
 .header-searchbar button {
-    float: left;
-    width: 15%;
-    padding: 10px;
-    background: #2196F3;
-    color: white;
-    font-size: 15px;
-    border-left: none;
-    cursor: pointer;
-    transform: skew(-5deg);
+	float: left;
+	width: 15%;
+	background: #2196F3;
+	color: white;
+	font-size: 15px;
+	border-left: none;
+	cursor: pointer;
+	padding-top: 9px;
+	padding-right: 9px;
+	padding-left: 9px;
+	padding-bottom: 9px;
+	transform: skew(-5deg);
 }
 
 .subheader-mobile {
-    background-color: #232f3e;
+	background-color: #232f3e;
 }
 
 /* vertical text slider */
@@ -4304,11 +4308,11 @@ ul, ol {
 }
 
 #textslider {
-    overflow: hidden;
-    margin: 0 auto;
-    font-size: 1.2em;
-    background-color: #37475A;
-    border-left: 2px solid #2196F3;
+	overflow: hidden;
+	font-size: 1.2em;
+	background-color: #37475A;
+	border-left: 2px solid #2196F3;
+	margin-top: 20px;
 }
 
 #textslider .container {
@@ -4377,10 +4381,20 @@ ul, ol {
     box-shadow: 0 1px 3px 0;
 }
 
+#footer-bar ul .nav-link{
+	padding: 0;
+	background-color: transparent;
+}
+#footer-bar ul li .active .footer-item{
+	color: #007bff;
+}
+
+
 .footer-item {
     flex: 1;
     padding: 5px;
     overflow: hidden;
+	color: #3A3E4A;
 }
 
 .justify-center {
@@ -4389,16 +4403,14 @@ ul, ol {
     justify-content: center;
 }
 
-.footer-item > a {
+.footer-item > div {
     flex-direction: column;
-    color: #3A3E4A;
     text-decoration: none;
     font-size: 25px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
 }
-
-.footer-item a > span {
+.footer-item div > .footer-text {
     font-size: 10px;
     overflow: visible;
 }
@@ -4418,10 +4430,6 @@ ul, ol {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-}
-
-.footer-active a {
-    color: #2196F3;
 }
 
 /*Login form*/
@@ -4501,8 +4509,46 @@ ul, ol {
 	background-color: #2E89E4;
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 }
+.home-header {
+	background-color: #232f3e;
+}
 
 
 
+/*   cart */
+.cart-form-active{
+	background-color: white;
+    transform: skewX(-12deg);
+    overflow: hidden;
+    color: black;
+}
 
 
+.cart-item{
+	background-color: white;
+	margin-top: 10px;
+}
+.cart-item img{
+	width: 100%;
+}
+.cart-item-name{
+	font-size: 14px;
+	font-weight: bold;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+
+.cart-item-cost{
+	font-weight: bold;
+	font-style: italic;
+	text-decoration:line-through;
+}
+.cart-item-discount{
+	color: red;
+	font-weight: bold;
+}
+.cart-item-option{
+	padding: 10px;
+}
+#cart-products{
+	margin-top: 20px;
+}

@@ -1,9 +1,4 @@
-var selectedElement;
-
-/*************************** Pages ****************************/
-
 /*============================= Attributes of iziModal ========================================
- ==============================================================================================
 		title: '', //Title in modal's header.
 		subtitle: '', //Caption below modal's title.
 		headerColor: '#88A0B9', //Color to fill the header background, will also be applied to the bottom edge of the modal.
@@ -58,34 +53,6 @@ var selectedElement;
 		onClosed: function () {},
 */
 
-$("#homepage").iziModal({
-    appendTo: '#mainpage',
-	openFullscreen: true,
-	focusInput: false,
-	overlay: false,
-	onOpening: function () {
-		"use strict";
-		$("#footer-home").addClass("footer-active");
-	},
-	onClosing: function () {
-		"use strict";
-		$('#footer-home').removeClass("footer-active");
-	}
-});
-$("#categorypage").iziModal({
-	appendTo: '#mainpage',
-	openFullscreen: true,
-	focusInput: false,
-	overlay: false,
-	onOpening: function () {
-		"use strict";
-		$("#footer-category").addClass("footer-active");
-	},
-	onClosing: function () {
-		"use strict";
-		$('#footer-category').removeClass("footer-active");
-	}
-});
 
 /*************************** Modals ****************************/
 $("#loginpage").iziModal({
@@ -207,42 +174,9 @@ $('.loginModal').click(function () {
 	$('#registerpage').iziModal('close');
 	$('#loginpage').iziModal('open');
 });
-
 $('.registerModal').click(function () {
 	event.preventDefault();
 	$('#loginpage').iziModal('close');
 	$('#registerpage').iziModal('open');
 });
 
-
-
-$('#footer-category').click(function () {
-	event.preventDefault();
-	if(selectedElement !== "#categorypage"){
-		$(selectedElement).iziModal('close');
-		$("#categorypage").iziModal('open');
-		selectedElement = "#categorypage";
-	}else{
-		console.log("current selected is already category page !");
-	}
-});
-
-$('#footer-home').click(function () {
-	event.preventDefault();
-	if(selectedElement !== "#homepage"){
-		$(selectedElement).iziModal('close');
-		$("#homepage").iziModal('open');
-		selectedElement = "#homepage";
-	}else{
-		console.log("current selected is already home page !");
-	}
-});
-
-
-
-/***************** Set the home page as default page ****************/
-$(document).ready(function () {
-	console.log("Setting home page as default page ..");
-	selectedElement = "#homepage";
-	$("#homepage").iziModal('open');
-});
