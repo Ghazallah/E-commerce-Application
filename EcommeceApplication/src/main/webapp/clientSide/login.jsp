@@ -7,4 +7,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id ="user" scope="session" class="model.dto.UserLoginDTO"/>
 <jsp:setProperty name="user" property="*"/>
-<jsp:forward page="login"/>
+<jsp:forward page="../login"/>
