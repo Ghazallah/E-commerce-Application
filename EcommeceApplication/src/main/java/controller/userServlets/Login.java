@@ -7,6 +7,7 @@ package controller.userServlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -90,7 +91,10 @@ public class Login extends HttpServlet {
             session = request.getSession(true);
             if (user.getRole() == 1) {
 
-                response.sendRedirect("../admin/admin.jsp");
+//                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
+//                dispatcher.forward(request, response);
+                response.sendRedirect("../../admin/admin.jsp");
+                
             } else {
                 response.sendRedirect("../index.jsp");
             }

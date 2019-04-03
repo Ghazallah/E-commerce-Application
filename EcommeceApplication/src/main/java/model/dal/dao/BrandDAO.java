@@ -5,7 +5,10 @@
  */
 package model.dal.dao;
 
+import exceptions.UniqueExceptionEmplementation;
+import java.util.List;
 import model.entity.Brand;
+import model.entity.Category;
 
 /**
  *
@@ -13,12 +16,14 @@ import model.entity.Brand;
  */
 public interface BrandDAO {
 
-    public void create(Brand brand);
+    public void create(Brand brand) throws UniqueExceptionEmplementation;
 
-    public Brand retreive();
+    public List<Brand> retreive();
 
-    public void update(Brand brand);
+    public void update(Brand brand)throws UniqueExceptionEmplementation;
 
     public void delete(Brand brand);
+    
+    public Brand getBrand(int id);
 
 }

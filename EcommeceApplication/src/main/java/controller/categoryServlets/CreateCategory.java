@@ -39,8 +39,12 @@ public class CreateCategory extends HttpServlet {
             try {
                 categoryServices.setCategoryName(categoryName);
                 out.print("Data Saved successfully :)");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-category.jsp");
-                dispatcher.include(request, response);
+//                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-category.jsp");
+//                dispatcher.forward(request, response);
+                ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
+                HttpSession session = request.getSession();
+                session.setAttribute("categoryList", categoryList);
+                response.sendRedirect("admin/add-category.jsp");
             } catch (UniqueExceptionEmplementation ex) {
                 // display duplicated category modal
                 out.print("oops duplicated category please enter new one");
@@ -51,6 +55,9 @@ public class CreateCategory extends HttpServlet {
             try {
                 categoryServices.updateCategoryName(categoryID, categoryName);
                 out.print("Data Saved successfully :)");
+                ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
+                HttpSession session = request.getSession();
+                session.setAttribute("categoryList", categoryList);
             } catch (UniqueExceptionEmplementation ex) {
                 // display duplicated category modal
                 out.print("oops duplicated category please enter new one");
@@ -60,11 +67,14 @@ public class CreateCategory extends HttpServlet {
             try {
                 categoryServices.deleteCategory(categoryID);
                 out.print("Data Saved successfully :)");
+                ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
+                HttpSession session = request.getSession();
+                session.setAttribute("categoryList", categoryList);
             } catch (UniqueExceptionEmplementation ex) {
                 // display duplicated category modal
                 out.print("oops duplicated category please enter new one");
             }
-        } 
+        }
     }
 
     @Override
@@ -72,14 +82,13 @@ public class CreateCategory extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        CategoryServices categoryServices = new CategoryServices();
-
+//        CategoryServices categoryServices = new CategoryServices();
         String action = request.getParameter("action");
 
         if (action.equals("manageCategory")) {
-            ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
-            HttpSession session = request.getSession();
-            session.setAttribute("categoryList", categoryList);
+//            ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
+//            HttpSession session = request.getSession();
+//            session.setAttribute("categoryList", categoryList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
             dispatcher.forward(request, response);
         }

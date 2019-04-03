@@ -29,8 +29,8 @@ public class CategoryDAOImpl implements CategoryDAO {
             session.save(category);
             session.getTransaction().commit();
             //session.close();
-        } catch (PersistenceException  ex) {
-                throw new UniqueExceptionEmplementation("duplicated name");
+        } catch (PersistenceException ex) {
+            throw new UniqueExceptionEmplementation("duplicated name");
         }
 
     }
@@ -41,7 +41,7 @@ public class CategoryDAOImpl implements CategoryDAO {
         List<Category> categoryList = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Criteria criteria = session.createCriteria(Category.class);
-            categoryList = (ArrayList<Category>) criteria.list();
+            categoryList = criteria.list();
             System.out.println("ssss");
             session.close();
         } catch (HibernateException ex) {
@@ -52,32 +52,43 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public void update(int id , String categoryName) throws UniqueExceptionEmplementation {
+    public void update(Category category) throws UniqueExceptionEmplementation {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            Category category=session.get(Category.class, id);
-            category.setName(categoryName);
             session.update(category);
             session.getTransaction().commit();
-            session.close();
-        } catch (PersistenceException  ex) {
-                throw new UniqueExceptionEmplementation("duplicated name");
+//            session.close();
+        } catch (PersistenceException ex) {
+            throw new UniqueExceptionEmplementation("duplicated name");
         }
 
     }
 
     @Override
-    public void delete(int categoryId) {
+    public void delete(Category category) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            Category category=session.get(Category.class, categoryId);
             session.delete(category);
             session.getTransaction().commit();
-            session.close();
-        } catch (PersistenceException  ex) {
+//            session.close();
+        } catch (PersistenceException ex) {
 //                throw new UniqueExceptionEmplementation("duplicated name");
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public Category getCategory(int id) {
+        Category category = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            category = session.get(Category.class, id);
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            //exceptions in server 
+            ex.printStackTrace();
+        }
+        return category;
     }
 
 }
