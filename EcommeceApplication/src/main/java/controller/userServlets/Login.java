@@ -90,7 +90,7 @@ public class Login extends HttpServlet {
             session = request.getSession(true);
             if (user.getRole() == 1) {
 
-                response.sendRedirect("../../admin/admin.jsp");
+                response.sendRedirect("../admin/admin.jsp");
             } else {
                 response.sendRedirect("../index.jsp");
             }
