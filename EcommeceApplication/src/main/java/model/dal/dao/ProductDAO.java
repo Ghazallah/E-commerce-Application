@@ -5,6 +5,7 @@
  */
 package model.dal.dao;
 
+import exceptions.UniqueExceptionEmplementation;
 import java.util.List;
 import model.entity.Product;
 
@@ -14,7 +15,7 @@ import model.entity.Product;
  */
 public interface ProductDAO {
 
-    public void create(Product product);
+    public void create(Product product) throws UniqueExceptionEmplementation;;
 
     public Product retreive();
 

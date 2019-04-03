@@ -5,6 +5,7 @@
  */
 package services;
 
+import exceptions.UniqueExceptionEmplementation;
 import java.util.List;
 import model.dal.dao.BrandDAO;
 import model.dal.dao.ProductDAO;
@@ -31,7 +32,7 @@ public class ProductServices {
         
     }
     
-    public void addProduct (Product product,ProductDetails productDetails,int brandId){
+    public void addProduct (Product product,ProductDetails productDetails,int brandId) throws UniqueExceptionEmplementation{
           Brand brand = brandDAO.getBrand(brandId);
           product.setBrand(brand);
           productDAO.create(product);

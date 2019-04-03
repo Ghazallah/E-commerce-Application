@@ -20,20 +20,20 @@
         <title>SB Admin - add category</title>
 
         <!-- Custom fonts for this template-->
-        <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
         <!-- Page level plugin CSS-->
-        <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
 
         <!-- Custom styles for this template-->
-        <link href="../css/sb-admin.css" rel="stylesheet">
+        <link href="resources/css/sb-admin.css" rel="stylesheet">
 
         <!-- Font Icon -->
-        <link rel="stylesheet" href="../fonts/material-icon/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="resources/fonts/material-icon/css/material-design-iconic-font.min.css">
 
         <!-- Main css -->
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="resources/css/style.css">
 
     </head>
 
@@ -61,7 +61,7 @@
 
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!--<i class="fas fa-user-circle fa-fw">--><img src="../images/client.png" width="70px" height="70px" /></i>
+                        <!--<i class="fas fa-user-circle fa-fw">--><img src="resources/images/client.png" width="70px" height="70px" /></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Update Profile</a>
@@ -132,16 +132,28 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" action="../CreateCategory"  id="signup-form" class="signup-form">
-                                    <h2 class="form-title">Category</h2> 
+                                <form method="POST" action="../CreateBrand"  id="signup-form" class="signup-form">
+                                    <h2 class="form-title">Brand</h2> 
 
                                     <br />
                                     <div class="form-group">
-                                        <input type="hidden" class="form-input" name="categoryID" id="categoryID" placeholder="Category ID"/>
+                                        <input type="hidden" required="true" class="form-input" name="brandID" id="brandID" placeholder="Brand ID"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="categoryName">Category Name</label><br>
-                                        <input type="text" disabled="true" class="form-input" name="categoryName" id="categoryName" placeholder="Category Name"/>
+                                        <input type="hidden" required="true" class="form-input" name="categoryID" id="categoryID" placeholder="category ID"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-input" id="categoryName" name="categoryName">
+
+                                            <option value="volvo" selected="true" disabled>Select Category</option>
+                                            <c:forEach items="${categoryList}" var="current">
+                                                <option value="${current.id}"><c:out value="${current.name}" /></option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="brandName">Brand Name</label><br>
+                                        <input type="text" required="true" class="form-input" name="brandName" id="brandName" placeholder="Brand Name"/>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" name="action" id="updateSubmit" class="form-submit" value="Update" >Update</button>
@@ -161,27 +173,32 @@
                     <div class="card mb-3">
                         <div class="card-header">
                             <i class="fas fa-table"></i>
-                            All Categories </div><br>
+                            All Brands </div><br>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Category ID</th>
+                                            <th>Brand ID</th>
+                                            <th>Brand Name</th>
                                             <th>Category Name</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Category ID</th>
+                                            <th>Brand ID</th>
+                                            <th>Brand Name</th>
                                             <th>Category Name</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach items="${categoryList}" var="current">
+                                        <c:forEach items="${brandList}" var="current">
                                             <tr id="${current.id}">
                                                 <td><c:out value="${current.id}" /></td>
                                                 <td><c:out value="${current.name}" /></td>
+                                                <td><c:out value="${current.category.name}" /></td>
+                                                <!-- -->
+                                                <td id="${current.category.id}" style="display: none;"></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -256,8 +273,8 @@
 
 <!-- Demo scripts for this page-->
 <script src="../js/demo/datatables-demo.js"></script>
-<script src="../js/script.js"></script>
-
+<!--<script src="resources/js/script.js"></script>-->
+<script src="resources/js/manageBrandScript.js"></script>
 
 </body>
 

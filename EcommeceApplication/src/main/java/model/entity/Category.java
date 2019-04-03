@@ -4,6 +4,7 @@ package model.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -63,7 +64,7 @@ public class Category  implements java.io.Serializable {
         this.name = name;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="category")
+@OneToMany(fetch=FetchType.LAZY, mappedBy="category" ,cascade = {CascadeType.ALL})
     public Set<Brand> getBrands() {
         return this.brands;
     }
