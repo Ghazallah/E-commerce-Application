@@ -128,56 +128,56 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" id="signup-form" class="signup-form">
-                                    <h2 class="form-title">Add Brand</h2><br />
+                                <form method="POST" action="../CreateProduct?addProduct" id="signup-form" class="signup-form">
+                                    <h2 class="form-title">Add Product</h2><br />
 
                                     <div class="form-group">
-                                        <select class="form-input">
-                                            <option value="volvo" selected="true" disabled>Select Category</option>
-                                            <option value="saab">LapTop</option>
-                                            <option value="mercedes">Mobile</option>
-                                            <option value="audi">Accessory</option>
+                                        <select class="form-input" name="brandID">
+                                            <option value="volvo" selected="true" disabled>Select Brand</option>
+                                            <option value="20">sony</option>
+                                            <option value="21">dell</option>
+                                            <option value="22">sumsung</option>
                                         </select>
                                     </div>
 
-
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="text" class="form-input" name="productName" id="productName" placeholder="Product Name"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="number" class="form-input" name="productPrice" id="name" placeholder="Product Price"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="number" class="form-input" name="productQuentity" id="productQuentity" placeholder="Product Quentity"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="number" class="form-input" name="name" id="name" placeholder="Product Discount"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="text" class="form-input" name="ram" id="ram" placeholder="Ram"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="text" class="form-input" name="processor" id="processor" placeholder="Processor"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="text" class="form-input" name="storage" id="storage" placeholder="storage"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="text" class="form-input" name="description" id="description" placeholder="description"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="text" class="form-input" name="productColor" id="productColor" placeholder="Product Color"/>
                                     </div>
+                                    <label for="productImage" >Product Image (choose image for product)</label>
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="file" class="form-input" name="productImage" id="productImage" placeholder="Product Image"/>
                                     </div>
                                     <!--<div class="form-group">
                                         <input type="email" class="form-input" name="email" id="email" placeholder="Your Email"/>
