@@ -43,7 +43,7 @@ public class UserCredit implements java.io.Serializable {
     @GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "user"))
     @Id
     @GeneratedValue(generator = "generator")
-    @Column(name = "id", unique = true, nullable = false)
+    //@Column(name = "id", unique = true, nullable = false)
     public int getId() {
         return this.id;
     }

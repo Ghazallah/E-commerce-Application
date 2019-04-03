@@ -5,7 +5,9 @@
  */
 package model.dal.daoImplementation;
 
+import exceptions.UniqueExceptionEmplementation;
 import java.util.List;
+import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -24,8 +26,16 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void create(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.save(product);
+            session.getTransaction().commit();
+            //session.close();
+        } catch (PersistenceException ex) {
+            ex.printStackTrace();
+        }
     }
+    
 
     @Override
     public Product retreive() {

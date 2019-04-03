@@ -44,7 +44,7 @@ public class ProductDetails implements java.io.Serializable {
     @Id
     @GeneratedValue(generator = "generator")
 
-    @Column(name = "pid", unique = true, nullable = false)
+    //@Column(name = "pid", unique = true, nullable = false)
     public int getProductId() {
         return this.productId;
     }

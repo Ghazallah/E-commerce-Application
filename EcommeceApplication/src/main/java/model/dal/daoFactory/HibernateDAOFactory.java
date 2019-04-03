@@ -10,6 +10,7 @@ import model.dal.dao.CategoryDAO;
 import model.dal.dao.CouponsDAO;
 import model.dal.dao.OrderDAO;
 import model.dal.dao.ProductDAO;
+import model.dal.dao.ProductDetailsDAO;
 import model.dal.dao.ShippingDAO;
 import model.dal.dao.UserCreditDAO;
 import model.dal.dao.UserDAO;
@@ -18,6 +19,7 @@ import model.dal.daoImplementation.CategoryDAOImpl;
 import model.dal.daoImplementation.CouponsDAOImpl;
 import model.dal.daoImplementation.OrderDAOImpl;
 import model.dal.daoImplementation.ProductDAOImpl;
+import model.dal.daoImplementation.ProductDetailsDAOImpl;
 import model.dal.daoImplementation.ShippingDAOImpl;
 import model.dal.daoImplementation.UserCreditDAOImpl;
 import model.dal.daoImplementation.UserDAOImpl;
@@ -67,6 +69,12 @@ public class HibernateDAOFactory implements DAOFactory {
     public UserCreditDAO getUserCreditDAO() {
         
         return new UserCreditDAOImpl();
+    }
+
+    @Override
+    public ProductDetailsDAO getProductDetailsDAO() {
+        
+        return new ProductDetailsDAOImpl();
     }
 
 }

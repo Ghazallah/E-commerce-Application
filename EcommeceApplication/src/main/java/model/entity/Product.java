@@ -34,7 +34,7 @@ public class Product  implements java.io.Serializable {
      private Double price;
      private Integer quantity;
      private String description;
-     private String discount;
+     private Integer discount;
      private Set<Cart> carts = new HashSet<>(0);
      private Set<User> users = new HashSet<>(0);
      private Set<OrderHasProducts> orderHasProductses = new HashSet<>(0);
@@ -47,7 +47,7 @@ public class Product  implements java.io.Serializable {
     public Product(int pid) {
         this.pid = pid;
     }
-    public Product(int pid, Brand brand, String name, Double price, Integer quantity, String description, String discount, Set<Cart> carts, Set<User> users, Set<OrderHasProducts> orderHasProductses, ProductDetails productDetails) {
+    public Product(int pid, Brand brand, String name, Double price, Integer quantity, String description, Integer discount, Set<Cart> carts, Set<User> users, Set<OrderHasProducts> orderHasProductses, ProductDetails productDetails) {
        this.pid = pid;
        this.brand = brand;
        this.name = name;
@@ -125,11 +125,11 @@ public class Product  implements java.io.Serializable {
 
     
     @Column(name="discount")
-    public String getDiscount() {
+    public Integer getDiscount() {
         return this.discount;
     }
     
-    public void setDiscount(String discount) {
+    public void setDiscount(Integer discount) {
         this.discount = discount;
     }
 
@@ -163,7 +163,7 @@ public class Product  implements java.io.Serializable {
         this.orderHasProductses = orderHasProductses;
     }
 
-@OneToOne(fetch=FetchType.LAZY, mappedBy="product")
+@OneToOne(fetch=FetchType.EAGER, mappedBy="product")
     public ProductDetails getProductDetails() {
         return this.productDetails;
     }
