@@ -93,7 +93,7 @@ public class Login extends HttpServlet {
 
 //                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
 //                dispatcher.forward(request, response);
-                response.sendRedirect("../../admin/admin.jsp");
+                response.sendRedirect("../AdminController");
                 
             } else {
                 response.sendRedirect("../index.jsp");

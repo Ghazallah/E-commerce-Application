@@ -27,7 +27,7 @@ import services.CategoryServices;
 public class AdminController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.print("admin");
@@ -37,8 +37,9 @@ public class AdminController extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("categoryList", categoryList);
         // here complete get all things cat,brand,pro,users
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
-        dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
+//        dispatcher.forward(request, response);
+          response.sendRedirect("admin/admin.jsp");
         
     }
 }
