@@ -30,8 +30,7 @@ public class LoginFilter implements Filter{
         HttpServletResponse response = (HttpServletResponse)sResponse;
         HttpSession session = request.getSession(false);
         if (session ==null){
-            //response.sendRedirect("login.html");
-            //refirect here on login page
+            response.sendRedirect("clientSide/index.jsp");  
         }
         
         fc.doFilter(sRequest, sResponse);

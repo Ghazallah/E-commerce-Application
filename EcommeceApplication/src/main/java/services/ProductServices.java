@@ -6,10 +6,14 @@
 package services;
 
 import java.util.List;
+import model.dal.dao.BrandDAO;
 import model.dal.dao.ProductDAO;
+import model.dal.dao.ProductDetailsDAO;
 import model.dal.daoFactory.DAOFactory;
 import model.dal.daoFactory.HibernateDAOFactory;
+import model.entity.Brand;
 import model.entity.Product;
+import model.entity.ProductDetails;
 
 /**
  *
@@ -18,10 +22,22 @@ import model.entity.Product;
 public class ProductServices {
     private DAOFactory dAOFactory = new HibernateDAOFactory();
     private ProductDAO productDAO =dAOFactory.getProductDAO();
+    private BrandDAO brandDAO= dAOFactory.getBrandDAO();
+    private ProductDetailsDAO productDetailsDAO = dAOFactory.getProductDetailsDAO();
     
     public List<Product> getAllProducts(){
         
         return productDAO.retreiveAllProducts();
+        
+    }
+    
+    public void addProduct (Product product,ProductDetails productDetails,int brandId){
+          Brand brand = brandDAO.getBrand(brandId);
+          product.setBrand(brand);
+          productDAO.create(product);
+          productDetails.setProduct(product);
+          productDetailsDAO.create(productDetails);
+          
         
     }
     

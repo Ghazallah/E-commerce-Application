@@ -56,7 +56,7 @@ public class Brand  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="catID")
     public Category getCategory() {
         return this.category;
