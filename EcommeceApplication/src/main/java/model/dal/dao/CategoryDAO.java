@@ -20,8 +20,10 @@ public interface CategoryDAO {
 
     public List<Category> retreive();
 
-    public void update(int id , String categoryName)throws UniqueExceptionEmplementation;
+    public void update(Category category)throws UniqueExceptionEmplementation;
 
-    public void delete(int id);
+    public void delete(Category category);
+    
+    public Category getCategory(int id);
 
 }

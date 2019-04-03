@@ -16,7 +16,6 @@ import model.entity.Category;
  *
  * @author ghazallah
  */
-@WebServlet(value = "/CategoryServices")
 public class CategoryServices {
 
     CategoryDAO categoryDAO = new HibernateDAOFactory().getCategoryDAO();
@@ -33,13 +32,14 @@ public class CategoryServices {
     }
 
     public void updateCategoryName(int id, String categoryName) throws UniqueExceptionEmplementation {
-        Category category = new Category();
-        categoryDAO.update(id, categoryName);
+        Category category = categoryDAO.getCategory(id);
+        category.setName(categoryName);
+        categoryDAO.update(category);
     }
 
     public void deleteCategory(int id) throws UniqueExceptionEmplementation {
-        Category category = new Category();
-        categoryDAO.delete(id);
+        Category category = categoryDAO.getCategory(id);
+        categoryDAO.delete(category);
     }
 
 }
