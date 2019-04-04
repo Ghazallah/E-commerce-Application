@@ -21,6 +21,7 @@ import model.dal.daoImplementation.BrandDAOImpl;
 import model.dal.daoImplementation.CategoryDAOImpl;
 import model.dal.daoImplementation.ProductDAOImpl;
 import model.dal.daoImplementation.UserCreditDAOImpl;
+import model.dal.daoImplementation.UserDAOImpl;
 import model.entity.Brand;
 import model.entity.Category;
 import model.entity.Product;
@@ -39,9 +40,20 @@ public class Main {
 
     public static void main(String[] args) {
        
-        BrandDAO brandDAO = new BrandDAOImpl();
-        Brand brand = brandDAO.getBrand(2);
-        System.out.println(brand.getCategory().getName());
+       User user = new User ();
+       user.setAddress("Menoufia");
+       user.setBirthday(new Date());
+       user.setEmail("ghazallah64@gmail.com");
+       user.setGender("male");
+       user.setName("Mo");
+       user.setRole(1);
+       user.setPicture("pic");
+       user.setPassword("123");
+       user.setPhone("01000");
+       
+       UserDAO userDAO = new UserDAOImpl();
+       userDAO.create(user);
+       
         
         
         

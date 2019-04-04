@@ -4,6 +4,7 @@ package model.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +39,7 @@ public class Product  implements java.io.Serializable {
      private Set<Cart> carts = new HashSet<>(0);
      private Set<User> users = new HashSet<>(0);
      private Set<OrderHasProducts> orderHasProductses = new HashSet<>(0);
-     private ProductDetails productDetails;
+     private Set<ProductDetails> productDetails;
 
     public Product() {
     }
@@ -47,7 +48,7 @@ public class Product  implements java.io.Serializable {
     public Product(int pid) {
         this.pid = pid;
     }
-    public Product(int pid, Brand brand, String name, Double price, Integer quantity, String description, Integer discount, Set<Cart> carts, Set<User> users, Set<OrderHasProducts> orderHasProductses, ProductDetails productDetails) {
+    public Product(int pid, Brand brand, String name, Double price, Integer quantity, String description, Integer discount, Set<Cart> carts, Set<User> users, Set<OrderHasProducts> orderHasProductses, Set<ProductDetails> productDetails) {
        this.pid = pid;
        this.brand = brand;
        this.name = name;
@@ -163,12 +164,12 @@ public class Product  implements java.io.Serializable {
         this.orderHasProductses = orderHasProductses;
     }
 
-@OneToOne(fetch=FetchType.EAGER, mappedBy="product")
-    public ProductDetails getProductDetails() {
+@OneToMany(fetch=FetchType.EAGER, mappedBy="product" ,cascade = {CascadeType.ALL})
+    public Set <ProductDetails> getProductDetails() {
         return this.productDetails;
     }
     
-    public void setProductDetails(ProductDetails productDetails) {
+    public void setProductDetails(Set<ProductDetails> productDetails) {
         this.productDetails = productDetails;
     }
 

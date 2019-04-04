@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -44,7 +45,7 @@ public class ProductDetails implements java.io.Serializable {
     @Id
     @GeneratedValue(generator = "generator")
 
-    //@Column(name = "pid", unique = true, nullable = false)
+    @Column(name = "pid", unique = true, nullable = false)
     public int getProductId() {
         return this.productId;
     }
@@ -53,7 +54,7 @@ public class ProductDetails implements java.io.Serializable {
         this.productId = productId;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "productID")
     public Product getProduct() {
         return this.product;

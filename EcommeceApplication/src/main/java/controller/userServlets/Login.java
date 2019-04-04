@@ -79,11 +79,10 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
-        UserLoginDTO userLoginDTO = (UserLoginDTO) session.getAttribute("user");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
         DAOFactory dAOFactory = new HibernateDAOFactory();
         UserDAO userDAO = dAOFactory.getUserDAO();
-        String email = userLoginDTO.getEmail();
-        String password = userLoginDTO.getPassword();
         User user = userDAO.retrieve(email);
         if (user == null || password == null || !password.equals(user.getPassword())) {
             response.sendRedirect("login.html?error=true");
@@ -93,10 +92,10 @@ public class Login extends HttpServlet {
 
 //                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
 //                dispatcher.forward(request, response);
-                response.sendRedirect("../AdminController");
+                response.sendRedirect("AdminController");
                 
             } else {
-                response.sendRedirect("../index.jsp");
+                response.sendRedirect("clinetSide/app.jsp");
             }
         }
 
