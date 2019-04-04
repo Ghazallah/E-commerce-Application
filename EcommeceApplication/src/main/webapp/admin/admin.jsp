@@ -81,11 +81,11 @@
                         <span>Manage Products</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" href="add-category.jsp">Add Category</a><!--href="add-brand.jsp"-->
-                        <a class="dropdown-item" href="../CreateBrand?action=manageBrand" >Add Brand</a>
-                        <a class="dropdown-item" href="add-product.jsp">Add Product</a>
+                        <a class="dropdown-item" href="../CreateCategory?action=addCategory">Add Category</a><!--href="add-brand.jsp"-->
+                        <a class="dropdown-item" href="../CreateBrand?action=addBrand" >Add Brand</a>
+                        <a class="dropdown-item" href="../CreateProduct?action=addProduct">Add Product</a>
                         <a class="dropdown-item" href="update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="display-all-products.jsp">Display All Product</a>
+                        <a class="dropdown-item" href="../CreateProduct?action=manageProduct">Display All Product</a>
 
                     </div>
                 </li>

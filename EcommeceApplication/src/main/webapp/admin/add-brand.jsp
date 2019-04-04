@@ -130,11 +130,11 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" id="signup-form" class="signup-form">
+                                <form method="POST" action="../CreateBrand?action=addBrand"c id="signup-form" class="signup-form">
                                     <h2 class="form-title">Add Brand</h2><br />
 
                                     <div class="form-group">
-                                        <select class="form-input">
+                                        <select class="form-input" name="categoryName">
 
                                             <option value="volvo" selected="true" disabled>Select Category</option>
                                             <c:forEach items="${categoryList}" var="current">
@@ -143,15 +143,8 @@
                                         </select>
                                     </div>
 
-                                    <c:forEach items="${categoryList}" var="current">
-                                        <tr id="${current.id}">
-                                            <td><c:out value="${current.id}" /></td>
-                                        <td><c:out value="${current.name}" /></td>
-                                        </tr>
-                                    </c:forEach>
-
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="name" id="name" placeholder="Brand Name"/>
+                                        <input type="text" class="form-input" name="brandName" id="name" placeholder="Brand Name"/>
                                     </div>
 
                                     <div class="form-group">

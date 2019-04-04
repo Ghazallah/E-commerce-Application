@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.entity.Brand;
 import model.entity.Category;
+import services.BrandServices;
 import services.CategoryServices;
 
 /**
@@ -31,15 +33,23 @@ public class AdminController extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.print("admin");
+        HttpSession session = request.getSession();
 
         CategoryServices categoryServices = new CategoryServices();
         ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
-        HttpSession session = request.getSession();
         session.setAttribute("categoryList", categoryList);
+
+        BrandServices brandServices = new BrandServices();
+        ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
+        session.setAttribute("brandList", brandList);
+        for (int i = 0; i < brandList.size(); i++) {
+            System.out.println(brandList.get(i).getName());
+//            System.out.println(brandList.get(i).getCategory().getName());
+//            System.out.println(brandList.get(i).getCategory().getId());
+        }
+
         // here complete get all things cat,brand,pro,users
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
-//        dispatcher.forward(request, response);
-          response.sendRedirect("admin/admin.jsp");
-        
+        response.sendRedirect("admin/admin.jsp");
+
     }
 }

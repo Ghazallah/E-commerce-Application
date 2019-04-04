@@ -137,11 +137,11 @@
 
                                     <br />
                                     <div class="form-group">
-                                        <input type="hidden" class="form-input" name="categoryID" id="categoryID" placeholder="Category ID"/>
+                                        <input type="hidden" required="true" class="form-input" name="categoryID" id="categoryID" placeholder="Category ID"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="categoryName">Category Name</label><br>
-                                        <input type="text" disabled="true" class="form-input" name="categoryName" id="categoryName" placeholder="Category Name"/>
+                                        <input type="text" required="true" class="form-input" name="categoryName" id="categoryName" placeholder="Category Name"/>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" name="action" id="updateSubmit" class="form-submit" value="Update" >Update</button>

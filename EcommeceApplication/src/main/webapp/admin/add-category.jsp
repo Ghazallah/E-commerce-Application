@@ -132,7 +132,7 @@
 
                                     <br />
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="categoryName" id="categoryID" placeholder="Category Name"/>
+                                        <input type="text" required="true" class="form-input" name="categoryName" id="categoryID" placeholder="Category Name"/>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="submit" id="submit" class="form-submit" value="Save New Category"/>

@@ -4,6 +4,7 @@ package model.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -56,7 +57,7 @@ public class Brand  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.EAGER)
+@ManyToOne(fetch=FetchType.EAGER , cascade = {CascadeType.ALL})
     @JoinColumn(name="catID")
     public Category getCategory() {
         return this.category;
