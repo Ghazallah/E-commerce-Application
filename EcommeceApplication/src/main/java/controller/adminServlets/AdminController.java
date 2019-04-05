@@ -32,7 +32,6 @@ public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.print("admin");
         HttpSession session = request.getSession();
 
         CategoryServices categoryServices = new CategoryServices();
@@ -42,14 +41,10 @@ public class AdminController extends HttpServlet {
         BrandServices brandServices = new BrandServices();
         ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
         session.setAttribute("brandList", brandList);
-        for (int i = 0; i < brandList.size(); i++) {
-            System.out.println(brandList.get(i).getName());
-//            System.out.println(brandList.get(i).getCategory().getName());
-//            System.out.println(brandList.get(i).getCategory().getId());
-        }
 
         // here complete get all things cat,brand,pro,users
-        response.sendRedirect("admin/admin.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
+        dispatcher.forward(request, response);
 
     }
 }
