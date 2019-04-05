@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -43,10 +44,9 @@ public class ProductDetails implements java.io.Serializable {
         this.quantity = quantity;
     }
 
-    @GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "product"))
-    @Id
-    @GeneratedValue(generator = "generator")
-
+   // @GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "product"))
+    @Id 
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "pid", unique = true, nullable = false)
     public int getProductId() {
         return this.productId;
@@ -56,7 +56,7 @@ public class ProductDetails implements java.io.Serializable {
         this.productId = productId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productID")
     public Product getProduct() {
         return this.product;

@@ -53,7 +53,6 @@ public class Product  implements java.io.Serializable {
        this.brand = brand;
        this.name = name;
        this.price = price;
-       
        this.description = description;
        this.discount = discount;
        this.carts = carts;
@@ -74,7 +73,7 @@ public class Product  implements java.io.Serializable {
         this.pid = pid;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="brandID")
     public Brand getBrand() {
         return this.brand;

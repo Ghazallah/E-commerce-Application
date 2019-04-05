@@ -125,78 +125,108 @@
                         <li class="breadcrumb-item active">Add Product</li>
                     </ol>
 
-                    <section class="signup">
-                        <div class="container">
-                            <div class="signup-content">
-                                <form method="POST" action="CreateProduct?addProduct" id="signup-form" class="signup-form">
-                                    <h2 class="form-title">Add Product</h2><br />
+                    <section class="addproduct">
+                        <form>
+                            <div class="container">
+                                <h4> Add product </h4>
+                                <br>
+                                <div class="row">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Product Name</th>
+                                                <td><input type="text" class="form-control" placeholder="..."></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Product Price</th>
+                                                <td><input type="text" class="form-control" placeholder="..."></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Product Discount (OPTIONAL)</th>
+                                                <td> <input type="number" value="0" min="0" max="100" step="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Processor</th>
+                                                <td><input type="text" class="form-control" placeholder="..."></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">RAM (GB)</th>
+                                                <td><input type="number" value="1" min="1" step="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Storage (GB)</th>
+                                                <td><input type="number" value="16" min="1" step="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Operating system</th>
+                                                <td><input type="text" class="form-control" placeholder="..."></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Graphics card</th>
+                                                <td><input type="text" class="form-control" placeholder="..."></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Product Category</th>
+                                                <td><select class="custom-select">
+                                                        <option selected>Open this select menu</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Product Brand</th>
+                                                <td><select class="custom-select">
+                                                        <option selected>Open this select menu</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                                <h4> Product details </h4>
+                                <br>
+                                <div class="row">
+                                    <table class="table" id="productDetails">
+                                        <tbody>
+                                            <tr>
+                                                <td><div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="productimage1">
+                                                        <label class="custom-file-label" for="customFile">Choose Product Image</label>
+                                                    </div></td>
+                                                <td><div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="productcolor1" value="option1">
+                                                        <label class="form-check-label" for="inlineRadio1">BLACK</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="productcolor1" value="option2">
+                                                        <label class="form-check-label" for="inlineRadio2">GOLD</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="productcolor1"  value="option2">
+                                                        <label class="form-check-label" for="inlineRadio2">WHITE</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="productcolor1" value="option2">
+                                                        <label class="form-check-label" for="inlineRadio2">RED</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="productcolor1" value="option2">
+                                                        <label class="form-check-label" for="inlineRadio2">BLUE</label>
+                                                    </div></td>
+                                                <td> Quantity :<input type="number" id="productquantity1" value="1" min="0" max="1000" step="1"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                    <div class="form-group">
-                                        <select class="form-input" name="brandID">
-                                            <option value="volvo" selected="true" disabled>Select Brand</option>
-                                            <option value="20">sony</option>
-                                            <option value="21">dell</option>
-                                            <option value="22">sumsung</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-input" name="productName" id="productName" placeholder="Product Name"/>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="number" class="form-input" name="productPrice" id="name" placeholder="Product Price"/>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="number" class="form-input" name="productQuentity" id="productQuentity" placeholder="Product Quentity"/>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="number" class="form-input" name="name" id="name" placeholder="Product Discount"/>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-input" name="ram" id="ram" placeholder="Ram"/>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-input" name="processor" id="processor" placeholder="Processor"/>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-input" name="storage" id="storage" placeholder="storage"/>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-input" name="description" id="description" placeholder="description"/>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-input" name="productColor" id="productColor" placeholder="Product Color"/>
-                                    </div>
-                                    <label for="productImage" >Product Image (choose image for product)</label>
-                                    <div class="form-group">
-                                        <input type="file" class="form-input" name="productImage" id="productImage" placeholder="Product Image"/>
-                                    </div>
-                                    <!--<div class="form-group">
-                                        <input type="email" class="form-input" name="email" id="email" placeholder="Your Email"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-input" name="password" id="password" placeholder="Password"/>
-                                        <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/>
-                                    </div>
-                                    -->
-
-                                    <div class="form-group">
-                                        <input type="submit" name="submit" id="submit" class="form-submit" value="Save New Brand"/>
-                                    </div>
-                                </form>
+                                <button type="button" class="btn btn-warning" id="addProductDetails">Add detail</button>
+                                <button type="button" class="btn btn-success">Save product</button>
                             </div>
-                        </div>
+                        </form>
                     </section>
 
                 </div>
@@ -245,10 +275,10 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
+
 <script src="resources/vendor/jquery/jquery.min.js"></script>
 <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="resources/js/addProductScript.js"></script>
 </body>
-
 </html>
 

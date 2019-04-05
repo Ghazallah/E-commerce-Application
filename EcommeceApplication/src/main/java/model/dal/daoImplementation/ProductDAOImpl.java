@@ -6,15 +6,20 @@
 package model.dal.daoImplementation;
 
 import exceptions.UniqueExceptionEmplementation;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import model.dal.dao.ProductDAO;
+import model.entity.Brand;
 import model.entity.Product;
+import model.entity.ProductDetails;
 import model.entity.User;
 import model.util.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -26,20 +31,44 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void create(Product product) {
-         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
+             //--------------------
+            ProductDetails productDetails1 = new ProductDetails();
+            productDetails1.setProductColor("color1");
+            productDetails1.setProductImage("image2");
+            productDetails1.setQuantity(2000);
+            ProductDetails productDetails2 = new ProductDetails();
+            productDetails2.setProductColor("color3");
+            productDetails2.setProductImage("image4");
+            productDetails2.setQuantity(2000);
+            Set<ProductDetails> productDetails = new HashSet<>();
+            productDetails.add(productDetails1);
+            productDetails.add(productDetails2);
+            product.setProductDetails(productDetails);
+            //--------------------
             session.save(product);
+            
             session.getTransaction().commit();
             //session.close();
         } catch (PersistenceException ex) {
             ex.printStackTrace();
         }
     }
-    
 
     @Override
-    public Product retreive() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Product retreive(int id) {
+        Product product = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            product = session.get(Product.class, id);
+           
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            //exceptions in server 
+            ex.printStackTrace();
+        }
+        return product;
     }
 
     @Override
