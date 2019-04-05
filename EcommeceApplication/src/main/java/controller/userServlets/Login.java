@@ -95,7 +95,7 @@ public class Login extends HttpServlet {
                 response.sendRedirect("admin/AdminController");
                 
             } else {
-                response.sendRedirect("clinetSide/app.jsp");
+                response.sendRedirect("clientSide/app.jsp");
             }
         }
 
