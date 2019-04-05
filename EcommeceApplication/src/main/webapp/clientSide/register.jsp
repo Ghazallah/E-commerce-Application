@@ -1,16 +1,17 @@
 <section cite="registerForm">
+    <script src="js/register.js" ></script>
     <div class="container py-4 px-md-0 d-flex">
         <div class="w-100">
             <div class="row row-grid justify-content-center justify-content-lg-between align-items-center">
                 <div class="col">
                     <div class="card zindex-100 mb-0">
                         <div class="card-body px-md-5 py-5">
-                            <form role="form">
+                            <form role="form" method="post" id="register" action="../register" enctype="multipart/form-data">
                                 <div class="mb-5">
                                     <div class="pos-relative">
                                         <label for="upload-photo" class="px-2 py-2 pos-absolute bg-silver fs-20 card" style="left: 72%;"><i class="ti-camera"></i></label>
                                         <input type="file" name="photo" id="upload-photo" />
-                                        <img src="images/icons/male.png" type="file" width="50%" height="50%" class="pb-2">
+                                        <img id="profile-img-tag" src="images/icons/male.png" type="file" width="50%" height="50%" class="pb-2">
                                     </div>
                                     <h6 class="h3">Create account</h6>
                                     <p class="text-muted mb-0">Please fill the following information to register</p>
@@ -20,21 +21,21 @@
                                     <label class="form-control-label">Username</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-user"></i></span> </div>
-                                        <input type="text" class="form-control" placeholder="Your name">
+                                        <input type="text" name="name" id="name" required class="form-control" placeholder="Your name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label">Email address</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-email"></i></span> </div>
-                                        <input type="email" class="form-control" placeholder="name@example.com">
+                                        <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" required>
                                     </div>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="form-control-label">Password</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-key"></i></span> </div>
-                                        <input type="password" class="form-control" placeholder="********">
+                                        <input name="password" id="password" type="password" class="form-control" placeholder="********" required>
                                         <div class="input-group-append"> </div>
                                     </div>
                                 </div>
@@ -42,7 +43,7 @@
                                     <label class="form-control-label">Confirm password</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-key"></i></span> </div>
-                                        <input type="password" class="form-control" id="input-password-confirm" placeholder="********">
+                                        <input name="confirm_password"  type="password" class="form-control" id="input-password-confirm" placeholder="********" required>
                                     </div>
                                 </div>
 
@@ -50,7 +51,8 @@
                                     <label class="form-control-label">Phone</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="fa fa-phone"></i></span> </div>
-                                        <input type="number" class="form-control" placeholder="Your phone">
+                                        <input  pattern="^01[012][0-9]{8}$" 
+                                                name="phone" id="tel" type="tel" class="form-control" placeholder="Your phone" required>
                                     </div>
                                 </div>
 
@@ -58,13 +60,13 @@
                                 <label class="form-control-label">Gender</label>
                                 <!-- Material inline 1 -->
                                 <div class="form-check form-check-inline">
-                                    <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" checked>
+                                    <input type="radio" class="form-check-input" name="gender" id="male" value="male" checked>
                                     <label class="form-check-label" for="materialInline1"> Male</label>
                                 </div>
 
                                 <!-- Material inline 2 -->
                                 <div class="form-check form-check-inline">
-                                    <input type="radio" class="form-check-input" id="materialInline2" name="inlineMaterialRadiosExample">
+                                    <input type="radio" class="form-check-input" name="gender" id="female" value="female">
                                     <label class="form-check-label" for="materialInline2"> Female</label>
                                 </div>
 
@@ -82,7 +84,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-4">
-                                    <button type="button" class="btn btn-primary skew"> <span class="btn-inner--text skew">Create my account</span> <span class="btn-inner--icon"><i class="far fa-long-arrow-alt-right"></i></span> </button>
+                                    <button type="submit"  class="btn btn-primary skew"> <span class="btn-inner--text skew">Create my account</span> <span class="btn-inner--icon"><i class="far fa-long-arrow-alt-right"></i></span> </button>
                                 </div>
                             </form>
                         </div>

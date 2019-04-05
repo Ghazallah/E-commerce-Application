@@ -5,14 +5,8 @@
  */
 package controller.userServlets;
 
-import controller.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.entity.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -35,9 +28,10 @@ import services.UserServices;
  */
 public class Register extends HttpServlet {
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             User newUser = new User();
 
@@ -47,66 +41,64 @@ public class Register extends HttpServlet {
             ServletFileUpload upload = new ServletFileUpload(factory);
             // Parse the request
             List<FileItem> items = upload.parseRequest(request);
-            Iterator<FileItem> iter = items.iterator();
-            while (iter.hasNext()) {
-                FileItem item = iter.next();
+            // ietrate for first type for form fields
+            for (FileItem item : items) {
                 if (item.isFormField()) {
                     //processFormField(item);
                     String name = item.getFieldName();
                     String value = item.getString();
-                    if (name.equals("name")) {
-                        newUser.setName(value);
-                    } else if (name.equals("email")) {
-                        newUser.setEmail(value);
-                    } else if (name.equals("gender")) {
-                        newUser.setGender(value);
-                    } else if (name.equals("phone")) {
-                        newUser.setPhone(value);
-                    } else if (name.equals("password")) {
-                        newUser.setPassword(value);
-                    } else if (name.equals("address")) {
-                        newUser.setAddress(value);
-                    } else if (name.equals("birthday")) {
-                        // Format the date for the data layer
-                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                        try {
-                            Date birthdate = formatter.parse(value);
-                            newUser.setBirthday(birthdate);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    switch (name) {
+                        case "name":
+                            newUser.setName(value);
+                            break;
+                        case "email":
+                            newUser.setEmail(value);
+                            break;
+                        case "gender":
+                            newUser.setGender(value);
+                            break;
+                        case "phone":
+                            newUser.setPhone(value);
+                            break;
+                        case "password":
+                            newUser.setPassword(value);
+                            break;
+                        default:
+                            break;
                     }
 
-                } else {
-                    // processUploadedFile(item);
-                    if (!item.isFormField()) {
-
-                        try {
-                            new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
-                            String extention = FilenameUtils.getExtension(item.getName());
-                            File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + newUser.getPhone() +"."+ extention);
-                            newUser.setPicture(newUser.getPhone() +"."+ extention);
-                            item.write(targetFile);
-
-                        } catch (Exception ex) {
-                            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                    }
                 }
             }
-            
+            // iterate for the second time for files
+            for (FileItem item : items) {
+                // processUploadedFile(item);
+                if (!item.isFormField()) {
+                    try {
+
+                        new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
+                        String extention = FilenameUtils.getExtension(item.getName());
+                        if (extention != "") {
+                            File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + newUser.getPhone() + "." + extention);
+                            newUser.setPicture(newUser.getPhone() + "." + extention);
+                            item.write(targetFile);
+                        } else {
+                            newUser.setPicture(newUser.getGender());
+                        }
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+            }
+
             UserServices service = new UserServices();
             newUser.setRole(0);
             service.createUser(newUser);
-            
-            
         } catch (FileUploadException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-        
+
     }
-    
 
 }
