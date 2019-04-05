@@ -6,13 +6,19 @@
 package model.dal.daoImplementation;
 
 import exceptions.UniqueExceptionEmplementation;
+import java.util.List;
 import javax.persistence.PersistenceException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import model.dal.dao.ProductDetailsDAO;
 import model.entity.Category;
+import model.entity.Product;
 import model.entity.ProductDetails;
 import model.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -70,4 +76,22 @@ public class ProductDetailsDAOImpl implements ProductDetailsDAO{
         }
     }
     
+    @Override
+    public List<ProductDetails> retreiveAllProductDetails()
+    {
+        List<ProductDetails> productList;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<ProductDetails> query = builder.createQuery(ProductDetails.class);
+            Root<ProductDetails> root = query.from(ProductDetails.class);
+            query.select(root);
+            Query<ProductDetails> q = session.createQuery(query);
+            productList = q.getResultList();
+            session.getTransaction().commit();
+            session.close();
+        }
+
+        return productList;
+    }
 }

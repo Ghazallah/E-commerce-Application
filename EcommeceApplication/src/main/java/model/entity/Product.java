@@ -28,14 +28,13 @@ import javax.persistence.Table;
 )
 public class Product  implements java.io.Serializable {
 
-
      private int pid;
-     private Brand brand;
      private String name;
      private Double price;
-     
      private String description;
      private Integer discount;
+     
+     private Brand brand;
      private Set<Cart> carts = new HashSet<>(0);
      private Set<User> users = new HashSet<>(0);
      private Set<OrderHasProducts> orderHasProductses = new HashSet<>(0);
@@ -74,7 +73,7 @@ public class Product  implements java.io.Serializable {
         this.pid = pid;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="brandID")
     public Brand getBrand() {
         return this.brand;

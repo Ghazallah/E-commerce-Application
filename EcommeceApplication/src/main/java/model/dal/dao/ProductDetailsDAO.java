@@ -5,6 +5,7 @@
  */
 package model.dal.dao;
 
+import java.util.List;
 import model.entity.ProductDetails;
 
 /**
@@ -20,5 +21,7 @@ public interface ProductDetailsDAO {
     public ProductDetails retrieve (int id);
     
     public void delete  (ProductDetails productDetails);
+    
+    public List<ProductDetails> retreiveAllProductDetails();
     
 }

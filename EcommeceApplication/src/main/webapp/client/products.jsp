@@ -1,3 +1,5 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <!-- sales rows -->
 <div class="_2dZM1"> <a href="#"><img src="images/anniverary.gif" width="100%"></a>
     <div></div>
@@ -9,17 +11,25 @@
         <div data-role="single-row-product" data-spm="flash-deals" class="_3KVHY" data-aplus-ae="x5_5778879e" data-spm-anchor-id="a2g0n.home.0.flash-deals">
             <div class="card _3VCBs">
                 <div class="flex justify-space-between _2LrhB">
-                    <div class="flex align-center"><img class="aV6qY" src="https://ae01.alicdn.com/kf/HTB1KREIbdjvK1RjSspi763EqXXaA.png"><span class="_30Dc_">Flash Deals</span></div>
+                    <div class="flex align-center"><img class="aV6qY" src="https://ae01.alicdn.com/kf/HTB1KREIbdjvK1RjSspi763EqXXaA.png">
+                        <span class="_30Dc_">Flash Deals</span></div>
                     <div></div>
                 </div>
                 <ul class="flex">
-                    <li class="RaDM7" exp_page="msite_home_gop" exp_type="daily" exp_page_area="flash-deals" exp_product="32815617931" exp_result_cnt="1" data-aplus-ae="x5_102a586b" data-spm-anchor-id="a2g0n.home.flash-deals.i0">
-                        <div class="_2v-hL"><a href="//sale.aliexpress.com/__mobile/2OJGyB1QCR.htm?productIds=32815617931"><img src="https://ae01.alicdn.com/kf/HTB1GJoxLHvpK1RjSZFqq6AXUVXaD.jpg_220x220q90.jpg"></a></div>
-                        <div class="_3VO8c"><a href="//sale.aliexpress.com/__mobile/2OJGyB1QCR.htm?productIds=32815617931">
-                            <div class="_2CyKW">-52%</div>
-                            <div class="_3hVOG">EGP 1,046.93</div>
-                        </a></div>
-                    </li>
+                    <!-- Products inserted here ... -->
+                    
+                    <c:forEach items="${requestScope.products}" var="product">                  
+                        <li class="RaDM7">
+                            <div class="_2v-hL"><a href="//sale.aliexpress.com/__mobile/2OJGyB1QCR.htm?productIds=32815617931">
+                                    <img src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>"></a></div>
+
+                            <div class="_3VO8c"><a href="//sale.aliexpress.com/__mobile/2OJGyB1QCR.htm?productIds=32815617931">
+                                <div class="_2CyKW">- <c:out value="${product.discount}"/> %</div>
+                                <div class="_3hVOG">EGP <c:out value="${product.price}"/> </div>
+                            </a></div>
+                        </li>
+                     </c:forEach>
+                    <!--
                     <li class="RaDM7" exp_page="msite_home_gop" exp_type="daily" exp_page_area="flash-deals" exp_product="32954360996" exp_result_cnt="1" data-aplus-ae="x6_4249407b" data-spm-anchor-id="a2g0n.home.flash-deals.i1">
                         <div class="_2v-hL"><a href="//sale.aliexpress.com/__mobile/2OJGyB1QCR.htm?productIds=32954360996"><img src="https://ae01.alicdn.com/kf/HTB1kOxUacfrK1Rjy1Xdq6yemFXae.jpg_220x220q90.jpg"></a></div>
                         <div class="_3VO8c"><a href="//sale.aliexpress.com/__mobile/2OJGyB1QCR.htm?productIds=32954360996">
@@ -40,7 +50,7 @@
                             <div class="_2CyKW">-52%</div>
                             <div class="_3hVOG">EGP 62.47</div>
                         </a></div>
-                    </li>
+                    </li>  -->
                 </ul>
             </div>
         </div>
