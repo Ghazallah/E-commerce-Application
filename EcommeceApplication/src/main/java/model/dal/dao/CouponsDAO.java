@@ -5,6 +5,7 @@
  */
 package model.dal.dao;
 
+import java.util.List;
 import model.entity.Coupon;
 
 /**
@@ -15,9 +16,11 @@ public interface CouponsDAO {
 
     public void create(Coupon coupon);
 
-    public Coupon retrieve();
+    public Coupon retrieve(int id);
 
     public void update(Coupon coupon);
 
     public void delete(Coupon coupon);
+    
+    public List<String> getAllDescriptions();
 }

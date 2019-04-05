@@ -23,7 +23,7 @@ import services.BrandServices;
  *
  * @author ghazallah
  */
-@WebServlet(value = "/CreateProduct")
+@WebServlet(value = "/admin/CreateProduct")
 public class CreateProduct extends HttpServlet {
 
     @Override
@@ -99,9 +99,9 @@ public class CreateProduct extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.equals("addProduct")) {
-            response.sendRedirect("admin/add-product.jsp");
+            response.sendRedirect("add-product.jsp");
         } else if (action.equals("manageBrand")) {
-            response.sendRedirect("admin/manage-brands.jsp");
+            response.sendRedirect("manage-brands.jsp");
         }
         
     }

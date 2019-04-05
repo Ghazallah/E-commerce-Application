@@ -25,7 +25,7 @@ import services.CategoryServices;
  *
  * @author pc
  */
-@WebServlet(value = "/AdminController")
+@WebServlet(value = "/admin/AdminController")
 public class AdminController extends HttpServlet {
 
     @Override
@@ -43,7 +43,7 @@ public class AdminController extends HttpServlet {
         session.setAttribute("brandList", brandList);
 
         // here complete get all things cat,brand,pro,users
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
         dispatcher.forward(request, response);
 
     }

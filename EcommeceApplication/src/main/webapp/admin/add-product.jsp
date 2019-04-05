@@ -128,7 +128,7 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" action="../CreateProduct?addProduct" id="signup-form" class="signup-form">
+                                <form method="POST" action="CreateProduct?addProduct" id="signup-form" class="signup-form">
                                     <h2 class="form-title">Add Product</h2><br />
 
                                     <div class="form-group">

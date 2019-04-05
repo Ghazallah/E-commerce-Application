@@ -25,7 +25,7 @@ import services.CategoryServices;
  *
  * @author Abd Elkarim
  */
-@WebServlet(value = "/CreateBrand")
+@WebServlet(value = "/admin/CreateBrand")
 public class CreateBrand extends HttpServlet {
 
     @Override
@@ -46,12 +46,12 @@ public class CreateBrand extends HttpServlet {
                 
                 session.setAttribute("brandList", brandList);
                 request.setAttribute("operation", "success");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-brand.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("add-brand.jsp");
                 dispatcher.forward(request, response);
                 //response.sendRedirect("admin/add-brand.jsp");
             } catch (UniqueExceptionEmplementation ex) {
                 request.setAttribute("operation", "fail");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-brand.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("add-brand.jsp");
                 dispatcher.forward(request, response);
             }
         } else if (action.equals("Update")) {
@@ -64,11 +64,11 @@ public class CreateBrand extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("brandList", brandList);
                 request.setAttribute("operation", "success");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("manage-brands.jsp");
                 dispatcher.forward(request, response);
             } catch (UniqueExceptionEmplementation ex) {
                 request.setAttribute("operation", "fail");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("manage-brands.jsp");
                 dispatcher.forward(request, response);
             }
         } else if (action.equals("Delete")) {
@@ -80,11 +80,11 @@ public class CreateBrand extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("brandList", brandList);
                 request.setAttribute("operation", "success");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("manage-brands.jsp");
                 dispatcher.forward(request, response);
             } catch (UniqueExceptionEmplementation ex) {
                 request.setAttribute("operation", "fail");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("manage-brands.jsp");
                 dispatcher.forward(request, response);
             }
         }
@@ -99,11 +99,11 @@ public class CreateBrand extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.equals("addBrand")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-brand.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("add-brand.jsp");
             dispatcher.forward(request, response);
 //            response.sendRedirect("admin/add-brand.jsp");
         } else if (action.equals("manageBrand")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("manage-brands.jsp");
             dispatcher.forward(request, response);
 //            response.sendRedirect("admin/manage-brands.jsp");
         }

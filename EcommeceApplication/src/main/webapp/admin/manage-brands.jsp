@@ -34,7 +34,7 @@
 
         <!-- Main css -->
         <link rel="stylesheet" href="resources/css/style.css">
-        <link rel="stylesheet" href="admin/resources/css/messageStyle.css">
+        <link rel="stylesheet" href="resources/css/messageStyle.css">
 
     </head>
 
@@ -80,7 +80,7 @@
             <!-- Sidebar -->
             <ul class="sidebar navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../admin/admin.jsp">
+                    <a class="nav-link" href="admin.jsp">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
@@ -91,21 +91,21 @@
                         <span>Manage Products</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" href="../admin/add-category.jsp">Add Category</a>
-                        <a class="dropdown-item" href="../admin/add-brand.jsp">Add Brand</a>
-                        <a class="dropdown-item" href="../admin/add-product.jsp">Add Product</a>
-                        <a class="dropdown-item" href="../admin/update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="../admin/display-all-products.jsp">Display All Product</a>
+                        <a class="dropdown-item" href="add-category.jsp">Add Category</a>
+                        <a class="dropdown-item" href="add-brand.jsp">Add Brand</a>
+                        <a class="dropdown-item" href="add-product.jsp">Add Product</a>
+                        <a class="dropdown-item" href="update-product.jsp">Update Product</a>
+                        <a class="dropdown-item" href="display-all-products.jsp">Display All Product</a>
 
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../admin/orders.jsp">
+                    <a class="nav-link" href="orders.jsp">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../admin/display-all-users.jsp">
+                    <a class="nav-link" href="display-all-users.jsp">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>
@@ -133,7 +133,7 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" action="../CreateBrand"  id="signup-form" class="signup-form">
+                                <form method="POST" action="CreateBrand"  id="signup-form" class="signup-form">
                                     <h2 class="form-title">Brand</h2> 
 
                                     <br />
@@ -260,20 +260,20 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="../vendor/datatables/jquery.dataTables.js"></script>
-<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="resources/vendor/datatables/jquery.dataTables.js"></script>
+<script src="resources/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin.min.js"></script>
+<script src="resources/js/sb-admin.min.js"></script>
 
 <!-- Demo scripts for this page-->
-<script src="../js/demo/datatables-demo.js"></script>
+<script src="resources/js/demo/datatables-demo.js"></script>
 <!--<script src="resources/js/script.js"></script>-->
 <script src="resources/js/manageBrandScript.js"></script>
 

@@ -92,7 +92,7 @@ public class Login extends HttpServlet {
 
 //                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
 //                dispatcher.forward(request, response);
-                response.sendRedirect("AdminController");
+                response.sendRedirect("admin/AdminController");
                 
             } else {
                 response.sendRedirect("clinetSide/app.jsp");

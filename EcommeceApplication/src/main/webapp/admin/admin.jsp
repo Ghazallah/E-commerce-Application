@@ -19,13 +19,13 @@
         <title>SB Admin - Dashboard</title>
 
         <!-- Custom fonts for this template-->
-        <link href="admin/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
         <!-- Page level plugin CSS-->
-        <link href="admin/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="admin/resources/css/sb-admin.css" rel="stylesheet">
+        <link href="resources/css/sb-admin.css" rel="stylesheet">
 
     </head>
 
@@ -53,7 +53,7 @@
                 <!-- admin image>-->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="admin/resources/images/client.png" width="70px" height="70px" /></i>
+                        <img src="resources/images/client.png" width="70px" height="70px" /></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Update Profile</a>
@@ -734,23 +734,23 @@
         </div>
 
         <!-- Bootstrap core JavaScript-->
-        <script src="admin/resources/vendor/jquery/jquery.min.js"></script>
-        <script src="admin/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="resources/vendor/jquery/jquery.min.js"></script>
+        <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
-        <script src="admin/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Page level plugin JavaScript-->
-        <script src="admin/resources/vendor/chart.js/Chart.min.js"></script>
-        <script src="admin/resources/vendor/datatables/jquery.dataTables.js"></script>
-        <script src="admin/resources/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <script src="resources/vendor/chart.js/Chart.min.js"></script>
+        <script src="resources/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="resources/vendor/datatables/dataTables.bootstrap4.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="admin/resources/js/sb-admin.min.js"></script>
+        <script src="resources/js/sb-admin.min.js"></script>
 
         <!-- Demo scripts for this page-->
-        <script src="admin/resources/js/demo/datatables-demo.js"></script>
-        <script src="admin/resources/js/demo/chart-area-demo.js"></script>
+        <script src="resources/js/demo/datatables-demo.js"></script>
+        <script src="resources/js/demo/chart-area-demo.js"></script>
 
     </body>
 

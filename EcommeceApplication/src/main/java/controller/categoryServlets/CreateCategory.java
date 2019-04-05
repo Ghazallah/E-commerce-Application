@@ -27,7 +27,7 @@ import services.CategoryServices;
  *
  * @author Abd Elkarim
  */
-@WebServlet(value = "/CreateCategory")
+@WebServlet(value = "/admin/CreateCategory")
 public class CreateCategory extends HttpServlet {
 
     @Override
@@ -48,14 +48,14 @@ public class CreateCategory extends HttpServlet {
 
                 request.setAttribute("operation", "success");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-category.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("add-category.jsp");
                 dispatcher.forward(request, response);
 
             } catch (UniqueExceptionEmplementation ex) {
 
                 request.setAttribute("operation", "fail");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-category.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("add-category.jsp");
                 dispatcher.forward(request, response);
             }
         } else if (action.equals("Update")) {
@@ -68,12 +68,12 @@ public class CreateCategory extends HttpServlet {
 
                 request.setAttribute("operation", "success");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("manage-categories.jsp");
                 dispatcher.forward(request, response);
             } catch (UniqueExceptionEmplementation ex) {
 
                 request.setAttribute("operation", "fail");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("manage-categories.jsp");
                 dispatcher.forward(request, response);
             }
         } else if (action.equals("Delete")) {
@@ -86,11 +86,11 @@ public class CreateCategory extends HttpServlet {
                 
                 request.setAttribute("operation", "success");
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("manage-categories.jsp");
                 dispatcher.forward(request, response);
             } catch (UniqueExceptionEmplementation ex) {
                 request.setAttribute("operation", "fail");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("manage-categories.jsp");
                 dispatcher.forward(request, response);
             }
         }
@@ -104,10 +104,10 @@ public class CreateCategory extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.equals("manageCategory")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("manage-categories.jsp");
             dispatcher.forward(request, response);
         } else if (action.equals("addCategory")) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-category.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("add-category.jsp");
             dispatcher.forward(request, response);
         }
     }

@@ -20,21 +20,21 @@
         <title>SB Admin - add category</title>
 
         <!-- Custom fonts for this template-->
-        <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
         <!-- Page level plugin CSS-->
-        <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
 
         <!-- Custom styles for this template-->
-        <link href="../css/sb-admin.css" rel="stylesheet">
+        <link href="resources/css/sb-admin.css" rel="stylesheet">
 
         <!-- Font Icon -->
-        <link rel="stylesheet" href="../fonts/material-icon/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="resources/fonts/material-icon/css/material-design-iconic-font.min.css">
 
         <!-- Main css -->
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="admin/resources/css/messageStyle.css">
+        <link rel="stylesheet" href="resources/css/style.css">
+        <link rel="stylesheet" href="resources/css/messageStyle.css">
 
     </head>
 
@@ -42,7 +42,7 @@
 
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-            <a class="navbar-brand mr-1" href="../admin/admin.jsp">Start Bootstrap</a>
+            <a class="navbar-brand mr-1" href="admin.jsp">Start Bootstrap</a>
 
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
@@ -62,7 +62,7 @@
 
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!--<i class="fas fa-user-circle fa-fw">--><img src="../images/client.png" width="70px" height="70px" /></i>
+                        <!--<i class="fas fa-user-circle fa-fw">--><img src="resources/images/client.png" width="70px" height="70px" /></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Update Profile</a>
@@ -80,7 +80,7 @@
             <!-- Sidebar -->
             <ul class="sidebar navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../admin/admin.jsp">
+                    <a class="nav-link" href="admin.jsp">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
@@ -91,21 +91,21 @@
                         <span>Manage Products</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" href="../admin/add-category.jsp">Add Category</a>
-                        <a class="dropdown-item" href="../admin/add-brand.jsp">Add Brand</a>
-                        <a class="dropdown-item" href="../admin/add-product.jsp">Add Product</a>
-                        <a class="dropdown-item" href="../admin/update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="../admin/display-all-products.jsp">Display All Product</a>
+                        <a class="dropdown-item" href="add-category.jsp">Add Category</a>
+                        <a class="dropdown-item" href="add-brand.jsp">Add Brand</a>
+                        <a class="dropdown-item" href="add-product.jsp">Add Product</a>
+                        <a class="dropdown-item" href="update-product.jsp">Update Product</a>
+                        <a class="dropdown-item" href="display-all-products.jsp">Display All Product</a>
 
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../admin/orders.jsp">
+                    <a class="nav-link" href="orders.jsp">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../admin/display-all-users.jsp">
+                    <a class="nav-link" href="../display-all-users.jsp">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>
@@ -261,22 +261,22 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="admin/resources/vendor/jquery/jquery.min.js"></script>
-<script src="admin/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="resources/vendor/jquery/jquery.min.js"></script>
+<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
-<script src="admin/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="admin/resources/vendor/datatables/jquery.dataTables.js"></script>
-<script src="admin/resources/vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="resources/vendor/datatables/jquery.dataTables.js"></script>
+<script src="resources/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="admin/resources/js/sb-admin.min.js"></script>
+<script src="resources/js/sb-admin.min.js"></script>
 
 <!-- Demo scripts for this page-->
-<script src="admin/resources/js/demo/datatables-demo.js"></script>
+<script src="resources/js/demo/datatables-demo.js"></script>
 
-<script src="admin/resources/js/manageCategoryScript.js"></script>
+<script src="resources/js/manageCategoryScript.js"></script>
 
 
 </body>
