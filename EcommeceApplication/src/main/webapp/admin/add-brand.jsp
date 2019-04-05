@@ -21,16 +21,17 @@
         <title>SB Admin - add brand</title>
 
         <!-- Custom fonts for this template-->
-        <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="admin/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
         <!-- Custom styles for this template-->
-        <link href="resources/css/sb-admin.css" rel="stylesheet">
+        <link href="admin/resources/css/sb-admin.css" rel="stylesheet">
 
         <!-- Font Icon -->
-        <link rel="stylesheet" href="resources/fonts/material-icon/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="admin/resources/fonts/material-icon/css/material-design-iconic-font.min.css">
 
         <!-- Main css -->
-        <link rel="stylesheet" href="resources/css/style.css">
+        <link rel="stylesheet" href="admin/resources/css/style.css">
+        <link rel="stylesheet" href="admin/resources/css/messageStyle.css">
 
     </head>
 
@@ -205,8 +206,8 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="resources/vendor/jquery/jquery.min.js"></script>
-<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="admin/resources/vendor/jquery/jquery.min.js"></script>
+<script src="admin/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

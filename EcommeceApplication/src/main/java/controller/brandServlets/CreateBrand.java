@@ -40,14 +40,19 @@ public class CreateBrand extends HttpServlet {
                 int categoryValue = Integer.parseInt(request.getParameter("categoryName"));
                 String brandName = request.getParameter("brandName");
                 brandServices.setCategoryName(brandName, categoryValue);
-                //out.print("Data Saved successfully :)");
+                
                 ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
                 HttpSession session = request.getSession();
+                
                 session.setAttribute("brandList", brandList);
-                response.sendRedirect("admin/add-brand.jsp");
+                request.setAttribute("operation", "success");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-brand.jsp");
+                dispatcher.forward(request, response);
+                //response.sendRedirect("admin/add-brand.jsp");
             } catch (UniqueExceptionEmplementation ex) {
-                // display duplicated category modal
-                out.print("oops duplicated category please enter new one");
+                request.setAttribute("operation", "fail");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-brand.jsp");
+                dispatcher.forward(request, response);
             }
         } else if (action.equals("Update")) {
             try {
@@ -55,13 +60,16 @@ public class CreateBrand extends HttpServlet {
                 int categoryValue = Integer.parseInt(request.getParameter("categoryName"));
                 String brandName = request.getParameter("brandName");
                 brandServices.updateCategoryName(brandID, brandName, categoryValue);
-//                out.print("Data Saved successfully :)");
                 ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
                 HttpSession session = request.getSession();
                 session.setAttribute("brandList", brandList);
+                request.setAttribute("operation", "success");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+                dispatcher.forward(request, response);
             } catch (UniqueExceptionEmplementation ex) {
-                // display duplicated category modal
-                out.print("oops duplicated category please enter new one");
+                request.setAttribute("operation", "fail");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+                dispatcher.forward(request, response);
             }
         } else if (action.equals("Delete")) {
             int brandID = Integer.parseInt(request.getParameter("brandID"));
@@ -71,9 +79,13 @@ public class CreateBrand extends HttpServlet {
                 ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
                 HttpSession session = request.getSession();
                 session.setAttribute("brandList", brandList);
+                request.setAttribute("operation", "success");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+                dispatcher.forward(request, response);
             } catch (UniqueExceptionEmplementation ex) {
-                // display duplicated category modal
-                out.print("oops duplicated category please enter new one");
+                request.setAttribute("operation", "fail");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+                dispatcher.forward(request, response);
             }
         }
     }
@@ -87,9 +99,13 @@ public class CreateBrand extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.equals("addBrand")) {
-            response.sendRedirect("admin/add-brand.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-brand.jsp");
+            dispatcher.forward(request, response);
+//            response.sendRedirect("admin/add-brand.jsp");
         } else if (action.equals("manageBrand")) {
-            response.sendRedirect("admin/manage-brands.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-brands.jsp");
+            dispatcher.forward(request, response);
+//            response.sendRedirect("admin/manage-brands.jsp");
         }
 
     }

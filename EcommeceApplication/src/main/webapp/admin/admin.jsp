@@ -44,7 +44,7 @@
                 <div class="input-group">
                     <b class="form-control">Ahmed Abd Elkarim</b>
                 </div>
-                </div>
+                
             </form>
 
             <!-- Navbar -->

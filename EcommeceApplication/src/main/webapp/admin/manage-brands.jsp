@@ -34,6 +34,7 @@
 
         <!-- Main css -->
         <link rel="stylesheet" href="resources/css/style.css">
+        <link rel="stylesheet" href="admin/resources/css/messageStyle.css">
 
     </head>
 
