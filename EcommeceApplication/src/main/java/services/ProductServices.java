@@ -38,7 +38,10 @@ public class ProductServices {
         Brand brand = brandDAO.getBrand(brandId);
         product.setBrand(brand);
         productDAO.create(product);
-        Set<ProductDetails> productDetailses;
+        for (ProductDetails productDetail : productDetails) {
+            productDetail.setProduct(product);
+            productDetailsDAO.create(productDetail);
+        }
 
     }
 

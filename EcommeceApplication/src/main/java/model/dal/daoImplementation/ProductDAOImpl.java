@@ -33,20 +33,6 @@ public class ProductDAOImpl implements ProductDAO {
     public void create(Product product) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-             //--------------------
-            ProductDetails productDetails1 = new ProductDetails();
-            productDetails1.setProductColor("color1");
-            productDetails1.setProductImage("image2");
-            productDetails1.setQuantity(2000);
-            ProductDetails productDetails2 = new ProductDetails();
-            productDetails2.setProductColor("color3");
-            productDetails2.setProductImage("image4");
-            productDetails2.setQuantity(2000);
-            Set<ProductDetails> productDetails = new HashSet<>();
-            productDetails.add(productDetails1);
-            productDetails.add(productDetails2);
-            product.setProductDetails(productDetails);
-            //--------------------
             session.save(product);
             
             session.getTransaction().commit();
