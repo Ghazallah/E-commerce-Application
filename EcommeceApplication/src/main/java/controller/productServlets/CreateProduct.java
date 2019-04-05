@@ -5,6 +5,7 @@
  */
 package controller.productServlets;
 
+import controller.userServlets.Register;
 import exceptions.UniqueExceptionEmplementation;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -30,6 +32,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 import services.BrandServices;
 import services.ProductServices;
 
@@ -47,74 +50,88 @@ public class CreateProduct extends HttpServlet {
         PrintWriter out = response.getWriter();
 //        BrandServices brandServices = new BrandServices();
         String action = request.getParameter("action");
+        Product product = new Product();
+        ProductDetails productDetails = null;
+        Set<ProductDetails> productDetailsSet = new HashSet<>();
+        int brandId = 0;
         if (action.equals("addProduct")) {
             try {
-                Product product = new Product();
+                // Create a factory for disk-based file items
                 DiskFileItemFactory factory = new DiskFileItemFactory();
+                // Create a new file upload handler
                 ServletFileUpload upload = new ServletFileUpload(factory);
-
-                int brandID = Integer.parseInt(request.getParameter("brandID"));
-                String productName = request.getParameter("productName");
-                double productPrice = Double.parseDouble(request.getParameter("productPrice"));
-                int productDiscount = Integer.parseInt(request.getParameter("productDiscount"));
-                String productDescription = request.getParameter("productDescription");
-
-                product.setName(productName);
-                product.setDiscount(productDiscount);
-                product.setDescription(productDescription);
-                product.setPrice(productPrice);
-
-                Set<ProductDetails> productDetailsesSet = new HashSet<>();
-                ProductDetails productDetails = new ProductDetails();
-                productDetails.setProductColor("red");
-                productDetails.setProductImage("ss");
-                productDetails.setQuantity(20);
-
+                // Parse the request
                 List<FileItem> items = upload.parseRequest(request);
                 Iterator<FileItem> iter = items.iterator();
                 while (iter.hasNext()) {
                     FileItem item = iter.next();
-                    System.out.println(item.getFieldName());
                     if (item.isFormField()) {
-                        if (item.getFieldName().equals("brandID") || item.getFieldName().equals("productName") || item.getFieldName().equals("productPrice") || item.getFieldName().equals("productDiscount") || item.getFieldName().equals("productDescription") || item.getFieldName().equals("productProcessor") || item.getFieldName().equals("productRam") || item.getFieldName().equals("productStorage") || item.getFieldName().equals("productOS") || item.getFieldName().equals("productGraphicsCard")) {
 
-                        } else {
-                            String name = item.getFieldName();
-                            if (name.contains("productcolor")) {
-                                productDetails.setProductColor(item.getString());
-                                System.out.println(item.getString());
+                        String name = item.getFieldName();
+                        String value = item.getString();
+
+                        switch (name) {
+                            case "brandID":
+                                brandId = Integer.parseInt(value);
+                                break;
+                            case "productName":
+                                product.setName(value);
+                                break;
+                            case "productPrice":
+                                double price = Double.parseDouble(value);
+                                break;
+                            case "productDiscount":
+                                int discount = Integer.parseInt(value);
+                                product.setDiscount(discount);
+                                break;
+                            case "productDescription":
+                                product.setDescription(value);
+                                break;
+                            case "productcolor":
+                                productDetails.setProductColor(value);
+                                break;
+                            case "productquantity":
+                                productDetails.setQuantity(Integer.parseInt(value));
+                                productDetailsSet.add(productDetails);
+                                break;
+                            default: {
+                                if (name.contains("productcolor")) {
+                                    
+                                    System.out.println(value  + "here");
+                                    productDetails.setProductColor(value);
+                                }
+                                if (name.contains("productquantity")) {
+                                    System.out.println(value  + "here");
+                                    productDetails.setQuantity(Integer.parseInt(value));
+                                    productDetailsSet.add(productDetails);
+                                }
                             }
-                            if (name.contains("productquantity")) {
-                                int value = Integer.parseInt(item.getString());
-//                            productDetails.setProductQuentit
-                                System.out.println(item.getString());
-                                productDetails.setQuantity(value);
-                                productDetailsesSet.add(productDetails);
-                            }
+
                         }
-
                     } else {
-// processUploadedFile(item);
-                        if (!item.isFormField()) {
-                            productDetails = new ProductDetails();
-                            System.out.println(item.getString());
-                            productDetails.setProductImage(item.getFieldName());
-                            //item.write(new File("C:\\Users\\pc\\Desktop\\" + item.getName()));
-                        }
+                        UUID uuid = UUID.randomUUID();
+                        String randomUUIDString = uuid.toString();
+                        new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
+                        String extention = FilenameUtils.getExtension(item.getName());
+                        productDetails = new ProductDetails();
+                        File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
+                        productDetails.setProductImage(randomUUIDString + "." + extention);
+                        item.write(targetFile);
                     }
                 }
-//                for (int i = 0; i < productDetailsesSet.size(); i++) {
-                System.out.println(productDetailsesSet.size());
-//                }
-                ProductServices productServices = new ProductServices();
-                productServices.addProduct(product, productDetailsesSet, brandID);
-
             } catch (FileUploadException ex) {
-                ex.printStackTrace();
+                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 Logger.getLogger(CreateProduct.class.getName()).log(Level.SEVERE, null, ex);
             }
+            ProductServices productServices = new ProductServices();
+            try {
+                productServices.addProduct(product, productDetailsSet, brandId);
 
+            } catch (UniqueExceptionEmplementation ex) {
+                Logger.getLogger(CreateProduct.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //------ update-----
         } else if (action.equals("Update")) {
 //            try {
 //                int brandID = Integer.parseInt(request.getParameter("brandID"));

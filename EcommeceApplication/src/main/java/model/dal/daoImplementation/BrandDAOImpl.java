@@ -41,7 +41,7 @@ public class BrandDAOImpl implements BrandDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Criteria criteria = session.createCriteria(Brand.class);
             brandList = criteria.list();
-            System.out.println("ssss");
+           
             //session.close();
         } catch (HibernateException ex) {
             //exceptions in server 
