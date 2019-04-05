@@ -33,7 +33,7 @@ public class Product  implements java.io.Serializable {
      private Brand brand;
      private String name;
      private Double price;
-     private Integer quantity;
+     
      private String description;
      private Integer discount;
      private Set<Cart> carts = new HashSet<>(0);
@@ -48,12 +48,12 @@ public class Product  implements java.io.Serializable {
     public Product(int pid) {
         this.pid = pid;
     }
-    public Product(int pid, Brand brand, String name, Double price, Integer quantity, String description, Integer discount, Set<Cart> carts, Set<User> users, Set<OrderHasProducts> orderHasProductses, Set<ProductDetails> productDetails) {
+    public Product(int pid, Brand brand, String name, Double price, String description, Integer discount, Set<Cart> carts, Set<User> users, Set<OrderHasProducts> orderHasProductses, Set<ProductDetails> productDetails) {
        this.pid = pid;
        this.brand = brand;
        this.name = name;
        this.price = price;
-       this.quantity = quantity;
+       
        this.description = description;
        this.discount = discount;
        this.carts = carts;
@@ -105,14 +105,7 @@ public class Product  implements java.io.Serializable {
     }
 
     
-    @Column(name="quantity")
-    public Integer getQuantity() {
-        return this.quantity;
-    }
     
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 
     
     @Column(name="description")
