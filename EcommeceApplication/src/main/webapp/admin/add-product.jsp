@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,46 +128,14 @@
                     </ol>
 
                     <section class="addproduct">
-                        <form>
+                        <form method="POST" enctype="MULTIPART/FORM-DATA" action="CreateProduct?action=addProduct">
                             <div class="container">
                                 <h4> Add product </h4>
                                 <br>
                                 <div class="row">
                                     <table class="table">
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">Product Name</th>
-                                                <td><input type="text" class="form-control" placeholder="..."></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Product Price</th>
-                                                <td><input type="text" class="form-control" placeholder="..."></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Product Discount (OPTIONAL)</th>
-                                                <td> <input type="number" value="0" min="0" max="100" step="1"/></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Processor</th>
-                                                <td><input type="text" class="form-control" placeholder="..."></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">RAM (GB)</th>
-                                                <td><input type="number" value="1" min="1" step="1"/></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Storage (GB)</th>
-                                                <td><input type="number" value="16" min="1" step="1"/></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Operating system</th>
-                                                <td><input type="text" class="form-control" placeholder="..."></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Graphics card</th>
-                                                <td><input type="text" class="form-control" placeholder="..."></td>
-                                            </tr>
-                                            <tr>
+                                            <!--<tr>
                                                 <th scope="row">Product Category</th>
                                                 <td><select class="custom-select">
                                                         <option selected>Open this select menu</option>
@@ -173,16 +143,55 @@
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>
                                                     </select></td>
-                                            </tr>
+                                            </tr>-->
                                             <tr>
                                                 <th scope="row">Product Brand</th>
-                                                <td><select class="custom-select">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
-                                                    </select></td>
+                                                <td>
+                                                    <select class="form-input" name="brandID">
+                                                        <option value="volvo" selected="true" disabled>Select Brand</option>
+                                                        <c:forEach items="${brandList}" var="current">
+                                                            <option value="${current.id}"><c:out value="${current.name}" /></option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
                                             </tr>
+                                            <tr>
+                                                <th scope="row">Product Name</th>
+                                                <td><input type="text" name="productName" class="form-control" placeholder="product Name"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Product Price</th>
+                                                <td><input type="number" name="productPrice" class="form-control" placeholder="product Price"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Product Discount (OPTIONAL)</th>
+                                                <td> <input type="number" name="productDiscount" value="0" min="0" max="100" step="1"  placeholder="product Discount"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Processor</th>
+                                                <td><input type="text" name="productProcessor" class="form-control" placeholder="product Processor"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">RAM (GB)</th>
+                                                <td><input type="number" name="productRam" value="1" min="1" step="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Storage (GB)</th>
+                                                <td><input type="number" name="productStorage" value="16" min="1" step="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Operating system</th>
+                                                <td><input type="text" name="productOS" class="form-control" placeholder="..."></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Graphics card</th>
+                                                <td><input type="text" name="productGraphicsCard"  class="form-control" placeholder="..."></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Description</th>
+                                                <td><input type="text" name="productDescription" class="form-control" placeholder="product Description"></td>
+                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -194,37 +203,37 @@
                                         <tbody>
                                             <tr>
                                                 <td><div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="productimage1">
+                                                        <input type="file" class="custom-file-input" id="productimage1" name="productimage1">
                                                         <label class="custom-file-label" for="customFile">Choose Product Image</label>
                                                     </div></td>
                                                 <td><div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="productcolor1" value="option1">
+                                                        <input class="form-check-input" type="radio" name="productcolor1" value="black">
                                                         <label class="form-check-label" for="inlineRadio1">BLACK</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="productcolor1" value="option2">
+                                                        <input class="form-check-input" type="radio" name="productcolor1" value="gold">
                                                         <label class="form-check-label" for="inlineRadio2">GOLD</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="productcolor1"  value="option2">
+                                                        <input class="form-check-input" type="radio" name="productcolor1"  value="white">
                                                         <label class="form-check-label" for="inlineRadio2">WHITE</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="productcolor1" value="option2">
+                                                        <input class="form-check-input" type="radio" name="productcolor1" value="red">
                                                         <label class="form-check-label" for="inlineRadio2">RED</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="productcolor1" value="option2">
+                                                        <input class="form-check-input" type="radio" name="productcolor1" value="blue">
                                                         <label class="form-check-label" for="inlineRadio2">BLUE</label>
                                                     </div></td>
-                                                <td> Quantity :<input type="number" id="productquantity1" value="1" min="0" max="1000" step="1"/></td>
+                                                    <td> Quantity :<input type="number" id="productquantity1" name="productquantity1" value="1" min="0" max="1000" step="1"/></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
 
                                 <button type="button" class="btn btn-warning" id="addProductDetails">Add detail</button>
-                                <button type="button" class="btn btn-success">Save product</button>
+                                <button type="submit" class="btn btn-success">Save product</button>
                             </div>
                         </form>
                     </section>

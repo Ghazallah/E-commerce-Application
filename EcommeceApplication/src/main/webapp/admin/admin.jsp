@@ -85,7 +85,7 @@
                         <a class="dropdown-item" href="CreateBrand?action=addBrand" >Add Brand</a>
                         <a class="dropdown-item" href="CreateProduct?action=addProduct">Add Product</a>
                         <a class="dropdown-item" href="update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="CreateProduct?action=manageProduct">Display All Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=displayProduct">Display All Product</a>
 
                     </div>
                 </li>

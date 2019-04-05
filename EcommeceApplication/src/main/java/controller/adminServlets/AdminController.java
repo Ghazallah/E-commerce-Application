@@ -18,8 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.entity.Brand;
 import model.entity.Category;
+import model.entity.Product;
 import services.BrandServices;
 import services.CategoryServices;
+import services.ProductServices;
 
 /**
  *
@@ -41,6 +43,10 @@ public class AdminController extends HttpServlet {
         BrandServices brandServices = new BrandServices();
         ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
         session.setAttribute("brandList", brandList);
+
+        ProductServices productServices = new ProductServices();
+        ArrayList<Product> productList = (ArrayList<Product>) productServices.getAllProducts();
+        session.setAttribute("productList", productList);
 
         // here complete get all things cat,brand,pro,users
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
