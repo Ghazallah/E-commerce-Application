@@ -52,7 +52,6 @@ public class Product  implements java.io.Serializable {
        this.brand = brand;
        this.name = name;
        this.price = price;
-       
        this.description = description;
        this.discount = discount;
        this.carts = carts;

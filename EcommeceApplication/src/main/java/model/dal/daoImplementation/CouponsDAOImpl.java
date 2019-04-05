@@ -8,7 +8,9 @@ package model.dal.daoImplementation;
 import java.util.List;
 import model.dal.dao.CouponsDAO;
 import model.entity.Coupon;
+import model.entity.Product;
 import model.util.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
@@ -43,7 +45,17 @@ public class CouponsDAOImpl implements CouponsDAO {
 
     @Override
     public Coupon retrieve(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Coupon coupon = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            coupon = session.get(Coupon.class, id);
+           
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            //exceptions in server 
+            ex.printStackTrace();
+        }
+        return coupon;
     }
 
     @Override

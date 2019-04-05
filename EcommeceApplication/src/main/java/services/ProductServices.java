@@ -27,12 +27,10 @@ import model.entity.ProductDetails;
  *
  * @author ghazallah
  */
-public class ProductServices 
-{
-    
+public class ProductServices {
     private DAOFactory dAOFactory = new HibernateDAOFactory();
-    private ProductDAO productDAO =dAOFactory.getProductDAO();
-    private BrandDAO brandDAO= dAOFactory.getBrandDAO();
+    private ProductDAO productDAO = dAOFactory.getProductDAO();
+    private BrandDAO brandDAO = dAOFactory.getBrandDAO();
     private ProductDetailsDAO productDetailsDAO = dAOFactory.getProductDetailsDAO();
     
     public List<ProductDTO> getAllProducts()
@@ -98,6 +96,22 @@ public class ProductServices
           productDAO.create(product);
           productDetails.setProduct(product);
           productDetailsDAO.create(productDetails); 
+	}
+
+    public List<Product> getAllProducts() {
+
+        return productDAO.retreiveAllProducts();
+
     }
-    
+
+    public void addProduct(Product product, Set<ProductDetails> productDetails, int brandId) throws UniqueExceptionEmplementation {
+        Brand brand = brandDAO.getBrand(brandId);
+        product.setBrand(brand);
+        productDAO.create(product);
+        for (ProductDetails productDetail : productDetails) {
+            productDetail.setProduct(product);
+            productDetailsDAO.create(productDetail);
+        }
+    }
+
 }
