@@ -40,7 +40,7 @@ public class CreateBrand extends HttpServlet {
                 int categoryValue = Integer.parseInt(request.getParameter("categoryName"));
                 String brandName = request.getParameter("brandName");
                 brandServices.setCategoryName(brandName, categoryValue);
-                out.print("Data Saved successfully :)");
+                //out.print("Data Saved successfully :)");
                 ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
                 HttpSession session = request.getSession();
                 session.setAttribute("brandList", brandList);
@@ -55,7 +55,7 @@ public class CreateBrand extends HttpServlet {
                 int categoryValue = Integer.parseInt(request.getParameter("categoryName"));
                 String brandName = request.getParameter("brandName");
                 brandServices.updateCategoryName(brandID, brandName, categoryValue);
-                out.print("Data Saved successfully :)");
+//                out.print("Data Saved successfully :)");
                 ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
                 HttpSession session = request.getSession();
                 session.setAttribute("brandList", brandList);
@@ -67,7 +67,7 @@ public class CreateBrand extends HttpServlet {
             int brandID = Integer.parseInt(request.getParameter("brandID"));
             try {
                 brandServices.deleteCategory(brandID);
-                out.print("Data Saved successfully :)");
+//                out.print("Data Saved successfully :)");
                 ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
                 HttpSession session = request.getSession();
                 session.setAttribute("brandList", brandList);

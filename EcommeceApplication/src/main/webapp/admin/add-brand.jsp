@@ -130,7 +130,7 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" action="../CreateBrand?action=addBrand"c id="signup-form" class="signup-form">
+                                <form method="POST" action="CreateBrand?action=addBrand"c id="signup-form" class="signup-form">
                                     <h2 class="form-title">Add Brand</h2><br />
 
                                     <div class="form-group">
@@ -152,7 +152,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <a  href="../CreateBrand?action=manageBrand" name="submit" id="submit" class="form-update">Manage Brands</a>
+                                        <a  href="CreateBrand?action=manageBrand" name="submit" id="submit" class="form-update">Manage Brands</a>
                                     </div>
 
                                 </form>

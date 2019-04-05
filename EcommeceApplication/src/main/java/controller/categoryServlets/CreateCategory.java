@@ -34,51 +34,64 @@ public class CreateCategory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
-        HttpSession session = request.getSession();
         CategoryServices categoryServices = new CategoryServices();
-        BrandServices brandServices = new BrandServices();
+        HttpSession session = request.getSession();
 
         String action = request.getParameter("action");
         if (action.equals("addCategory")) {
             String categoryName = request.getParameter("categoryName");
             try {
-                categoryServices.setCategoryName(categoryName);
-                out.print("Data Saved successfully :)");
 
+                categoryServices.setCategoryName(categoryName);
                 ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
                 session.setAttribute("categoryList", categoryList);
-                
-                ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
-                session.setAttribute("brandList", brandList);
-                
-                response.sendRedirect("admin/add-category.jsp");
+
+                request.setAttribute("operation", "success");
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-category.jsp");
+                dispatcher.forward(request, response);
+
             } catch (UniqueExceptionEmplementation ex) {
-                // display duplicated category modal
-                out.print("oops duplicated category please enter new one");
+
+                request.setAttribute("operation", "fail");
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-category.jsp");
+                dispatcher.forward(request, response);
             }
         } else if (action.equals("Update")) {
             String categoryName = request.getParameter("categoryName");
             int categoryID = Integer.parseInt(request.getParameter("categoryID"));
             try {
                 categoryServices.updateCategoryName(categoryID, categoryName);
-                out.print("Data Saved successfully :)");
                 ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
                 session.setAttribute("categoryList", categoryList);
+
+                request.setAttribute("operation", "success");
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
+                dispatcher.forward(request, response);
             } catch (UniqueExceptionEmplementation ex) {
-                // display duplicated category modal
-                out.print("oops duplicated category please enter new one");
+
+                request.setAttribute("operation", "fail");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
+                dispatcher.forward(request, response);
             }
         } else if (action.equals("Delete")) {
+
             int categoryID = Integer.parseInt(request.getParameter("categoryID"));
             try {
                 categoryServices.deleteCategory(categoryID);
-                out.print("Data Saved successfully :)");
                 ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
                 session.setAttribute("categoryList", categoryList);
+                
+                request.setAttribute("operation", "success");
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
+                dispatcher.forward(request, response);
             } catch (UniqueExceptionEmplementation ex) {
-                // display duplicated category modal
-                out.print("oops duplicated category please enter new one");
+                request.setAttribute("operation", "fail");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
+                dispatcher.forward(request, response);
             }
         }
     }
@@ -88,16 +101,14 @@ public class CreateCategory extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-//        CategoryServices categoryServices = new CategoryServices();
         String action = request.getParameter("action");
 
         if (action.equals("manageCategory")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin/manage-categories.jsp");
             dispatcher.forward(request, response);
         } else if (action.equals("addCategory")) {
-            response.sendRedirect("admin/add-category.jsp");
-
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/add-category.jsp");
+            dispatcher.forward(request, response);
         }
-
     }
 }

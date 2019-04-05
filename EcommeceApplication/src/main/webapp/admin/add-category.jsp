@@ -4,6 +4,7 @@
     Author     : pc
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,16 +20,17 @@
         <title>SB Admin - add category</title>
 
         <!-- Custom fonts for this template-->
-        <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="admin/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
         <!-- Custom styles for this template-->
-        <link href="resources/css/sb-admin.css" rel="stylesheet">
+        <link href="admin/resources/css/sb-admin.css" rel="stylesheet">
 
         <!-- Font Icon -->
-        <link rel="stylesheet" href="resources/fonts/material-icon/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="admin/resources/fonts/material-icon/css/material-design-iconic-font.min.css">
 
         <!-- Main css -->
-        <link rel="stylesheet" href="resources/css/style.css">
+        <link rel="stylesheet" href="admin/resources/css/style.css">
+        <link rel="stylesheet" href="admin/resources/css/messageStyle.css">
 
     </head>
 
@@ -56,7 +58,7 @@
 
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!--<i class="fas fa-user-circle fa-fw">--><img src="resources/images/client.png" width="70px" height="70px" /></i>
+                        <!--<i class="fas fa-user-circle fa-fw">--><img src="admin/resources/images/client.png" width="70px" height="70px" /></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Update Profile</a>
@@ -127,19 +129,33 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                            <form method="POST" action="../CreateCategory?action=addCategory"  id="signup-form" class="signup-form">
+                                <form method="POST" action="CreateCategory?action=addCategory"  id="signup-form" class="signup-form">
                                     <h2 class="form-title">Add Category</h2> 
+                                    <c:if test="${requestScope.operation == 'success'}">
+                                        <div class="successAlert">
+                                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                            <strong>Success!</strong> Data Saved Successfully
+                                        </div>
 
+                                    </c:if>
+                                    <c:if test="${requestScope.operation == 'fail'}">
+                                        <div class="failAlert">
+                                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                            <strong>Fail!     </strong>duplicated data please enter new one
+                                        </div>
+
+                                    </c:if>
                                     <br />
                                     <div class="form-group">
-                                        <input type="text" required="true" class="form-input" name="categoryName" id="categoryID" placeholder="Category Name"/>
+                                        <!--why required not working-->
+                                        <input type="text" class="form-input" name="categoryName" id="categoryID" required="true" placeholder="Category Name"/>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="submit" id="submit" class="form-submit" value="Save New Category"/>
                                     </div>
 
                                     <div class="form-group">
-                                        <a  href="../CreateCategory?action=manageCategory" name="submit" id="submit" class="form-update">Manage Categories</a>
+                                        <a  href="CreateCategory?action=manageCategory" name="submit" id="submit" class="form-update">Manage Categories</a>
                                     </div>
 
                                 </form>
@@ -192,8 +208,9 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="resources/vendor/jquery/jquery.min.js"></script>
-<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="admin/resources/vendor/jquery/jquery.min.js"></script>
+<script src="admin/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="admin/resources/js/addCategoryScript.js"></script>
 
 </body>
 

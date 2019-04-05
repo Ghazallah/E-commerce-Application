@@ -34,6 +34,7 @@
 
         <!-- Main css -->
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="admin/resources/css/messageStyle.css">
 
     </head>
 
@@ -132,23 +133,41 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" action="../CreateCategory"  id="signup-form" class="signup-form">
-                                    <h2 class="form-title">Category</h2> 
+                                <form method="POST"  onsubmit="return testCategoryId()" action="CreateCategory"  id="signup-form" class="signup-form">
+                                    <h2 class="form-title">Manage Category</h2> 
+                                    <div id="fail" style="display: none;" class="failAlert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Fail!     </strong>duplicated data please enter new one
+                                    </div>
+                                    <c:if test="${requestScope.operation == 'success'}">
+                                        <div class="successAlert">
+                                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                            <strong>Success!</strong> Data Updated Successfully
+                                        </div>
 
+                                    </c:if>
+                                    <c:if test="${requestScope.operation == 'fail'}">
+                                        <div class="failAlert">
+                                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                            <strong>Fail!     </strong>duplicated data please enter new one
+                                        </div>
+
+                                    </c:if>
                                     <br />
                                     <div class="form-group">
+                                        <!--here we will validate if categoryID =="" or null display pop up using java script -->
                                         <input type="hidden" required="true" class="form-input" name="categoryID" id="categoryID" placeholder="Category ID"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="categoryName">Category Name</label><br>
-                                        <input type="text" required="true" class="form-input" name="categoryName" id="categoryName" placeholder="Category Name"/>
+                                        <input type="text" required="true" class="form-input"  name="categoryName" id="categoryName" placeholder="Category Name"/>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" name="action" id="updateSubmit" class="form-submit" value="Update" >Update</button>
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="submit" name="action" id="deleteSubmit" class="form-submit" value="Delete" >Delete</button>
+                                        <button type="submit" name="action" id="deleteSubmit" class="form-submit"  value="Delete" >Delete</button>
                                     </div>
                                 </form>
 
@@ -242,21 +261,22 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="admin/resources/vendor/jquery/jquery.min.js"></script>
+<script src="admin/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="admin/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="../vendor/datatables/jquery.dataTables.js"></script>
-<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="admin/resources/vendor/datatables/jquery.dataTables.js"></script>
+<script src="admin/resources/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin.min.js"></script>
+<script src="admin/resources/js/sb-admin.min.js"></script>
 
 <!-- Demo scripts for this page-->
-<script src="../js/demo/datatables-demo.js"></script>
-<script src="../js/script.js"></script>
+<script src="admin/resources/js/demo/datatables-demo.js"></script>
+
+<script src="admin/resources/js/manageCategoryScript.js"></script>
 
 
 </body>
