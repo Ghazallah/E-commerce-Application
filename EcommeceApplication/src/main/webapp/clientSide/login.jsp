@@ -10,12 +10,12 @@
                                 <p class="text-muted mb-0">Sign in to your account to continue.</p>
                             </div>
                             <span class="clearfix"></span>
-                            <form role="form">
+                            <form role="form" action ="../login" method ="post"> 
                                 <div class="form-group">
                                     <label class="form-control-label">Email address</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-user"></i></span> </div>
-                                        <input type="email" class="form-control" id="input-email" placeholder="name@example.com">
+                                        <input name = "email" type="email" class="form-control" id="input-email" placeholder="name@example.com">
                                     </div>
                                 </div>
                                 <div class="form-group mb-4">
@@ -27,12 +27,12 @@
                                     </div>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-key"></i></span> </div>
-                                        <input type="password" class="form-control" id="input-password" placeholder="Password">
+                                        <input name ="password" type="password" class="form-control" id="input-password" placeholder="Password">
                                         <div class="input-group-append"> </div>
                                     </div>
                                 </div>
                                 <div class="mt-4">
-                                    <button type="button" class="btn btn-sm btn-primary btn-icon px-5 py-2 sk skew"><span class="btn-inner--text">Sign in &nbsp; </span><span class="btn-inner--icon"><em class="ti-arrow-right fs-11"></em></span></button>
+                                    <button type= "submit" class="btn btn-sm btn-primary btn-icon px-5 py-2 sk skew"><span class="btn-inner--text">Sign in &nbsp; </span><span class="btn-inner--icon"><em class="ti-arrow-right fs-11"></em></span></button>
                                 </div>
                             </form>
                         </div>

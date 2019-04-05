@@ -23,20 +23,21 @@ import javax.persistence.Table;
 )
 public class Coupon implements java.io.Serializable {
 
-    private int cid;
-    private String cdiscount;
+    private int id;
+    private String discount;
+    private String description;
     private Set<User> users = new HashSet<User>(0);
 
     public Coupon() {
     }
 
-    public Coupon(int cid) {
-        this.cid = cid;
+    public Coupon(int id) {
+        this.id = id;
     }
 
-    public Coupon(int cid, String cdiscount, Set<User> users) {
-        this.cid = cid;
-        this.cdiscount = cdiscount;
+    public Coupon(int id, String discount, Set<User> users) {
+        this.id = id;
+        this.discount = discount;
         this.users = users;
     }
 
@@ -44,22 +45,32 @@ public class Coupon implements java.io.Serializable {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cid", unique = true, nullable = false)
-    public int getCid() {
-        return this.cid;
+    public int getId() {
+        return this.id;
     }
 
-    public void setCid(int cid) {
-        this.cid = cid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Column(name = "cdiscount")
-    public String getCdiscount() {
-        return this.cdiscount;
+    @Column(name = "discount")
+    public String getDiscount() {
+        return this.discount;
     }
 
-    public void setCdiscount(String cdiscount) {
-        this.cdiscount = cdiscount;
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
+
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_has_coupon", catalog = "ecommerce", joinColumns = {
