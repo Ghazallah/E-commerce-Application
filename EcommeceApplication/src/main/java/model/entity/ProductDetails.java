@@ -19,7 +19,7 @@ import org.hibernate.annotations.Parameter;
  */
 @Entity
 @Table(name = "product_details",
-         catalog = "ecommerce"
+        catalog = "ecommerce"
 )
 public class ProductDetails implements java.io.Serializable {
 
@@ -27,6 +27,7 @@ public class ProductDetails implements java.io.Serializable {
     private Product product;
     private String productImage;
     private String productColor;
+    private Integer quantity;
 
     public ProductDetails() {
     }
@@ -35,10 +36,11 @@ public class ProductDetails implements java.io.Serializable {
         this.product = product;
     }
 
-    public ProductDetails(Product product, String productImage, String productColor) {
+    public ProductDetails(Product product, String productImage, String productColor, Integer quantity) {
         this.product = product;
         this.productImage = productImage;
         this.productColor = productColor;
+        this.quantity = quantity;
     }
 
     @GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "product"))
@@ -54,7 +56,7 @@ public class ProductDetails implements java.io.Serializable {
         this.productId = productId;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productID")
     public Product getProduct() {
         return this.product;
@@ -80,6 +82,15 @@ public class ProductDetails implements java.io.Serializable {
 
     public void setProductColor(String productColor) {
         this.productColor = productColor;
+    }
+
+    @Column(name = "quantity")
+    public Integer getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
 }
