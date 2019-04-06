@@ -133,7 +133,7 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" onsubmit="return testCategoryId()" action="CreateBrand"  id="signup-form" class="signup-form">
+                                <form method="POST" onsubmit="return testCategoryIdBrands()" action="CreateBrand"  id="signup-form" class="signup-form">
                                     <h2 class="form-title">Manage Brands</h2> 
                                     <div id="fail" style="display: none;" class="failAlert">
                                         <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
