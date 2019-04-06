@@ -30,3 +30,6 @@ $("#addProductDetails").click(function(){
 	
 	$("#productDetails").append(content);
 });
+function getSelectedID() {
+    alert(document.getElementById("brandID").value);
+}

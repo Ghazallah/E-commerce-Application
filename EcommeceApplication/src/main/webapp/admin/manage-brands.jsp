@@ -133,9 +133,26 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" action="CreateBrand"  id="signup-form" class="signup-form">
-                                    <h2 class="form-title">Brand</h2> 
+                                <form method="POST" onsubmit="return testCategoryId()" action="CreateBrand"  id="signup-form" class="signup-form">
+                                    <h2 class="form-title">Manage Brands</h2> 
+                                    <div id="fail" style="display: none;" class="failAlert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Fail!     </strong>duplicated data please enter new one
+                                    </div>
+                                    <c:if test="${requestScope.operation == 'success'}">
+                                        <div class="successAlert">
+                                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                            <strong>Success!</strong> Data Updated Successfully
+                                        </div>
 
+                                    </c:if>
+                                    <c:if test="${requestScope.operation == 'fail'}">
+                                        <div class="failAlert">
+                                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                            <strong>Fail!     </strong>duplicated data please enter new one
+                                        </div>
+
+                                    </c:if>
                                     <br />
                                     <div class="form-group">
                                         <input type="hidden" required="true" class="form-input" name="brandID" id="brandID" placeholder="Brand ID"/>

@@ -15,7 +15,7 @@ for (var i = 1; i < table.rows.length; i++)
     };
 }
  function testCategoryId(){
-     if(document.getElementById('categoryID').value=="" || document.getElementById('').value==null){
+     if(document.getElementById('categoryID').value=="" || document.getElementById('categoryID').value==null){
          alert('please choose category from table');
          return false;
      }

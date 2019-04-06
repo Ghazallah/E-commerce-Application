@@ -128,7 +128,7 @@
                     </ol>
 
                     <section class="addproduct">
-                        <form method="POST" enctype="MULTIPART/FORM-DATA" action="CreateProduct?action=addProduct">
+                        <form method="POST" onsubmit="return  getSelectedID();" enctype="MULTIPART/FORM-DATA" action="CreateProduct?action=addProduct">
                             <div class="container">
                                 <h4> Add product </h4>
                                 <br>
@@ -147,7 +147,7 @@
                                             <tr>
                                                 <th scope="row">Product Brand</th>
                                                 <td>
-                                                    <select class="form-input" name="brandID">
+                                                    <select class="form-input" id="brandID" name="brandID">
                                                         <option value="volvo" selected="true" disabled>Select Brand</option>
                                                         <c:forEach items="${brandList}" var="current">
                                                             <option value="${current.id}"><c:out value="${current.name}" /></option>

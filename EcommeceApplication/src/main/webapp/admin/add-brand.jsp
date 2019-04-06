@@ -131,11 +131,28 @@
                     <section class="signup">
                         <div class="container">
                             <div class="signup-content">
-                                <form method="POST" action="CreateBrand?action=addBrand"c id="signup-form" class="signup-form">
+                                <form method="POST" onsubmit="return testCategoryId()" action="CreateBrand?action=addBrand"c id="signup-form" class="signup-form">
                                     <h2 class="form-title">Add Brand</h2><br />
+                                    <div id="fail" style="display: none;" class="failAlert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Fail!     </strong>duplicated data please enter new one
+                                    </div>
+                                    <c:if test="${requestScope.operation == 'success'}">
+                                        <div class="successAlert">
+                                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                            <strong>Success!</strong> Data Saved Successfully
+                                        </div>
 
+                                    </c:if>
+                                    <c:if test="${requestScope.operation == 'fail'}">
+                                        <div class="failAlert">
+                                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                            <strong>Fail!     </strong>duplicated data please enter new one
+                                        </div>
+
+                                    </c:if>
                                     <div class="form-group">
-                                        <select class="form-input" name="categoryName">
+                                        <select class="form-input" id="categoryName" name="categoryName">
 
                                             <option value="volvo" selected="true" disabled>Select Category</option>
                                             <c:forEach items="${categoryList}" var="current">
@@ -145,7 +162,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-input" name="brandName" id="name" placeholder="Brand Name"/>
+                                        <input type="text" required="true" class="form-input" name="brandName" id="name" placeholder="Brand Name"/>
                                     </div>
 
                                     <div class="form-group">
@@ -208,7 +225,7 @@
 <!-- Bootstrap core JavaScript-->
 <script src="resources/vendor/jquery/jquery.min.js"></script>
 <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="resources/js/addBrandScript.js"></script>
 </body>
 
 </html>
