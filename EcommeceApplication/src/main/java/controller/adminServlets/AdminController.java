@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.dto.ProductDTO;
 import model.entity.Brand;
 import model.entity.Category;
 import model.entity.Product;
@@ -45,7 +46,7 @@ public class AdminController extends HttpServlet {
         session.setAttribute("brandList", brandList);
 
         ProductServices productServices = new ProductServices();
-        ArrayList<Product> productList = (ArrayList<Product>) productServices.getAllProducts();
+        ArrayList<ProductDTO> productList = (ArrayList<ProductDTO>) productServices.getAllProducts();
         session.setAttribute("productList", productList);
 
         // here complete get all things cat,brand,pro,users

@@ -29,5 +29,9 @@ public class UserServices {
 
         return userDAO.retrieveAllUsers();
     }
+    
+    public void updateUser (User user){
+        userDAO.update(user);
+    }
 
 }

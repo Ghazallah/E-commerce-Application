@@ -5,6 +5,7 @@
  */
 package controller.productServlets;
 
+import com.google.gson.Gson;
 import controller.userServlets.Register;
 import exceptions.UniqueExceptionEmplementation;
 import java.io.File;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.dto.ProductDescriptionDTO;
 import model.entity.Brand;
 import model.entity.Product;
 import model.entity.ProductDetails;
@@ -53,9 +55,12 @@ public class CreateProduct extends HttpServlet {
         Product product = new Product();
         ProductDetails productDetails = null;
         Set<ProductDetails> productDetailsSet = new HashSet<>();
+        Gson gson = new Gson();
         int brandId = 0;
         if (action.equals("addProduct")) {
             try {
+                
+                ProductDescriptionDTO productDescriptionDTO = new ProductDescriptionDTO();
                 // Create a factory for disk-based file items
                 DiskFileItemFactory factory = new DiskFileItemFactory();
                 // Create a new file upload handler
@@ -79,14 +84,15 @@ public class CreateProduct extends HttpServlet {
                                 break;
                             case "productPrice":
                                 double price = Double.parseDouble(value);
+                                product.setPrice(price);
                                 break;
                             case "productDiscount":
                                 int discount = Integer.parseInt(value);
                                 product.setDiscount(discount);
                                 break;
-                            case "productDescription":
-                                product.setDescription(value);
-                                break;
+//                            case "productDescription":
+//                                product.setDescription(value);
+//                                break;
                             case "productcolor":
                                 productDetails.setProductColor(value);
                                 break;
@@ -94,6 +100,22 @@ public class CreateProduct extends HttpServlet {
                                 productDetails.setQuantity(Integer.parseInt(value));
                                 productDetailsSet.add(productDetails);
                                 break;
+                            case "productProcessor":
+                                productDescriptionDTO.setProcessor(value);
+                                break;
+                            case "productRam" :
+                                productDescriptionDTO.setRam(value);
+                                break;
+                            case "productStorage":
+                                productDescriptionDTO.setStorage(value);
+                                break;
+                            case "productOS":
+                                productDescriptionDTO.setOs(value);
+                                break;
+                            case "productGraphicsCard":
+                                productDescriptionDTO.setGraphicsCard(value);
+                                String description = gson.toJson(productDescriptionDTO);
+                                product.setDescription(description);
                             default: {
                                 if (name.contains("productcolor")) {
                                     
@@ -111,10 +133,11 @@ public class CreateProduct extends HttpServlet {
                     } else {
                         UUID uuid = UUID.randomUUID();
                         String randomUUIDString = uuid.toString();
-                        new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
+                      //  new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
                         String extention = FilenameUtils.getExtension(item.getName());
                         productDetails = new ProductDetails();
-                        File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
+                       // File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
+                       File targetFile = new File("/home/ghazallah/Desktop/images/" + randomUUIDString + "." + extention);
                         productDetails.setProductImage(randomUUIDString + "." + extention);
                         item.write(targetFile);
                     }

@@ -98,11 +98,6 @@ public class ProductServices {
           productDetailsDAO.create(productDetails); 
 	}
 
-    public List<Product> getAllProducts() {
-
-        return productDAO.retreiveAllProducts();
-
-    }
 
     public void addProduct(Product product, Set<ProductDetails> productDetails, int brandId) throws UniqueExceptionEmplementation {
         Brand brand = brandDAO.getBrand(brandId);
