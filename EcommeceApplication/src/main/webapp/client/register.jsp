@@ -30,6 +30,7 @@
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-email"></i></span> </div>
                                         <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" required>
                                     </div>
+                                    <label id="email-validation"></label>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="form-control-label">Password</label>

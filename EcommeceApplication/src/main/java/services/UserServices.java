@@ -33,5 +33,11 @@ public class UserServices {
     public void updateUser (User user){
         userDAO.update(user);
     }
+    public boolean checkUser(String email){
+        if (userDAO.retrieve(email) == null)
+            return false;
+        else
+            return true;
+    }
 
 }

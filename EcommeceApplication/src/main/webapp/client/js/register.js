@@ -15,9 +15,23 @@ function readURL(input) {
 }
 // A $( document ).ready() block.
 $(document).ready(function () {
+
+    $("#email").blur(function () {
+        email = $("#email").val();
+        $.post("../validation", {email: email}, function (data) {
+            console.log(data); // John
+            if (data === "true")
+                $("#email-validation").html("Valid")
+            else
+                $("#email-validation").html("Invalid")
+
+        });
+    });
+    
     
     // make sure the user agrees on terms and conditions and privacy policy
     $('#register').submit(function () {
+        // confirm the password the user entered
         if ($('#password').val() !== $('#input-password-confirm').val()) {
             swal("please make sure that you entered a right password confirmation");
             return false;
