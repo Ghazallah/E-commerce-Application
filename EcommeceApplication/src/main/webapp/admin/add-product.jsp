@@ -147,7 +147,7 @@
                                             <tr>
                                                 <th scope="row">Product Brand</th>
                                                 <td>
-                                                    <select class="form-input" id="brandID" name="brandID">
+                                                    <select class="form-input" id="brandID" name="brandID" required>
                                                         <option value="volvo" selected="true" disabled>Select Brand</option>
                                                         <c:forEach items="${brandList}" var="current">
                                                             <option value="${current.id}"><c:out value="${current.name}" /></option>
@@ -157,11 +157,11 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Product Name</th>
-                                                <td><input type="text" name="productName" class="form-control" placeholder="product Name"></td>
+                                                <td><input type="text" name="productName" class="form-control" placeholder="product Name" required></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Product Price</th>
-                                                <td><input type="number" name="productPrice" class="form-control" placeholder="product Price"></td>
+                                                <td><input type="number" name="productPrice" class="form-control" placeholder="product Price" required></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Product Discount (OPTIONAL)</th>

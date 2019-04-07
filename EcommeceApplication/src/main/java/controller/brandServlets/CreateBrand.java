@@ -34,16 +34,17 @@ public class CreateBrand extends HttpServlet {
         PrintWriter out = response.getWriter();
         BrandServices brandServices = new BrandServices();
         String action = request.getParameter("action");
+        HttpSession session = request.getSession(false);
+
         if (action.equals("addBrand")) {
 
             try {
                 int categoryValue = Integer.parseInt(request.getParameter("categoryName"));
                 String brandName = request.getParameter("brandName");
                 brandServices.setCategoryName(brandName, categoryValue);
-                
+
                 ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
-                HttpSession session = request.getSession();
-                
+
                 session.setAttribute("brandList", brandList);
                 request.setAttribute("operation", "success");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("add-brand.jsp");
@@ -61,7 +62,6 @@ public class CreateBrand extends HttpServlet {
                 String brandName = request.getParameter("brandName");
                 brandServices.updateCategoryName(brandID, brandName, categoryValue);
                 ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
-                HttpSession session = request.getSession();
                 session.setAttribute("brandList", brandList);
                 request.setAttribute("operation", "success");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("manage-brands.jsp");
@@ -77,7 +77,6 @@ public class CreateBrand extends HttpServlet {
                 brandServices.deleteCategory(brandID);
 //                out.print("Data Saved successfully :)");
                 ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
-                HttpSession session = request.getSession();
                 session.setAttribute("brandList", brandList);
                 request.setAttribute("operation", "success");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("manage-brands.jsp");

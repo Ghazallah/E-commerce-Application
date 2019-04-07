@@ -35,7 +35,7 @@ public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
 
         CategoryServices categoryServices = new CategoryServices();
         ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
@@ -43,6 +43,9 @@ public class AdminController extends HttpServlet {
 
         BrandServices brandServices = new BrandServices();
         ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
+        for (int i = 0; i < brandList.size(); i++) {
+            System.out.println(brandList.get(i).getName());
+        }
         session.setAttribute("brandList", brandList);
 
         ProductServices productServices = new ProductServices();

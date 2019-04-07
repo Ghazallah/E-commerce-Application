@@ -182,6 +182,7 @@ public class CreateProduct extends HttpServlet {
 //                out.print("oops duplicated category please enter new one");
 //            }
         }
+        response.sendRedirect("add-product.jsp");
 
     }
 

@@ -77,7 +77,7 @@ public class Brand  implements java.io.Serializable {
         this.name = name;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="brand")
+@OneToMany(fetch=FetchType.LAZY, mappedBy="brand")
     public Set<Product> getProducts() {
         return this.products;
     }

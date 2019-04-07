@@ -35,7 +35,7 @@ public class CreateCategory extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         CategoryServices categoryServices = new CategoryServices();
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
 
         String action = request.getParameter("action");
         if (action.equals("addCategory")) {
