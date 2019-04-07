@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -75,10 +76,10 @@ public class Register extends HttpServlet {
                 if (!item.isFormField()) {
                     try {
 
-                        new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
+                      //  new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
                         String extention = FilenameUtils.getExtension(item.getName());
                         if (extention != "") {
-                            File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + newUser.getPhone() + "." + extention);
+                            File targetFile = new File("/home/ghazallah/Desktop/images/user/" + newUser.getPhone() + "." + extention);
                             newUser.setPicture(newUser.getPhone() + "." + extention);
                             item.write(targetFile);
                         } else {
@@ -98,6 +99,8 @@ public class Register extends HttpServlet {
         } catch (FileUploadException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        response.sendRedirect("Welcome");
 
     }
 

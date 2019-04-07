@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ghazallah
  */
-@WebServlet(name = "Welcome", urlPatterns = {"/Welcome"})
+@WebServlet(value = "/Welcome")
 public class Welcome extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -33,7 +33,7 @@ public class Welcome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("clientSide/app.jsp");
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("client/app.jsp");
 //        dispatcher.forward(request, response);
         response.sendRedirect("client/app.jsp");
     }

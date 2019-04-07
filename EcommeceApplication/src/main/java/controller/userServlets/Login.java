@@ -88,6 +88,7 @@ public class Login extends HttpServlet {
             response.sendRedirect("login.html?error=true");
         } else {
             session = request.getSession(true);
+            session.setAttribute("user", user);
             if (user.getRole() == 1) {
 
 //                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
@@ -95,7 +96,7 @@ public class Login extends HttpServlet {
                 response.sendRedirect("admin/AdminController");
                 
             } else {
-                response.sendRedirect("clientSide/app.jsp");
+                response.sendRedirect("client/app.jsp");
             }
         }
 
