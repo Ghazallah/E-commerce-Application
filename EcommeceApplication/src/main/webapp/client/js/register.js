@@ -18,17 +18,23 @@ $(document).ready(function () {
 
     $("#email").blur(function () {
         email = $("#email").val();
+        // check if the user is registered 
         $.post("../validation", {email: email}, function (data) {
-            console.log(data); // John
-            if (data === "true")
+            
+            if (data === "true") {
+
+                $("#submit-button").attr("disabled", false);
                 $("#email-validation").html("Valid")
-            else
+            } else
+            {
                 $("#email-validation").html("Invalid")
+                $("#submit-button").attr("disabled", true);
+            }
 
         });
     });
-    
-    
+
+
     // make sure the user agrees on terms and conditions and privacy policy
     $('#register').submit(function () {
         // confirm the password the user entered

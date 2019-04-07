@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-4">
-                                    <button type="submit"  class="btn btn-primary skew"> <span class="btn-inner--text skew">Create my account</span> <span class="btn-inner--icon"><i class="far fa-long-arrow-alt-right"></i></span> </button>
+                                    <button type="submit" id="submit-button"  class="btn btn-primary skew"> <span class="btn-inner--text skew">Create my account</span> <span class="btn-inner--icon"><i class="far fa-long-arrow-alt-right"></i></span> </button>
                                 </div>
                             </form>
                         </div>
