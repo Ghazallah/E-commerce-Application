@@ -22,5 +22,5 @@ public interface CouponsDAO {
 
     public void delete(Coupon coupon);
     
-    public List<String> getAllDescriptions();
+    public List<Coupon> getAllCoupons();
 }
