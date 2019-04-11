@@ -5,6 +5,7 @@
  */
 package model.dal.dao;
 
+import java.util.List;
 import model.entity.Order;
 
 /**
@@ -15,7 +16,7 @@ public interface OrderDAO {
 
     public void create(Order order);
 
-    public Order retreive();
+    public List<Order> retreive();
 
     public void update(Order order);
 

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +28,8 @@
 
         <!-- Custom styles for this template-->
         <link href="resources/css/sb-admin.css" rel="stylesheet">
+        <link rel="stylesheet" href="resources/css/style.css">
+
 
     </head>
 
@@ -122,11 +126,118 @@
                         <li class="breadcrumb-item active">Update Product</li>
                     </ol>
 
+                    <section class="addproduct">
+                        <form method="POST" onsubmit="return testBrandID()" enctype="MULTIPART/FORM-DATA" action="CreateProduct?action=addProduct">
+                            <div class="container">
+                                <h4> Add product </h4>
+                                <br>
+                                <div class="row">
+                                    <table class="table">
+                                        <tbody>
+                                            <!--<tr>
+                                                <th scope="row">Product Category</th>
+                                                <td><select class="custom-select">
+                                                        <option selected>Open this select menu</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select></td>
+                                            </tr>-->
+                                            <tr>
+                                                <th scope="row">Product Brand</th>
+                                                <td>
+                                                    <select class="form-input" id="brandID" name="brandID" required>
+                                                        <div id="chooseBrand" style="display: none;"></div>
+                                                        <option value="" selected="true" disabled>Select Brand</option>
+                                                        <c:forEach items="${brandList}" var="current">
+                                                            <option value="${current.id}"><c:out value="${current.name}" /></option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Product Name</th>
+                                                <td><input type="text" name="productName" class="form-control" placeholder="product Name" required></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Product Price</th>
+                                                <td><input type="number" name="productPrice" class="form-control" placeholder="product Price" required></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Product Discount (OPTIONAL)</th>
+                                                <td> <input type="number" name="productDiscount" value="0" min="0" max="100" step="1"  placeholder="product Discount"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Processor</th>
+                                                <td><input type="text" name="productProcessor" class="form-control" placeholder="product Processor"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">RAM (GB)</th>
+                                                <td><input type="number" name="productRam" value="1" min="1" step="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Storage (GB)</th>
+                                                <td><input type="number" name="productStorage" value="16" min="1" step="1"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Operating system</th>
+                                                <td><input type="text" name="productOS" class="form-control" placeholder="operating system"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Graphics card</th>
+                                                <td><input type="text" name="productGraphicsCard"  class="form-control" placeholder="product graphic card"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Description</th>
+                                                <td><textarea name="productDescription" class="form-control" placeholder="product Description"></textarea></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Quantity</th>
+                                                <td><input type="number" name="productQuantity" class="form-control" placeholder="productQuantity" required></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Color</th>
+
+                                                <td><select class="form-input" style="font-size:  16px;" id="productColor" name="productColor">
+                                                        <option value="black"  selected="true"><c:out value="black" /></option>
+                                                        <option value="red"><c:out value="red" /></option>
+                                                        <option value="white"><c:out value="white" /></option>
+                                                        <option value="blue"><c:out value="blue" /></option>
+                                                        <option value="purple"><c:out value="purple" /></option>
+                                                        <option value="pink"><c:out value="pink" /></option>
+                                                        <option value="brown"><c:out value="brown" /></option>
+                                                        <option value="green"><c:out value="green" /></option>
+                                                        <option value="orange"><c:out value="orange" /></option>
+                                                    </select></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                                <h4> Product details </h4>
+                                <br>
+                                <div class="row">
+                                    <table class="table" id="productDetails">
+                                        <tbody>
+                                            <tr>
+                                                <td><div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="productimage1" name="productimage1" required>
+                                                        <label class="custom-file-label" for="customFile">Choose Product Image</label>
+                                                    </div></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <button type="button" class="btn btn-warning" id="addProductDetails">Add detail</button>
+                                <button type="submit" class="btn btn-success" id="addProduct">Save product</button>
+                            </div>
+                        </form>
+                    </section>
                 </div>
             </div>
         </div>
-
-        <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
         <footer class="sticky-footer">
@@ -171,7 +282,7 @@
 <!-- Bootstrap core JavaScript-->
 <script src="resources/vendor/jquery/jquery.min.js"></script>
 <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="resources/js/updateProductScript.js"></script>
 </body>
 
 </html>

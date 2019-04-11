@@ -1,6 +1,7 @@
 package model.entity;
 // Generated Mar 30, 2019, 4:19:02 PM by Hibernate Tools 4.3.1
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,8 +28,6 @@ public class ProductDetails implements java.io.Serializable {
     private int productId;
     private Product product;
     private String productImage;
-    private String productColor;
-    private Integer quantity;
 
     public ProductDetails() {
     }
@@ -37,16 +36,15 @@ public class ProductDetails implements java.io.Serializable {
         this.product = product;
     }
 
-    public ProductDetails(Product product, String productImage, String productColor, Integer quantity) {
+    public ProductDetails(Product product, String productImage) {
         this.product = product;
         this.productImage = productImage;
-        this.productColor = productColor;
-        this.quantity = quantity;
+
     }
 
-   // @GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "product"))
-    @Id 
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    // @GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "product"))
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pid", unique = true, nullable = false)
     public int getProductId() {
         return this.productId;
@@ -73,24 +71,6 @@ public class ProductDetails implements java.io.Serializable {
 
     public void setProductImage(String productImage) {
         this.productImage = productImage;
-    }
-
-    @Column(name = "productColor")
-    public String getProductColor() {
-        return this.productColor;
-    }
-
-    public void setProductColor(String productColor) {
-        this.productColor = productColor;
-    }
-
-    @Column(name = "quantity")
-    public Integer getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
 }

@@ -77,7 +77,8 @@ public class Brand  implements java.io.Serializable {
         this.name = name;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="brand")
+    //add cascade all on onToMany relation between brand and product
+@OneToMany(fetch=FetchType.LAZY, mappedBy="brand" , cascade = {CascadeType.ALL})
     public Set<Product> getProducts() {
         return this.products;
     }

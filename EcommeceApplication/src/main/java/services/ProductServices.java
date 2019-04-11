@@ -70,8 +70,10 @@ public class ProductServices {
              for (ProductDetails productDetail : product.getProductDetails()) {
                    ProductDetailsDTO detail = new ProductDetailsDTO();
                    detail.setProductId(productDetail.getProductId());
-                   detail.setQuantity(productDetail.getQuantity());
-                   detail.setProductColor(productDetail.getProductColor());
+                   
+                   //new modification quantity and color put it in product table
+//                   detail.setQuantity(productDetail.getQuantity());
+//                   detail.setProductColor(productDetail.getProductColor());
                    detail.setProductImage(productDetail.getProductImage());
                    detailsDTO.add(detail);
              }

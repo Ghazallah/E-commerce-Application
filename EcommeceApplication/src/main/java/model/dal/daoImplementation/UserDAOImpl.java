@@ -84,8 +84,12 @@ public class UserDAOImpl implements UserDAO {
             userList= q.getResultList();
             session.getTransaction().commit();
             session.close();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
         }
-       
+        for (int i = 0; i < userList.size(); i++) {
+            System.out.println(userList.get(i).getAddress());
+            System.out.println(userList.get(i).getName());
+        }
         
         return userList;
     }

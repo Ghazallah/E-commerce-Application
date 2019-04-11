@@ -30,6 +30,7 @@ public class CategoryDAOImpl implements CategoryDAO {
             session.getTransaction().commit();
             //session.close();
         } catch (PersistenceException ex) {
+            ex.printStackTrace();
             throw new UniqueExceptionEmplementation("duplicated name");
         }
 
