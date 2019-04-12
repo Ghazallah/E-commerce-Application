@@ -1,5 +1,5 @@
 # Electro
-2B is an E-commerce application that allows to buy and sell 
+Elector is an E-commerce application that allows to buy and sell 
 mobile phones, laptops and their acccessories.
 This application is being developed for educational purpose.
 ## Developers
