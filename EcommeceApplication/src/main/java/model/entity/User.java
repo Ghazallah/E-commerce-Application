@@ -185,7 +185,7 @@ public class User  implements java.io.Serializable {
         this.carts = carts;
     }
 
-@OneToOne(fetch=FetchType.LAZY, mappedBy="user")
+@OneToOne(fetch=FetchType.EAGER, mappedBy="user")
     public UserCredit getUserCredit() {
         return this.userCredit;
     }

@@ -16,13 +16,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.dal.dao.OrderDAO;
+import model.dal.daoImplementation.OrderDAOImpl;
 import model.dto.ProductDTO;
 import model.entity.Brand;
 import model.entity.Category;
+import model.entity.Order;
 import model.entity.Product;
+import model.entity.User;
 import services.BrandServices;
 import services.CategoryServices;
 import services.ProductServices;
+import services.StatisticsService;
+import services.UserServices;
 
 /**
  *
@@ -51,6 +57,17 @@ public class AdminController extends HttpServlet {
         ProductServices productServices = new ProductServices();
         ArrayList<ProductDTO> productList = (ArrayList<ProductDTO>) productServices.getAllProducts();
         session.setAttribute("productList", productList);
+        
+        UserServices userServices = new UserServices();
+        ArrayList<User> userList = (ArrayList<User>) userServices.getAllUsers();
+        session.setAttribute("userList", userList);
+        
+        //for testing
+        // display new orders 
+//        OrderDAO orderDAO = new OrderDAOImpl();
+//        ArrayList<Order> orderList = (ArrayList<Order>) orderDAO.retreive();
+//        System.out.println(orderList.get(0).getDate());
+//        session.setAttribute("orderList", orderList);
 
         // here complete get all things cat,brand,pro,users
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");

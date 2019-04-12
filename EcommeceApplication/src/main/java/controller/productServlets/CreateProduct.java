@@ -90,16 +90,23 @@ public class CreateProduct extends HttpServlet {
                                 int discount = Integer.parseInt(value);
                                 product.setDiscount(discount);
                                 break;
+                            case "productQuantity":
+                                int quantity = Integer.parseInt(value);
+                                product.setQuantity(quantity);
+                                break;
+                            case "productColor":
+                                product.setProductColor(value);
+                                break;
 //                            case "productDescription":
 //                                product.setDescription(value);
 //                                break;
-                            case "productcolor":
-                                productDetails.setProductColor(value);
-                                break;
-                            case "productquantity":
-                                productDetails.setQuantity(Integer.parseInt(value));
-                                productDetailsSet.add(productDetails);
-                                break;
+//                            case "productcolor":
+//                                productDetails.setProductColor(value);
+//                                break;
+//                            case "productquantity":
+//                                productDetails.setQuantity(Integer.parseInt(value));
+//                                productDetailsSet.add(productDetails);
+//                                break;
                             case "productProcessor":
                                 productDescriptionDTO.setProcessor(value);
                                 break;
@@ -116,18 +123,18 @@ public class CreateProduct extends HttpServlet {
                                 productDescriptionDTO.setGraphicsCard(value);
                                 String description = gson.toJson(productDescriptionDTO);
                                 product.setDescription(description);
-                            default: {
-                                if (name.contains("productcolor")) {
-                                    
-                                    System.out.println(value  + "here");
-                                    productDetails.setProductColor(value);
-                                }
-                                if (name.contains("productquantity")) {
-                                    System.out.println(value  + "here");
-                                    productDetails.setQuantity(Integer.parseInt(value));
-                                    productDetailsSet.add(productDetails);
-                                }
-                            }
+//                            default: {
+//                                if (name.contains("productcolor")) {
+//                                    
+//                                    System.out.println(value  + "here");
+//                                    productDetails.setProductColor(value);
+//                                }
+//                                if (name.contains("productquantity")) {
+//                                    System.out.println(value  + "here");
+//                                    productDetails.setQuantity(Integer.parseInt(value));
+//                                    productDetailsSet.add(productDetails);
+//                                }
+//                            }
 
                         }
                     } else {
@@ -137,9 +144,10 @@ public class CreateProduct extends HttpServlet {
                         String extention = FilenameUtils.getExtension(item.getName());
                         productDetails = new ProductDetails();
                        // File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
-                       File targetFile = new File("/home/ghazallah/Desktop/images/" + randomUUIDString + "." + extention);
+                       File targetFile = new File("D:\\images\\" + randomUUIDString + "." + extention);
                         productDetails.setProductImage(randomUUIDString + "." + extention);
                         item.write(targetFile);
+                        productDetailsSet.add(productDetails);
                     }
                 }
             } catch (FileUploadException ex) {

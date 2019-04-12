@@ -35,6 +35,7 @@ public class CreateCategory extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         CategoryServices categoryServices = new CategoryServices();
+        BrandServices brandServices = new BrandServices();
         HttpSession session = request.getSession(false);
 
         String action = request.getParameter("action");
@@ -66,6 +67,9 @@ public class CreateCategory extends HttpServlet {
                 ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
                 session.setAttribute("categoryList", categoryList);
 
+                ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
+                session.setAttribute("brandList", brandList);
+
                 request.setAttribute("operation", "success");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("manage-categories.jsp");
@@ -83,7 +87,10 @@ public class CreateCategory extends HttpServlet {
                 categoryServices.deleteCategory(categoryID);
                 ArrayList<Category> categoryList = (ArrayList<Category>) categoryServices.getAllCategories();
                 session.setAttribute("categoryList", categoryList);
-                
+
+                ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
+                session.setAttribute("brandList", brandList);
+
                 request.setAttribute("operation", "success");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("manage-categories.jsp");
