@@ -94,7 +94,4 @@ public class UserServices {
         boolean value = products.remove(product);
         userDAO.update(user);
     }
-    public int getNewUsers(){
-        return userDAO.getNewUsers();
-    }
 }
