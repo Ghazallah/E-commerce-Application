@@ -50,6 +50,8 @@ public class ProductServices {
              productDTO.setDiscount(product.getDiscount());
              productDTO.setPrice(product.getPrice());
              productDTO.setDescription(product.getDescription());
+             productDTO.setProductColor(product.getProductColor());
+             productDTO.setQuantity(product.getQuantity());
              
              BrandDTO brandDTO = new BrandDTO();
              brandDTO.setId(product.getBrand().getId());
@@ -68,12 +70,8 @@ public class ProductServices {
              Set<ProductDetailsDTO> detailsDTO = new HashSet<>();
              
              for (ProductDetails productDetail : product.getProductDetails()) {
-                   ProductDetailsDTO detail = new ProductDetailsDTO();
-                   detail.setProductId(productDetail.getProductId());
-                   
-                   //new modification quantity and color put it in product table
-//                   detail.setQuantity(productDetail.getQuantity());
-//                   detail.setProductColor(productDetail.getProductColor());
+                   ProductDetailsDTO detail = new ProductDetailsDTO();               
+                   detail.setProductId(productDetail.getProductId());               
                    detail.setProductImage(productDetail.getProductImage());
                    detailsDTO.add(detail);
              }

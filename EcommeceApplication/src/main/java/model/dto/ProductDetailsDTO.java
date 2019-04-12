@@ -12,11 +12,9 @@ public class ProductDetailsDTO
 {
     private int productId;
     private String productImage;
-    private String productColor;
-    private Integer quantity;
 
     public ProductDetailsDTO() {}
-    
+
     public int getProductId() {
         return productId;
     }
@@ -32,22 +30,7 @@ public class ProductDetailsDTO
     public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
-
-    public String getProductColor() {
-        return productColor;
-    }
-
-    public void setProductColor(String productColor) {
-        this.productColor = productColor;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
+   
     
     
 }

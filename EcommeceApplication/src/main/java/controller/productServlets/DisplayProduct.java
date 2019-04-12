@@ -53,7 +53,7 @@ public class DisplayProduct  extends HttpServlet
              else if (action.equals("init"))
              {
                     req.setAttribute("products", allProducts);
-                    req.getRequestDispatcher("client/coupon").forward(req, resp);  //temp forward just for test
+                    req.getRequestDispatcher("coupon").forward(req, resp);  //temp forward just for test
              }
     }
         

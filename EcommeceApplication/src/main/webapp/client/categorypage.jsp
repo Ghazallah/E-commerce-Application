@@ -82,7 +82,7 @@
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item women">
                     <!-- Block2 -->
                     <div class="block2 card">
-                        <div class="block2-pic hov-img0"><img src="images/product04.png" alt="IMG-PRODUCT"> 
+                        <div class="block2-pic hov-img0"><img src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>" alt="IMG-PRODUCT"> 
                             <button id="${product.pid}" onclick="showProductDetails()"  data-product="<c:out value="${product}"/>"  type="button" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> 
                                 Quick View 
                             </button>

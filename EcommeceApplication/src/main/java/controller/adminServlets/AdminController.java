@@ -35,8 +35,8 @@ import services.UserServices;
  * @author pc
  */
 @WebServlet(value = "/admin/AdminController")
-public class AdminController extends HttpServlet {
-
+public class AdminController extends HttpServlet 
+{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");

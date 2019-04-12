@@ -13,19 +13,22 @@ import java.util.Set;
  *
  * @author Elhoseni
  */
-public class ProductDTO 
-{
-     private int pid;
-     private String name;
-     private Double price;
-     private String description;
-     private Integer discount;
-     
-     private BrandDTO brand;  
-     private Set<ProductDetailsDTO> detailsDTOs;
+public class ProductDTO {
 
-     public ProductDTO(){}
-     
+    private int pid;
+    private String name;
+    private Double price;
+    private String description;
+    private Integer discount;
+    private String productColor;
+    private Integer quantity;
+
+    private BrandDTO brand;
+    private Set<ProductDetailsDTO> detailsDTOs;
+
+    public ProductDTO() {
+    }
+
     public int getPid() {
         return pid;
     }
@@ -66,13 +69,29 @@ public class ProductDTO
         this.discount = discount;
     }
 
+    public String getProductColor() {
+        return productColor;
+    }
+
+    public void setProductColor(String productColor) {
+        this.productColor = productColor;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public BrandDTO getBrand() {
         return brand;
     }
 
     public void setBrand(BrandDTO brand) {
         this.brand = brand;
-    }    
+    }
 
     public Set<ProductDetailsDTO> getDetailsDTOs() {
         return detailsDTOs;
@@ -83,13 +102,14 @@ public class ProductDTO
     }
     
     
+
     @Override
     public String toString() {
-        GsonBuilder builder = new GsonBuilder(); 
-        Gson gson = builder.create();  
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
         String jsonformat = gson.toJson(this);
         System.out.println(jsonformat);
         return jsonformat;
     }
-     
+
 }
