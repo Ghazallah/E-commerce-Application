@@ -6,9 +6,7 @@
 <form name="cartform" id="cartform" method="post" action="#">
     <!-- id will be unique, but class name will be same -->
     <div id="sf1" class="frm container-fluid">
-        <div id="cart-products">
-            
-             
+        <div id="cart-products">                 
            <c:choose>
           <c:when test="${sessionScope.user != null}">
               
@@ -50,16 +48,8 @@
           <c:otherwise>
               <h4> Read cart product from local storage </h4>
           </c:otherwise>
-     </c:choose>
-    
-            
-         
-            
-            
-            
-            
+           </c:choose>           
         </div>
-        
         <br>
         <div class="mt-4 text-right">
             <button type="button" class="btn btn-success open1">Next step</button>

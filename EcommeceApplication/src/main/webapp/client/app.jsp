@@ -68,7 +68,7 @@
                     <!-- Header Mobile -->
                     <div class="wrap-header-mobile custom-header-mobile">
                         <!-- Logo moblie -->
-                        <div class="logo-mobile"><a><img src="images/icons/logo.png" alt="IMG-LOGO"></a></div>
+                        <div class="logo-mobile"><a><img src="images/icons/logo.png" alt="IMG-LOGO"> </a></div>
 
                         <!-- Icon header -->
                         <div class=" flex-w flex-r-m m-r-15">
@@ -367,7 +367,7 @@
         <script src="js/modals.js"></script>
         <script src="js/main.js"></script>
         <script src="js/cart.js"></script>
+         <script src="js/wishlist.js"></script>
         <script src="js/product.js"></script>
-        <script src="js/wishlist.js"></script>
     </body>
 </html>
