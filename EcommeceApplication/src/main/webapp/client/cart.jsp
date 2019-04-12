@@ -123,13 +123,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Postal code</label>
-                                            <input class="form-control" type="text" placeholder="Address, Number">
+                                            <input name="postcode" class="form-control" type="tel" placeholder="five digits postal code">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Phone</label>
-                                            <input type="tel" name="phone" class="form-control" type="text" placeholder="+40-777 245 549" >
+                                            <input type="tel" name="phone" class="form-control" type="text" placeholder="01XXXXXXXXX" >
                                         </div>
                                     </div>
                                 </div>
@@ -152,145 +152,9 @@
             <div class="container">
                 <div class="row row-grid">
                     <div class="col-lg-8">
-                        <!-- Title -->
-                        <div class="actions-toolbar py-2 mb-4">
-                            <h5 class="mb-1">Saved addresses</h5>
-                            <p class="text-sm text-muted mb-0">Use one of your saved addresses for fast checkout.</p>
-                        </div>
-                        <!-- Table of addresses -->
-                        <div class="table-responsive">
-                            <table class="table table-cards align-items-center">
-                                <tbody class="list">
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" name="radio-address" id="tbl-addresses-check-1" checked="">
-                                                <label class="custom-control-label" for="tbl-addresses-check-1"></label>
-                                            </div>
-                                        </th>
-                                        <td><span class="font-weight-600 text-dark">Address 1</span><span class="badge badge-pill badge-soft-info ml-2">Primary</span></td>
-                                        <td><p class="mb-0 text-muted text-limit text-sm">1333 Deerfield, State College PA, 16803</p></td>
-                                        <td>
-                                            <div class="actions">
-                                                <div class="dropdown"><a class="action-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="fa fa-edit"></i> Edit address</a> <a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Move to trash</a></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="table-divider"></tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" name="radio-address" id="tbl-addresses-check-2">
-                                                <label class="custom-control-label" for="tbl-addresses-check-2"></label>
-                                            </div>
-                                        </th>
-                                        <td><span class="font-weight-600 text-dark">Address 2</span></td>
-                                        <td><p class="mb-0 text-muted text-limit text-sm">2047 Main Street, State Chicago CH, 20067</p></td>
-                                        <td>
-                                            <div class="actions">
-                                                <div class="dropdown"><a class="action-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="fa fa-edit"></i> Edit address</a> <a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Move to trash</a></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="table-divider"></tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" name="radio-address" id="tbl-addresses-check-3">
-                                                <label class="custom-control-label" for="tbl-addresses-check-3"></label>
-                                            </div>
-                                        </th>
-                                        <td><span class="font-weight-600 text-dark">Address 3</span></td>
-                                        <td><p class="mb-0 text-muted text-limit text-sm">5078 Third Street, State New York NY, 33006</p></td>
-                                        <td>
-                                            <div class="actions">
-                                                <div class="dropdown"><a class="action-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="fa fa-edit"></i> Edit address</a> <a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Move to trash</a></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        
                         <div class="mt-5">
-                            <!-- Title -->
-                            <div class="actions-toolbar py-2 mb-4">
-                                <h5 class="mb-1">Add new address</h5>
-                                <p class="text-sm text-muted mb-0">Fill in your address info for upcoming orders or payments.</p>
-                            </div>
-                            <!-- New address form -->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">First name</label>
-                                        <input class="form-control" type="text" placeholder="Enter your first name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Last name</label>
-                                        <input class="form-control" type="text" placeholder="Also your last name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row align-items-center">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Address</label>
-                                        <input class="form-control" type="text" placeholder="Address, Number">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group focused">
-                                        <label class="form-control-label">Country</label>
-                                        <select class="form-control" data-toggle="select" title="Country" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                            <option selected="" data-select2-id="3">Select your country</option>
-                                            <option value="1">Bulgaria</option>
-                                            <option value="2">Croatia</option>
-                                            <option value="3">Denmark</option>
-                                            <option value="4">Finland</option>
-                                            <option value="5">Greece</option>
-                                            <option value="6">Romania</option>
-                                            <option value="7">United Kingdom</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group focused">
-                                        <label class="form-control-label">City</label>
-                                        <select class="form-control" data-toggle="select" title="City" data-select2-id="4" tabindex="-1" aria-hidden="true">
-                                            <option selected="" disabled="" data-select2-id="6">Select your city</option>
-                                            <option value="1">Bucharest</option>
-                                            <option value="2">Bacau</option>
-                                            <option value="3">Cluj Napoca</option>
-                                            <option value="4">Piatra Neamt</option>
-                                            <option value="5">Sibiu</option>
-                                            <option value="6">Timisoara</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label">Postal code</label>
-                                            <input class="form-control" type="text" placeholder="Address, Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label">Phone</label>
-                                            <input class="form-control" type="text" placeholder="+40-777 245 549">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="mt-5">
                                 <!-- Title -->
                                 <div class="actions-toolbar py-2 mb-4">
@@ -305,7 +169,7 @@
                                                 <div class="row align-items-center">
                                                     <div class="col-8">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="radio" name="shipping-method" class="custom-control-input" id="shipping-standard">
+                                                            <input type="radio" name="shippingmethod" class="custom-control-input" id="shipping-standard">
                                                             <label class="custom-control-label text-dark font-weight-bold" for="shipping-standard">Standard Delivery</label>
                                                         </div>
                                                     </div>
@@ -321,7 +185,7 @@
                                                 <div class="row align-items-center">
                                                     <div class="col-8">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="radio" name="shipping-method" class="custom-control-input" id="shipping-fast">
+                                                            <input type="radio" name="shippingmethod" class="custom-control-input" id="shipping-fast">
                                                             <label class="custom-control-label text-dark font-weight-bold" for="shipping-fast">Fast Delivery</label>
                                                         </div>
                                                     </div>
@@ -367,13 +231,14 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="input-group input-group-merge">
-                                                <input type="text" class="form-control" data-mask="0000 0000 0000 0000" placeholder="4789 5697 0541 7546" autocomplete="off" maxlength="19">
+                                                <input id="creditcardnumber" name="creditcardnumber" type="tel" class="form-control" data-mask="0000 0000 0000 0000" placeholder="4789 5697 0541 7546" autocomplete="off" maxlength="19" >
                                                 <div class="input-group-append"><span class="input-group-text"><i class="ti-credit-card"></i></span></div>
                                             </div>
+                                            <label id="credit-validation"></label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+<!--                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="d-block text-left font-weight-bold fs-14 cl4">Name on card</label>
@@ -395,12 +260,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                         <div class="mt-4 text-right">
                             <button class="btn btn-warning back4" type="button"><span class="fa fa-arrow-left"></span> Back</button>
-                            <button type="button" class="btn btn-success completeOrder">Complete order</button>
+                            <button id="completeOrder" type="button" class="btn btn-success completeOrder" disabled="true">Complete order</button>
                         </div>
                     </div>
                 </div>
