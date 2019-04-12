@@ -44,7 +44,9 @@ public class WishList extends HttpServlet {
 
         // get current  user
         User user = (User) session.getAttribute("user");
-        int productId = Integer.parseInt(request.getParameter("productId"));
+        String pid = request.getParameter("productId");
+        System.out.println("Product to remove : "+pid);
+        int productId = Integer.parseInt(pid);
 
         userServices.deleteFromWishList(user, productId);
     }

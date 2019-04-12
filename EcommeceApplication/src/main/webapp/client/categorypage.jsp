@@ -10,11 +10,11 @@
     <!-- categories search & filters -->
     <div class="flex-w flex-sb-m p-b-52">
         <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*"> All Products</button>
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".laptop"> Laptops</button>
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".mobile"> Mobile</button>
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".tablet"> Tablets</button>
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".acc"> Accessories</button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">All Products</button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".laptop">Laptops</button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".mobile">Mobiles</button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".tablet">Tablets</button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".acc">Accessories</button>
         </div>
 
         <!-- Search & Filter buttons -->
@@ -79,7 +79,7 @@
     <!-- products -->      
     <div class="row isotope-grid">
            <c:forEach items="${requestScope.products}"  var="product">                  
-                <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item women">
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item <c:out value="${product.brand.categoryDTO.name}"/>">
                     <!-- Block2 -->
                     <div class="block2 card">
                         <div class="block2-pic hov-img0"><img src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>" alt="IMG-PRODUCT"> 
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-             </c:forEach> 
+           </c:forEach>
     </div>
 
 </div>
