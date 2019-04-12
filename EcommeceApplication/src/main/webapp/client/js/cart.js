@@ -1,28 +1,55 @@
 jQuery().ready(function () {
+    $.validator.addMethod("regx", function (value, element, regexpr) {
+        return regexpr.test(value);
+    }, "Please enter a valid Egyptian Mobile Phone Number.");
 
     var v = jQuery("#cartform").validate({
         rules: {
-            uname: {
+            fname: {
                 required: true,
                 minlength: 2,
                 maxlength: 16
             },
-            uemail: {
+            lname: {
                 required: true,
                 minlength: 2,
-                email: true,
-                maxlength: 100,
+                maxlength: 16
             },
-            upass1: {
+            address: {
                 required: true,
                 minlength: 6,
-                maxlength: 15,
+                maxlength: 60
             },
-            upass2: {
-                required: true,
-                minlength: 6,
-                equalTo: "#upass1",
+            country:{
+               required: true 
+            },
+            state:{
+               required: true 
+            },
+            phone:{
+               required: true ,
+               regx:/^01[012][0-9]{8}$/
             }
+            
+            
+
+            
+//            uemail: {
+//                required: true,
+//                minlength: 2,
+//                email: true,
+//                maxlength: 100,
+//            },
+//            upass1: {
+//                required: true,
+//                minlength: 6,
+//                maxlength: 15,
+//            },
+//            upass2: {
+//                required: true,
+//                minlength: 6,
+//                equalTo: "#upass1",
+//            }
 
         },
         errorElement: "span",
