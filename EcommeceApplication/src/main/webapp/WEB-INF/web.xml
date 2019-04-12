@@ -30,7 +30,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>Welcome</welcome-file>
+        <welcome-file>registerCookie</welcome-file>
     </welcome-file-list>
     <!--login filter-->
     <filter>
