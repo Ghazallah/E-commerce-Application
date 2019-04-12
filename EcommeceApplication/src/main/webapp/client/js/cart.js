@@ -2,6 +2,12 @@ jQuery().ready(function () {
     $.validator.addMethod("regx", function (value, element, regexpr) {
         return regexpr.test(value);
     }, "Please enter a valid Egyptian Mobile Phone Number.");
+    $.validator.addMethod("regxzip", function (value, element, regexpr) {
+        return regexpr.test(value);
+    }, "Please enter a valid Egyptian Post Code.");
+    $.validator.addMethod("regxcreditcard", function (value, element, regexpr) {
+        return regexpr.test(value);
+    }, "Please enter a valid credit card number.");
 
     var v = jQuery("#cartform").validate({
         rules: {
@@ -17,7 +23,7 @@ jQuery().ready(function () {
             },
             address: {
                 required: true,
-                minlength: 6,
+                minlength: 4,
                 maxlength: 60
             },
             country:{
@@ -29,31 +35,34 @@ jQuery().ready(function () {
             phone:{
                required: true ,
                regx:/^01[012][0-9]{8}$/
+            },
+            shippingmethod:{
+                required: true
+            },
+            postcode:{
+                required: true,
+                regxzip:/^[0-9]{5}$/
             }
-            
-            
-
-            
-//            uemail: {
-//                required: true,
-//                minlength: 2,
-//                email: true,
-//                maxlength: 100,
-//            },
-//            upass1: {
-//                required: true,
-//                minlength: 6,
-//                maxlength: 15,
-//            },
-//            upass2: {
-//                required: true,
-//                minlength: 6,
-//                equalTo: "#upass1",
-//            }
 
         },
         errorElement: "span",
-        errorClass: "help-inline",
+        errorClass: "help-inline"
+    });
+    
+    $("#creditcardnumber").on("input",function () {
+        num = $("#creditcardnumber").val();
+        var reg = /^(\d{4}[- ]){3}\d{4}|\d{16}$/;
+        if (reg.test(num)) {
+            // perform some task
+            $("#completeOrder").attr("disabled", false);
+            $("#credit-validation").html("Valid")
+        }
+        else
+            {
+                $("#credit-validation").html("Invalid")
+                $("#completeOrder").attr("disabled", true);
+            }
+        
     });
 
     // Binding next button on first step
