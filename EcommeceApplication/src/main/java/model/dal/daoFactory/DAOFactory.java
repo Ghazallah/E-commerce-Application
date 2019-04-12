@@ -6,6 +6,7 @@
 package model.dal.daoFactory;
 
 import model.dal.dao.BrandDAO;
+import model.dal.dao.CartDAO;
 import model.dal.dao.CategoryDAO;
 import model.dal.dao.CouponsDAO;
 import model.dal.dao.OrderDAO;
@@ -39,4 +40,7 @@ public interface DAOFactory {
     public UserCreditDAO getUserCreditDAO();
     
     public ProductDetailsDAO getProductDetailsDAO();
+    
+    public CartDAO getCartDAO ();
+    
 }

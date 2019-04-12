@@ -144,7 +144,7 @@ public class CreateProduct extends HttpServlet {
                         String extention = FilenameUtils.getExtension(item.getName());
                         productDetails = new ProductDetails();
                        // File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
-                       File targetFile = new File("D:\\images\\" + randomUUIDString + "." + extention);
+                        File targetFile = new File("D:\\images\\" + randomUUIDString + "." + extention);
                         productDetails.setProductImage(randomUUIDString + "." + extention);
                         item.write(targetFile);
                         productDetailsSet.add(productDetails);
