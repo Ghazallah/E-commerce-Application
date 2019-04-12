@@ -5,10 +5,18 @@
  */
 package services;
 
+import model.dal.dao.OrderDAO;
+import model.dal.daoImplementation.OrderDAOImpl;
+
 /**
  *
  * @author ghazallah
  */
 public class OrderServices {
-    
+
+    OrderDAO orderDAO = new OrderDAOImpl();
+
+    public int getNewOrders() {
+        return orderDAO.getNewOrders();
+    }
 }

@@ -23,7 +23,7 @@ import org.hibernate.Session;
 public class CategoryDAOImpl implements CategoryDAO {
 
     @Override
-    public void create(Category category) throws UniqueExceptionEmplementation {
+    synchronized public void create(Category category) throws UniqueExceptionEmplementation {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.save(category);
@@ -53,7 +53,7 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public void update(Category category) throws UniqueExceptionEmplementation {
+    synchronized public void update(Category category) throws UniqueExceptionEmplementation {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.update(category);
@@ -66,7 +66,7 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public void delete(Category category) {
+    synchronized public void delete(Category category) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.delete(category);

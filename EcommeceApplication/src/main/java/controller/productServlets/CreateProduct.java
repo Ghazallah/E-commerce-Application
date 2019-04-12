@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.dto.ProductDTO;
 import model.dto.ProductDescriptionDTO;
 import model.entity.Brand;
 import model.entity.Product;
@@ -59,13 +61,16 @@ public class CreateProduct extends HttpServlet {
         int brandId = 0;
         if (action.equals("addProduct")) {
             try {
-                
+
                 ProductDescriptionDTO productDescriptionDTO = new ProductDescriptionDTO();
                 // Create a factory for disk-based file items
                 DiskFileItemFactory factory = new DiskFileItemFactory();
                 // Create a new file upload handler
                 ServletFileUpload upload = new ServletFileUpload(factory);
                 // Parse the request
+
+                HttpSession session = request.getSession(false);
+
                 List<FileItem> items = upload.parseRequest(request);
                 Iterator<FileItem> iter = items.iterator();
                 while (iter.hasNext()) {
@@ -97,9 +102,7 @@ public class CreateProduct extends HttpServlet {
                             case "productColor":
                                 product.setProductColor(value);
                                 break;
-//                            case "productDescription":
-//                                product.setDescription(value);
-//                                break;
+
 //                            case "productcolor":
 //                                productDetails.setProductColor(value);
 //                                break;
@@ -110,7 +113,7 @@ public class CreateProduct extends HttpServlet {
                             case "productProcessor":
                                 productDescriptionDTO.setProcessor(value);
                                 break;
-                            case "productRam" :
+                            case "productRam":
                                 productDescriptionDTO.setRam(value);
                                 break;
                             case "productStorage":
@@ -121,6 +124,9 @@ public class CreateProduct extends HttpServlet {
                                 break;
                             case "productGraphicsCard":
                                 productDescriptionDTO.setGraphicsCard(value);
+                                break;
+                            case "productDescription":
+                                productDescriptionDTO.setDescription(value);
                                 String description = gson.toJson(productDescriptionDTO);
                                 product.setDescription(description);
 //                            default: {
@@ -140,27 +146,41 @@ public class CreateProduct extends HttpServlet {
                     } else {
                         UUID uuid = UUID.randomUUID();
                         String randomUUIDString = uuid.toString();
-                      //  new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
+                        //  new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
                         String extention = FilenameUtils.getExtension(item.getName());
                         productDetails = new ProductDetails();
-                       // File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
-                       File targetFile = new File("D:\\images\\" + randomUUIDString + "." + extention);
+                        // File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
+                        File targetFile = new File("D:\\images\\" + randomUUIDString + "." + extention);
                         productDetails.setProductImage(randomUUIDString + "." + extention);
                         item.write(targetFile);
                         productDetailsSet.add(productDetails);
                     }
                 }
-            } catch (FileUploadException ex) {
-                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                Logger.getLogger(CreateProduct.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ProductServices productServices = new ProductServices();
-            try {
+
+                ProductServices productServices = new ProductServices();
                 productServices.addProduct(product, productDetailsSet, brandId);
+                List<ProductDTO> productList = productServices.getAllProducts();
+                session.setAttribute("productList", productList);
+                
+                request.setAttribute("operation", "success");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("add-product.jsp");
+                dispatcher.forward(request, response);
 
             } catch (UniqueExceptionEmplementation ex) {
-                Logger.getLogger(CreateProduct.class.getName()).log(Level.SEVERE, null, ex);
+                // can't save data in database
+                request.setAttribute("operation", "oops error during save data please try again later");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("add-product.jsp");
+                dispatcher.forward(request, response);
+            } catch (FileUploadException ex) {
+                // can't upload image
+                request.setAttribute("operation", "can not upload image please try again");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("add-product.jsp");
+                dispatcher.forward(request, response);
+            } catch (Exception ex) {
+                //can't write image
+                request.setAttribute("operation", "sorry can not save your images try again later");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("add-product.jsp");
+                dispatcher.forward(request, response);
             }
             //------ update-----
         } else if (action.equals("Update")) {
@@ -190,7 +210,7 @@ public class CreateProduct extends HttpServlet {
 //                out.print("oops duplicated category please enter new one");
 //            }
         }
-        response.sendRedirect("add-product.jsp");
+//        response.sendRedirect("add-product.jsp");
 
     }
 

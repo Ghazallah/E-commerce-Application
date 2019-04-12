@@ -24,4 +24,5 @@ public interface UserDAO {
     
     public List<User> retrieveAllUsers();
 
+    public int getNewUsers();
 }

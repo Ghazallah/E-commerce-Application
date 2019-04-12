@@ -40,4 +40,7 @@ public class UserServices {
             return true;
     }
 
+    public int getNewUsers(){
+        return userDAO.getNewUsers();
+    }
 }

@@ -31,6 +31,8 @@
 
         <!-- Main css -->
         <link rel="stylesheet" href="resources/css/style.css">
+        <link rel="stylesheet" href="resources/css/messageStyle.css">
+
 
     </head>
 
@@ -38,7 +40,7 @@
 
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-            <a class="navbar-brand mr-1" href="admin.jsp">Start Bootstrap</a>
+            <a class="navbar-brand mr-1" href="admin.jsp">Electro<span>.</span></a>
 
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
@@ -46,7 +48,7 @@
 
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <b class="form-control">Ahmed Abd Elkarim</b>
+                    <b class="form-control">${sessionScope.user.name}</b>
                 </div>
                 </div>
             </form>
@@ -132,6 +134,34 @@
                             <div class="container">
                                 <h4> Add product </h4>
                                 <br>
+                                <c:if test="${requestScope.operation == 'success'}">
+                                    <div class="successAlert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Success!</strong> Data Saved Successfully
+                                    </div>
+
+                                </c:if>
+                                <c:if test="${requestScope.operation == 'oops error during save data please try again later'}">
+                                    <div class="failAlert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Fail!     </strong>${requestScope.operation}
+                                    </div>
+
+                                </c:if>
+                                <c:if test="${requestScope.operation == 'sorry can not save your images try again later'}">
+                                    <div class="failAlert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Fail!     </strong>${requestScope.operation}
+                                    </div>
+
+                                </c:if>
+                                <c:if test="${requestScope.operation == 'can not upload image please try again'}">
+                                    <div class="failAlert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Fail!     </strong>${requestScope.operation}
+                                    </div>
+
+                                </c:if>
                                 <div class="row">
                                     <table class="table">
                                         <tbody>
@@ -296,7 +326,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="../client/SignoutServlet">Logout</a>
             </div>
         </div>
     </div>

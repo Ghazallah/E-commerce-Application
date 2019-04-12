@@ -30,7 +30,7 @@ import org.hibernate.query.Query;
 public class ProductDAOImpl implements ProductDAO {
 
     @Override
-    public void create(Product product) {
+    synchronized public void create(Product product) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.save(product);
@@ -58,12 +58,12 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public void update(Product product) {
+    synchronized public void update(Product product) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Product product) {
+    synchronized public void delete(Product product) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

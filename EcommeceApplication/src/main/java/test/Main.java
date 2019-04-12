@@ -51,11 +51,11 @@ public class Main {
     private static void method() {
 
         User user = new User();
-        user.setAddress("Menoufia");
+        user.setAddress("Fayoum");
         user.setBirthday(new Date());
-        user.setEmail("ghazallah64@gmail.com");
+        user.setEmail("ahmedmcdr0@gmail.com");
         user.setGender("male");
-        user.setName("Mo");
+        user.setName("Ahmed Abd Elkarim");
         user.setRole(1);
         user.setPicture("pic");
         user.setPassword("123");

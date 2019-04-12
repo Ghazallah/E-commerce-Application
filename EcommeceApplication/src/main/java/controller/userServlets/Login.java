@@ -89,12 +89,11 @@ public class Login extends HttpServlet {
         } else {
             session = request.getSession(true);
             session.setAttribute("user", user);
+            session.setAttribute("role", user.getRole());
             if (user.getRole() == 1) {
 
-//                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
-//                dispatcher.forward(request, response);
                 response.sendRedirect("admin/AdminController");
-                
+
             } else {
                 response.sendRedirect("client/app.jsp");
             }

@@ -5,6 +5,7 @@
  */
 package model.dal.daoImplementation;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -13,6 +14,7 @@ import model.dal.dao.UserDAO;
 import model.entity.Category;
 import model.entity.User;
 import model.util.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -35,19 +37,19 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User retrieve(String email) {
         User user;
-         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<User> query = builder.createQuery(User.class);
             Root<User> root = query.from(User.class);
             query.select(root).where(builder.equal(root.get("email"), email));
             Query<User> q = session.createQuery(query);
-            user= q.uniqueResult();
+            user = q.uniqueResult();
             session.getTransaction().commit();
             session.close();
         }
-         
-         return user;
+
+        return user;
     }
 
     @Override
@@ -81,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
             Root<User> root = query.from(User.class);
             query.select(root);
             Query<User> q = session.createQuery(query);
-            userList= q.getResultList();
+            userList = q.getResultList();
             session.getTransaction().commit();
             session.close();
             System.out.println("donnnnnnnnnnnnnnnnnne");
@@ -90,8 +92,23 @@ public class UserDAOImpl implements UserDAO {
             System.out.println(userList.get(i).getAddress());
             System.out.println(userList.get(i).getName());
         }
-        
+
         return userList;
+    }
+
+    @Override
+    public int getNewUsers() {
+        // we need to add date column in database for user table
+        int userCount = 0;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("select la from User la where la.date > :date");
+            query.setParameter("date", new Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000));
+            userCount = query.list().size();
+        } catch (HibernateException ex) {
+            //exceptions in server 
+            ex.printStackTrace();
+        }
+        return userCount;
     }
 
 }

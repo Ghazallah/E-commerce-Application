@@ -17,6 +17,8 @@ public interface OrderDAO {
     public void create(Order order);
 
     public List<Order> retreive();
+    
+    public int getNewOrders();
 
     public void update(Order order);
 
