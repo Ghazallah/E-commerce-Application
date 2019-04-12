@@ -176,7 +176,7 @@ public class User  implements java.io.Serializable {
         this.role = role;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="user")
     public Set<Cart> getCarts() {
         return this.carts;
     }
@@ -194,7 +194,7 @@ public class User  implements java.io.Serializable {
         this.userCredit = userCredit;
     }
 
-@ManyToMany(fetch=FetchType.LAZY)
+@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="wishlist", catalog="ecommerce", joinColumns = { 
         @JoinColumn(name="userID", nullable=false, updatable=false) }, inverseJoinColumns = { 
         @JoinColumn(name="productID", nullable=false, updatable=false) })

@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dto.ProductDTO;
-import model.entity.Product;
-import model.entity.ProductDetails;
 import services.ProductServices;
 
 /**

@@ -57,7 +57,7 @@ public class Cart  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="productID", nullable=false, insertable=false, updatable=false)
     public Product getProduct() {
         return this.product;

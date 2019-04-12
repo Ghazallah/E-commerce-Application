@@ -35,7 +35,7 @@ public class Welcome extends HttpServlet {
             throws ServletException, IOException {
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("client/app.jsp");
 //        dispatcher.forward(request, response);
-        response.sendRedirect("client/app.jsp");
+        response.sendRedirect("client/product?action=init");
     }
 
    

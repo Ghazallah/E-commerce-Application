@@ -5,6 +5,8 @@
  */
 package model.dto;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.Set;
 
 /**
@@ -78,6 +80,16 @@ public class ProductDTO
 
     public void setDetailsDTOs(Set<ProductDetailsDTO> detailsDTOs) {
         this.detailsDTOs = detailsDTOs;
+    }
+    
+    
+    @Override
+    public String toString() {
+        GsonBuilder builder = new GsonBuilder(); 
+        Gson gson = builder.create();  
+        String jsonformat = gson.toJson(this);
+        System.out.println(jsonformat);
+        return jsonformat;
     }
      
 }

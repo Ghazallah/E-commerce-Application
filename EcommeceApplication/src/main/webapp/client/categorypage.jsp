@@ -1,3 +1,5 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <div class="container">
 
     <!-- title of products -->
@@ -9,11 +11,10 @@
     <div class="flex-w flex-sb-m p-b-52">
         <div class="flex-w flex-l-m filter-tope-group m-tb-10">
             <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*"> All Products</button>
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women"> Women</button>
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men"> Men</button>
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag"> Bag</button>
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes"> Shoes</button>
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches"> Watches</button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".laptop"> Laptops</button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".mobile"> Mobile</button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".tablet"> Tablets</button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".acc"> Accessories</button>
         </div>
 
         <!-- Search & Filter buttons -->
@@ -75,202 +76,38 @@
         </div>
     </div>
 
-    <!-- products -->
+    <!-- products -->      
     <div class="row isotope-grid">
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item women">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product03.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l"><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
+           <c:forEach items="${requestScope.products}"  var="product">                  
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item women">
+                    <!-- Block2 -->
+                    <div class="block2 card">
+                        <div class="block2-pic hov-img0"><img src="images/product04.png" alt="IMG-PRODUCT"> 
+                            <button id="${product.pid}" onclick="showProductDetails()"  data-product="<c:out value="${product}"/>"  type="button" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> 
+                                Quick View 
+                            </button>
+                        </div>
+                        <div class="block2-txt flex-w flex-t product-detail">
+                            <div class="block2-txt-child1 flex-col-l">
+                                <a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
+                                    <div class="product-title"><c:out value="${product.name}"/></div>
+                               </a> 
+                                <span class="cl3 product-price"> EGP - <c:out value="${product.price}"/> % </span>
+                            </div>
+                            <div class="block2-txt-child2 flex-r p-t-3">
+                                <button type="button"  id="${product.pid}"  onclick="addtoWishlist(${product.pid})"  class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> 
+                                    <img  class="icon-heart1 dis-block trans-04"
+                                          src="images/icons/icon-heart-01.png" alt="ICON"> 
+                                    <img data-product="<c:out value="${product}"/>" 
+                                         class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                                </button></div>
+                            <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png">
+                                <span class="big-sale-price">- <c:out value="${product.discount}"/> %</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item women">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product03.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail ">
-                    <div class="block2-txt-child1 flex-col-l"><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item women">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product06.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product04.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item men">
-            <!-- Block2 -->
-            <div class="block2 card">
-                <div class="block2-pic hov-img0"><img src="images/product08.png" alt="IMG-PRODUCT"> <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> Quick View </a></div>
-                <div class="block2-txt flex-w flex-t product-detail">
-                    <div class="block2-txt-child1 flex-col-l "><a href="pages/product-detail.html" class="cl4 hov-cl1 trans-04 js-name-b2 text-left">
-                        <div class="product-title">UWIN Custom Bubble Letters Name Pendant Iced out Gold Silver RoseGold Rhinestone Hip Hop Necklaces Jewelry Gift Drop Shipping</div>
-                    </a> <span class="cl3 product-price"> EGP 35.31 </span></div>
-                    <div class="block2-txt-child2 flex-r p-t-3"><a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON"> <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> </a></div>
-                    <div class="price-wrapper"><img class="product-icon" src="images/icons/sale.png"><span class="big-sale-price">EGP 101.49</span></div>
-                </div>
-            </div>
-        </div>
+             </c:forEach> 
     </div>
+
 </div>

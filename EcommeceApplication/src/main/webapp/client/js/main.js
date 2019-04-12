@@ -43,7 +43,7 @@
 
     /*==================================================================
     [ Fixed Header ]*/
-    var headerDesktop = $('.container-menu-desktop');
+    /*var headerDesktop = $('.container-menu-desktop');
     var wrapMenu = $('.wrap-menu-desktop');
 
     if($('.top-bar').length > 0) {
@@ -72,12 +72,11 @@
             $(headerDesktop).removeClass('fix-menu-desktop');
             $(wrapMenu).css('top',posWrapHeader - $(this).scrollTop()); 
         } 
-    });
-
-
+    });*/
+    
     /*==================================================================
     [ Menu mobile ]*/
-    $('.btn-show-menu-mobile').on('click', function(){
+    /*$('.btn-show-menu-mobile').on('click', function(){
         $(this).toggleClass('is-active');
         $('.menu-mobile').slideToggle();
     });
@@ -91,22 +90,23 @@
         })
     }
 
-    $(window).resize(function(){
+    $(window).resize(function()
+    {
         if($(window).width() >= 992){
             if($('.menu-mobile').css('display') == 'block') {
-                $('.menu-mobile').css('display','none');
-                $('.btn-show-menu-mobile').toggleClass('is-active');
+                //$('.menu-mobile').css('display','none');
+               // $('.btn-show-menu-mobile').toggleClass('is-active');
             }
 
             $('.sub-menu-m').each(function(){
                 if($(this).css('display') == 'block') { console.log('hello');
-                    $(this).css('display','none');
-                    $(arrowMainMenu).removeClass('turn-arrow-main-menu-m');
+                    //$(this).css('display','none');
+                    //$(arrowMainMenu).removeClass('turn-arrow-main-menu-m');
                 }
             });
                 
         }
-    });
+    });*/
 
 
     /*==================================================================
@@ -268,8 +268,11 @@
     
     /*==================================================================
     [ Show modal1 ]*/
-    $('.js-show-modal1').on('click',function(){
-        event.preventDefault();
+    $('.js-show-modal1').on('click',function(ev){
+        ev.preventDefault();
+        console.log("Click on product");
+        console.log($(this).attr('id'));
+        //get product and set to view product modal
         $('.js-modal1').addClass('show-modal1');
     });
 
