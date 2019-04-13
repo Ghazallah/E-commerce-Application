@@ -43,7 +43,7 @@ public class AdminFilter implements Filter {
             Object role = session.getAttribute("role");
             if (role != null) {
                 if ((int) role == 1) {
-                    chain.doFilter(request, response);
+                    chain.doFilter(httpRequest, httpResponse);
                 } else {
                     httpResponse.sendRedirect("../client/app.jsp");
                 }

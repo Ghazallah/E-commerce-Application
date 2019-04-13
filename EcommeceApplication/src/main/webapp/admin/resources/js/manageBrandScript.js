@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 
-function testCategoryIdBrands(){
-     if(document.getElementById('categoryName').value==""||document.getElementById('categoryName').value=="volvo" || document.getElementById('brandID').value==""){
-         alert('please choose category from table');
-         return false;
-     }
-     
- }
+
+function testCategoryIdBrands() {
+    if (document.getElementById('categoryName').value == "" || document.getElementById('categoryName').value == "volvo" || document.getElementById('brandID').value == "") {
+        alert('please choose category from table');
+        return false;
+    }
+}
+
  
 var table = document.getElementById('dataTable');
 

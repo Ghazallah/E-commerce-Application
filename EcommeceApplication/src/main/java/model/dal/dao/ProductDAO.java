@@ -19,7 +19,7 @@ public interface ProductDAO {
 
     public Product retreive(int id);
 
-    public void update(Product product);
+    public void update(Product product) throws UniqueExceptionEmplementation;
 
     public void delete(Product product);
     

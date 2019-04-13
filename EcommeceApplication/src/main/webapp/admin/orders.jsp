@@ -120,19 +120,69 @@
                         <li class="breadcrumb-item active">Orders History</li>
                     </ol>
 
-                    <!-- we will Delete That -->
-
-                    <!-- Area Chart Example-->
+                    <!-- DataTables Example -->
                     <div class="card mb-3">
                         <div class="card-header">
-                            <i class="fas fa-chart-area"></i>
-                            Area Chart Example</div>
+                            <i class="fas fa-table"></i>
+                            All Users</div>
                         <div class="card-body">
-                            <canvas id="myAreaChart" width="100%" height="30"></canvas>
+                            <div class="table-responsive">
+
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>User Name</th>
+                                            <th>Address</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Birth Day</th>
+                                            <th>Phone</th>
+                                            <th>User Credit</th>
+                                            <th>User Wallet</th>
+                                            <th>User Image</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>User Name</th>
+                                            <th>Address</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Birth Day</th>
+                                            <th>Phone</th>
+                                            <th>User Credit</th>
+                                            <th>User Wallet</th>
+                                            <th>User Image</th>
+
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <c:forEach items="${sessionScope.userList}" var="current">
+                                            <tr>
+                                                <td><c:out value="${current.name}" /></td>
+                                                <td><c:out value="${current.address}" /></td>
+                                                <td><c:out value="${current.email}" /></td>
+                                                <td><c:out value="${current.gender}" /></td>
+                                                <td><c:out value="${current.birthday}" /></td>
+                                                <td><c:out value="${current.phone}" /></td>
+                                                <td><c:out value="${current.userCredit.creditcard}" /></td>
+                                                <td><c:out value="${current.userCredit.wallet}" /></td>
+                                                <td><img src="${current.picture}" width="100px" height="100px" alt="user image" /></td>
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                     </div>
-
+                    
+                    
+                    
+<!--                    
+                     we will Delete That 
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="card mb-3">
@@ -160,7 +210,7 @@
 
                     <p class="small text-center text-muted my-5">
                         <em>More chart examples coming soon...</em>
-                    </p>
+                    </p>-->
 
                 </div>
                 <!-- /.container-fluid -->

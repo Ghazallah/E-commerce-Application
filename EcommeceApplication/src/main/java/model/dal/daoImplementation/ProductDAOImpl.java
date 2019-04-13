@@ -34,7 +34,7 @@ public class ProductDAOImpl implements ProductDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.save(product);
-            
+
             session.getTransaction().commit();
             //session.close();
         } catch (PersistenceException ex) {
@@ -48,7 +48,7 @@ public class ProductDAOImpl implements ProductDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             product = session.get(Product.class, id);
-           
+
             session.getTransaction().commit();
         } catch (HibernateException ex) {
             //exceptions in server 
@@ -58,13 +58,28 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    synchronized public void update(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    synchronized public void update(Product product) throws UniqueExceptionEmplementation {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.update(product);
+            session.getTransaction().commit();
+//            session.close();
+        } catch (PersistenceException ex) {
+            throw new UniqueExceptionEmplementation("duplicated name");
+        }
     }
 
     @Override
     synchronized public void delete(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.delete(product);
+            session.getTransaction().commit();
+            //session.close();
+        } catch (PersistenceException ex) {
+//                throw new UniqueExceptionEmplementation("duplicated name");
+            ex.printStackTrace();
+        }
     }
 
     @Override
