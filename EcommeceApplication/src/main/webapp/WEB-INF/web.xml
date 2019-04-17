@@ -12,6 +12,10 @@
         <servlet-name>Validation</servlet-name>
         <servlet-class>controller.userServlets.Validation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateAccount</servlet-name>
+        <servlet-class>controller.userServlets.UpdateAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>Validation</servlet-name>
         <url-pattern>/validation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAccount</servlet-name>
+        <url-pattern>/updateaccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
