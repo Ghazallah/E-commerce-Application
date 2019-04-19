@@ -85,9 +85,8 @@ public class Login extends HttpServlet {
         UserDAO userDAO = dAOFactory.getUserDAO();
         User user = userDAO.retrieve(email);
         if (user == null || password == null || !password.equals(user.getPassword())) {
-            
-            // redirect the user to lpgin page
-          //  response.sendRedirect("login.html?error=true");
+               request.setAttribute("error", "1");
+               response.sendRedirect("client/app.jsp#loginpage");
         } else {
             session = request.getSession(true);
             session.setAttribute("user", user);
