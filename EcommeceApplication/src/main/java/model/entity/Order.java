@@ -37,6 +37,9 @@ public class Order  implements java.io.Serializable {
      private String city;
      private String postcode;
      private Set<OrderHasProducts> orderHasProductses = new HashSet<OrderHasProducts>(0);
+     private double totalPrice;
+     private String fullName;
+     private String phoneNumber;
 
     public Order() {
     }
@@ -108,6 +111,34 @@ public class Order  implements java.io.Serializable {
     public void setStreet(String street) {
         this.street = street;
     }
+
+    @Column(name="price")
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    @Column(name="name")
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    @Column(name="phone")
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    
 
     
     @Column(name="country")

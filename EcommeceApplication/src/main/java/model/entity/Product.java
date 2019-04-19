@@ -1,6 +1,7 @@
 package model.entity;
 // Generated Mar 30, 2019, 4:19:02 PM by Hibernate Tools 4.3.1
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ public class Product implements java.io.Serializable {
     private Integer discount;
     private String productColor;
     private Integer quantity;
-
+    private Date date;
     private Brand brand;
     private Set<Cart> carts = new HashSet<>(0);
     private Set<User> users = new HashSet<>(0);
@@ -103,6 +104,17 @@ public class Product implements java.io.Serializable {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    @Column(name = "date")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
+    
 
     @Column(name = "description")
     public String getDescription() {

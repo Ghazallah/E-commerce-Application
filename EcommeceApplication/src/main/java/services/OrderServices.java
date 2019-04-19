@@ -14,6 +14,7 @@ import model.dal.dao.ProductDAO;
 import model.dal.daoFactory.DAOFactory;
 import model.dal.daoFactory.HibernateDAOFactory;
 import model.dal.daoImplementation.OrderDAOImpl;
+import model.dto.OrderProductDTO;
 import model.entity.Cart;
 import model.entity.Product;
 import model.entity.User;
@@ -49,6 +50,18 @@ public class OrderServices {
         });
         
         
+        
+    }
+    
+    public List<OrderProductDTO> validateOrderQuantity(List<OrderProductDTO> productList){
+        productList.forEach(element->{
+            Product product = productDAO.retreive(element.getPrdouctId());
+            if (element.getQuantity()>product.getQuantity()){
+                element.setAvailable(false);
+                element.setAvailableQuantity(product.getQuantity());
+            }
+        });
+        return productList;
         
     }
 }

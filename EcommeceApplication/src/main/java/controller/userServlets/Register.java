@@ -7,6 +7,7 @@ package controller.userServlets;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -95,6 +96,7 @@ public class Register extends HttpServlet {
 
             UserServices service = new UserServices();
             newUser.setRole(0);
+            newUser.setRegisterationDate(new Date());
             service.createUser(newUser);
         } catch (FileUploadException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);

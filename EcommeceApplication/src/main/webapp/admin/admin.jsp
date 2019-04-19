@@ -159,10 +159,10 @@
                                     <div class="card-body-icon">
                                         <i class="fas fa-fw fa-shopping-cart"></i>
                                     </div>
-                                    <div class="mr-5">123 New Orders!</div>
+                                    <div class="mr-5">${sessionScope.newProducts} New Products!</div>
                                 </div>
                                 <a class="card-footer text-white clearfix small z-1" href="#">
-                                    <span class="float-left">View Details</span>
+                                    <span class="float-left">last 24 hours</span>
                                     <span class="float-right">
                                         <i class="fas fa-angle-right"></i>
                                     </span>
