@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.dal.dao.UserDAO;
+import model.dal.daoFactory.DAOFactory;
+import model.dal.daoFactory.HibernateDAOFactory;
 import model.entity.User;
 import services.UserServices;
 
@@ -34,8 +37,12 @@ public class Cart extends HttpServlet {
         User user = (User) session.getAttribute("user");
         int productId = Integer.parseInt(request.getParameter("productId"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-
         userServices.addToCart(user.getId(), productId, quantity);
+        DAOFactory dAOFactory = new HibernateDAOFactory();
+        UserDAO userDAO = dAOFactory.getUserDAO();
+        user = userDAO.retrieve(user.getEmail());
+        session.setAttribute("user", user);
+
     }
 
     @Override

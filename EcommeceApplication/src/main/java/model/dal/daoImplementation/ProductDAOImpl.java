@@ -126,5 +126,10 @@ public class ProductDAOImpl implements ProductDAO {
 
         return products;
     }
+
+    @Override
+    public void decreaseQuantity(int productID, int quantity) {
+        
+    }
     
 }

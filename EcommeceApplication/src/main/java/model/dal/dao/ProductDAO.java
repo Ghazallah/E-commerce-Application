@@ -29,5 +29,7 @@ public interface ProductDAO {
     public int getProductNumberOfRows();
     
     public List<Product> getProductsPagenation(int currentPage,int recordsPerPage);
+    
+    public  void decreaseQuantity (int productID,int quantity);
 
 }
