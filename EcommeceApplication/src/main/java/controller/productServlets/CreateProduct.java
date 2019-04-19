@@ -152,7 +152,7 @@ public class CreateProduct extends HttpServlet {
                         String extention = FilenameUtils.getExtension(item.getName());
                         productDetails = new ProductDetails();
                         // File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
-                       // File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
+                        // File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
                         File targetFile = new File("D:\\images\\" + randomUUIDString + "." + extention);
                         productDetails.setProductImage(randomUUIDString + "." + extention);
                         item.write(targetFile);
@@ -362,7 +362,7 @@ public class CreateProduct extends HttpServlet {
             request.setAttribute("noOfPages", nOfPages);
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("recordsPerPage", recordsPerPage);
-
+            request.setAttribute("displayProducts", "displayAllProducts");
             RequestDispatcher dispatcher = request.getRequestDispatcher("display-all-products.jsp");
             dispatcher.forward(request, response);
 

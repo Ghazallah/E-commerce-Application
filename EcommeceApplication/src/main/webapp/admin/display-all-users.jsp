@@ -31,6 +31,7 @@
 
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">-->
 
+        <link rel="stylesheet" href="resources/css/style.css">
 
     </head>
 
@@ -125,7 +126,23 @@
                         <li class="breadcrumb-item active">display all users</li>
                     </ol>
 
+                    <div class="row col-sm-12">
+                        <form style="width: 100%;" method="Get" action="UserSearch">
+                            <div class="form-group" style="width: 100%">
+                                <!--why required not working-->
+                                <text style="font-size: 20px;">Search : </text><br/>
+                                <input type="text" class="form-input" name="searchTxt" id="searchTxt"  value="${searchTxtValue}" placeholder="enter user name to search"/><br/><br>
+                                <input type="text" class="form-input" name="phoneTxt" id="phoneTxt"  value="${phoneTxtValue}" placeholder="enter user phone to search"/>
+                                <input type="hidden" class="form-input" name="currentPage" id="currentPage" value="1"/>
+                                <input type="hidden" class="form-input" name="recordsPerPage" id="recordsPerPage" value="10" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="Search"/>
+                            </div>
+                        </form>
+                    </div>
                     <div class="row col-md-12">
+
                         <table class="table table-striped table-bordered table-sm" >
                             <tr>
                                 <th>User Name</th>
@@ -154,38 +171,80 @@
                             </c:forEach>
                         </table>
                     </div>
-                    <div class="row col-md-12">
-                        <nav aria-label="Navigation for countries">
-                        <ul class="pagination">
-                            <c:if test="${currentPage != 1}">
-                                <li class="page-item"><a class="page-link" 
-                                                         href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
-                                </li>
-                            </c:if>
-
-                            <c:forEach begin="1" end="${noOfPages}" var="i">
-                                <c:choose>
-                                    <c:when test="${currentPage eq i}">
-                                        <li class="page-item active"><a class="page-link">
-                                                ${i} <span class="sr-only">(current)</span></a>
-                                        </li>
-                                    </c:when>
-                                    <c:otherwise>
+                    <c:if test="${displayUsers == 'displayAllUsers'}">
+                        <div class="row col-md-12">
+                            <nav aria-label="Navigation for countries">
+                                <ul class="pagination">
+                                    <c:if test="${currentPage != 1}">
                                         <li class="page-item"><a class="page-link" 
-                                                                 href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                                 href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
                                         </li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
+                                    </c:if>
 
-                            <c:if test="${currentPage lt noOfPages}">
-                                <li class="page-item"><a class="page-link" 
-                                                         href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
-                                </li>
-                            </c:if>              
-                        </ul>
-                    </nav>
-                    </div>
+                                    <c:forEach begin="1" end="${noOfPages}" var="i">
+                                        <c:choose>
+                                            <c:when test="${currentPage eq i}">
+                                                <li class="page-item active"><a class="page-link">
+                                                        ${i} <span class="sr-only">(current)</span></a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item"><a class="page-link" 
+                                                                         href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+
+                                    <c:if test="${currentPage lt noOfPages}">
+                                        <li class="page-item"><a class="page-link" 
+                                                                 href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                        </li>
+                                    </c:if>              
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </c:if>
+
+
+                    <c:if test="${displayUsers == 'displaySearchUsers'}">
+                        <div class="row col-md-12">
+                            <nav aria-label="Navigation for countries">
+                                <ul class="pagination">
+                                    <c:if test="${currentPage != 1}">
+                                        <li class="page-item"><a class="page-link" 
+                                                                 href="UserSearch?phoneTxt=${phoneTxtValue}&searchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                        </li>
+                                    </c:if>
+
+                                    <c:forEach begin="1" end="${noOfPages}" var="i">
+                                        <c:choose>
+                                            <c:when test="${currentPage eq i}">
+                                                <li class="page-item active"><a class="page-link">
+                                                        ${i} <span class="sr-only">(current)</span></a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item"><a class="page-link" 
+                                                                         href="UserSearch?phoneTxt=${phoneTxtValue}&searchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+
+                                    <c:if test="${currentPage lt noOfPages}">
+                                        <li class="page-item"><a class="page-link" 
+                                                                 href="UserSearch?phoneTxt=${phoneTxtValue}&searchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                        </li>
+                                    </c:if>              
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </c:if>
+
+
 
                     <!--                     DataTables Example 
                                         <div class="card mb-3">

@@ -16,20 +16,25 @@ import model.entity.User;
  */
 public interface ProductDAO {
 
-    public void create(Product product) throws UniqueExceptionEmplementation;;
+    public void create(Product product) throws UniqueExceptionEmplementation;
+
+    ;
 
     public Product retreive(int id);
 
     public void update(Product product) throws UniqueExceptionEmplementation;
 
     public void delete(Product product);
-    
-    public List<Product> retreiveAllProducts();
-    
-    public int getProductNumberOfRows();
-    
-    public List<Product> getProductsPagenation(int currentPage,int recordsPerPage);
-    
-    public  void decreaseQuantity (int productID,int quantity);
 
+    public List<Product> retreiveAllProducts();
+
+    public int getProductNumberOfRows();
+
+    public List<Product> getProductsPagenation(int currentPage, int recordsPerPage);
+
+    public void decreaseQuantity(int productID, int quantity);
+
+    public int getNumberOfRowsProductSearch(String productSearch);
+
+    public List<Product> getProductSearch(int currentPage, int recordsPerPage, String productSearch);
 }

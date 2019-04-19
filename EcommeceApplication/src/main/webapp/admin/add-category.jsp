@@ -48,7 +48,6 @@
                 <div class="input-group">
                     <b class="form-control">${sessionScope.user.name}</b>
                 </div>
-                </div>
             </form>
 
 
