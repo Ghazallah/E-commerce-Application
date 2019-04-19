@@ -47,6 +47,7 @@
     <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" href="vendor/iziModal/css/iziModal.min.css">
+    <link rel="stylesheet" href="vendor/iziToast/iziToast.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -445,6 +446,7 @@
 <script src="vendor/bootstrap/bootstrap.min.js"></script>
 <!--====================================================-->
 <script src="vendor/iziModal/js/iziModal.min.js"></script>
+<script src="vendor/iziToast/iziToast.min.js"></script>
 <!--====================================================-->
 <script src="vendor/animsition/js/animsition.min.js"></script>
 <!--=====================================================-->
