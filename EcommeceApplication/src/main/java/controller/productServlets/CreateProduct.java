@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -160,10 +161,13 @@ public class CreateProduct extends HttpServlet {
                     }
                 }
 
+                System.out.println(new Date());
+                product.setDate(new Date());
                 productServices.addProduct(product, productDetailsSet, brandId);
                 List<ProductDTO> productList = productServices.getAllProducts();
 //                session.setAttribute("productList", productList);
-
+                int newProducts = productServices.getNewProducts();
+                session.setAttribute("newProducts",newProducts);
                 request.setAttribute("operation", "success");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("add-product.jsp");
                 dispatcher.forward(request, response);
