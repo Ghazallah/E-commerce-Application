@@ -33,7 +33,7 @@
 
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-            <a class="navbar-brand mr-1" href="admin.jsp">Start Bootstrap</a>
+            <a class="navbar-brand mr-1" href="admin.jsp">Electro<span>.</span></a>
 
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
@@ -42,7 +42,7 @@
             <!-- admin name-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <b class="form-control">Ahmed Abd Elkarim</b>
+                    <b class="form-control">${sessionScope.user.name}</b>
                 </div>
                 
             </form>
@@ -84,9 +84,8 @@
                         <a class="dropdown-item" href="CreateCategory?action=addCategory">Add Category</a><!--href="add-brand.jsp"-->
                         <a class="dropdown-item" href="CreateBrand?action=addBrand" >Add Brand</a>
                         <a class="dropdown-item" href="CreateProduct?action=addProduct">Add Product</a>
-                        <a class="dropdown-item" href="update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="CreateProduct?action=displayProduct">Display All Product</a>
-
+                        <a class="dropdown-item" href="CreateProduct?action=updateProduct&recordsPerPage=10&currentPage=1">Update Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=displayProduct&recordsPerPage=10&currentPage=1">Display All Product</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -95,7 +94,7 @@
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="UserController?action=displayAllUsers">
+                    <a class="nav-link" href="UserController?action=displayAllUsers&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>
@@ -131,7 +130,7 @@
                                     <div class="mr-5">${sessionScope.newOrders} New Orders!</div>
                                 </div>
                                 <a class="card-footer text-white clearfix small z-1" href="#">
-                                    <span class="float-left">View Details</span>
+                                    <span class="float-left">last 24 hours</span>
                                     <span class="float-right">
                                         <i class="fas fa-angle-right"></i>
                                     </span>
@@ -144,10 +143,10 @@
                                     <div class="card-body-icon">
                                         <i class="fas fa-fw fa-list"></i>
                                     </div>
-                                    <div class="mr-5">11 New Tasks!</div>
+                                    <div class="mr-5">${sessionScope.newUsers} New Users</div>
                                 </div>
                                 <a class="card-footer text-white clearfix small z-1" href="#">
-                                    <span class="float-left">View Details</span>
+                                    <span class="float-left">last 24 hours</span>
                                     <span class="float-right">
                                         <i class="fas fa-angle-right"></i>
                                     </span>
@@ -727,7 +726,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="../client/SignoutServlet">Logout</a>
                     </div>
                 </div>
             </div>

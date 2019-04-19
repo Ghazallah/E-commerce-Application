@@ -26,6 +26,7 @@ import model.entity.Product;
 import model.entity.User;
 import services.BrandServices;
 import services.CategoryServices;
+import services.OrderServices;
 import services.ProductServices;
 import services.StatisticsService;
 import services.UserServices;
@@ -49,9 +50,9 @@ public class AdminController extends HttpServlet
 
         BrandServices brandServices = new BrandServices();
         ArrayList<Brand> brandList = (ArrayList<Brand>) brandServices.getAllBrands();
-        for (int i = 0; i < brandList.size(); i++) {
-            System.out.println(brandList.get(i).getName());
-        }
+//        for (int i = 0; i < brandList.size(); i++) {
+//            System.out.println(brandList.get(i).getName());
+//        }
         session.setAttribute("brandList", brandList);
 
         ProductServices productServices = new ProductServices();
@@ -60,7 +61,11 @@ public class AdminController extends HttpServlet
         
         UserServices userServices = new UserServices();
         ArrayList<User> userList = (ArrayList<User>) userServices.getAllUsers();
-        session.setAttribute("userList", userList);
+        //session.setAttribute("userList", userList);
+        
+        OrderServices orderServices = new OrderServices();
+        int newOrders = orderServices.getNewOrders();
+        session.setAttribute("newOrders", newOrders);
         
         //for testing
         // display new orders 

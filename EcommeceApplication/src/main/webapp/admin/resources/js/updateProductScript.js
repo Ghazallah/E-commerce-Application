@@ -1,32 +1,32 @@
-// JavaScript Document
-$("#addProductDetails").click(function () {
-    var rowCount = $('#productDetails tr').length;
-    rowCount = rowCount + 1;
-    var content = '<tr>' +
-            '<td><div class="custom-file">' +
-            '<input type="file" class="custom-file-input" id=productimage' + rowCount + ' name=productimage' + rowCount + '>' +
-            '<label class="custom-file-label" for="customFile">Choose Product Image</label>' +
-            '</div></td>' +
-            '</tr>';
-    $("#productDetails").append(content);
-});
 
- function testBrandID(){
-     if(document.getElementById('brandID').value=="" || document.getElementById('brandID').value==null){
-         alert('please choose category from table');
+function testBrandIdProducts(){
+     if(document.getElementById('brandID').value=="" || document.getElementById('productID').value==""){
+         alert('please choose Product from table');
          return false;
      }
-     
  }
-//function testBrandID() {
-//    alert("s");
-//    if (document.getElementById("brandID").value == "volvo" || document.getElementById("brandID").value == "") {
-//        alert(document.getElementById("brandID").value);
-//        document.getElementById("chooseBrand").html('please choose brand ');
-//        document.getElementById("chooseBrand").css('display:block;');
-//        return false;
-//    }
-//}
-//function getSelectedID() {
-//    alert(document.getElementById("brandID").value);
-//}
+ 
+var table = document.getElementById('dataTable');
+
+for (var i = 1; i < table.rows.length; i++)
+{
+    table.rows[i].onclick = function ()
+    {
+        document.getElementById("productName").value = this.cells[1].innerHTML;
+        document.getElementById("productPrice").value = this.cells[2].innerHTML;
+        document.getElementById("productQuantity").value = this.cells[3].innerHTML;
+        document.getElementById("productColor").value = this.cells[4].innerHTML;
+        document.getElementById("brandName").value = this.cells[6].id;
+        document.getElementById("brandID").value = this.cells[6].id;
+        document.getElementById("productID").value = this.cells[0].id;
+        alert(document.getElementById("brandID").value+":"+document.getElementById("productID").value);
+
+    };
+}
+
+function updateCategory() {
+    alert(document.getElementById("manageForm").getAttribute("action"));
+    document.getElementById("manageForm").setAttribute("action","CreateProduct?action=deleteProduct");
+}
+
+document.getElementById("deleteBtn").onclick = updateCategory;

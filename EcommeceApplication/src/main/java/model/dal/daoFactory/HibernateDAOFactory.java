@@ -6,6 +6,7 @@
 package model.dal.daoFactory;
 
 import model.dal.dao.BrandDAO;
+import model.dal.dao.CartDAO;
 import model.dal.dao.CategoryDAO;
 import model.dal.dao.CouponsDAO;
 import model.dal.dao.OrderDAO;
@@ -15,6 +16,7 @@ import model.dal.dao.ShippingDAO;
 import model.dal.dao.UserCreditDAO;
 import model.dal.dao.UserDAO;
 import model.dal.daoImplementation.BrandDAOImpl;
+import model.dal.daoImplementation.CartDAOImpl;
 import model.dal.daoImplementation.CategoryDAOImpl;
 import model.dal.daoImplementation.CouponsDAOImpl;
 import model.dal.daoImplementation.OrderDAOImpl;
@@ -75,6 +77,12 @@ public class HibernateDAOFactory implements DAOFactory {
     public ProductDetailsDAO getProductDetailsDAO() {
         
         return new ProductDetailsDAOImpl();
+    }
+
+    @Override
+    public CartDAO getCartDAO() {
+        
+        return new CartDAOImpl();
     }
 
 }

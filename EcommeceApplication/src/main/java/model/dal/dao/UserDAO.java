@@ -23,5 +23,10 @@ public interface UserDAO {
     public void delete(User user);
     
     public List<User> retrieveAllUsers();
-
+    
+    public int getNewUsers();
+    
+    public int getNumberOfRows();
+    
+    public List<User> getUsersPagenation(int currentPage,int recordsPerPage);
 }

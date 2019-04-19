@@ -23,7 +23,7 @@ import org.hibernate.Session;
 public class BrandDAOImpl implements BrandDAO {
 
     @Override
-    public void create(Brand brand) throws UniqueExceptionEmplementation {
+    synchronized public void create(Brand brand) throws UniqueExceptionEmplementation {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.save(brand);
@@ -51,7 +51,7 @@ public class BrandDAOImpl implements BrandDAO {
     }
 
     @Override
-    public void update(Brand brand) throws UniqueExceptionEmplementation {
+    synchronized public void update(Brand brand) throws UniqueExceptionEmplementation {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.update(brand);
@@ -63,7 +63,7 @@ public class BrandDAOImpl implements BrandDAO {
     }
 
     @Override
-    public void delete(Brand brand) {
+    synchronized public void delete(Brand brand) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.delete(brand);

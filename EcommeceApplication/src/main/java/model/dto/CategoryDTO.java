@@ -6,16 +6,16 @@
 package model.dto;
 
 /**
- *
  * @author Elhoseni
  */
 public class CategoryDTO {
-      private int id;
-      private String name;
+    private int id;
+    private String name;
 
-      
-      public CategoryDTO(){}
-      
+
+    public CategoryDTO() {
+    }
+
     public int getId() {
         return id;
     }
@@ -31,6 +31,6 @@ public class CategoryDTO {
     public void setName(String name) {
         this.name = name;
     }
-     
-     
+
+
 }

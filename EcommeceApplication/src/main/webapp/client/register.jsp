@@ -1,5 +1,5 @@
 <section cite="registerForm">
-    <script src="js/register.js" ></script>
+    <script type="text/javascript"  src="js/register.js" ></script>
     <div class="container py-4 px-md-0 d-flex">
         <div class="w-100">
             <div class="row row-grid justify-content-center justify-content-lg-between align-items-center">

@@ -8,6 +8,7 @@ package model.dal.dao;
 import exceptions.UniqueExceptionEmplementation;
 import java.util.List;
 import model.entity.Product;
+import model.entity.User;
 
 /**
  *
@@ -19,10 +20,14 @@ public interface ProductDAO {
 
     public Product retreive(int id);
 
-    public void update(Product product);
+    public void update(Product product) throws UniqueExceptionEmplementation;
 
     public void delete(Product product);
     
     public List<Product> retreiveAllProducts();
+    
+    public int getProductNumberOfRows();
+    
+    public List<Product> getProductsPagenation(int currentPage,int recordsPerPage);
 
 }

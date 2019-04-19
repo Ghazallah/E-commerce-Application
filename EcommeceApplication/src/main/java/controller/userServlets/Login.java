@@ -85,18 +85,19 @@ public class Login extends HttpServlet {
         UserDAO userDAO = dAOFactory.getUserDAO();
         User user = userDAO.retrieve(email);
         if (user == null || password == null || !password.equals(user.getPassword())) {
-            response.sendRedirect("login.html?error=true");
+            
+            // redirect the user to lpgin page
+          //  response.sendRedirect("login.html?error=true");
         } else {
             session = request.getSession(true);
             session.setAttribute("user", user);
+            session.setAttribute("role", user.getRole());
             if (user.getRole() == 1) {
 
-//                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminController");
-//                dispatcher.forward(request, response);
                 response.sendRedirect("admin/AdminController");
-                
+
             } else {
-                response.sendRedirect("client/app.jsp");
+                response.sendRedirect("client/product?action=init");
             }
         }
 

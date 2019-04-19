@@ -19,8 +19,10 @@ import model.entity.Product;
 import model.entity.ProductDetails;
 import model.entity.User;
 import model.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 
 /**
@@ -30,11 +32,11 @@ import org.hibernate.query.Query;
 public class ProductDAOImpl implements ProductDAO {
 
     @Override
-    public void create(Product product) {
+    synchronized public void create(Product product) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.save(product);
-            
+
             session.getTransaction().commit();
             //session.close();
         } catch (PersistenceException ex) {
@@ -48,7 +50,7 @@ public class ProductDAOImpl implements ProductDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             product = session.get(Product.class, id);
-           
+
             session.getTransaction().commit();
         } catch (HibernateException ex) {
             //exceptions in server 
@@ -58,13 +60,28 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public void update(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    synchronized public void update(Product product) throws UniqueExceptionEmplementation {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.update(product);
+            session.getTransaction().commit();
+//            session.close();
+        } catch (PersistenceException ex) {
+            throw new UniqueExceptionEmplementation("duplicated name");
+        }
     }
 
     @Override
-    public void delete(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    synchronized public void delete(Product product) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.delete(product);
+            session.getTransaction().commit();
+            //session.close();
+        } catch (PersistenceException ex) {
+//                throw new UniqueExceptionEmplementation("duplicated name");
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -85,4 +102,29 @@ public class ProductDAOImpl implements ProductDAO {
         return productList;
     }
 
+    @Override
+    public int getProductNumberOfRows() {
+        Integer numOfRows = 0;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Product.class);
+        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        return numOfRows;
+    }
+
+    @Override
+    public List<Product> getProductsPagenation(int currentPage, int recordsPerPage) {
+        List<Product> products = null;
+
+        int start = currentPage * recordsPerPage - recordsPerPage;
+
+//        try {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Product.class);
+        criteria.setFirstResult(start);
+        criteria.setMaxResults(recordsPerPage);
+        products = criteria.list();
+
+        return products;
+    }
+    
 }

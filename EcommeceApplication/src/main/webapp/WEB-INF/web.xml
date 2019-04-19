@@ -12,6 +12,10 @@
         <servlet-name>Validation</servlet-name>
         <servlet-class>controller.userServlets.Validation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateAccount</servlet-name>
+        <servlet-class>controller.userServlets.UpdateAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -24,13 +28,17 @@
         <servlet-name>Validation</servlet-name>
         <url-pattern>/validation</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAccount</servlet-name>
+        <url-pattern>/updateaccount</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>Welcome</welcome-file>
+        <welcome-file>registerCookie</welcome-file>
     </welcome-file-list>
     <!--login filter-->
     <filter>

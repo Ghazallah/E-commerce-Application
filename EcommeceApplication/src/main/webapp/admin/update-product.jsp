@@ -29,7 +29,7 @@
         <!-- Custom styles for this template-->
         <link href="resources/css/sb-admin.css" rel="stylesheet">
         <link rel="stylesheet" href="resources/css/style.css">
-
+        <link rel="stylesheet" href="resources/css/messageStyle.css">
 
     </head>
 
@@ -37,7 +37,7 @@
 
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-            <a class="navbar-brand mr-1" href="admin.jsp">Start Bootstrap</a>
+            <a class="navbar-brand mr-1" href="admin.jsp">Electro<span>.</span></a>
 
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
@@ -45,7 +45,7 @@
 
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <b class="form-control">Ahmed Abd Elkarim</b>
+                    <b class="form-control">${sessionScope.user.name}</b>
                 </div>
                 </div>
             </form>
@@ -89,8 +89,8 @@
                         <a class="dropdown-item" href="add-category.jsp">Add Category</a>
                         <a class="dropdown-item" href="add-brand.jsp">Add Brand</a>
                         <a class="dropdown-item" href="add-product.jsp">Add Product</a>
-                        <a class="dropdown-item" href="update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="display-all-products.jsp">Display All Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=updateProduct&recordsPerPage=10&currentPage=1">Update Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=displayProduct&recordsPerPage=10&currentPage=1">Display All Product</a>
 
                     </div>
                 </li>
@@ -100,7 +100,7 @@
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="display-all-users.jsp">
+                    <a class="nav-link" href="UserController?action=displayAllUsers&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>
@@ -127,10 +127,24 @@
                     </ol>
 
                     <section class="addproduct">
-                        <form method="POST" onsubmit="return testBrandID()" enctype="MULTIPART/FORM-DATA" action="CreateProduct?action=addProduct">
+                        <form id="manageForm" method="POST" onsubmit="return testBrandIdProducts();" enctype="MULTIPART/FORM-DATA" action="CreateProduct?action=updateProduct">
                             <div class="container">
-                                <h4> Add product </h4>
+                                <h4> Update product<span style="font-size: 16px;"> select product which you want update from table below </span></h4>
                                 <br>
+                                <c:if test="${requestScope.operation == 'success'}">
+                                    <div class="successAlert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Success!</strong> Data Saved Successfully
+                                    </div>
+
+                                </c:if>
+                                <c:if test="${requestScope.operation == 'oops error during save data please try again later'}">
+                                    <div class="failAlert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Fail!     </strong>${requestScope.operation}
+                                    </div>
+
+                                </c:if>
                                 <div class="row">
                                     <table class="table">
                                         <tbody>
@@ -146,7 +160,7 @@
                                             <tr>
                                                 <th scope="row">Product Brand</th>
                                                 <td>
-                                                    <select class="form-input" id="brandID" name="brandID" required>
+                                                    <select class="form-input" id="brandName" name="brandName" required>
                                                         <div id="chooseBrand" style="display: none;"></div>
                                                         <option value="" selected="true" disabled>Select Brand</option>
                                                         <c:forEach items="${brandList}" var="current">
@@ -155,83 +169,195 @@
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th scope="row">Product Name</th>
-                                                <td><input type="text" name="productName" class="form-control" placeholder="product Name" required></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Product Price</th>
-                                                <td><input type="number" name="productPrice" class="form-control" placeholder="product Price" required></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Product Discount (OPTIONAL)</th>
-                                                <td> <input type="number" name="productDiscount" value="0" min="0" max="100" step="1"  placeholder="product Discount"/></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Processor</th>
-                                                <td><input type="text" name="productProcessor" class="form-control" placeholder="product Processor"></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">RAM (GB)</th>
-                                                <td><input type="number" name="productRam" value="1" min="1" step="1"/></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Storage (GB)</th>
-                                                <td><input type="number" name="productStorage" value="16" min="1" step="1"/></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Operating system</th>
-                                                <td><input type="text" name="productOS" class="form-control" placeholder="operating system"></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Graphics card</th>
-                                                <td><input type="text" name="productGraphicsCard"  class="form-control" placeholder="product graphic card"></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Description</th>
-                                                <td><textarea name="productDescription" class="form-control" placeholder="product Description"></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Quantity</th>
-                                                <td><input type="number" name="productQuantity" class="form-control" placeholder="productQuantity" required></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Color</th>
+                                        <input type="hidden" id="brandID" name="brandID" />
+                                        <input type="hidden" id="productID" name="productID" />
+                                        <tr>
+                                            <th scope="row">Product Name</th>
+                                            <td><input type="text" id="productName" name="productName" class="form-control" placeholder="product Name" required></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Product Price</th>
+                                            <td><input type="number" id="productPrice" name="productPrice" class="form-control" placeholder="product Price" required></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Product Discount (OPTIONAL)</th>
+                                            <td> <input type="number" id="productDiscount" name="productDiscount" value="0" min="0" max="100" step="1"  placeholder="product Discount"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Processor</th>
+                                            <td><input type="text" id="productProcessor" name="productProcessor" class="form-control" placeholder="product Processor"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">RAM (GB)</th>
+                                            <td><input type="number" id="productRam" name="productRam" value="1" min="1" step="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Storage (GB)</th>
+                                            <td><input type="number" id="productStorage" name="productStorage" value="16" min="1" step="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Operating system</th>
+                                            <td><input type="text" id="productOS" name="productOS" class="form-control" placeholder="operating system"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Graphics card</th>
+                                            <td><input type="text" id="productGraphicsCard" name="productGraphicsCard"  class="form-control" placeholder="product graphic card"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Description</th>
+                                            <td><textarea id="productDescription" name="productDescription" class="form-control" placeholder="product Description"></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Quantity</th>
+                                            <td><input type="number" id="productQuantity" name="productQuantity" class="form-control" placeholder="productQuantity" required></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Color</th>
 
-                                                <td><select class="form-input" style="font-size:  16px;" id="productColor" name="productColor">
-                                                        <option value="black"  selected="true"><c:out value="black" /></option>
-                                                        <option value="red"><c:out value="red" /></option>
-                                                        <option value="white"><c:out value="white" /></option>
-                                                        <option value="blue"><c:out value="blue" /></option>
-                                                        <option value="purple"><c:out value="purple" /></option>
-                                                        <option value="pink"><c:out value="pink" /></option>
-                                                        <option value="brown"><c:out value="brown" /></option>
-                                                        <option value="green"><c:out value="green" /></option>
-                                                        <option value="orange"><c:out value="orange" /></option>
-                                                    </select></td>
-                                            </tr>
+                                            <td><select class="form-input" style="font-size:  16px;" id="productColor" name="productColor" required>
+                                                    <option value="black"  selected="true"><c:out value="black" /></option>
+                                                    <option value="red"><c:out value="red" /></option>
+                                                    <option value="white"><c:out value="white" /></option>
+                                                    <option value="blue"><c:out value="blue" /></option>
+                                                    <option value="purple"><c:out value="purple" /></option>
+                                                    <option value="pink"><c:out value="pink" /></option>
+                                                    <option value="brown"><c:out value="brown" /></option>
+                                                    <option value="green"><c:out value="green" /></option>
+                                                    <option value="orange"><c:out value="orange" /></option>
+                                                </select></td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <br>
-                                <h4> Product details </h4>
-                                <br>
-                                <div class="row">
-                                    <table class="table" id="productDetails">
-                                        <tbody>
-                                            <tr>
-                                                <td><div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="productimage1" name="productimage1" required>
-                                                        <label class="custom-file-label" for="customFile">Choose Product Image</label>
-                                                    </div></td>
+                                <!--                                <h4> Product details </h4>
+                                                                <br>
+                                                                <div class="row">
+                                                                    <table class="table" id="productDetails">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td><div class="custom-file">
+                                                                                        <input type="file" class="custom-file-input" id="productimage1" name="productimage1" required>
+                                                                                        <label class="custom-file-label" for="customFile">Choose Product Image</label>
+                                                                                    </div></td>
+                                
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>-->
 
+                                <div class="display-flex-center">
+                                    <a type="button" class="btn btn-warning" >Update images </a>
+                                    <button type="submit" style="margin-left: 10px;" class="btn btn-success" name="action" value="updateProduct">Update product</button>
+                                    <button type="submit" id="deleteBtn" style="margin-left: 10px;" class="btn btn-success" name="action" value="deleteProduct">Delete product</button>
+                                </div>
+                                <br /><br />
+                                <div class="table-responsive">
+
+                                    <div class="row col-md-12">
+                                        <table class="table table-striped table-bordered table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <tr>
+                                                <th>Product Name</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Product Color</th>
+                                                <th>Brand Name</th>
                                             </tr>
-                                        </tbody>
-                                    </table>
+
+                                            <c:forEach items="${productPagination}" var="current">
+                                                <tr>
+
+                                                    <td style="display: none;" id="${current.pid}"></td>
+                                                    <td><c:out value="${current.name}" /></td>
+                                                    <td><c:out value="${current.price}" /></td>
+                                                    <td><c:out value="${current.quantity}" /></td>
+                                                    <td><c:out value="${current.productColor}" /></td>
+                                                    <td><c:out value="${current.brand.name}" /></td>
+                                                    <td style="display: none;" id="${current.brand.id}"></td>
+
+
+<!--                                                    <td>${current.name}</td>
+<td>${current.price}</td>
+<td>${current.discount}</td>    
+<td>${current.productColor}</td>    
+<td>${current.quantity}</td>    
+<td>${current.brand.name}</td>    -->
+
+                                                </tr>
+                                            </c:forEach>
+                                        </table>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <nav aria-label="Navigation for countries">
+                                            <ul class="pagination">
+                                                <c:if test="${currentPage != 1}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="CreateProduct?action=updateProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                                    </li>
+                                                </c:if>
+
+                                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                    <c:choose>
+                                                        <c:when test="${currentPage eq i}">
+                                                            <li class="page-item active"><a class="page-link">
+                                                                    ${i} <span class="sr-only">(current)</span></a>
+                                                            </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <li class="page-item"><a class="page-link" 
+                                                                                     href="CreateProduct?action=updateProduct&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                            </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+
+                                                <c:if test="${currentPage lt noOfPages}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="CreateProduct?action=updateProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                                    </li>
+                                                </c:if>              
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+
+                                    <!--                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Name</th>
+                                                                                    <th>Price</th>
+                                                                                    <th>Quantity</th>
+                                                                                    <th>Color</th>
+                                                                                    <th>Bran Name</th>
+                                                                                    <th>Description</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tfoot>
+                                                                                <tr>
+                                                                                    <th>Name</th>
+                                                                                    <th>Price</th>
+                                                                                    <th>Quantity</th>
+                                                                                    <th>Color</th>
+                                                                                    <th>Bran Name</th>
+                                                                                    <th>Description</th>
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                            <tbody>
+                                    <c:forEach items="${productList}" var="current">
+                                        <tr >
+                                            <td style="display: none;" id="${current.pid}"></td>
+                                            <td><c:out value="${current.name}" /></td>
+                                            <td><c:out value="${current.price}" /></td>
+                                            <td><c:out value="${current.quantity}" /></td>
+                                            <td><c:out value="${current.productColor}" /></td>
+                                            <td><c:out value="${current.brand.name}" /></td>
+                                            <td style="display: none;" id="${current.brand.id}"></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>-->
                                 </div>
 
-                                <button type="button" class="btn btn-warning" id="addProductDetails">Add detail</button>
-                                <button type="submit" class="btn btn-success" id="addProduct">Save product</button>
                             </div>
                         </form>
                     </section>
@@ -273,7 +399,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="../client/SignoutServlet">Logout</a>
             </div>
         </div>
     </div>

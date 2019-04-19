@@ -33,7 +33,7 @@
 
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-            <a class="navbar-brand mr-1" href="admin.jsp">Start Bootstrap</a>
+            <a class="navbar-brand mr-1" href="admin.jsp">Electro<span>.</span></a>
 
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
@@ -42,7 +42,7 @@
             <!-- admin name-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <b class="form-control">Ahmed Abd Elkarim</b>
+                    <b class="form-control">${sessionScope.user.name}</b>
                 </div>
                 </div>
             </form>
@@ -84,8 +84,8 @@
                         <a class="dropdown-item" href="add-category.jsp">Add Category</a>
                         <a class="dropdown-item" href="add-brand.jsp">Add Brand</a>
                         <a class="dropdown-item" href="add-product.jsp">Add Product</a>
-                        <a class="dropdown-item" href="update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="display-all-products.jsp">Display All Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=updateProduct&recordsPerPage=10&currentPage=1">Update Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=displayProduct&recordsPerPage=10&currentPage=1">Display All Product</a>
 
                     </div>
                 </li>
@@ -95,7 +95,7 @@
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="display-all-users.jsp">
+                    <a class="nav-link" href="UserController?action=displayAllUsers&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>
@@ -120,19 +120,69 @@
                         <li class="breadcrumb-item active">Orders History</li>
                     </ol>
 
-                    <!-- we will Delete That -->
-
-                    <!-- Area Chart Example-->
+                    <!-- DataTables Example -->
                     <div class="card mb-3">
                         <div class="card-header">
-                            <i class="fas fa-chart-area"></i>
-                            Area Chart Example</div>
+                            <i class="fas fa-table"></i>
+                            All Users</div>
                         <div class="card-body">
-                            <canvas id="myAreaChart" width="100%" height="30"></canvas>
+                            <div class="table-responsive">
+
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>User Name</th>
+                                            <th>Address</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Birth Day</th>
+                                            <th>Phone</th>
+                                            <th>User Credit</th>
+                                            <th>User Wallet</th>
+                                            <th>User Image</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>User Name</th>
+                                            <th>Address</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Birth Day</th>
+                                            <th>Phone</th>
+                                            <th>User Credit</th>
+                                            <th>User Wallet</th>
+                                            <th>User Image</th>
+
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <c:forEach items="${sessionScope.userList}" var="current">
+                                            <tr>
+                                                <td><c:out value="${current.name}" /></td>
+                                                <td><c:out value="${current.address}" /></td>
+                                                <td><c:out value="${current.email}" /></td>
+                                                <td><c:out value="${current.gender}" /></td>
+                                                <td><c:out value="${current.birthday}" /></td>
+                                                <td><c:out value="${current.phone}" /></td>
+                                                <td><c:out value="${current.userCredit.creditcard}" /></td>
+                                                <td><c:out value="${current.userCredit.wallet}" /></td>
+                                                <td><img src="${current.picture}" width="100px" height="100px" alt="user image" /></td>
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                     </div>
-
+                    
+                    
+                    
+<!--                    
+                     we will Delete That 
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="card mb-3">
@@ -160,7 +210,7 @@
 
                     <p class="small text-center text-muted my-5">
                         <em>More chart examples coming soon...</em>
-                    </p>
+                    </p>-->
 
                 </div>
                 <!-- /.container-fluid -->
@@ -198,7 +248,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="../client/SignoutServlet">Logout</a>
                     </div>
                 </div>
             </div>
