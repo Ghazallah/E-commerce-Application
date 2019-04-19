@@ -82,11 +82,34 @@
     <div class="row isotope-grid">
 
         <c:forEach items="${requestScope.products}" var="product" varStatus="seq1">
-            <div class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item <c:out value="${product.brand.categoryDTO.name}"/>">
+            <div id="product-${product.pid}"
+                 data-product="<c:out value="${product}"/>"
+                 class="col-6 col-sm-6 col-md-4 col-lg-3 column isotope-item <c:out value="${product.brand.categoryDTO.name}"/>"
+
+                    <c:choose>
+                        <c:when test="${sessionScope.user != null}">
+                            <c:choose>
+                                <c:when test="${ (fn:length(sessionScope.user.carts) ==  0) }">data-incart="false"</c:when>
+                                <c:otherwise>
+                                    <c:set var="incart" scope="session" value="${'false'}"/>
+                                    <c:forEach items="${sessionScope.user.carts}" var="cart" varStatus="seq3">
+                                        <c:choose>
+                                            <c:when test="${(cart.product.pid) eq (product.pid)}">
+                                                <c:set var="incart" scope="session" value="${'true'}"/>
+                                            </c:when>
+                                        </c:choose>
+                                    </c:forEach>
+                                    data-incart='<c:out value="${incart}"/>'
+                                </c:otherwise>
+                            </c:choose>
+                        </c:when>
+                        <c:otherwise>data-incart="false"</c:otherwise>
+                    </c:choose>
+            >
                 <!-- Block2 -->
                 <div class="block2 card">
                     <div class="block2-pic hov-img0"><img src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>" alt="IMG-PRODUCT">
-                        <button id="${product.pid}" onclick="showProductDetails()" data-product="<c:out value="${product}"/>" type="button" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                        <button id="${product.pid}" onclick="showProductDetails()" type="button" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                             Quick View
                         </button>
                     </div>
@@ -111,21 +134,19 @@
                                                     </c:when>
                                                     <c:otherwise>
 
-                                                        <c:set var = "styleclass" scope = "session" value = "${'heart fa fa-heart-o'}"/>
-                                                        <c:set var = "iswishlisted" scope = "session" value = "${'false'}"/>
-
+                                                        <c:set var="styleclass" scope="session" value="${'heart fa fa-heart-o'}"/>
+                                                        <c:set var="inwishlisted" scope="session" value="${'false'}"/>
                                                         <c:forEach items="${sessionScope.user.products}" var="wishlistproduct" varStatus="seq2">
                                                             <c:choose>
                                                                 <c:when test="${(wishlistproduct.pid) eq (product.pid)}">
-                                                                    <c:set var = "styleclass" scope = "session" value = "${'heart fa fa-heart'}"/>
-                                                                    <c:set var = "iswishlisted" scope = "session" value = "${'true'}"/>
+                                                                    <c:set var="styleclass" scope="session" value="${'heart fa fa-heart'}"/>
+                                                                    <c:set var="inwishlisted" scope="session" value="${'true'}"/>
                                                                 </c:when>
                                                             </c:choose>
                                                         </c:forEach>
 
-                                                        data-wishlist='<c:out value="${iswishlisted}"/>'
+                                                        data-wishlist='<c:out value="${inwishlisted}"/>'
                                                         class='<c:out value="${styleclass}"/>'
-
                                                     </c:otherwise>
                                                 </c:choose>
                                             </c:when>

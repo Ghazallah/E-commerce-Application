@@ -68,8 +68,6 @@ public class Cart extends HttpServlet {
         // get current  user
         User user = (User) session.getAttribute("user");
         int productId = Integer.parseInt(request.getParameter("productId"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-
         userServices.deleteFromCart(user.getId(), productId);
     }
 

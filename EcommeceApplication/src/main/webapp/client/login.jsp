@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <section class="loginForm">
     <div class="container py-4 px-md-0 d-flex">
         <div class="w-100">
@@ -34,6 +36,12 @@
                                 <div class="mt-4">
                                     <button type= "submit" class="btn btn-sm btn-primary btn-icon px-5 py-2 sk skew"><span class="btn-inner--text">Sign in &nbsp; </span><span class="btn-inner--icon"><em class="ti-arrow-right fs-11"></em></span></button>
                                 </div>
+
+                                <c:choose>
+                                    <c:when test="${requestScope.error != null}">
+                                        <p class="cl3">Invalid email or password .</p>
+                                    </c:when>
+                                </c:choose>
                             </form>
                         </div>
                         <div class="card-footer px-md-5 fs-16"><small>Not registered?</small> <a href="#" class="small font-weight-bold registerModal">Create account</a></div>

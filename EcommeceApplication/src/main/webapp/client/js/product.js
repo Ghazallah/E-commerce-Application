@@ -7,7 +7,10 @@
 function showProductDetails() {
     event.preventDefault();
     console.log("click on product : " + event.target.id);
-    var jsonContent = event.target.getAttribute('data-product');
+    var ss = "#product-"+event.target.id;
+    console.log(ss);
+    console.log($(ss));
+    var jsonContent = $(ss).attr('data-product');
     renderShowProductDetails(jsonContent);
 }
 
@@ -84,7 +87,8 @@ function applySlickonProduct()
 function getAddToCartBtn(pid)
 {
     //add to cart get json not id SOLVE THIS
-    return '<button onclick="addToCart(' + pid + ')" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> Add to cart</button>\n';
+    var islogin = $('body').attr('data-login')
+    return '<button onclick="addToCart('+pid+', '+islogin+')" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> Add to cart</button>\n';
 }
 
 function injectProductDescription(productDesc)

@@ -89,7 +89,14 @@ function removefromWishlist(productID)
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             //handle already exist or server is down
-            alert("error while removing product : " + textStatus);
+            iziToast.error({
+                title: 'Error',
+                position: 'topCenter',
+                progressBar: false,
+                timeout: '3000',
+                transitionIn: 'bounceInDown',
+                message: 'Unexpected error ocurred plz try again later !'
+            });
         }
     });
 }
@@ -107,5 +114,5 @@ function getWishlistElement(productJson)
         + " <div class=\"row mt-3 d-block\"> "
         + " <div class=\"m-l-30 float-left\"><button type=\"button\"><i class=\"ti-trash fs-22\" style=\"color:#007bff;\" onclick=\"removefromWishlist(" + productJson.pid + ")\" ></i></button></div>"
         + "<div class=\"m-r-20 pb-2 float-right\">"
-        + "<button type=\"button\" onclick=\"addToCart(" + JSON.stringify(productJson) + ")\" class=\"btn primary-btn\">Add to cart</button> </div> </div></div>";
+        + "<button id="+productJson.pid+" type=\"button\" onclick=\"addToCart("+productJson.pid+", true)\" class=\"btn primary-btn\">Add to cart</button> </div> </div></div>";
 }

@@ -1,26 +1,101 @@
 
-function addToCart(productJson)
+function addToCart(productID, islogin)
 {
-    //add product to list UI
-    $('#cart-products').append(getProductCartItem(productJson));
+    event.preventDefault();
 
-    //send ajax to servlet to add this product to user cart
+    var productelement = $("#product-"+productID);
+    var incart = productelement.attr('data-incart');
 
+
+    if (!islogin)
+    {
+        iziToast.warning({
+            title: 'Caution',
+            position: 'topCenter',
+            progressBar: false,
+            timeout: '3000',
+            transitionIn: 'bounceInDown',
+            message: 'Please login inorder to add product to your cart !'
+        });
+    }else{
+        if (incart == "true")
+        {
+            iziToast.info({
+                title: 'Info',
+                position: 'topCenter',
+                progressBar: false,
+                timeout: '3000',
+                transitionIn: 'bounceInDown',
+                message: 'This product is already in your cart !'
+            });
+        }else {
+            var productJson = productelement.attr('data-product');
+            var jsonContent = JSON.parse(productJson);
+
+            console.log("Adding to cart");
+            //send to servlet to add to user cart
+            $.ajax({
+                type: 'POST',
+                url: 'cart',
+                data: {
+                    'productId': productID,
+                    'quantity' : 1
+                },
+                success: function (msg)
+                {
+                    //render cart ui
+                    $('#cart-products').append(getProductCartItem(jsonContent));
+                    productelement.attr('data-incart', "true");
+
+                    iziToast.success({
+                        title: 'OK',
+                        position: 'topCenter',
+                        progressBar: false,
+                        timeout: '3000',
+                        transitionIn: 'bounceInDown',
+                        message: 'Successfully Added To Your Cart !'
+                    });
+                }
+            });
+        }
+    }
 }
 
 function removeFromCart(productID)
 {
-    var productIdentifier = "#cart-product-" + productID;
+    event.preventDefault();
 
-    //remove from ui list
-    $(productIdentifier).remove();
-
+    console.log("removing product from cart ..");
     //send ajax to servlet to remove this element from user cart
+    $.ajax({
+        type: 'DELETE',
+        url: 'cart?productId='+productID,
+        contentType: "application/x-www-form-urlencoded",
 
+        success: function (msg) {
+            //update add cart attribute
+            var productelement = $("#product-"+productID);
+            productelement.attr("data-incart", "false");
+            //remove from ui list
+            var productIdentifier = "#cart-product-" + productID;
+            $(productIdentifier).remove();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            iziToast.error({
+                title: 'Error',
+                position: 'topCenter',
+                progressBar: false,
+                timeout: '3000',
+                transitionIn: 'bounceInDown',
+                message: 'Unexpected error ocurred plz try again later !'
+            });
+        }
+    });
 }
 
 function getProductCartItem(productJson)
 {
+
     return "  <div class=\"cart-item pt-4\" id=\"cart-product-" + productJson.pid + "\"> "
             + "      <div class=\"row\"> "
             + "             <div class=\"col-5\"> "
@@ -30,7 +105,7 @@ function getProductCartItem(productJson)
             + "   <div class=\"row mt-2\"><span class=\"cart-item-cost\">EGP " + productJson.price + "</span></div>"
             + "   <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + productJson.discount + "</span></div>  </div> </div>"
             + "    <div class=\"row mt-3 d-block\">"
-            + "    <div class=\"m-l-30 float-left\"><button type=\"button\" onclick=\"removeFromCart(" + productJson.pid + ")\"><i class=\"ti-trash fs-22\"></i></button></div>"
+            + "    <div class=\"m-l-30 float-left\"><button type=\"button\"><i class=\"ti-trash fs-22\" onclick=\"removeFromCart(" + productJson.pid + ")\"></i></button></div>"
             + "   <div class=\"m-r-20 pb-2 float-right\">"
             + "   <div class=\"wrap-num-product flex-w\">"
             + "   <div class=\"btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m\"><i class=\"fs-10 zmdi zmdi-minus\"></i></div>"

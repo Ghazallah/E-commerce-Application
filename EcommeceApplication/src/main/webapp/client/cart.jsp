@@ -20,7 +20,8 @@
 
                         <c:otherwise>                    
                             <c:forEach items="${sessionScope.user.carts}"  var="cart">                  
-                                <div class="cart-item pt-4">
+
+                                <div class="cart-item pt-4" id="cart-product-<c:out value="${cart.product.pid}"/>">
                                     <div class="row">
                                         <div class="col-5">
                                             <img src="images/products/<c:out value="${cart.product.productDetails.iterator().next().productImage}"/>">
@@ -32,7 +33,7 @@
                                         </div>
                                     </div>
                                     <div class="row mt-3 d-block">
-                                        <div class="m-l-30 float-left"><a href="#"><i class="ti-trash fs-22"></i></a></div>
+                                        <div class="m-l-30 float-left"><a href="#"><i class="ti-trash fs-22" onclick="removeFromCart(<c:out value="${cart.product.pid}"/>)"></i></a></div>
                                         <div class="m-r-20 pb-2 float-right">
                                             <div class="wrap-num-product flex-w">
                                                 <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-10 zmdi zmdi-minus"></i></div>
@@ -42,6 +43,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </c:forEach>  
 
                         </c:otherwise>

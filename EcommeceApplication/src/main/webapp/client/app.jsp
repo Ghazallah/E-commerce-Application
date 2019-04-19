@@ -54,7 +54,15 @@
     <!--===============================================================================================-->
 </head>
 
-<body class="animsition">
+<body class="animsition"
+    <c:choose>
+        <c:when test="${sessionScope.user != null}">
+            data-login = "true"
+        </c:when>
+        <c:otherwise>
+            data-login = "false"
+        </c:otherwise>
+    </c:choose>>
 
 <!-- Main Page -->
 <main class="tab-content">

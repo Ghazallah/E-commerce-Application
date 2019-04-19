@@ -31,7 +31,14 @@
                                     </button>
                                 </div>
                                 <div class="m-r-20 pb-2 float-right">
-                                    <button id="${product.pid}" onclick="addToCart()" type="button" class="btn primary-btn">Add to cart</button>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.user != null}">
+                                            <button id="${product.pid}" onclick="addToCart(${product.pid}, false)" type="button" class="btn primary-btn">Add to cart</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button id="${product.pid}" onclick="addToCart(${product.pid}, true)" type="button" class="btn primary-btn">Add to cart</button>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
                         </div>
