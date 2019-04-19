@@ -10,6 +10,7 @@ import model.dal.dao.CartDAO;
 import model.dal.dao.CategoryDAO;
 import model.dal.dao.CouponsDAO;
 import model.dal.dao.OrderDAO;
+import model.dal.dao.OrderProductsDAO;
 import model.dal.dao.ProductDAO;
 import model.dal.dao.ProductDetailsDAO;
 import model.dal.dao.ShippingDAO;
@@ -20,6 +21,7 @@ import model.dal.daoImplementation.CartDAOImpl;
 import model.dal.daoImplementation.CategoryDAOImpl;
 import model.dal.daoImplementation.CouponsDAOImpl;
 import model.dal.daoImplementation.OrderDAOImpl;
+import model.dal.daoImplementation.OrderProductsDAOImpl;
 import model.dal.daoImplementation.ProductDAOImpl;
 import model.dal.daoImplementation.ProductDetailsDAOImpl;
 import model.dal.daoImplementation.ShippingDAOImpl;
@@ -83,6 +85,11 @@ public class HibernateDAOFactory implements DAOFactory {
     public CartDAO getCartDAO() {
         
         return new CartDAOImpl();
+    }
+
+    @Override
+    public OrderProductsDAO getOrderProductsDAO() {
+        return new  OrderProductsDAOImpl();
     }
 
 }

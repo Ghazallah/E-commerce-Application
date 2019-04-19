@@ -5,8 +5,12 @@
  */
 package model.dal.daoImplementation;
 
+import exceptions.UniqueExceptionEmplementation;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.PersistenceException;
 import model.dal.dao.OrderDAO;
 import model.entity.Category;
 import model.entity.Order;
@@ -25,7 +29,19 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public void create(Order order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.save(order);
+            session.getTransaction().commit();
+            //session.close();
+        } catch (PersistenceException ex) {
+            ex.printStackTrace();
+            try {
+                throw new UniqueExceptionEmplementation("duplicated name");
+            } catch (UniqueExceptionEmplementation ex1) {
+                Logger.getLogger(OrderDAOImpl.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
     }
 
     @Override
@@ -47,12 +63,36 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public void update(Order order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.update(order);
+            session.getTransaction().commit();
+            //session.close();
+        } catch (PersistenceException ex) {
+            ex.printStackTrace();
+            try {
+                throw new UniqueExceptionEmplementation("duplicated name");
+            } catch (UniqueExceptionEmplementation ex1) {
+                Logger.getLogger(OrderDAOImpl.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
     }
 
     @Override
     public void delete(Order order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.delete(order);
+            session.getTransaction().commit();
+            //session.close();
+        } catch (PersistenceException ex) {
+            ex.printStackTrace();
+            try {
+                throw new UniqueExceptionEmplementation("duplicated name");
+            } catch (UniqueExceptionEmplementation ex1) {
+                Logger.getLogger(OrderDAOImpl.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
     }
 
     @Override
