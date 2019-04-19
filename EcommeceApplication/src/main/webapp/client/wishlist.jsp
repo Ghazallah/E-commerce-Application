@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<div id="cart-products" class="container">
+<div id="wishlist-products" class="container">
     <h4>My Wishlist</h4>    
     
     

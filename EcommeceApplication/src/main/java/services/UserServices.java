@@ -57,7 +57,6 @@ public class UserServices {
         userCredit.setUser(user);
         userCreditDAO.update(userCredit);
     }
-
     public boolean checkUser(String email) {
         if (userDAO.retrieve(email) == null) {
             return false;

@@ -6,6 +6,7 @@
 <form name="cartform" id="cartform" method="post" action="#">
     <!-- id will be unique, but class name will be same -->
     <div id="sf1" class="frm container-fluid">
+
         <div id="cart-products">
 
 
@@ -51,16 +52,8 @@
                     <h4> Read cart product from local storage </h4>
                 </c:otherwise>
             </c:choose>
-
-
-
-
-
-
-
-        </div>
-
         <br>
+        </div>
         <div class="mt-4 text-right">
             <button type="button" class="btn btn-success open1">Next step</button>
         </div>

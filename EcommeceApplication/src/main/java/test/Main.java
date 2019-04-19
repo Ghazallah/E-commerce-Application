@@ -65,6 +65,19 @@ public class Main {
         user.setPicture("pic");
         user.setPassword("123");
         user.setPhone("01000");
+//        User user = new User();
+//        user.setAddress("Menoufia");
+//        user.setBirthday(new Date());
+//        user.setEmail("ghazallah64@gmail.com");
+//        user.setGender("male");
+//        user.setName("Mo");
+//        user.setRole(1);
+//        user.setPicture("pic");
+//        user.setPassword("123");
+//        user.setPhone("01000");
+//
+//        UserDAO userDAO = new UserDAOImpl();
+//        userDAO.create(user);
 
          UserDAO userDAO = new UserDAOImpl();
          CartDAO cartDAO   =new CartDAOImpl();
