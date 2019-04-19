@@ -243,38 +243,11 @@
 
                                 </c:if>
 
-                                <!--                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Price</th>
-                                                                            <th>Name</th>
-                                                                           
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tfoot>
-                                                                        <tr>
-                                                                            <th>Price</th>
-                                                                            <th>Name</th>
-                                                                            
-                                                                        </tr>
-                                                                    </tfoot>
-                                                                    <tbody>
-                                <c:forEach items="${productList}" var="current">
-                                    <tr >
-                                        <td><c:out value="${current.price}" /></td>
-                                    <td><c:out value="${current.name}" /></td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>-->
                             </div>
                         </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                     </div>
 
-                    <p class="small text-center text-muted my-5">
-                        <em>More table examples coming soon...</em>
-                    </p>
+
 
                 </div>
                 <!-- /.container-fluid -->

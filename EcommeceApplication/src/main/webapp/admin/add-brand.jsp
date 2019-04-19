@@ -59,11 +59,10 @@
 
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!--<i class="fas fa-user-circle fa-fw">--><img src="resources/images/client.png" width="70px" height="70px" /></i>
+                       <img src="resources/images/client.png" width="70px" height="70px" /></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Update Profile</a>
-                        <!-- <a class="dropdown-item" href="#">Activity Log</a>-->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
                     </div>
@@ -118,7 +117,6 @@
                 <div class="container-fluid">
 
 
-                    <!-- dashboard - overview links --> 
 
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">

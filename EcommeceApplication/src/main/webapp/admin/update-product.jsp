@@ -161,15 +161,6 @@
                                 <div class="row">
                                     <table class="table">
                                         <tbody>
-                                            <!--<tr>
-                                                <th scope="row">Product Category</th>
-                                                <td><select class="custom-select">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
-                                                    </select></td>
-                                            </tr>-->
                                             <tr>
                                                 <th scope="row">Product Brand</th>
                                                 <td>
@@ -243,21 +234,6 @@
                                     </table>
                                 </div>
                                 <br>
-                                <!--                                <h4> Product details </h4>
-                                                                <br>
-                                                                <div class="row">
-                                                                    <table class="table" id="productDetails">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td><div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="productimage1" name="productimage1" required>
-                                                                                        <label class="custom-file-label" for="customFile">Choose Product Image</label>
-                                                                                    </div></td>
-                                
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>-->
 
                                 <div class="display-flex-center">
                                     <a type="button" class="btn btn-warning" >Update images </a>
@@ -293,15 +269,6 @@
                                                     <td><c:out value="${current.productColor}" /></td>
                                                     <td><c:out value="${current.brand.name}" /></td>
                                                     <td style="display: none;" id="${current.brand.id}"></td>
-
-
-<!--                                                    <td>${current.name}</td>
-<td>${current.price}</td>
-<td>${current.discount}</td>    
-<td>${current.productColor}</td>    
-<td>${current.quantity}</td>    
-<td>${current.brand.name}</td>    -->
-
                                                 </tr>
                                             </c:forEach>
                                         </table>
@@ -379,43 +346,6 @@
                                         </div>
 
                                     </c:if>
-
-
-                                    <!--                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th>Name</th>
-                                                                                    <th>Price</th>
-                                                                                    <th>Quantity</th>
-                                                                                    <th>Color</th>
-                                                                                    <th>Bran Name</th>
-                                                                                    <th>Description</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tfoot>
-                                                                                <tr>
-                                                                                    <th>Name</th>
-                                                                                    <th>Price</th>
-                                                                                    <th>Quantity</th>
-                                                                                    <th>Color</th>
-                                                                                    <th>Bran Name</th>
-                                                                                    <th>Description</th>
-                                                                                </tr>
-                                                                            </tfoot>
-                                                                            <tbody>
-                                    <c:forEach items="${productList}" var="current">
-                                        <tr >
-                                            <td style="display: none;" id="${current.pid}"></td>
-                                            <td><c:out value="${current.name}" /></td>
-                                            <td><c:out value="${current.price}" /></td>
-                                            <td><c:out value="${current.quantity}" /></td>
-                                            <td><c:out value="${current.productColor}" /></td>
-                                            <td><c:out value="${current.brand.name}" /></td>
-                                            <td style="display: none;" id="${current.brand.id}"></td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>-->
                                 </div>
 
                             </div>
