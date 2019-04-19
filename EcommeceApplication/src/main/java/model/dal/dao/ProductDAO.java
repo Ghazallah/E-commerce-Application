@@ -37,4 +37,7 @@ public interface ProductDAO {
     public int getNumberOfRowsProductSearch(String productSearch);
 
     public List<Product> getProductSearch(int currentPage, int recordsPerPage, String productSearch);
+
+    public int getNewProducts();
+
 }

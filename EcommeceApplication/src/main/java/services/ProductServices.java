@@ -128,4 +128,9 @@ public class ProductServices {
     public int getNumberOfRows(){
         return productDAO.getProductNumberOfRows();
     }
+    
+    public int getNewProducts() {
+        return productDAO.getNewProducts();
+    }
+    
 }

@@ -266,9 +266,11 @@
                                                     <td><c:out value="${current.name}" /></td>
                                                     <td><c:out value="${current.price}" /></td>
                                                     <td><c:out value="${current.quantity}" /></td>
-                                                    <td><c:out value="${current.productColor}" /></td>
+                                                    <td><c:out value="${current.productColor}" /></td>                                                    
                                                     <td><c:out value="${current.brand.name}" /></td>
                                                     <td style="display: none;" id="${current.brand.id}"></td>
+                                                    <td style="display: none;" ><c:out value="${current.description}" /></td>
+
                                                 </tr>
                                             </c:forEach>
                                         </table>

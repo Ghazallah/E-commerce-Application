@@ -66,6 +66,9 @@ public class AdminController extends HttpServlet {
         OrderServices orderServices = new OrderServices();
         int newOrders = orderServices.getNewOrders();
         session.setAttribute("newOrders", newOrders);
+        
+        int newProducts = productServices.getNewProducts();
+        session.setAttribute("newProducts", newProducts);
 
         int newUsers = userServices.getNewUsers();
         session.setAttribute("newUsers", newUsers);
