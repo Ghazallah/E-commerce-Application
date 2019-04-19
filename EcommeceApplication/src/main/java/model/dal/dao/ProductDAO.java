@@ -18,7 +18,7 @@ public interface ProductDAO {
 
     public void create(Product product) throws UniqueExceptionEmplementation;
 
-    ;
+ 
 
     public Product retreive(int id);
 

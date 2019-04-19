@@ -116,5 +116,10 @@ public class UserServices {
     public int getNumberOfRows(){
         return userDAO.getNumberOfRows();
     }
+    
+    public int getNewUsers() {
+        return userDAO.getNewUsers();
+    }
+    
        
 }

@@ -36,8 +36,8 @@ import services.UserServices;
  * @author pc
  */
 @WebServlet(value = "/admin/AdminController")
-public class AdminController extends HttpServlet 
-{
+public class AdminController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -57,23 +57,25 @@ public class AdminController extends HttpServlet
 
         ProductServices productServices = new ProductServices();
         ArrayList<ProductDTO> productList = (ArrayList<ProductDTO>) productServices.getAllProducts();
-        session.setAttribute("productList", productList);
-        
+//        session.setAttribute("productList", productList);
+
         UserServices userServices = new UserServices();
         ArrayList<User> userList = (ArrayList<User>) userServices.getAllUsers();
         //session.setAttribute("userList", userList);
-        
+
         OrderServices orderServices = new OrderServices();
         int newOrders = orderServices.getNewOrders();
         session.setAttribute("newOrders", newOrders);
-        
+
+        int newUsers = userServices.getNewUsers();
+        session.setAttribute("newUsers", newUsers);
+
         //for testing
         // display new orders 
 //        OrderDAO orderDAO = new OrderDAOImpl();
 //        ArrayList<Order> orderList = (ArrayList<Order>) orderDAO.retreive();
 //        System.out.println(orderList.get(0).getDate());
 //        session.setAttribute("orderList", orderList);
-
         // here complete get all things cat,brand,pro,users
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
         dispatcher.forward(request, response);
