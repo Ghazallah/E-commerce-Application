@@ -1,36 +1,81 @@
+/*     Wishlist dao     */
 
-function addtoWishlist(productID) {
+function addtoWishlist(productID, islogin)
+{
     event.preventDefault();
+
     console.log("productID = " + productID);
-    console.log("Json format product : " + event.target.getAttribute('data-product'));
-
     var productJson = event.target.getAttribute('data-product');
+    var heartIcon = "#heart-"+productID;
+    var iswishlist = $(heartIcon).attr('data-wishlist');
+    console.log(iswishlist);
 
-    //send to servlet to add to user wishlist 
-    $.ajax({
-        type: 'POST',
-        url: 'wishlist',
-        data: {
-            'productId': productID
-        },
-        success: function (msg) {
-            //render wishlist ui
-            var jsonContent = JSON.parse(productJson);
-            $('#wishlist-products').append(getWishlistElement(jsonContent));
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            //handle already exist or server is down
-            alert("error while adding product : " + textStatus);
+    if (!islogin)
+    {
+        iziToast.warning({
+            title: 'Caution',
+            position: 'topCenter',
+            progressBar: false,
+            timeout: '3000',
+            transitionIn: 'bounceInDown',
+            message: 'Please login inorder to add product to your wishlist !'
+        });
+    }else{
+        if (iswishlist == "true")
+        {
+            console.log("Removing from wishlist");
+            removefromWishlist(productID);
+            iziToast.info({
+                title: 'Info',
+                position: 'topCenter',
+                progressBar: false,
+                timeout: '3000',
+                transitionIn: 'bounceInDown',
+                message: 'Successfully deleted from Wishlist !'
+            });
+
+        }else {
+            console.log("Adding to wishlist");
+
+            //send to servlet to add to user wishlist
+            $.ajax({
+                type: 'POST',
+                url: 'wishlist',
+                data: {
+                    'productId': productID
+                },
+                success: function (msg)
+                {
+                    //render wishlist ui
+                    var jsonContent = JSON.parse(productJson);
+                    $('#wishlist-products').append(getWishlistElement(jsonContent));
+                    $(heartIcon).toggleClass("fa-heart fa-heart-o");
+                    $(heartIcon).attr('data-wishlist', "true");
+
+                    iziToast.success({
+                        title: 'OK',
+                        position: 'topCenter',
+                        progressBar: false,
+                        timeout: '3000',
+                        transitionIn: 'bounceInDown',
+                        message: 'Successfully Added To Wishlist !',
+                    });
+                }
+            });
         }
-    });
+    }
 }
 
-function removefromWishlist(productID) {
+function removefromWishlist(productID)
+{
     event.preventDefault();
 
     var productIdentifier = "#wishlist-product-" + productID;
     console.log("removing element of id  : " + productIdentifier);
 
+    var heartIcon = "#heart-"+productID;
+    $(heartIcon).attr('data-wishlist', "false");
+    $(heartIcon).toggleClass("fa-heart fa-heart-o");
 
     //send to servlet to remove from user wishlist 
     $.ajax({
@@ -49,7 +94,8 @@ function removefromWishlist(productID) {
     });
 }
 
-function getWishlistElement(productJson) {
+function getWishlistElement(productJson)
+{
     return "<div class=\"cart-item pt-4\" id=\"wishlist-product-" + productJson.pid + "\"> "
         + " <div class=\"row\"> "
         + "          <div class=\"col-5\"><img src=\"images/products/" + productJson.detailsDTOs[0].productImage + " \"></div> "
