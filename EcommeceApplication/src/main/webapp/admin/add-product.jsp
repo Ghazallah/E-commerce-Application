@@ -165,15 +165,7 @@
                                 <div class="row">
                                     <table class="table">
                                         <tbody>
-                                            <!--<tr>
-                                                <th scope="row">Product Category</th>
-                                                <td><select class="custom-select">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
-                                                    </select></td>
-                                            </tr>-->
+                                            
                                             <tr>
                                                 <th scope="row">Product Brand</th>
                                                 <td>
@@ -255,27 +247,7 @@
                                                         <input type="file" class="custom-file-input" id="productimage1" name="productimage1" required>
                                                         <label class="custom-file-label" for="customFile">Choose Product Image</label>
                                                     </div></td>
-                                                <!--                                                <td><div class="form-check form-check-inline">
-                                                                                                        <input class="form-check-input" type="radio" name="productcolor1" value="black">
-                                                                                                        <label class="form-check-label" for="inlineRadio1">BLACK</label>
-                                                                                                    </div>
-                                                                                                    <div class="form-check form-check-inline">
-                                                                                                        <input class="form-check-input" type="radio" name="productcolor1" value="gold">
-                                                                                                        <label class="form-check-label" for="inlineRadio2">GOLD</label>
-                                                                                                    </div>
-                                                                                                    <div class="form-check form-check-inline">
-                                                                                                        <input class="form-check-input" type="radio" name="productcolor1"  value="white">
-                                                                                                        <label class="form-check-label" for="inlineRadio2">WHITE</label>
-                                                                                                    </div>
-                                                                                                    <div class="form-check form-check-inline">
-                                                                                                        <input class="form-check-input" type="radio" name="productcolor1" value="red">
-                                                                                                        <label class="form-check-label" for="inlineRadio2">RED</label>
-                                                                                                    </div>
-                                                                                                    <div class="form-check form-check-inline">
-                                                                                                        <input class="form-check-input" type="radio" name="productcolor1" value="blue">
-                                                                                                        <label class="form-check-label" for="inlineRadio2">BLUE</label>
-                                                                                                    </div></td>
-                                                                                                <td> Quantity :<input type="number" id="productquantity1" name="productquantity1" value="1" min="0" max="1000" step="1"/>         </td>-->
+
                                             </tr>
                                         </tbody>
                                     </table>

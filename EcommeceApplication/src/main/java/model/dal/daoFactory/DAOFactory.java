@@ -10,6 +10,7 @@ import model.dal.dao.CartDAO;
 import model.dal.dao.CategoryDAO;
 import model.dal.dao.CouponsDAO;
 import model.dal.dao.OrderDAO;
+import model.dal.dao.OrderProductsDAO;
 import model.dal.dao.ProductDAO;
 import model.dal.dao.ProductDetailsDAO;
 import model.dal.dao.ShippingDAO;
@@ -43,4 +44,5 @@ public interface DAOFactory {
     
     public CartDAO getCartDAO ();
     
+    public OrderProductsDAO getOrderProductsDAO();
 }

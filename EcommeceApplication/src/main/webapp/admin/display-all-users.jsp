@@ -31,6 +31,7 @@
 
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">-->
 
+        <link rel="stylesheet" href="resources/css/style.css">
 
     </head>
 
@@ -125,7 +126,23 @@
                         <li class="breadcrumb-item active">display all users</li>
                     </ol>
 
+                    <div class="row col-sm-12">
+                        <form style="width: 100%;" method="Get" action="UserSearch">
+                            <div class="form-group" style="width: 100%">
+                                <!--why required not working-->
+                                <text style="font-size: 20px;">Search : </text><br/>
+                                <input type="text" class="form-input" name="searchTxt" id="searchTxt"  value="${searchTxtValue}" placeholder="enter user name to search"/><br/><br>
+                                <input type="text" class="form-input" name="phoneTxt" id="phoneTxt"  value="${phoneTxtValue}" placeholder="enter user phone to search"/>
+                                <input type="hidden" class="form-input" name="currentPage" id="currentPage" value="1"/>
+                                <input type="hidden" class="form-input" name="recordsPerPage" id="recordsPerPage" value="10" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="Search"/>
+                            </div>
+                        </form>
+                    </div>
                     <div class="row col-md-12">
+
                         <table class="table table-striped table-bordered table-sm" >
                             <tr>
                                 <th>User Name</th>
@@ -154,101 +171,78 @@
                             </c:forEach>
                         </table>
                     </div>
-                    <div class="row col-md-12">
-                        <nav aria-label="Navigation for countries">
-                        <ul class="pagination">
-                            <c:if test="${currentPage != 1}">
-                                <li class="page-item"><a class="page-link" 
-                                                         href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
-                                </li>
-                            </c:if>
-
-                            <c:forEach begin="1" end="${noOfPages}" var="i">
-                                <c:choose>
-                                    <c:when test="${currentPage eq i}">
-                                        <li class="page-item active"><a class="page-link">
-                                                ${i} <span class="sr-only">(current)</span></a>
-                                        </li>
-                                    </c:when>
-                                    <c:otherwise>
+                    <c:if test="${displayUsers == 'displayAllUsers'}">
+                        <div class="row col-md-12">
+                            <nav aria-label="Navigation for countries">
+                                <ul class="pagination">
+                                    <c:if test="${currentPage != 1}">
                                         <li class="page-item"><a class="page-link" 
-                                                                 href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                                 href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
                                         </li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
+                                    </c:if>
 
-                            <c:if test="${currentPage lt noOfPages}">
-                                <li class="page-item"><a class="page-link" 
-                                                         href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
-                                </li>
-                            </c:if>              
-                        </ul>
-                    </nav>
-                    </div>
+                                    <c:forEach begin="1" end="${noOfPages}" var="i">
+                                        <c:choose>
+                                            <c:when test="${currentPage eq i}">
+                                                <li class="page-item active"><a class="page-link">
+                                                        ${i} <span class="sr-only">(current)</span></a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item"><a class="page-link" 
+                                                                         href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
 
-                    <!--                     DataTables Example 
-                                        <div class="card mb-3">
-                                            <div class="card-header">
-                                                <i class="fas fa-table"></i>
-                                                All Users</div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                    
-                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>User Name</th>
-                                                                <th>Address</th>
-                                                                <th>Email</th>
-                                                                <th>Gender</th>
-                                                                <th>Birth Day</th>
-                                                                <th>Phone</th>
-                                                                <th>User Credit</th>
-                                                                <th>User Wallet</th>
-                                                                <th>User Image</th>
-                    
-                                                            </tr>
-                                                        </thead>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <th>User Name</th>
-                                                                <th>Address</th>
-                                                                <th>Email</th>
-                                                                <th>Gender</th>
-                                                                <th>Birth Day</th>
-                                                                <th>Phone</th>
-                                                                <th>User Credit</th>
-                                                                <th>User Wallet</th>
-                                                                <th>User Image</th>
-                    
-                                                            </tr>
-                                                        </tfoot>
-                                                        <tbody>
-                    <c:forEach items="${sessionScope.userList}" var="current">
-                        <tr>
-                            <td><c:out value="${current.name}" /></td>
-                            <td><c:out value="${current.address}" /></td>
-                            <td><c:out value="${current.email}" /></td>
-                            <td><c:out value="${current.gender}" /></td>
-                            <td><c:out value="${current.birthday}" /></td>
-                            <td><c:out value="${current.phone}" /></td>
-                            <td><c:out value="${current.userCredit.creditcard}" /></td>
-                            <td><c:out value="${current.userCredit.wallet}" /></td>
-                            <td><img src="${current.picture}" width="100px" height="100px" alt="user image" /></td>
+                                    <c:if test="${currentPage lt noOfPages}">
+                                        <li class="page-item"><a class="page-link" 
+                                                                 href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                        </li>
+                                    </c:if>              
+                                </ul>
+                            </nav>
+                        </div>
 
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-</div>-->
+                    </c:if>
 
-                    <p class="small text-center text-muted my-5">
-                        <em>More table examples coming soon...</em>
-                    </p>
+
+                    <c:if test="${displayUsers == 'displaySearchUsers'}">
+                        <div class="row col-md-12">
+                            <nav aria-label="Navigation for countries">
+                                <ul class="pagination">
+                                    <c:if test="${currentPage != 1}">
+                                        <li class="page-item"><a class="page-link" 
+                                                                 href="UserSearch?phoneTxt=${phoneTxtValue}&searchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                        </li>
+                                    </c:if>
+
+                                    <c:forEach begin="1" end="${noOfPages}" var="i">
+                                        <c:choose>
+                                            <c:when test="${currentPage eq i}">
+                                                <li class="page-item active"><a class="page-link">
+                                                        ${i} <span class="sr-only">(current)</span></a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item"><a class="page-link" 
+                                                                         href="UserSearch?phoneTxt=${phoneTxtValue}&searchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+
+                                    <c:if test="${currentPage lt noOfPages}">
+                                        <li class="page-item"><a class="page-link" 
+                                                                 href="UserSearch?phoneTxt=${phoneTxtValue}&searchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                        </li>
+                                    </c:if>              
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </c:if>
 
                 </div>
                 <!-- /.container-fluid -->

@@ -53,7 +53,7 @@ public class UserController extends HttpServlet {
             request.setAttribute("noOfPages", nOfPages);
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("recordsPerPage", recordsPerPage);
-
+            request.setAttribute("displayUsers","displayAllUsers");
             RequestDispatcher dispatcher = request.getRequestDispatcher("display-all-users.jsp");
             dispatcher.forward(request, response);
         }

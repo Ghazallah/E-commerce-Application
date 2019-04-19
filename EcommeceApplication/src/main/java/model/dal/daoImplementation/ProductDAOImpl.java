@@ -22,7 +22,10 @@ import model.util.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 /**
@@ -129,7 +132,44 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void decreaseQuantity(int productID, int quantity) {
-        
+
     }
-    
+
+    @Override
+    public int getNumberOfRowsProductSearch(String productSearch) {
+        Integer numOfRows = 0;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Product.class);
+        Criterion nameCriteria = Restrictions.like("name", productSearch, MatchMode.ANYWHERE);
+        criteria.add(nameCriteria);
+
+//        criteria.add(Restrictions.and(Restrictions.like(
+//                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
+//                        "phone", phoneTxt, MatchMode.ANYWHERE))));
+        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        return numOfRows;
+    }
+
+    @Override
+    public List<Product> getProductSearch(int currentPage, int recordsPerPage, String productSearch) {
+        List<Product> products = null;
+
+        int start = currentPage * recordsPerPage - recordsPerPage;
+
+//        try {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Product.class);
+//        criteria.add(Restrictions.and(Restrictions.like(
+//                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
+//                        "phone", phoneTxt, MatchMode.ANYWHERE))));
+//
+        Criterion nameCriteria = Restrictions.like("name", productSearch, MatchMode.ANYWHERE);
+//        Criterion nameCriteria2 = Restrictions.like("phone", phoneTxt, MatchMode.ANYWHERE);
+        criteria.add(nameCriteria);
+//        criteria.add(nameCriteria2);
+        criteria.setFirstResult(start);
+        criteria.setMaxResults(recordsPerPage);
+        products = criteria.list();
+        return products;
+    }
 }

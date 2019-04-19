@@ -28,6 +28,7 @@
 
         <!-- Custom styles for this template-->
         <link href="resources/css/sb-admin.css" rel="stylesheet">
+        <link rel="stylesheet" href="resources/css/style.css">
 
     </head>
 
@@ -122,6 +123,20 @@
                         <li class="breadcrumb-item active">display all products</li>
                     </ol>
 
+                    <div class="row col-sm-12">
+                        <form style="width: 100%;" method="Get" action="ProductSearch">
+                            <div class="form-group" style="width: 100%">
+                                <!--why required not working-->
+                                <text style="font-size: 20px;">Search : </text><br/>
+                                <input type="text" class="form-input" name="productSearchTxt" id="searchTxt"  value="${searchTxtValue}" placeholder="enter product name to search"/><br>
+                                <input type="hidden" class="form-input" name="currentPage" id="currentPage" value="1"/>
+                                <input type="hidden" class="form-input" name="recordsPerPage" id="recordsPerPage" value="10" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="Search"/>
+                            </div>
+                        </form>
+                    </div>
 
                     <!-- DataTables Example -->
                     <div class="card mb-3">
@@ -149,75 +164,90 @@
                                                 <td>${current.productColor}</td>    
                                                 <td>${current.quantity}</td>    
                                                 <td>${current.brand.name}</td>    
-                                                
+
                                             </tr>
                                         </c:forEach>
                                     </table>
                                 </div>
-                                <div class="row col-md-12">
-                                    <nav aria-label="Navigation for countries">
-                                        <ul class="pagination">
-                                            <c:if test="${currentPage != 1}">
-                                                <li class="page-item"><a class="page-link" 
-                                                                         href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
-                                                </li>
-                                            </c:if>
+                                <c:if test="${displayProducts == 'displayAllProducts'}">
+                                    <div class="row col-md-12">
+                                        <nav aria-label="Navigation for countries">
+                                            <ul class="pagination">
+                                                <c:if test="${currentPage != 1}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                                    </li>
+                                                </c:if>
 
-                                            <c:forEach begin="1" end="${noOfPages}" var="i">
-                                                <c:choose>
-                                                    <c:when test="${currentPage eq i}">
-                                                        <li class="page-item active"><a class="page-link">
-                                                                ${i} <span class="sr-only">(current)</span></a>
-                                                        </li>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <li class="page-item"><a class="page-link" 
-                                                                                 href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
-                                                        </li>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
+                                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                    <c:choose>
+                                                        <c:when test="${currentPage eq i}">
+                                                            <li class="page-item active"><a class="page-link">
+                                                                    ${i} <span class="sr-only">(current)</span></a>
+                                                            </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <li class="page-item"><a class="page-link" 
+                                                                                     href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                            </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
 
-                                            <c:if test="${currentPage lt noOfPages}">
-                                                <li class="page-item"><a class="page-link" 
-                                                                         href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
-                                                </li>
-                                            </c:if>              
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <!--                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Price</th>
-                                                                            <th>Name</th>
-                                                                           
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tfoot>
-                                                                        <tr>
-                                                                            <th>Price</th>
-                                                                            <th>Name</th>
-                                                                            
-                                                                        </tr>
-                                                                    </tfoot>
-                                                                    <tbody>
-                                <c:forEach items="${productList}" var="current">
-                                    <tr >
-                                        <td><c:out value="${current.price}" /></td>
-                                    <td><c:out value="${current.name}" /></td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>-->
+                                                <c:if test="${currentPage lt noOfPages}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                                    </li>
+                                                </c:if>              
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </c:if>
+
+
+
+
+                                <c:if test="${displayProducts == 'displaySearchProduct'}">
+                                    <div class="row col-md-12">
+                                        <nav aria-label="Navigation for countries">
+                                            <ul class="pagination">
+                                                <c:if test="${currentPage != 1}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="ProductSearch?productSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                                    </li>
+                                                </c:if>
+
+                                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                    <c:choose>
+                                                        <c:when test="${currentPage eq i}">
+                                                            <li class="page-item active"><a class="page-link">
+                                                                    ${i} <span class="sr-only">(current)</span></a>
+                                                            </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <li class="page-item"><a class="page-link" 
+                                                                                     href="ProductSearch?productSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                            </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+
+                                                <c:if test="${currentPage lt noOfPages}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="ProductSearch?productSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                                    </li>
+                                                </c:if>              
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+                                </c:if>
+
                             </div>
                         </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                     </div>
 
-                    <p class="small text-center text-muted my-5">
-                        <em>More table examples coming soon...</em>
-                    </p>
+
 
                 </div>
                 <!-- /.container-fluid -->

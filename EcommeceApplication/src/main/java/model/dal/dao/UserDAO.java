@@ -29,4 +29,10 @@ public interface UserDAO {
     public int getNumberOfRows();
     
     public List<User> getUsersPagenation(int currentPage,int recordsPerPage);
+    
+     public int getNumberOfRowsSearch(String searchTxt,String phoneTxt);
+    
+    public List<User> getUserSearch(int currentPage,int recordsPerPage,String searchTxt,String phoneTxt);
+    
+    
 }

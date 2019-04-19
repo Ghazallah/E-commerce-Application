@@ -17,7 +17,10 @@ import model.util.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 /**
@@ -135,6 +138,45 @@ public class UserDAOImpl implements UserDAO {
         criteria.setMaxResults(recordsPerPage);
         users = criteria.list();
 
+        return users;
+    }
+
+    @Override
+    public int getNumberOfRowsSearch(String searchTxt, String phoneTxt) {
+        Integer numOfRows = 0;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(User.class);
+//        Criterion nameCriteria = Restrictions.eq("name", searchTxt);
+//        criteria.add(nameCriteria);
+
+        criteria.add(Restrictions.and(Restrictions.like(
+                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
+                        "phone", phoneTxt, MatchMode.ANYWHERE))));
+
+        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        return numOfRows;
+    }
+
+    @Override
+    public List<User> getUserSearch(int currentPage, int recordsPerPage, String searchTxt, String phoneTxt) {
+        List<User> users = null;
+
+        int start = currentPage * recordsPerPage - recordsPerPage;
+
+//        try {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.add(Restrictions.and(Restrictions.like(
+                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
+                        "phone", phoneTxt, MatchMode.ANYWHERE))));
+//
+//        Criterion nameCriteria = Restrictions.like("name", searchTxt, MatchMode.ANYWHERE);
+//        Criterion nameCriteria2 = Restrictions.like("phone", phoneTxt, MatchMode.ANYWHERE);
+//        criteria.add(nameCriteria);
+//        criteria.add(nameCriteria2);
+        criteria.setFirstResult(start);
+        criteria.setMaxResults(recordsPerPage);
+        users = criteria.list();
         return users;
     }
 
