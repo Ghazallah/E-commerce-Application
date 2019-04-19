@@ -110,4 +110,12 @@ public class UserServices {
         boolean value = products.remove(product);
         userDAO.update(user);
     }
+     public List<User> getUsersPagenation(int currentPage,int recordsPerPage){
+        return userDAO.getUsersPagenation(currentPage,recordsPerPage);
+    }
+    
+    public int getNumberOfRows(){
+        return userDAO.getNumberOfRows();
+    }
+       
 }

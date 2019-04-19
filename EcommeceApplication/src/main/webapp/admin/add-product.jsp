@@ -92,8 +92,8 @@
                         <a class="dropdown-item" href="add-category.jsp">Add Category</a>
                         <a class="dropdown-item" href="add-brand.jsp">Add Brand</a>
                         <a class="dropdown-item" href="add-product.jsp">Add Product</a>
-                        <a class="dropdown-item" href="update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="display-all-products.jsp">Display All Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=updateProduct&recordsPerPage=10&currentPage=1">Update Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=displayProduct&recordsPerPage=10&currentPage=1">Display All Product</a>
 
                     </div>
                 </li>
@@ -103,7 +103,7 @@
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="display-all-users.jsp">
+                    <a class="nav-link" href="UserController?action=displayAllUsers&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>

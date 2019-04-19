@@ -84,9 +84,8 @@
                         <a class="dropdown-item" href="CreateCategory?action=addCategory">Add Category</a><!--href="add-brand.jsp"-->
                         <a class="dropdown-item" href="CreateBrand?action=addBrand" >Add Brand</a>
                         <a class="dropdown-item" href="CreateProduct?action=addProduct">Add Product</a>
-                        <a class="dropdown-item" href="update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="CreateProduct?action=displayProduct">Display All Product</a>
-
+                        <a class="dropdown-item" href="CreateProduct?action=updateProduct&recordsPerPage=10&currentPage=1">Update Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=displayProduct&recordsPerPage=10&currentPage=1">Display All Product</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -95,7 +94,7 @@
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="UserController?action=displayAllUsers">
+                    <a class="nav-link" href="UserController?action=displayAllUsers&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>

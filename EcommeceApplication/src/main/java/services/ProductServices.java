@@ -22,6 +22,7 @@ import model.dto.ProductDetailsDTO;
 import model.entity.Brand;
 import model.entity.Product;
 import model.entity.ProductDetails;
+import model.entity.User;
 
 /**
  *
@@ -118,5 +119,13 @@ public class ProductServices {
     public void deleteProduct(int productId){
         Product product = productDAO.retreive(productId);
         productDAO.delete(product);
+    }
+    
+    public List<Product> getProductsPagenation(int currentPage,int recordsPerPage){
+        return productDAO.getProductsPagenation(currentPage,recordsPerPage);
+    }
+    
+    public int getNumberOfRows(){
+        return productDAO.getProductNumberOfRows();
     }
 }

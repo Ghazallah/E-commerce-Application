@@ -29,6 +29,9 @@
         <!-- Custom styles for this template-->
         <link href="resources/css/sb-admin.css" rel="stylesheet">
 
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">-->
+
+
     </head>
 
     <body id="page-top">
@@ -86,8 +89,8 @@
                         <a class="dropdown-item" href="add-category.jsp">Add Category</a>
                         <a class="dropdown-item" href="add-brand.jsp">Add Brand</a>
                         <a class="dropdown-item" href="add-product.jsp">Add Product</a>
-                        <a class="dropdown-item" href="update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="display-all-products.jsp">Display All Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=updateProduct&recordsPerPage=10&currentPage=1">Update Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=displayProduct&recordsPerPage=10&currentPage=1">Display All Product</a>
 
                     </div>
                 </li>
@@ -97,7 +100,7 @@
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="display-all-users.jsp">
+                    <a class="nav-link" href="UserController?action=displayAllUsers&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>
@@ -122,64 +125,126 @@
                         <li class="breadcrumb-item active">display all users</li>
                     </ol>
 
-                    <!-- DataTables Example -->
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <i class="fas fa-table"></i>
-                            All Users</div>
-                        <div class="card-body">
-                            <div class="table-responsive">
+                    <div class="row col-md-12">
+                        <table class="table table-striped table-bordered table-sm" >
+                            <tr>
+                                <th>User Name</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Gender</th>
+                                <th>Birth Day</th>
+                                <th>Phone</th>
+                                <th>User Credit</th>
+                                <th>User Wallet</th>
+                                <th>User Image</th>
+                            </tr>
 
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>User Name</th>
-                                            <th>Address</th>
-                                            <th>Email</th>
-                                            <th>Gender</th>
-                                            <th>Birth Day</th>
-                                            <th>Phone</th>
-                                            <th>User Credit</th>
-                                            <th>User Wallet</th>
-                                            <th>User Image</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>User Name</th>
-                                            <th>Address</th>
-                                            <th>Email</th>
-                                            <th>Gender</th>
-                                            <th>Birth Day</th>
-                                            <th>Phone</th>
-                                            <th>User Credit</th>
-                                            <th>User Wallet</th>
-                                            <th>User Image</th>
-
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <c:forEach items="${sessionScope.userList}" var="current">
-                                            <tr>
-                                                <td><c:out value="${current.name}" /></td>
-                                                <td><c:out value="${current.address}" /></td>
-                                                <td><c:out value="${current.email}" /></td>
-                                                <td><c:out value="${current.gender}" /></td>
-                                                <td><c:out value="${current.birthday}" /></td>
-                                                <td><c:out value="${current.phone}" /></td>
-                                                <td><c:out value="${current.userCredit.creditcard}" /></td>
-                                                <td><c:out value="${current.userCredit.wallet}" /></td>
-                                                <td><img src="${current.picture}" width="100px" height="100px" alt="user image" /></td>
-
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                            <c:forEach items="${usersPagination}" var="current">
+                                <tr>
+                                    <td>${current.name}</td>
+                                    <td>${current.address}</td>
+                                    <td>${current.email}</td>    
+                                    <td>${current.gender}</td>    
+                                    <td>${current.birthday}</td>    
+                                    <td>${current.phone}</td>    
+                                    <td>${current.userCredit.creditcard}</td>    
+                                    <td>${current.userCredit.wallet}</td>    
+                                    <td><img src="${current.picture}" style="width: 65px; height: 65px;" /></td>    
+                                </tr>
+                            </c:forEach>
+                        </table>
                     </div>
+                    <div class="row col-md-12">
+                        <nav aria-label="Navigation for countries">
+                        <ul class="pagination">
+                            <c:if test="${currentPage != 1}">
+                                <li class="page-item"><a class="page-link" 
+                                                         href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                </li>
+                            </c:if>
+
+                            <c:forEach begin="1" end="${noOfPages}" var="i">
+                                <c:choose>
+                                    <c:when test="${currentPage eq i}">
+                                        <li class="page-item active"><a class="page-link">
+                                                ${i} <span class="sr-only">(current)</span></a>
+                                        </li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li class="page-item"><a class="page-link" 
+                                                                 href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+
+                            <c:if test="${currentPage lt noOfPages}">
+                                <li class="page-item"><a class="page-link" 
+                                                         href="UserController?action=displayAllUsers&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                </li>
+                            </c:if>              
+                        </ul>
+                    </nav>
+                    </div>
+
+                    <!--                     DataTables Example 
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                <i class="fas fa-table"></i>
+                                                All Users</div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                    
+                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>User Name</th>
+                                                                <th>Address</th>
+                                                                <th>Email</th>
+                                                                <th>Gender</th>
+                                                                <th>Birth Day</th>
+                                                                <th>Phone</th>
+                                                                <th>User Credit</th>
+                                                                <th>User Wallet</th>
+                                                                <th>User Image</th>
+                    
+                                                            </tr>
+                                                        </thead>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>User Name</th>
+                                                                <th>Address</th>
+                                                                <th>Email</th>
+                                                                <th>Gender</th>
+                                                                <th>Birth Day</th>
+                                                                <th>Phone</th>
+                                                                <th>User Credit</th>
+                                                                <th>User Wallet</th>
+                                                                <th>User Image</th>
+                    
+                                                            </tr>
+                                                        </tfoot>
+                                                        <tbody>
+                    <c:forEach items="${sessionScope.userList}" var="current">
+                        <tr>
+                            <td><c:out value="${current.name}" /></td>
+                            <td><c:out value="${current.address}" /></td>
+                            <td><c:out value="${current.email}" /></td>
+                            <td><c:out value="${current.gender}" /></td>
+                            <td><c:out value="${current.birthday}" /></td>
+                            <td><c:out value="${current.phone}" /></td>
+                            <td><c:out value="${current.userCredit.creditcard}" /></td>
+                            <td><c:out value="${current.userCredit.wallet}" /></td>
+                            <td><img src="${current.picture}" width="100px" height="100px" alt="user image" /></td>
+
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>-->
 
                     <p class="small text-center text-muted my-5">
                         <em>More table examples coming soon...</em>
@@ -243,6 +308,9 @@
 
         <!-- Demo scripts for this page-->
         <script src="resources/js/demo/datatables-demo.js"></script>
+        <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>-->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>-->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>-->
 
     </body>
 

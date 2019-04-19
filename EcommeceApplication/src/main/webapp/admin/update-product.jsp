@@ -89,8 +89,8 @@
                         <a class="dropdown-item" href="add-category.jsp">Add Category</a>
                         <a class="dropdown-item" href="add-brand.jsp">Add Brand</a>
                         <a class="dropdown-item" href="add-product.jsp">Add Product</a>
-                        <a class="dropdown-item" href="update-product.jsp">Update Product</a>
-                        <a class="dropdown-item" href="display-all-products.jsp">Display All Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=updateProduct&recordsPerPage=10&currentPage=1">Update Product</a>
+                        <a class="dropdown-item" href="CreateProduct?action=displayProduct&recordsPerPage=10&currentPage=1">Display All Product</a>
 
                     </div>
                 </li>
@@ -100,7 +100,7 @@
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="display-all-users.jsp">
+                    <a class="nav-link" href="UserController?action=displayAllUsers&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>
@@ -253,30 +253,20 @@
                                 </div>
                                 <br /><br />
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
+
+                                    <div class="row col-md-12">
+                                        <table class="table table-striped table-bordered table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <tr>
-                                                <th>Name</th>
+                                                <th>Product Name</th>
                                                 <th>Price</th>
                                                 <th>Quantity</th>
-                                                <th>Color</th>
-                                                <th>Bran Name</th>
-                                                <!--<th>Description</th>-->
+                                                <th>Product Color</th>
+                                                <th>Brand Name</th>
                                             </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
-                                                <th>Color</th>
-                                                <th>Bran Name</th>
-                                                <!--<th>Description</th>-->
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <c:forEach items="${productList}" var="current">
-                                                <tr >
+
+                                            <c:forEach items="${productPagination}" var="current">
+                                                <tr>
+
                                                     <td style="display: none;" id="${current.pid}"></td>
                                                     <td><c:out value="${current.name}" /></td>
                                                     <td><c:out value="${current.price}" /></td>
@@ -284,10 +274,88 @@
                                                     <td><c:out value="${current.productColor}" /></td>
                                                     <td><c:out value="${current.brand.name}" /></td>
                                                     <td style="display: none;" id="${current.brand.id}"></td>
+
+
+<!--                                                    <td>${current.name}</td>
+<td>${current.price}</td>
+<td>${current.discount}</td>    
+<td>${current.productColor}</td>    
+<td>${current.quantity}</td>    
+<td>${current.brand.name}</td>    -->
+
                                                 </tr>
                                             </c:forEach>
-                                        </tbody>
-                                    </table>
+                                        </table>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <nav aria-label="Navigation for countries">
+                                            <ul class="pagination">
+                                                <c:if test="${currentPage != 1}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="CreateProduct?action=updateProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                                    </li>
+                                                </c:if>
+
+                                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                    <c:choose>
+                                                        <c:when test="${currentPage eq i}">
+                                                            <li class="page-item active"><a class="page-link">
+                                                                    ${i} <span class="sr-only">(current)</span></a>
+                                                            </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <li class="page-item"><a class="page-link" 
+                                                                                     href="CreateProduct?action=updateProduct&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                            </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+
+                                                <c:if test="${currentPage lt noOfPages}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="CreateProduct?action=updateProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                                    </li>
+                                                </c:if>              
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+
+                                    <!--                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Name</th>
+                                                                                    <th>Price</th>
+                                                                                    <th>Quantity</th>
+                                                                                    <th>Color</th>
+                                                                                    <th>Bran Name</th>
+                                                                                    <th>Description</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tfoot>
+                                                                                <tr>
+                                                                                    <th>Name</th>
+                                                                                    <th>Price</th>
+                                                                                    <th>Quantity</th>
+                                                                                    <th>Color</th>
+                                                                                    <th>Bran Name</th>
+                                                                                    <th>Description</th>
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                            <tbody>
+                                    <c:forEach items="${productList}" var="current">
+                                        <tr >
+                                            <td style="display: none;" id="${current.pid}"></td>
+                                            <td><c:out value="${current.name}" /></td>
+                                            <td><c:out value="${current.price}" /></td>
+                                            <td><c:out value="${current.quantity}" /></td>
+                                            <td><c:out value="${current.productColor}" /></td>
+                                            <td><c:out value="${current.brand.name}" /></td>
+                                            <td style="display: none;" id="${current.brand.id}"></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>-->
                                 </div>
 
                             </div>

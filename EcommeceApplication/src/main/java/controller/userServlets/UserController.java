@@ -7,12 +7,15 @@ package controller.userServlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.entity.User;
+import services.UserServices;
 
 /**
  *
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(value = "/admin/UserController")
 public class UserController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -28,6 +32,28 @@ public class UserController extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.equals("displayAllUsers")) {
+
+            int currentPage = Integer.valueOf(request.getParameter("currentPage"));
+            int recordsPerPage = Integer.valueOf(request.getParameter("recordsPerPage"));
+
+            UserServices countryService = new UserServices();
+
+            List<User> usersPagination = countryService.getUsersPagenation(currentPage,recordsPerPage);
+
+            request.setAttribute("usersPagination", usersPagination);
+
+            int rows = countryService.getNumberOfRows();
+
+            int nOfPages = rows / recordsPerPage;
+
+            if (nOfPages % recordsPerPage > 0) {
+                nOfPages++;
+            }
+
+            request.setAttribute("noOfPages", nOfPages);
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("recordsPerPage", recordsPerPage);
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("display-all-users.jsp");
             dispatcher.forward(request, response);
         }

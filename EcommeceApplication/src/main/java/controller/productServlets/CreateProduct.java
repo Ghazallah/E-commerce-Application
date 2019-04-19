@@ -32,6 +32,7 @@ import model.dto.ProductDescriptionDTO;
 import model.entity.Brand;
 import model.entity.Product;
 import model.entity.ProductDetails;
+import model.entity.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -39,6 +40,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import services.BrandServices;
 import services.ProductServices;
+import services.UserServices;
 
 /**
  *
@@ -159,7 +161,7 @@ public class CreateProduct extends HttpServlet {
 
                 productServices.addProduct(product, productDetailsSet, brandId);
                 List<ProductDTO> productList = productServices.getAllProducts();
-                session.setAttribute("productList", productList);
+//                session.setAttribute("productList", productList);
 
                 request.setAttribute("operation", "success");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("add-product.jsp");
@@ -257,16 +259,31 @@ public class CreateProduct extends HttpServlet {
 
                 productServices.updateProduct(product1, productBrandId);
                 ArrayList<ProductDTO> productList = (ArrayList<ProductDTO>) productServices.getAllProducts();
-                session.setAttribute("productList", productList);
+//                session.setAttribute("productList", productList);
                 request.setAttribute("operation", "success");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("update-product.jsp");
-                dispatcher.forward(request, response);
-            } catch (UniqueExceptionEmplementation ex) {
-                request.setAttribute("operation", "oops error during save data please try again later");
+//                request.setAttribute("action", "updateProduct");
+//                request.setAttribute("recordsPerPage", 10);
+//                request.setAttribute("currentPage", 1);
+//                response.sendRedirect("CreateProduct");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("update-product.jsp");
                 dispatcher.forward(request, response);
             } catch (FileUploadException ex) {
-                Logger.getLogger(CreateProduct.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("operation", "oops error during save data please try again later");
+//                request.setAttribute("action", "updateProduct");
+//                request.setAttribute("recordsPerPage", 10);
+//                request.setAttribute("currentPage", 1);
+//                response.sendRedirect("CreateProduct");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("update-product.jsp");
+                dispatcher.forward(request, response);
+
+            } catch (UniqueExceptionEmplementation ex) {
+                request.setAttribute("operation", "oops error during save data please try again later");
+//                request.setAttribute("action", "updateProduct");
+//                request.setAttribute("recordsPerPage", 10);
+//                request.setAttribute("currentPage", 1);
+//                response.sendRedirect("CreateProduct");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("update-product.jsp");
+                dispatcher.forward(request, response);
             }
 
         } else if (action.equals("deleteProduct")) {
@@ -289,8 +306,12 @@ public class CreateProduct extends HttpServlet {
                         if (name.equals("productID")) {
                             productServices.deleteProduct(Integer.parseInt(value));
                             ArrayList<ProductDTO> productList = (ArrayList<ProductDTO>) productServices.getAllProducts();
-                            session.setAttribute("productList", productList);
+//                            session.setAttribute("productList", productList);
                             request.setAttribute("operation", "success");
+//                            request.setAttribute("action", "updateProduct");
+//                            request.setAttribute("recordsPerPage", 10);
+//                            request.setAttribute("currentPage", 1);
+//                            response.sendRedirect("CreateProduct");
                             RequestDispatcher dispatcher = request.getRequestDispatcher("update-product.jsp");
                             dispatcher.forward(request, response);
                         }
@@ -298,6 +319,11 @@ public class CreateProduct extends HttpServlet {
                 }
             } catch (FileUploadException ex) {
                 request.setAttribute("operation", "oops error during save data please try again later");
+//                request.setAttribute("action", "updateProduct");
+//                request.setAttribute("recordsPerPage", 10);
+//                request.setAttribute("currentPage", 1);
+//                response.sendRedirect("CreateProduct");
+//                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("update-product.jsp");
                 dispatcher.forward(request, response);
             }
@@ -314,7 +340,59 @@ public class CreateProduct extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.equals("displayProduct")) {
-            response.sendRedirect("display-all-products.jsp");
+
+            int currentPage = Integer.valueOf(request.getParameter("currentPage"));
+            int recordsPerPage = Integer.valueOf(request.getParameter("recordsPerPage"));
+
+            ProductServices productServices = new ProductServices();
+
+            List<Product> productPagination = productServices.getProductsPagenation(currentPage, recordsPerPage);
+
+            request.setAttribute("productPagination", productPagination);
+
+            int rows = productServices.getNumberOfRows();
+
+            int nOfPages = rows / recordsPerPage;
+
+            if (nOfPages % recordsPerPage > 0) {
+                nOfPages++;
+            }
+
+            request.setAttribute("noOfPages", nOfPages);
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("recordsPerPage", recordsPerPage);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("display-all-products.jsp");
+            dispatcher.forward(request, response);
+
+//            response.sendRedirect("display-all-products.jsp");
+        } else if (action.equals("updateProduct")) {
+
+            int currentPage = Integer.valueOf(request.getParameter("currentPage"));
+            int recordsPerPage = Integer.valueOf(request.getParameter("recordsPerPage"));
+
+            ProductServices productServices = new ProductServices();
+
+            List<Product> productPagination = productServices.getProductsPagenation(currentPage, recordsPerPage);
+
+            request.setAttribute("productPagination", productPagination);
+
+            int rows = productServices.getNumberOfRows();
+
+            int nOfPages = rows / recordsPerPage;
+
+            if (nOfPages % recordsPerPage > 0) {
+                nOfPages++;
+            }
+
+            request.setAttribute("noOfPages", nOfPages);
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("recordsPerPage", recordsPerPage);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("update-product.jsp");
+            dispatcher.forward(request, response);
+
+//            response.sendRedirect("display-all-products.jsp");
         } else if (action.equals("addProduct")) {
             response.sendRedirect("add-product.jsp");
         }

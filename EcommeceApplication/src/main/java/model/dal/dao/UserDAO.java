@@ -26,4 +26,8 @@ public interface UserDAO {
     
 
     public int getNewUsers();
+    
+    public int getNumberOfRows();
+    
+    public List<User> getUsersPagenation(int currentPage,int recordsPerPage);
 }

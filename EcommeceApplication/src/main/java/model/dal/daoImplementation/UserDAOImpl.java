@@ -14,8 +14,10 @@ import model.dal.dao.UserDAO;
 import model.entity.Category;
 import model.entity.User;
 import model.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 
 /**
@@ -109,6 +111,31 @@ public class UserDAOImpl implements UserDAO {
             ex.printStackTrace();
         }
         return userCount;
+    }
+
+    @Override
+    public int getNumberOfRows() {
+        Integer numOfRows = 0;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(User.class);
+        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        return numOfRows;
+    }
+
+    @Override
+    public List<User> getUsersPagenation(int currentPage, int recordsPerPage) {
+        List<User> users = null;
+
+        int start = currentPage * recordsPerPage - recordsPerPage;
+
+//        try {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.setFirstResult(start);
+        criteria.setMaxResults(recordsPerPage);
+        users = criteria.list();
+
+        return users;
     }
 
 }
