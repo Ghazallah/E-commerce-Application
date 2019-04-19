@@ -13,50 +13,82 @@ function showProductDetails() {
 
 function renderShowProductDetails(productJson) {
     var product = JSON.parse(productJson);
-    console.log("Rendering the following object in product details");
-    console.log(product);
     //rendering
-    $('#show-product-imgs').html(getProductImages(product.detailsDTOs));
     $('#show-product-name').html(product.name);
     $('#show-product-price').html(product.price);
-    $('#show-product-quantity').html(getProductQuantity(product.quantity));
     $('#show-product-id').html(getAddToCartBtn(product.pid));
+    $('#show-product-quantity').attr("max", product.quantity);
     injectProductDescription(product.description);
+    injectProductImages(product.detailsDTOs);
 }
 
+function injectProductImages(productImgs)
+{
+    var productImages = [];
 
-function getProductImages(productImgs) {
-    var defaultImg = '<div class="item-slick3" data-thumb="images/products/' + productImgs[0].productImage + '">'
-        + '  <div class="wrap-pic-w pos-relative"> '
-        + '  <img src="images/products/' + productImgs[0].productImage + '" alt="IMG-PRODUCT"> '
-        + ' <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"href="images/product/' + productImgs[0].productImage + '">'
-        + ' <i class="fa fa-expand"></i></a>'
-        + ' </div> </div>';
+    for (var j = 0; j < productImgs.length; j++)
+        productImages.push(productImgs[j].productImage);
 
-    for (var i = 1; i < productImgs.length; i++) {
-        defaultImg += '<div class="item-slick3" data-thumb="images/products/' + productImgs[0].productImage + '">\n' +
-            '<div class="wrap-pic-w pos-relative"><img src="images/products/' + productImgs[0].productImage + '" alt="IMG-PRODUCT"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/products/' + productImgs[0].productImage + '"> <i class="fa fa-expand"></i> </a></div>\n' +
-            '</div>';
+    var showproductdiv = '<div class="wrap-slick3 flex-sb flex-w">\n' +
+        '                                    <div class="wrap-slick3-dots"></div>\n' +
+        '                                    <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>\n' +
+        '\n' +
+        '                                    <div class="slick3 gallery-lb" id="images-gallery">\n' +
+        '                                        \n' +
+        '                                    </div>\n' +
+        '                                </div>';
+
+
+    $('#show-product-images').html(showproductdiv);
+
+    for (var i = 0; i < productImages.length; i++) {
+        $('#images-gallery').append('<div class="item-slick3" data-thumb="images/products/' + productImages[i] + '">\n' +
+            '<div class="wrap-pic-w pos-relative">\n' +
+            '<img src="images/products/' + productImages[i] + '" alt="IMG-PRODUCT">\n' +
+            '<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/products/' + productImages[i] + '">\n' +
+            '<i class="fa fa-expand"></i>\n' +
+            '</a>\n' +
+            '</div>\n' +
+            '</div>');
     }
-    return defaultImg;
+    applySlickonProduct();
 }
 
-function getProductQuantity(productQuantity) {
-    return '<div class="wrap-num-product flex-w m-r-20 m-tb-10">'
-        +' <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-minus"></i></div>'
-        +'<div>'
-        +'<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" min="1" max="'+productQuantity+'">'
-        +'</div>'
-        +'<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-16 zmdi zmdi-plus"></i></div>'
-        +'</div>';
+function applySlickonProduct()
+{
+    $('.wrap-slick3').each(function () {
+        $(this).find('.slick3').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            fade: true,
+            infinite: true,
+            autoplay: false,
+            autoplaySpeed: 6000,
+
+            arrows: true,
+            appendArrows: $(this).find('.wrap-slick3-arrows'),
+            prevArrow: '<button class="arrow-slick3 prev-slick3"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+            nextArrow: '<button class="arrow-slick3 next-slick3"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+
+            dots: true,
+            appendDots: $(this).find('.wrap-slick3-dots'),
+            dotsClass: 'slick3-dots',
+            customPaging: function (slick, index) {
+                var portrait = $(slick.$slides[index]).data('thumb');
+                return '<img src=" ' + portrait + ' "/><div class="slick3-dot-overlay"></div>';
+            }
+        });
+    });
 }
 
-function getAddToCartBtn(pid) {
+function getAddToCartBtn(pid)
+{
     //add to cart get json not id SOLVE THIS
-    return '<button onclick="addToCart('+pid+')" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> Add to cart</button>\n';
+    return '<button onclick="addToCart(' + pid + ')" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> Add to cart</button>\n';
 }
 
-function injectProductDescription(productDesc) {
+function injectProductDescription(productDesc)
+{
     var jsonContent = JSON.parse(productDesc);
     $('#show-product-processor').html(jsonContent.processor);
     $('#show-product-ram').html(jsonContent.ram);

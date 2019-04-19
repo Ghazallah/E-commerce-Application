@@ -1,7 +1,9 @@
 (function ($) {
+    // USE STRICT
     "use strict";
 
-    /*[ Slick1 ]*/
+    /*==================================================================
+    [ Slick1 ]*/
     $('.wrap-slick1').each(function () {
         var wrapSlick1 = $(this);
         var slick1 = $(this).find('.slick1');
@@ -83,7 +85,8 @@
 
     });
 
-    /*[ Slick2 ]*/
+    /*==================================================================
+    [ Slick2 ]*/
     $('.wrap-slick2').each(function () {
         $(this).find('.slick2').slick({
             slidesToShow: 4,
@@ -134,8 +137,9 @@
         $(nameTab).find('.slick2').slick('reinit');
     });
 
-    /*[ Slick3 ]*/
-    $('.wrap-slick3').each(function () {
+    /*==================================================================
+    [ Slick3 ]*/
+    /*$('.wrap-slick3').each(function () {
         $(this).find('.slick3').slick({
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -157,7 +161,7 @@
                 return '<img src=" ' + portrait + ' "/><div class="slick3-dot-overlay"></div>';
             }
         });
-    });
+    });*/
 
 
 })(jQuery);
