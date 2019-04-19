@@ -120,97 +120,161 @@
                         <li class="breadcrumb-item active">Orders History</li>
                     </ol>
 
+                    <div class="row col-sm-12">
+                        <form style="width: 100%;" method="Get" action="ProductSearch">
+                            <div class="form-group" style="width: 100%">
+                                <!--why required not working-->
+                                <text style="font-size: 20px;">Search : </text><br/>
+                                <input type="text" class="form-input" name="productSearchTxt" id="searchTxt"  value="${searchTxtValue}" placeholder="enter product name to search"/><br>
+                                <input type="hidden" class="form-input" name="currentPage" id="currentPage" value="1"/>
+                                <input type="hidden" class="form-input" name="recordsPerPage" id="recordsPerPage" value="10" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="Search"/>
+                            </div>
+                        </form>
+                    </div>
+
                     <!-- DataTables Example -->
                     <div class="card mb-3">
                         <div class="card-header">
                             <i class="fas fa-table"></i>
-                            All Users</div>
+                            All Products</div>
                         <div class="card-body">
                             <div class="table-responsive">
-
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                                <div class="row col-md-12">
+                                    <table class="table table-striped table-bordered table-sm" >
                                         <tr>
-                                            <th>User Name</th>
-                                            <th>Address</th>
-                                            <th>Email</th>
-                                            <th>Gender</th>
-                                            <th>Birth Day</th>
-                                            <th>Phone</th>
-                                            <th>User Credit</th>
-                                            <th>User Wallet</th>
-                                            <th>User Image</th>
-
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Discount</th>
+                                            <th>Product Color</th>
+                                            <th>Product Quantity</th>
+                                            <th>Brand Name</th>
                                         </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>User Name</th>
-                                            <th>Address</th>
-                                            <th>Email</th>
-                                            <th>Gender</th>
-                                            <th>Birth Day</th>
-                                            <th>Phone</th>
-                                            <th>User Credit</th>
-                                            <th>User Wallet</th>
-                                            <th>User Image</th>
 
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <c:forEach items="${sessionScope.userList}" var="current">
+                                        <c:forEach items="${orderPagination}" var="current">
                                             <tr>
-                                                <td><c:out value="${current.name}" /></td>
-                                                <td><c:out value="${current.address}" /></td>
-                                                <td><c:out value="${current.email}" /></td>
-                                                <td><c:out value="${current.gender}" /></td>
-                                                <td><c:out value="${current.birthday}" /></td>
-                                                <td><c:out value="${current.phone}" /></td>
-                                                <td><c:out value="${current.userCredit.creditcard}" /></td>
-                                                <td><c:out value="${current.userCredit.wallet}" /></td>
-                                                <td><img src="${current.picture}" width="100px" height="100px" alt="user image" /></td>
-
+                                                <td>${current.name}</td>
+                                                <td>${current.price}</td>
+                                                <td>${current.discount}</td>    
+                                                <td>${current.productColor}</td>    
+                                                <td>${current.quantity}</td>    
+                                                <td>${current.brand.name}</td>    
                                             </tr>
                                         </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                    </div>
-                    
-                    
-                    
-<!--                    
-                     we will Delete That 
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-bar"></i>
-                                    Bar Chart Example</div>
-                                <div class="card-body">
-                                    <canvas id="myBarChart" width="100%" height="50"></canvas>
+                                    </table>
                                 </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-pie"></i>
-                                    Pie Chart Example</div>
-                                <div class="card-body">
-                                    <canvas id="myPieChart" width="100%" height="100"></canvas>
-                                </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                <c:if test="${displayProducts == 'displayAllProducts'}">
+                                    <div class="row col-md-12">
+                                        <nav aria-label="Navigation for countries">
+                                            <ul class="pagination">
+                                                <c:if test="${currentPage != 1}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                                    </li>
+                                                </c:if>
+
+                                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                    <c:choose>
+                                                        <c:when test="${currentPage eq i}">
+                                                            <li class="page-item active"><a class="page-link">
+                                                                    ${i} <span class="sr-only">(current)</span></a>
+                                                            </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <li class="page-item"><a class="page-link" 
+                                                                                     href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                            </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+
+                                                <c:if test="${currentPage lt noOfPages}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                                    </li>
+                                                </c:if>              
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </c:if>
+
+
+
+
+                                <c:if test="${displayProducts == 'displaySearchProduct'}">
+                                    <div class="row col-md-12">
+                                        <nav aria-label="Navigation for countries">
+                                            <ul class="pagination">
+                                                <c:if test="${currentPage != 1}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="ProductSearch?productSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                                    </li>
+                                                </c:if>
+
+                                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                    <c:choose>
+                                                        <c:when test="${currentPage eq i}">
+                                                            <li class="page-item active"><a class="page-link">
+                                                                    ${i} <span class="sr-only">(current)</span></a>
+                                                            </li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <li class="page-item"><a class="page-link" 
+                                                                                     href="ProductSearch?productSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                            </li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+
+                                                <c:if test="${currentPage lt noOfPages}">
+                                                    <li class="page-item"><a class="page-link" 
+                                                                             href="ProductSearch?productSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                                    </li>
+                                                </c:if>              
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+                                </c:if>
+
                             </div>
                         </div>
                     </div>
 
-                    <p class="small text-center text-muted my-5">
-                        <em>More chart examples coming soon...</em>
-                    </p>-->
+
+
+                    <!--                    
+                                         we will Delete That 
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <div class="card mb-3">
+                                                    <div class="card-header">
+                                                        <i class="fas fa-chart-bar"></i>
+                                                        Bar Chart Example</div>
+                                                    <div class="card-body">
+                                                        <canvas id="myBarChart" width="100%" height="50"></canvas>
+                                                    </div>
+                                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="card mb-3">
+                                                    <div class="card-header">
+                                                        <i class="fas fa-chart-pie"></i>
+                                                        Pie Chart Example</div>
+                                                    <div class="card-body">
+                                                        <canvas id="myPieChart" width="100%" height="100"></canvas>
+                                                    </div>
+                                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <p class="small text-center text-muted my-5">
+                                            <em>More chart examples coming soon...</em>
+                                        </p>-->
 
                 </div>
                 <!-- /.container-fluid -->
