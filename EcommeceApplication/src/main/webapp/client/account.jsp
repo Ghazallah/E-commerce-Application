@@ -121,7 +121,7 @@
                                             <label class="form-control-label">Credit card</label>
                                             <div class="input-group input-group-merge">
                                                 <div class="input-group-prepend"> <span class="input-group-text"><i class="fa fa-credit-card"></i></span> </div>
-                                                <input value="${sessionScope.user.userCredit.creditcard}" 
+                                                <input value="${sessionScope.user.userCredit.creditcard}" pattern="^(\d{4}[- ]){3}\d{4}|\d{16}$" 
                                                        name="creditcardnumber" id="creditcardnumber" type="tel" class="form-control" data-mask="0000 0000 0000 0000" placeholder="No linked card" autocomplete="off" maxlength="19">
 
                                             </div>

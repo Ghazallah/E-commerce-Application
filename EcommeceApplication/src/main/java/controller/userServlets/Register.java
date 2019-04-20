@@ -77,10 +77,10 @@ public class Register extends HttpServlet {
                 if (!item.isFormField()) {
                     try {
 
-                      //  new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
+                        new File(request.getServletContext().getRealPath("") + "/client/images/users_image").mkdirs();
                         String extention = FilenameUtils.getExtension(item.getName());
                         if (extention != "") {
-                            File targetFile = new File("/home/ghazallah/Desktop/images/user/" + newUser.getPhone() + "." + extention);
+                            File targetFile = new File(request.getServletContext().getRealPath("") + "/client/images/users_image/" + newUser.getPhone() + "." + extention);
                             newUser.setPicture(newUser.getPhone() + "." + extention);
                             item.write(targetFile);
                         } else {
