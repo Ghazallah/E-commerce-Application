@@ -70,7 +70,7 @@
                                                 <label for="upload-photo" class="px-2 py-2 pos-absolute bg-silver fs-20 card" style="left: 72%;"><i class="ti-camera"></i></label>
                                 
                                                 <input type="file" name="photo" id="upload-photo" />
-                                                <img id="profile-img-tag" src="../users_image/${sessionScope.user.picture}" type="file" width="50%" height="50%" class="pb-2">
+                                                <img id="profile-img-tag" src="images/users_image/${sessionScope.user.picture}" type="file" width="50%" height="50%" class="pb-2">
                                             </div>
                                             <h6 class="h3">Update account</h6>
                                             <p class="text-muted mb-0">Please change the info you want to update</p>
