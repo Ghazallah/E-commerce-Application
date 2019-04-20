@@ -41,6 +41,7 @@ public class User  implements java.io.Serializable {
      private String picture;
      private String password;
      private Integer role;
+     private Date registerationDate;
      private Set<Cart> carts = new HashSet<>(0);
      private UserCredit userCredit;
      private Set<Product> products = new HashSet<>(0);
@@ -95,6 +96,15 @@ public class User  implements java.io.Serializable {
     
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column(name="register_date")
+    public Date getRegisterationDate() {
+        return registerationDate;
+    }
+
+    public void setRegisterationDate(Date registerationDate) {
+        this.registerationDate = registerationDate;
     }
 
     

@@ -7,6 +7,7 @@ package controller.userServlets;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,10 +77,10 @@ public class Register extends HttpServlet {
                 if (!item.isFormField()) {
                     try {
 
-                      //  new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
+                        new File(request.getServletContext().getRealPath("") + "/client/images/users_image").mkdirs();
                         String extention = FilenameUtils.getExtension(item.getName());
                         if (extention != "") {
-                            File targetFile = new File("/home/ghazallah/Desktop/images/user/" + newUser.getPhone() + "." + extention);
+                            File targetFile = new File(request.getServletContext().getRealPath("") + "/client/images/users_image/" + newUser.getPhone() + "." + extention);
                             newUser.setPicture(newUser.getPhone() + "." + extention);
                             item.write(targetFile);
                         } else {
@@ -95,6 +96,7 @@ public class Register extends HttpServlet {
 
             UserServices service = new UserServices();
             newUser.setRole(0);
+            newUser.setRegisterationDate(new Date());
             service.createUser(newUser);
         } catch (FileUploadException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);

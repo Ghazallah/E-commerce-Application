@@ -106,7 +106,7 @@ public class UserDAOImpl implements UserDAO {
         // we need to add date column in database for user table
         int userCount = 0;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query query = session.createQuery("select la from User la where la.date > :date");
+            Query query = session.createQuery("select la from User la where la.registerationDate > :date");
             query.setParameter("date", new Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000));
             userCount = query.list().size();
         } catch (HibernateException ex) {

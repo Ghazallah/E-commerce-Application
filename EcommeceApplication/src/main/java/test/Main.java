@@ -49,7 +49,7 @@ public class Main {
     public static void main(String[] args) throws UniqueExceptionEmplementation {
 
     //   method();
-    method2();
+    method();
         
     }
 
@@ -76,16 +76,16 @@ public class Main {
 //        user.setPassword("123");
 //        user.setPhone("01000");
 //
-//        UserDAO userDAO = new UserDAOImpl();
-//        userDAO.create(user);
+        UserDAO userDAO = new UserDAOImpl();
+        userDAO.create(user);
 
-         UserDAO userDAO = new UserDAOImpl();
-         CartDAO cartDAO   =new CartDAOImpl();
-         CartId  id = new CartId(2, 2);
-         
-         Cart cart = new Cart  ();
-         cart.setId(id);
-         cartDAO.create(cart);
+//         UserDAO userDAO = new UserDAOImpl();
+//         CartDAO cartDAO   =new CartDAOImpl();
+//         CartId  id = new CartId(2, 2);
+//         
+//         Cart cart = new Cart  ();
+//         cart.setId(id);
+//         cartDAO.create(cart);
         
 
     }

@@ -28,7 +28,7 @@ div.dataTables_wrapper div.dataTables_length label {
 div.dataTables_wrapper div.dataTables_length select {
     width: auto;
     /*Start modification here*/
-    display: none;
+    display: inline-block;
     /*End modification here*/
 }
 div.dataTables_wrapper div.dataTables_filter {
@@ -53,7 +53,7 @@ div.dataTables_wrapper div.dataTables_info {
 }
 div.dataTables_wrapper div.dataTables_paginate {
     /* start modifying pagenation here*/
-    display: none;
+    /*display: none;*/
     /* end modifying pagenation here*/
     margin: 0;
     white-space: nowrap;

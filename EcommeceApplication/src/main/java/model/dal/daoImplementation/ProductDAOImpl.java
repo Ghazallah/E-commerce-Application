@@ -6,6 +6,7 @@
 package model.dal.daoImplementation;
 
 import exceptions.UniqueExceptionEmplementation;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -171,5 +172,20 @@ public class ProductDAOImpl implements ProductDAO {
         criteria.setMaxResults(recordsPerPage);
         products = criteria.list();
         return products;
+    }
+    
+    @Override
+    public int getNewProducts() {
+        // we need to add date column in database for user table
+        int productCount = 0;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("select la from Product la where la.date > :date");
+            query.setParameter("date", new Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000));
+            productCount = query.list().size();
+        } catch (HibernateException ex) {
+            //exceptions in server 
+            ex.printStackTrace();
+        }
+        return productCount;
     }
 }

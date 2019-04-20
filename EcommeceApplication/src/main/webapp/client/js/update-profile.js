@@ -16,14 +16,14 @@ function readURL(input) {
 }
 // A $( document ).ready() block.
 $(document).ready(function () {
-    
-    
+
+
 
     $("#email").blur(function () {
         email = $("#email").val();
         // check if the user is registered 
         $.post("../validation", {email: email}, function (data) {
-            
+
             if (data === "true") {
 
                 $("#submit-button").attr("disabled", false);
@@ -40,13 +40,13 @@ $(document).ready(function () {
 
     // make sure the user agrees on terms and conditions and privacy policy
     $('#updateSubmit').submit(function () {
-        
+
         // confirm the password the user entered
         if ($('#new-password').val() !== $('#input-password-confirm').val()) {
             swal("please make sure that you entered a right password confirmation");
             return false;
         }
-        
+
     });
     $("#upload-photo").change(function () {
         readURL(this);

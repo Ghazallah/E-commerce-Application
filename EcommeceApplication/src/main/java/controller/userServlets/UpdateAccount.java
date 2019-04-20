@@ -106,11 +106,13 @@ public class UpdateAccount extends HttpServlet {
                 if (!item.isFormField()) {
                     try {
 
-//                        new File(request.getServletContext().getRealPath("") + "users_image").mkdirs();
+                        new File(request.getServletContext().getRealPath("") + "/client/images/users_image").mkdirs();
                         String extention = FilenameUtils.getExtension(item.getName());
                         if (extention != "") {
-                            File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + user.getPhone() + "." + extention);
+                            File targetFile = new File(request.getServletContext().getRealPath("") + "/client/images/users_image/" + user.getPhone() + "." + extention);
                             user.setPicture(user.getPhone() + "." + extention);
+                            if (targetFile.exists())
+                                targetFile.delete();
                             item.write(targetFile);
                         } else {
                             user.setPicture(user.getGender());

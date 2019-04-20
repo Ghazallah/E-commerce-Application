@@ -164,7 +164,6 @@
                                                 <td>${current.productColor}</td>    
                                                 <td>${current.quantity}</td>    
                                                 <td>${current.brand.name}</td>    
-
                                             </tr>
                                         </c:forEach>
                                     </table>
