@@ -14,6 +14,7 @@ public class OrderProductDTO {
     int quantity;
     int availableQuantity;
     boolean available;
+    boolean sufficient;
 
     public OrderProductDTO() {
     }
@@ -49,6 +50,15 @@ public class OrderProductDTO {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+
+    public boolean isSufficient() {
+        return sufficient;
+    }
+
+    public void setSufficient(boolean sufficient) {
+        this.sufficient = sufficient;
+    }
+    
     
     
     

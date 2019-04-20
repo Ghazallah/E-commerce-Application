@@ -15,8 +15,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.dto.OrderProductDTO;
 import model.dto.ProductDTO;
+import model.entity.User;
 import services.OrderServices;
 
 /**
@@ -32,9 +34,11 @@ public class ValidateOrder extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         String orderProducts = (String) request.getAttribute("validateOrder");
+        HttpSession session =  request.getSession(false);
+        User user = (User) session.getAttribute("user");
         Gson gson = new Gson();
         List<OrderProductDTO> orderList = (List<OrderProductDTO>)gson.fromJson(orderProducts, OrderProductDTO.class);
-        orderList = orderServices.validateOrderQuantity(orderList);
+        orderList = orderServices.validateOrderQuantity(orderList,user);
         String responseContent = gson.toJson (orderList);
         out.println (responseContent);
     }
