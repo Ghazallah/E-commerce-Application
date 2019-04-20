@@ -62,8 +62,8 @@ public class CreateProduct extends HttpServlet {
         Set<ProductDetails> productDetailsSet = new HashSet<>();
         Gson gson = new Gson();
         int brandId = 0;
-        String productName="";
-        String productColor="";
+        String productName = "";
+        String productColor = "";
         ProductServices productServices = new ProductServices();
         HttpSession session = request.getSession(false);
         if (action.equals("addProduct")) {
@@ -90,7 +90,7 @@ public class CreateProduct extends HttpServlet {
                                 brandId = Integer.parseInt(value);
                                 break;
                             case "productName":
-                                productName =  value;
+                                productName = value;
                                 product.setName(productName);
                                 break;
                             case "productPrice":
@@ -141,17 +141,16 @@ public class CreateProduct extends HttpServlet {
                         productDetails = new ProductDetails();
 
                         // File targetFile = new File(request.getServletContext().getRealPath("") + "users_image/" + randomUUIDString + "." + extention);
-                        System.out.println("==============da="+this.getClass().getClassLoader().getResource(""));
-                       // new File("../client/images/products/"+brand.getCategory().getName() + "/" + brand.getName() + "/" +productName+ "/"+productColor+"/").mkdir();
-                         File targetFile = new File("../../client/images/products/"+brand.getCategory().getName() + "/" + brand.getName() + "/" +productName+ "/"+productColor+"/"+randomUUIDString + "." + extention);
-                        //get relative path for images to set every image in same place 
-                        
-//                        File targetFile = new File("D:\\images\\" + randomUUIDString + "." + extention);
-                        productDetails.setProductImage(brand.getCategory().getName() + "/" + brand.getName() + "/" +productName+ "/"+productColor+"/"+randomUUIDString + "." + extention);
+                        System.out.println("==============da=" + this.getClass().getClassLoader().getResource(""));
+                        System.out.println(request.getServletContext().getRealPath(""));
+                        new File(request.getServletContext().getRealPath("") + "/client/images/products/" + brand.getCategory().getName() + "/" + brand.getName() + "/" + productName + "/" + productColor + "/").mkdirs();
+                        File targetFile = new File(request.getServletContext().getRealPath("") + "/client/images/products/" + brand.getCategory().getName() + "/" + brand.getName() + "/" + productName + "/" + productColor + "/" + randomUUIDString + "." + extention);
+                        productDetails.setProductImage(brand.getCategory().getName() + "/" + brand.getName() + "/" + productName + "/" + productColor + "/" + randomUUIDString + "." + extention);
                         item.write(targetFile);
                         productDetailsSet.add(productDetails);
                     }
                 }
+                
 
                 System.out.println(new Date());
                 product.setDate(new Date());
@@ -293,7 +292,7 @@ public class CreateProduct extends HttpServlet {
                     }
                 }
             } catch (FileUploadException ex) {
-                request.setAttribute("operation", "oops error during save data please try again later");               
+                request.setAttribute("operation", "oops error during save data please try again later");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("update-product.jsp");
                 dispatcher.forward(request, response);
             }
@@ -307,7 +306,7 @@ public class CreateProduct extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String action = request.getParameter("action");
-        
+
         if (action.equals("displayProduct")) {
 
             int currentPage = Integer.valueOf(request.getParameter("currentPage"));
