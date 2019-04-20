@@ -10,21 +10,29 @@ package model.dto;
  * @author ghazallah
  */
 public class OrderProductDTO {
-    int prdouctId;
+
+    int pid;
+    int available;
     int quantity;
-    int availableQuantity;
-    boolean available;
-    boolean sufficient;
+    boolean valid;
 
     public OrderProductDTO() {
     }
 
-    public int getPrdouctId() {
-        return prdouctId;
+    public int getPid() {
+        return pid;
     }
 
-    public void setPrdouctId(int prdouctId) {
-        this.prdouctId = prdouctId;
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
+    public int getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
     }
 
     public int getQuantity() {
@@ -35,31 +43,17 @@ public class OrderProductDTO {
         this.quantity = quantity;
     }
 
-    public int getAvailableQuantity() {
-        return availableQuantity;
+    public boolean isValid() {
+        return valid;
     }
 
-    public void setAvailableQuantity(int availableQuantity) {
-        this.availableQuantity = availableQuantity;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
-    public boolean isSufficient() {
-        return sufficient;
-    }
-
-    public void setSufficient(boolean sufficient) {
-        this.sufficient = sufficient;
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
     
     
+
     
     
+
 }

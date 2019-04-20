@@ -49,7 +49,7 @@ function getRequestedOrderState(jsonContent, cartProducts)
         url: 'validateProduct',
         data: {"order" : JSON.stringify(jsonContent)},
         dataType: 'json',
-        contentType: "application/json; charset=utf-8",
+        contentType:  "application/x-www-form-urlencoded",
         traditional: true,
         success: function (data) {
 
