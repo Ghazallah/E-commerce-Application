@@ -32,19 +32,16 @@ public class ValidateOrder extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        OrderServices orderServices = new OrderServices();
+        //OrderServices orderServices = new OrderServices();
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         String orderStr = (String) request.getParameter("order");
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
-        System.out.println(orderStr);
         Gson gson = new Gson();
         OrderValidationDTO validationList = gson.fromJson(orderStr, OrderValidationDTO.class);
-        System.out.println(validationList);
         orderServices.validateOrderQuantity(validationList, user);
         String responseContent = gson.toJson(validationList);
-        System.out.println(responseContent);
         out.println(responseContent);
     }
 
