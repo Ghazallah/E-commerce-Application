@@ -87,13 +87,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-control-label">First name</label>
-                                    <input class="form-control" type="text" placeholder="Enter your first name" name="fname">
+                                    <input id="cart-fname" class="form-control" type="text" placeholder="Enter your first name" name="fname">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Last name</label>
-                                    <input class="form-control" type="text" placeholder="Also your last name" name="lname">
+                                    <input id="cart-lname" class="form-control" type="text" placeholder="Also your last name" name="lname">
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label">Address</label>
-                                    <input class="form-control" type="text" placeholder="Address" name="address">
+                                    <input id="cart-address" class="form-control" type="text" placeholder="Address" name="address">
                                 </div>
                             </div>
                         </div>
@@ -129,13 +129,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Postal code</label>
-                                            <input name="postcode" class="form-control" type="tel" placeholder="five digits postal code">
+                                            <input id="cart-postalcode" name="postcode" class="form-control" type="tel" placeholder="five digits postal code">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Phone</label>
-                                            <input type="tel" name="phone" class="form-control" type="text" placeholder="01XXXXXXXXX">
+                                            <input id="cart-phone"  name="phone" class="form-control" type="number" placeholder="01XXXXXXXXX">
                                         </div>
                                     </div>
                                 </div>
