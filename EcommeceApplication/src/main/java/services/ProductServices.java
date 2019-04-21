@@ -86,6 +86,60 @@ public class ProductServices {
         return productDTOs;
     }
 
+    /*
+    azza
+     */
+    public List<ProductDTO> getResultsProducts(String input) {
+        //Get all products from dataStore        
+        List<Product> products = productDAO.search(input);
+        //Create dtos for those entity records 
+        List<ProductDTO> productDTOs = new ArrayList<>();
+
+        //Wrapping entities into dtos
+        for (Product product : products) {
+
+            ProductDTO productDTO = new ProductDTO();
+            productDTO.setPid(product.getPid());
+            productDTO.setName(product.getName());
+            productDTO.setDiscount(product.getDiscount());
+            productDTO.setPrice(product.getPrice());
+            productDTO.setDescription(product.getDescription());
+            productDTO.setProductColor(product.getProductColor());
+            productDTO.setQuantity(product.getQuantity());
+
+            BrandDTO brandDTO = new BrandDTO();
+            brandDTO.setId(product.getBrand().getId());
+            brandDTO.setName(product.getBrand().getName());
+
+            //wrapping categoryDTO into BrandDTO
+            CategoryDTO categoryDTO = new CategoryDTO();
+            categoryDTO.setId(product.getBrand().getCategory().getId());
+            categoryDTO.setName(product.getBrand().getCategory().getName());
+            brandDTO.setCategoryDTO(categoryDTO);
+
+            //1) wrapping brandDto into ProductDTO
+            productDTO.setBrand(brandDTO);
+
+            //2) wrapping set of detailsDto into ProductDTO
+            Set<ProductDetailsDTO> detailsDTO = new HashSet<>();
+
+            for (ProductDetails productDetail : product.getProductDetails()) {
+                ProductDetailsDTO detail = new ProductDetailsDTO();
+                detail.setProductId(productDetail.getProductId());
+                detail.setProductImage(productDetail.getProductImage());
+                detailsDTO.add(detail);
+            }
+
+            productDTO.setDetailsDTOs(detailsDTO);
+
+            //Finally add dto to the list of productDTOs :)
+            productDTOs.add(productDTO);
+        }
+
+        return productDTOs;
+    }
+
+
     /*public List<ProductDetails> getAllProductDetails(){
         return productDetailsDAO.retreiveAllProductDetails();
     }*/
@@ -116,25 +170,26 @@ public class ProductServices {
 //            productDetailsDAO.create(productDetail);
 //        }
     }
-    public void deleteProduct(int productId){
+
+    public void deleteProduct(int productId) {
         Product product = productDAO.retreive(productId);
         productDAO.delete(product);
     }
-    
-    public List<Product> getProductsPagenation(int currentPage,int recordsPerPage){
-        return productDAO.getProductsPagenation(currentPage,recordsPerPage);
+
+    public List<Product> getProductsPagenation(int currentPage, int recordsPerPage) {
+        return productDAO.getProductsPagenation(currentPage, recordsPerPage);
     }
-    
-    public int getNumberOfRows(){
+
+    public int getNumberOfRows() {
         return productDAO.getProductNumberOfRows();
     }
-    
+
     public int getNewProducts() {
         return productDAO.getNewProducts();
     }
-    
-    public Brand getBrand(int brandId){
-        return brandDAO.getBrand(brandId);  
+
+    public Brand getBrand(int brandId) {
+        return brandDAO.getBrand(brandId);
     }
-    
+
 }

@@ -6,6 +6,7 @@
 package model.dal.daoImplementation;
 
 import exceptions.UniqueExceptionEmplementation;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -23,6 +24,7 @@ import model.util.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
@@ -173,7 +175,7 @@ public class ProductDAOImpl implements ProductDAO {
         products = criteria.list();
         return products;
     }
-    
+
     @Override
     public int getNewProducts() {
         // we need to add date column in database for user table
@@ -187,5 +189,22 @@ public class ProductDAOImpl implements ProductDAO {
             ex.printStackTrace();
         }
         return productCount;
+    }
+    /*
+    azza
+    */
+
+    @Override
+    public List<Product> search(String input) {
+        //SessionFactory sessionFactory = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        // session = sessionFactory.openSession();
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Product.class);
+        Criterion rest1 = Restrictions.like("name", input, MatchMode.ANYWHERE);
+        criteria.add(rest1);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        List acountList = criteria.list();
+        return acountList;
     }
 }

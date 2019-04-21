@@ -39,5 +39,9 @@ public interface ProductDAO {
     public List<Product> getProductSearch(int currentPage, int recordsPerPage, String productSearch);
 
     public int getNewProducts();
+    /*
+    azza
+    */
+    public List<Product> search(String inptut);
 
 }
