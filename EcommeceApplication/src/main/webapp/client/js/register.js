@@ -8,7 +8,8 @@ function readURL(input) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#profile-img-tag').attr('src', e.target.result);
+            $('#r-profile-img-tag').attr('src', e.target.result);
+            console.log("register changed");
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -16,19 +17,19 @@ function readURL(input) {
 // A $( document ).ready() block.
 $(document).ready(function () {
 
-    $("#email").blur(function () {
-        email = $("#email").val();
+    $("#r-email").blur(function () {
+        email = $("#r-email").val();
         // check if the user is registered 
         $.post("../validation", {email: email}, function (data) {
             
             if (data === "true") {
 
-                $("#submit-button").attr("disabled", false);
-                $("#email-validation").html("Valid")
+                $("#r-submit-button").attr("disabled", false);
+                $("#r-email-validation").html("Valid")
             } else
             {
-                $("#email-validation").html("Invalid")
-                $("#submit-button").attr("disabled", true);
+                $("#r-email-validation").html("Invalid")
+                $("#r-submit-button").attr("disabled", true);
             }
 
         });
@@ -38,7 +39,7 @@ $(document).ready(function () {
     // make sure the user agrees on terms and conditions and privacy policy
     $('#register').submit(function () {
         // confirm the password the user entered
-        if ($('#password').val() !== $('#input-password-confirm').val()) {
+        if ($('#r-password').val() !== $('#r-input-password-confirm').val()) {
             swal("please make sure that you entered a right password confirmation");
             return false;
         }
@@ -51,7 +52,8 @@ $(document).ready(function () {
             return false;
         }
     });
-    $("#upload-photo").change(function () {
+    $("#r-upload-photo").change(function () {
+        
         readURL(this);
     });
 
