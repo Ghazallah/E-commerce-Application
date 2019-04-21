@@ -146,10 +146,10 @@
                         <table id="usersTable" class="table table-striped table-bordered table-sm" >
                             <tr>
                                 <th>User Name</th>
-                                <th>Address</th>
-                                <th>Email</th>
-                                <th>Gender</th>
-                                <th>Birth Day</th>
+                                <!--<th>Address</th>-->
+                                <!--<th>Email</th>-->
+                                <!--<th>Gender</th>-->
+                                <!--<th>Birth Day</th>-->
                                 <th>Phone</th>
                                 <th>User Credit</th>
                                 <th>User Wallet</th>
@@ -159,10 +159,10 @@
                             <c:forEach items="${usersPagination}" var="current">
                                 <tr data-toggle="modal" data-target="#userModal">
                                     <td>${current.name}</td>
-                                    <td>${current.address}</td>
-                                    <td>${current.email}</td>    
-                                    <td>${current.gender}</td>    
-                                    <td>${current.birthday}</td>    
+                                    <td style="display: none;">${current.address}</td>
+                                    <td style="display: none;">${current.email}</td>    
+                                    <td style="display: none;">${current.gender}</td>    
+                                    <td style="display: none;">${current.birthday}</td>    
                                     <td>${current.phone}</td>    
                                     <td>${current.userCredit.creditcard}</td>    
                                     <td>${current.userCredit.wallet}</td>    
@@ -285,7 +285,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                     </div>
                 </div>
             </div>
