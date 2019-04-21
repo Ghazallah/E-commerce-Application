@@ -109,7 +109,7 @@ public class OrderServices {
         order.setUser(user);
         order.setStreet(orderDTO.getAddress());
         orderDAO.create(order);
-        Order createdOrder = orderDAO.retreiveByDate(date);
+        Order createdOrder = orderDAO.retreiveByDate(date);  //null pointer here
         orderID = createdOrder.getId();
 
         // update product quantities

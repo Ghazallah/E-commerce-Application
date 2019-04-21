@@ -106,21 +106,22 @@ function checkoutOrder() {
     // there are many ways to get this data using jQuery (you can use the class or id also)
     var orderJson = {
         'products': jsonContent.products,
-        'fname': $('#cart-fname'),
-        'lname': $('#cart-lname'),
-        'address': $('#cart-address'),
-        'country': $('#country'),
-        'city': $('#state'),
-        'postalcode': $('#cart-postalcode'),
-        'phone': $('#cart-phone'),
-        'creditcardnumber': $('#creditcardnumber')
+        'fname': $('#cart-fname').val(),
+        'lname': $('#cart-lname').val(),
+        'address': $('#cart-address').val(),
+        'country': $('#country').val(),
+        'city': $('#state').val(),
+        'postalcode': $('#cart-postalcode').val(),
+        'phone': $('#cart-phone').val(),
+        'creditcardnumber': $('#creditcardnumber').val()
     };
-
+    console.log(orderJson);
     // process the form
     $.ajax({
         type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
         url: 'createOrder', // the url where we want to POST
         dataType: 'json',
+        data: {"order": JSON.stringify(orderJson)},
         contentType: "application/x-www-form-urlencoded",
         traditional: true,
         success: function (data) {
