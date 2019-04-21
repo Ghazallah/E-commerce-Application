@@ -99,6 +99,21 @@ function checkoutOrder()
     var cartproducts = $('#cart-products > div');
     var jsonContent = getJSONCurrentCartProduct(cartproducts);
 
+    // get the form data
+    // there are many ways to get this data using jQuery (you can use the class or id also)
+    var formData = {
+        'name'              : $('input[name=name]').val(),
+        'email'             : $('input[name=email]').val(),
+        'superheroAlias'    : $('input[name=superheroAlias]').val()
+    };
 
+    // process the form
+    $.ajax({
+        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        url         : 'process.php', // the url where we want to POST
+        dataType: 'json',
+        contentType:  "application/x-www-form-urlencoded",
+        traditional: true
+    });
     return true;
 }

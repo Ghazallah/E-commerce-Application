@@ -197,6 +197,7 @@ jQuery().ready(function () {
 
     // Binding next button on first step
     $(".open1").click(function () {
+        console.log("Checking quantity ..");
         if (checkQuantity() == true) {
             if (v.form()) {
                 $(".frm").hide("fast");
@@ -204,6 +205,8 @@ jQuery().ready(function () {
                 $("#sf2").show("slow");
                 $(".cart-step2").addClass("cart-form-active");
             }
+        }else{
+            console.log("Not matched conditions");
         }
     });
 
