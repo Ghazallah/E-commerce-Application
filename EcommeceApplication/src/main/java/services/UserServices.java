@@ -121,5 +121,9 @@ public class UserServices {
         return userDAO.getNewUsers();
     }
     
+    public User getUser (String email){
+        return  userDAO.retrieve(email);
+    }
+    
        
 }
