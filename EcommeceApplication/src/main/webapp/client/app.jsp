@@ -307,7 +307,7 @@
                 <div class="row">
                     <div class=" col-lg-12">
                         <div class="row align-items-center mb-4">
-                            <div class="col"><span class="h2 mb-0 text-white d-block">Wishlist</span> <span class="text-white">  </span></div>
+                            <div class="col"><span class="h2 mb-0 text-white d-block">My Wishlist</span> <span class="text-white">  </span></div>
                         </div>
                     </div>
                 </div>

@@ -29,8 +29,15 @@
                                         </div>
                                         <div class="col-7">
                                             <div class="row"><span class="cart-item-name"><c:out value="${cart.product.name}"/></span></div>
-                                            <div class="row mt-2"><span class="cart-item-cost">EGP <c:out value="${cart.product.price}"/></span></div>
-                                            <div class="row mt-1"><span class="cart-item-discount">EGP <c:out value="${cart.product.discount}"/></span></div>
+                                             <c:choose>
+                                                <c:when test="${(cart.product.discount) eq 0}">
+                                                    <div class="row mt-2"><span class="cart-item-cost text-decoration-none">EGP <c:out value="${cart.product.price}"/></span></div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="row mt-2"><span class="cart-item-cost">EGP <c:out value="${cart.product.price}"/></span></div>
+                                                    <div class="row mt-1"><span class="cart-item-discount">EGP <c:out value="${(cart.product.price * cart.product.discount)/100}"/></span></div>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
                                     <div class="row mt-3 d-block">

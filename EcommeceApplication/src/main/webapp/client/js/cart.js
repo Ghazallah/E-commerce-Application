@@ -99,17 +99,23 @@ function removeFromCart(productID) {
 
 function getProductCartItem(productJson) {
 
-    return "  <div class=\"cart-item pt-4\" id=\"cart-product-" + productJson.pid + "\""
+    var element = "  <div class=\"cart-item pt-4\" id=\"cart-product-" + productJson.pid + "\""
             + "   data-id=\"" + productJson.pid + "\" "
             + "   data-available=\"" + productJson.quantity + "\"> "
             + "   <div class=\"row\"> "
             + "   <div class=\"col-5\"> "
             + "   <img src=\"images/products/" + productJson.detailsDTOs[0].productImage + "\"></div>"
             + "   <div class=\"col-7\">"
-            + "   <div class=\"row\"><span class=\"cart-item-name\">" + productJson.name + "</span></div>"
-            + "   <div class=\"row mt-2\"><span class=\"cart-item-cost\">EGP " + productJson.price + "</span></div>"
-            + "   <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + productJson.discount + "</span></div>  </div> </div>"
-            + "   <div class=\"row mt-3 d-block\">"
+            + "   <div class=\"row\"><span class=\"cart-item-name\">" + productJson.name + "</span></div>";
+
+            if (productJson.discount == 0)
+                element +=  " <div class=\"row mt-2\"><span class=\"cart-item-cost text-decoration-none\">EGP " + productJson.price + "</span></div>"
+            else{
+                element +=  " <div class=\"row mt-2\"><span class=\"cart-item-cost\">EGP " + productJson.price + "</span></div>"
+                    + " <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + ((productJson.price * productJson.discount) / 100) + "</span></div>  </div> </div>";
+            }
+
+    element += "   <div class=\"row mt-3 d-block\">"
             + "   <div class=\"m-l-30 float-left\"><button type=\"button\"><i class=\"ti-trash fs-22\" onclick=\"removeFromCart(" + productJson.pid + ")\"></i></button></div>"
             + "   <div class=\"m-l-40 float-left cl2 font-weight-bolder fs-17\">Available : <span class=\"cl3\">" + productJson.quantity + "</span></div>"
             + "   <div class=\"m-r-20 pb-2 float-right\">"
@@ -117,12 +123,15 @@ function getProductCartItem(productJson) {
             + "   <div class=\"btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m\"><i class=\"fs-10 zmdi zmdi-minus\"></i></div>"
             + "   <input id=\"cart-product-quantity-" + productJson.pid + "\" class=\"txt-center num-product\" type=\"number\" name=\"num-product\" value=\"1\" min=\"0\" max=" + productJson.quantity + ">"
             + "   <div class=\"btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m\"><em class=\"fs-10 zmdi zmdi-plus\"></em></div> </div></div></div></div>";
+    return element;
 }
 
-function getProductHeaderCartItem(productJson) {
+function getProductHeaderCartItem(productJson)
+{
     return '<li id="cart-product-header-' + productJson.pid + '" class="header-cart-item flex-w flex-t m-b-12">'
             + '<div class="header-cart-item-img"><img src="images/products/' + productJson.detailsDTOs[0].productImage + '"></div>'
-            + '<div class="header-cart-item-txt p-t-8"><a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"> ' + productJson.name + ' </a> <span class="header-cart-item-info"> ' + productJson.price + '</span></div>'
+            + '<div class="header-cart-item-txt p-t-8"><a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"> '
+            + productJson.name + ' </a> <span class="header-cart-item-info"> ' + productJson.price + '</span></div>'
             + '</li> ';
 }
 
