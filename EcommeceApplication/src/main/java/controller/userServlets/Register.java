@@ -84,7 +84,7 @@ public class Register extends HttpServlet {
                             newUser.setPicture(newUser.getPhone() + "." + extention);
                             item.write(targetFile);
                         } else {
-                            newUser.setPicture(newUser.getGender());
+                            newUser.setPicture(newUser.getGender()+".png");
                         }
 
                     } catch (Exception ex) {
