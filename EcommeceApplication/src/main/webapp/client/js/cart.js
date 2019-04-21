@@ -1,3 +1,5 @@
+var numberOfProductsInCartID = document.getElementById("numberOfProductsInCartID").getAttribute("data-notify");
+alert(numberOfProductsInCartID);
 function addToCart(productID, islogin) {
     event.preventDefault();
 
@@ -41,7 +43,10 @@ function addToCart(productID, islogin) {
                     //render cart ui
                     $('#cart-products').append(getProductCartItem(jsonContent));
                     $('#headerCart').append(getProductHeaderCartItem(jsonContent));
-                    
+                    numberOfProductsInCartID++;
+                    alert(numberOfProductsInCartID);
+                    document.getElementById("numberOfProductsInCartID").setAttribute("data-notify",numberOfProductsInCartID);
+
                     productelement.attr('data-incart', "true");
 
                     iziToast.success({
@@ -77,6 +82,10 @@ function removeFromCart(productID) {
             var productIdentifierHeader = "#cart-product-header-" + productID;
             $(productIdentifier).remove();
             $(productIdentifierHeader).remove();
+            numberOfProductsInCartID--;
+            alert(numberOfProductsInCartID);
+            document.getElementById("numberOfProductsInCartID").setAttribute("data-notify",numberOfProductsInCartID);
+            
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             iziToast.error({
