@@ -5,13 +5,22 @@
  */
 
 
-var table = document.getElementById('dataTable1');
+var table = document.getElementById('usersTable');
 
 for (var i = 1; i < table.rows.length; i++)
 {
     table.rows[i].onclick = function ()
     {
-//        document.getElementById("productProcessor").value = description.processor;
-        
+        document.getElementById("userDetails").innerHTML = '<table>'
+                +'<tr><td><div style="text-align: center"><img src="' + this.cells[8].id + '" style="width: 100px; height: 65px;" alet="user image"/></div></td></tr>'
+                + '<tr><td>User Name :</td><td>' + this.cells[0].innerHTML + '</td></tr>'
+                + '<tr><td>User Phone :</td><td>' + this.cells[5].innerHTML + '</td></tr>'
+                + '<tr><td>User Email :</td><td>' + this.cells[2].innerHTML + '</td></tr>'
+                + '<tr><td>User Gender :</td><td>' + this.cells[3].innerHTML + '</td></tr>'
+                + '<tr><td>Date of Birth:</td><td>' + this.cells[4].innerHTML + '</td></tr>'
+                + '<tr><td>User Address :</td><td>' + this.cells[1].innerHTML + '</td></tr>'
+                + '<tr><td>User Credit :</td><td>' + this.cells[6].innerHTML + '</td></tr>'
+                + '<tr><td>User Wallet :</td><td>' + this.cells[7].innerHTML + '</td></tr>'
+                + '</table>';
     };
 }
