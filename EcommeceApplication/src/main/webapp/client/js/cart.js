@@ -1,5 +1,4 @@
 var numberOfProductsInCartID = document.getElementById("numberOfProductsInCartID").getAttribute("data-notify");
-alert(numberOfProductsInCartID);
 function addToCart(productID, islogin) {
     event.preventDefault();
 
@@ -44,7 +43,6 @@ function addToCart(productID, islogin) {
                     $('#cart-products').append(getProductCartItem(jsonContent));
                     $('#headerCart').append(getProductHeaderCartItem(jsonContent));
                     numberOfProductsInCartID++;
-                    alert(numberOfProductsInCartID);
                     document.getElementById("numberOfProductsInCartID").setAttribute("data-notify",numberOfProductsInCartID);
 
                     productelement.attr('data-incart', "true");
@@ -83,7 +81,6 @@ function removeFromCart(productID) {
             $(productIdentifier).remove();
             $(productIdentifierHeader).remove();
             numberOfProductsInCartID--;
-            alert(numberOfProductsInCartID);
             document.getElementById("numberOfProductsInCartID").setAttribute("data-notify",numberOfProductsInCartID);
             
         },
