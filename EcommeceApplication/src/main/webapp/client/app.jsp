@@ -95,7 +95,7 @@
 
                     <!--HERE SIZE OF CART-->
                     <div class="icon-header-item cl1 hov-cl1 trans-04 p-r-6"><i class="acount-icon nav-sprite"></i></div>
-                    <div class="icon-header-item cl1 hov-cl1 trans-04 p-r-11 p-l-10 cart-icon icon-cart-noti  js-show-cart" data-notify="${fn:length(sessionScope.user.carts)}"><i class="shopping-cart-icon nav-sprite"></i></div>
+                    <div class="icon-header-item cl1 hov-cl1 trans-04 p-r-11 p-l-10 cart-icon icon-cart-noti  js-show-cart" id="numberOfProductsInCartID" data-notify="${fn:length(sessionScope.user.carts)}"><i class="shopping-cart-icon nav-sprite"></i></div>
                 </div>
             </div>
 
