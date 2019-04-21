@@ -88,6 +88,16 @@ function getRequestedOrderState(jsonContent, cartProducts)
                     break;
                 }
             }
+        },
+        error: function (data) {
+            iziToast.error({
+                title: 'Info : ',
+                position: 'topCenter',
+                progressBar: false,
+                timeout: '3000',
+                transitionIn: 'bounceInDown',
+                message: 'Check your wallet first !'
+            });
         }
     });
 
