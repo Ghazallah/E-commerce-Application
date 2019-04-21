@@ -193,11 +193,11 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">RAM (GB)</th>
-                                            <td><input type="number" id="productRam" name="productRam" value="1" min="1" step="1"/></td>
+                                            <td><input type="text" id="productRam" name="productRam" value="1" min="1" step="1"/></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Storage (GB)</th>
-                                            <td><input type="number" id="productStorage" name="productStorage" value="16" min="1" step="1"/></td>
+                                            <td><input type="text" id="productStorage" name="productStorage" value="16" min="1" step="1"/></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Operating system</th>
