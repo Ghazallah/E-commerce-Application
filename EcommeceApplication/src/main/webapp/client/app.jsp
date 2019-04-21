@@ -434,8 +434,10 @@
     <!-- ------------------------------------------------ -->
 
     <!-- Account Page -->
-    <section id="accountpage">
-
+    <section id="accountpage" class="active-menu tab-pane fade active">
+        <main class="p-b-100">
+            <%@ include file="account.jsp" %>
+        </main>
     </section>
 
     <!-- ------------------------------------------------ -->
@@ -481,6 +483,7 @@
 <script src="js/util.js"></script>
 <script src="js/modals.js"></script>
 <script src="js/main.js"></script>
+<script src="js/update-profile.js"></script>
 <script src="js/order.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/wishlist.js"></script>

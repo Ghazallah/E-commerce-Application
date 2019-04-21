@@ -20,7 +20,7 @@
         <div class="flex direction-column align-center justify-center"> <span class="ti-shopping-cart-full"></span> <span class="footer-text">Shopping Cart</span> </div>
       </div>
     </a> </li>
-    <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#home">
+    <li class="nav-item"> <a class="nav-link" data-toggle="pill" href="#accountpage">
       <div id="footer-account" class="footer-item">
         <div class="flex direction-column align-center justify-center"> <span class="ti-user"></span> <span class="footer-text">Account</span> </div>
       </div>
