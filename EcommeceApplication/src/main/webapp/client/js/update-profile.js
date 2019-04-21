@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 
-function readURL(input) {
+function readURLupdate(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
             $('#profile-img-tag').attr('src', e.target.result);
+            
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -49,7 +50,7 @@ $(document).ready(function () {
 
     });
     $("#upload-photo").change(function () {
-        readURL(this);
+        readURLupdate(this);
     });
 
 });

@@ -498,6 +498,7 @@
 <script src="js/modals.js"></script>
 <script src="js/main.js"></script>
 <script src="js/update-profile.js"></script>
+<script src="js/register.js"></script>
 <script src="js/order.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/wishlist.js"></script>
