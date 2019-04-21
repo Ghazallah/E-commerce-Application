@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!doctype html>
 <html lang="en">
@@ -56,14 +56,14 @@
 </head>
 
 <body class="animsition"
-    <c:choose>
-        <c:when test="${sessionScope.user != null}">
-            data-login = "true"
-        </c:when>
-        <c:otherwise>
-            data-login = "false"
-        </c:otherwise>
-    </c:choose>>
+        <c:choose>
+            <c:when test="${sessionScope.user != null}">
+                data-login = "true"
+            </c:when>
+            <c:otherwise>
+                data-login = "false"
+            </c:otherwise>
+        </c:choose>>
 
 <!-- Main Page -->
 <main class="tab-content">
@@ -93,7 +93,7 @@
                         </c:otherwise>
                     </c:choose>
 
-                            <!--HERE SIZE OF CART-->
+                    <!--HERE SIZE OF CART-->
                     <div class="icon-header-item cl1 hov-cl1 trans-04 p-r-6"><i class="acount-icon nav-sprite"></i></div>
                     <div class="icon-header-item cl1 hov-cl1 trans-04 p-r-11 p-l-10 cart-icon icon-cart-noti  js-show-cart" data-notify="${fn:length(sessionScope.user.carts)}"><i class="shopping-cart-icon nav-sprite"></i></div>
                 </div>
@@ -173,7 +173,7 @@
     <!-- ------------------------------------------------ -->
 
     <!-- Category Page -->
-    <section id="categorypage" class="active-menu tab-pane fade active">
+    <section id="categorypage" class="active-menu tab-pane fade">
 
         <!-- Content -->
         <section class="bg0 p-t-23 p-b-140 bg-silver">
@@ -265,7 +265,7 @@
                                     </div>
                                     <!-- Product Quantity -->
                                     <div class="flex-w flex-r-m p-b-10">
-                                        <div class="size-203 flex-c-m respon6"> Quantity </div>
+                                        <div class="size-203 flex-c-m respon6"> Quantity</div>
 
                                         <div class="wrap-num-product flex-w m-r-20 m-tb-10">
                                             <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -301,15 +301,29 @@
 
     <!-- Wishlist Page -->
     <section id="wishlistpage" class="active-menu tab-pane fade">
-        <!-- Include wishlist page -->
-        <%@ include file="wishlist.jsp" %>
+        <header class="header-account-page bg-primary d-flex align-items-end pt-2">
+            <!-- Header container -->
+            <div class="container">
+                <div class="row">
+                    <div class=" col-lg-12">
+                        <div class="row align-items-center mb-4">
+                            <div class="col"><span class="h2 mb-0 text-white d-block">Wishlist</span> <span class="text-white">  </span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="p-b-100">
+            <!-- Include wishlist page -->
+            <%@ include file="wishlist.jsp" %>
+        </main>
     </section>
 
     <!-- ------------------------------------------------ -->
     <!-- ------------------------------------------------ -->
 
     <!-- Cart Page -->
-    <section id="cartpage" class="active-menu tab-pane fade active">
+    <section id="cartpage" class="active-menu tab-pane fade">
         <header class="header-account-page bg-primary d-flex align-items-end pt-2">
             <!-- Header container -->
             <div class="container">
@@ -434,7 +448,7 @@
     <!-- ------------------------------------------------ -->
 
     <!-- Account Page -->
-    <section id="accountpage" class="active-menu tab-pane fade active">
+    <section id="accountpage" class="active-menu tab-pane fade">
         <main class="p-b-100">
             <%@ include file="account.jsp" %>
         </main>

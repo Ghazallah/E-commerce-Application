@@ -55,7 +55,7 @@
 
                 </c:when>
                 <c:otherwise>
-                    <!--<h4> Read cart product from local storage </h4> -->
+                    <h4> please login to see your cart </h4>
                 </c:otherwise>
             </c:choose>
             <br>

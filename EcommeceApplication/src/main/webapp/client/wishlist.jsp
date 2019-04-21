@@ -2,8 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <div id="wishlist-products" class="container">
-    <h4>My Wishlist</h4>
-
+    <br>
     <c:choose>
         <c:when test="${sessionScope.user != null}">
 
