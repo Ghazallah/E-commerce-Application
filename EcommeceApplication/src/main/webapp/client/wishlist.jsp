@@ -9,9 +9,8 @@
 
             <c:choose>
                 <c:when test="${ (fn:length(sessionScope.user.products) ==  0) }">
-                    <h4> You wishlist is empty ! </h4>
+                    <!-- <h4> You wishlist is empty ! </h4> -->
                 </c:when>
-
 
                 <c:otherwise>
                     <c:forEach items="${sessionScope.user.products}" var="product">
@@ -33,10 +32,10 @@
                                 <div class="m-r-20 pb-2 float-right">
                                     <c:choose>
                                         <c:when test="${sessionScope.user != null}">
-                                            <button id="${product.pid}" onclick="addToCart(${product.pid}, false)" type="button" class="btn primary-btn">Add to cart</button>
+                                            <button id="${product.pid}" onclick="addToCart(${product.pid}, true)" type="button" class="btn primary-btn">Add to cart</button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button id="${product.pid}" onclick="addToCart(${product.pid}, true)" type="button" class="btn primary-btn">Add to cart</button>
+                                            <button id="${product.pid}" onclick="addToCart(${product.pid}, false)" type="button" class="btn primary-btn">Add to cart</button>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>

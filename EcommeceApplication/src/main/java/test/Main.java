@@ -6,6 +6,7 @@
 package test;
 
 import exceptions.UniqueExceptionEmplementation;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -77,7 +78,14 @@ public class Main {
 //        user.setPhone("01000");
 //
         UserDAO userDAO = new UserDAOImpl();
-        userDAO.create(user);
+//        userDAO.create(user);
+        
+    ArrayList<User> allUsers = new ArrayList<>();
+    allUsers = (ArrayList<User>) userDAO.getUsersPagenation(1,10);
+        for (int i = 0; i < allUsers.size(); i++) {
+            System.out.println(allUsers.get(i).getEmail());
+        }
+        
 
 //         UserDAO userDAO = new UserDAOImpl();
 //         CartDAO cartDAO   =new CartDAOImpl();

@@ -40,6 +40,10 @@ public class UserController extends HttpServlet {
 
             List<User> usersPagination = countryService.getUsersPagenation(currentPage,recordsPerPage);
 
+//            for (int i = 0; i < usersPagination.size(); i++) {
+//                System.out.println(usersPagination.get(i).getEmail());
+//            }
+            
             request.setAttribute("usersPagination", usersPagination);
 
             int rows = countryService.getNumberOfRows();

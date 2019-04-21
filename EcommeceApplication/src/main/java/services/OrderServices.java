@@ -13,6 +13,7 @@ import model.dal.daoFactory.DAOFactory;
 import model.dal.daoFactory.HibernateDAOFactory;
 import model.dal.daoImplementation.OrderDAOImpl;
 import model.dto.OrderProductDTO;
+import model.dto.OrderValidationDTO;
 import model.entity.Cart;
 import model.entity.Product;
 import model.entity.User;
@@ -48,25 +49,32 @@ public class OrderServices {
 
     }
 
-    public List<OrderProductDTO> validateOrderQuantity(List<OrderProductDTO> productList, User user) {
+    public OrderValidationDTO validateOrderQuantity(OrderValidationDTO validationInput, User user) {
         double totalAmount = 0.0;
         double discount = 0.0;
 
-        for (OrderProductDTO element : productList) {
-            Product product = productDAO.retreive(element.getPrdouctId());
-            if (element.getQuantity() > product.getQuantity()) {
-                element.setAvailable(false);
-                element.setAvailableQuantity(product.getQuantity());
+        for (OrderProductDTO element : validationInput.getOrderProducts()) {
+            Product product = productDAO.retreive(element.getPid());
+            if (element.getAvailable() > product.getQuantity()) {
+                
+                element.setAvailable(product.getQuantity());
+                element.setAvailable(product.getQuantity());
+                element.setValid(false);
+                
             } else {
 
+                element.setValid(true);
                 totalAmount += product.getPrice() * element.getQuantity();
             }
-            if (totalAmount > user.getUserCredit().getWallet()) {
-                element.setSufficient(false);
-            }
+            
+        }
+        if (totalAmount > user.getUserCredit().getWallet()) {
+                validationInput.setSufficient(false);
+            }else {
+            validationInput.setSufficient(true);
         }
 
-        return productList;
+        return validationInput;
     }
 
 

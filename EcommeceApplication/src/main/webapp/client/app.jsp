@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!doctype html>
 <html lang="en">
@@ -92,8 +93,9 @@
                         </c:otherwise>
                     </c:choose>
 
+                            <!--HERE SIZE OF CART-->
                     <div class="icon-header-item cl1 hov-cl1 trans-04 p-r-6"><i class="acount-icon nav-sprite"></i></div>
-                    <div class="icon-header-item cl1 hov-cl1 trans-04 p-r-11 p-l-10 cart-icon icon-cart-noti  js-show-cart" data-notify="2"><i class="shopping-cart-icon nav-sprite"></i></div>
+                    <div class="icon-header-item cl1 hov-cl1 trans-04 p-r-11 p-l-10 cart-icon icon-cart-noti  js-show-cart" data-notify="${fn:length(sessionScope.user.carts)}"><i class="shopping-cart-icon nav-sprite"></i></div>
                 </div>
             </div>
 
@@ -432,8 +434,10 @@
     <!-- ------------------------------------------------ -->
 
     <!-- Account Page -->
-    <section id="accountpage">
-
+    <section id="accountpage" class="active-menu tab-pane fade active">
+        <main class="p-b-100">
+            <%@ include file="account.jsp" %>
+        </main>
     </section>
 
     <!-- ------------------------------------------------ -->
@@ -479,6 +483,8 @@
 <script src="js/util.js"></script>
 <script src="js/modals.js"></script>
 <script src="js/main.js"></script>
+<script src="js/update-profile.js"></script>
+<script src="js/order.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/wishlist.js"></script>
 <script src="js/product.js"></script>
