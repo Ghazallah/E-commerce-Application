@@ -14,7 +14,6 @@ Author     : solo
                                 <div class="mb-5">
                                     <div class="pos-relative">
                                         <label for="upload-photo" class="px-2 py-2 pos-absolute bg-silver fs-20 card" style="left: 72%;"><i class="ti-camera"></i></label>
-
                                         <input type="file" name="photo" id="upload-photo"/>
                                         <img id="profile-img-tag" src="images/users_image/${sessionScope.user.picture}" type="file" width="50%" height="50%" class="pb-2">
                                     </div>

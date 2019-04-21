@@ -117,18 +117,37 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public List<Product> getProductsPagenation(int currentPage, int recordsPerPage) {
-        List<Product> products = null;
 
+        List<Product> productList;
         int start = currentPage * recordsPerPage - recordsPerPage;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Product> query = builder.createQuery(Product.class);
+            Root<Product> root = query.from(Product.class);
+            query.select(root);
+            Query<Product> q = session.createQuery(query);
+            q.setFirstResult(start);
+            q.setMaxResults(recordsPerPage);
+            productList = q.getResultList();
+            session.getTransaction().commit();
+            //session.close();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+        }
+        return productList;
 
-//        try {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Product.class);
-        criteria.setFirstResult(start);
-        criteria.setMaxResults(recordsPerPage);
-        products = criteria.list();
-
-        return products;
+//        List<Product> products = null;
+//
+//        int start = currentPage * recordsPerPage - recordsPerPage;
+//
+////        try {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(Product.class);
+//        criteria.setFirstResult(start);
+//        criteria.setMaxResults(recordsPerPage);
+//        products = criteria.list();
+//
+//        return products;
     }
 
     @Override
@@ -173,7 +192,7 @@ public class ProductDAOImpl implements ProductDAO {
         products = criteria.list();
         return products;
     }
-    
+
     @Override
     public int getNewProducts() {
         // we need to add date column in database for user table

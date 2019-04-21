@@ -145,7 +145,7 @@ public class CreateProduct extends HttpServlet {
                         System.out.println(request.getServletContext().getRealPath(""));
                         new File(request.getServletContext().getRealPath("") + "/client/images/products/" + brand.getCategory().getName() + "/" + brand.getName() + "/" + productName + "/" + productColor + "/").mkdirs();
                         File targetFile = new File(request.getServletContext().getRealPath("") + "/client/images/products/" + brand.getCategory().getName() + "/" + brand.getName() + "/" + productName + "/" + productColor + "/" + randomUUIDString + "." + extention);
-                        productDetails.setProductImage(brand.getCategory().getName() + "/" + brand.getName() + "/" + productName + "/" + productColor + "/" + randomUUIDString + "." + extention);
+                        productDetails.setProductImage(brand.getCategory().getName().toLowerCase() + "/" + brand.getName().toLowerCase() + "/" + productName + "/" + productColor + "/" + randomUUIDString + "." + extention);
                         item.write(targetFile);
                         productDetailsSet.add(productDetails);
                     }

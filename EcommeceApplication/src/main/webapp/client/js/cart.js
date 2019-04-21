@@ -114,7 +114,7 @@ function getProductCartItem(productJson) {
 }
 
 function getProductHeaderCartItem(productJson) {
-    return '<li id="cart-product-header-' + productJson.pid + ' class="header-cart-item flex-w flex-t m-b-12">'
+    return '<li id="cart-product-header-' + productJson.pid + '" class="header-cart-item flex-w flex-t m-b-12">'
             + '<div class="header-cart-item-img"><img src="images/products/' + productJson.detailsDTOs[0].productImage + '"></div>'
             + '<div class="header-cart-item-txt p-t-8"><a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"> ' + productJson.name + ' </a> <span class="header-cart-item-info"> ' + productJson.price + '</span></div>'
             + '</li> ';
