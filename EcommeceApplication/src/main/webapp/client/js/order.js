@@ -15,7 +15,8 @@ function getJSONCurrentCartProduct(cartproducts)
         "products" : []
     };
 
-    for (var i = 0; i < cartproducts.length; i++) {
+    for (var i = 0; i < cartproducts.length; i++)
+    {
         var product = cartproducts[i];
         console.log(product);
 
@@ -73,7 +74,7 @@ function getRequestedOrderState(jsonContent, cartProducts)
                 {
                     accept = false;
                     var productdiv = cartProducts[i];
-                    var productavailable = products[i].pavailable;
+                    var productavailable = products[i].available;
                     productdiv.setAttribute('data-available', productavailable);
 
                     iziToast.error({
@@ -93,7 +94,8 @@ function getRequestedOrderState(jsonContent, cartProducts)
     return accept;
 }
 
-function checkoutOrder() {
+function checkoutOrder()
+{
     var cartproducts = $('#cart-products > div');
     var jsonContent = getJSONCurrentCartProduct(cartproducts);
 

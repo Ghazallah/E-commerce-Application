@@ -9,7 +9,7 @@
 
             <c:choose>
                 <c:when test="${ (fn:length(sessionScope.user.products) ==  0) }">
-                    <h4> You wishlist is empty ! </h4>
+                    <!-- <h4> You wishlist is empty ! </h4> -->
                 </c:when>
 
                 <c:otherwise>
