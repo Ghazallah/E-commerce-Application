@@ -90,13 +90,13 @@ public class UserDAOImpl implements UserDAO {
             Query<User> q = session.createQuery(query);
             userList = q.getResultList();
             session.getTransaction().commit();
-            session.close();
+            //session.close();
             System.out.println("donnnnnnnnnnnnnnnnnne");
         }
-        for (int i = 0; i < userList.size(); i++) {
-            System.out.println(userList.get(i).getAddress());
-            System.out.println(userList.get(i).getName());
-        }
+//        for (int i = 0; i < userList.size(); i++) {
+//            System.out.println(userList.get(i).getAddress());
+//            System.out.println(userList.get(i).getName());
+//        }
 
         return userList;
     }
@@ -127,18 +127,42 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getUsersPagenation(int currentPage, int recordsPerPage) {
-        List<User> users = null;
 
+        List<User> userList;
         int start = currentPage * recordsPerPage - recordsPerPage;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
+            query.select(root);
+            Query<User> q = session.createQuery(query);
+            q.setFirstResult(start);
+            q.setMaxResults(recordsPerPage);
+            userList = q.getResultList();
+            session.getTransaction().commit();
+            //session.close();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+        }
+//        for (int i = 0; i < userList.size(); i++) {
+//            System.out.println(userList.get(i).getAddress());
+//            System.out.println(userList.get(i).getName());
+//        }
 
-//        try {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(User.class);
-        criteria.setFirstResult(start);
-        criteria.setMaxResults(recordsPerPage);
-        users = criteria.list();
+        return userList;
 
-        return users;
+//        List<User> users = null;
+//
+//        int start = currentPage * recordsPerPage - recordsPerPage;
+//
+////        try {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(User.class);
+//        criteria.setFirstResult(start);
+//        criteria.setMaxResults(recordsPerPage);
+//        users = criteria.list();
+//
+//        return users;
     }
 
     @Override
