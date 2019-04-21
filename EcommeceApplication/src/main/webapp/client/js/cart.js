@@ -40,6 +40,8 @@ function addToCart(productID, islogin) {
                 success: function (msg) {
                     //render cart ui
                     $('#cart-products').append(getProductCartItem(jsonContent));
+                    $('#headerCart').append(getProductHeaderCartItem(jsonContent));
+                    
                     productelement.attr('data-incart', "true");
 
                     iziToast.success({
@@ -72,7 +74,9 @@ function removeFromCart(productID) {
             productelement.attr("data-incart", "false");
             //remove from ui list
             var productIdentifier = "#cart-product-" + productID;
+            var productIdentifierHeader = "#cart-product-header-" + productID;
             $(productIdentifier).remove();
+            $(productIdentifierHeader).remove();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             iziToast.error({
@@ -90,25 +94,31 @@ function removeFromCart(productID) {
 function getProductCartItem(productJson) {
 
     return "  <div class=\"cart-item pt-4\" id=\"cart-product-" + productJson.pid + "\""
-        + "   data-id=\"" + productJson.pid + "\" "
-        + "   data-available=\"" + productJson.quantity + "\"> "
-        + "   <div class=\"row\"> "
-        + "   <div class=\"col-5\"> "
-        + "   <img src=\"images/products/" + productJson.detailsDTOs[0].productImage + "\"></div>"
-        + "   <div class=\"col-7\">"
-        + "   <div class=\"row\"><span class=\"cart-item-name\">" + productJson.name + "</span></div>"
-        + "   <div class=\"row mt-2\"><span class=\"cart-item-cost\">EGP " + productJson.price + "</span></div>"
-        + "   <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + productJson.discount + "</span></div>  </div> </div>"
-        + "   <div class=\"row mt-3 d-block\">"
-        + "   <div class=\"m-l-30 float-left\"><button type=\"button\"><i class=\"ti-trash fs-22\" onclick=\"removeFromCart(" + productJson.pid + ")\"></i></button></div>"
-        + "   <div class=\"m-l-40 float-left cl2 font-weight-bolder fs-17\">Available : <span class=\"cl3\">" + productJson.quantity + "</span></div>"
-        + "   <div class=\"m-r-20 pb-2 float-right\">"
-        + "   <div class=\"wrap-num-product flex-w\">"
-        + "   <div class=\"btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m\"><i class=\"fs-10 zmdi zmdi-minus\"></i></div>"
-        + "   <input id=\"cart-product-quantity-" + productJson.pid + "\" class=\"txt-center num-product\" type=\"number\" name=\"num-product\" value=\"1\" min=\"0\" max=" + productJson.quantity + ">"
-        + "   <div class=\"btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m\"><em class=\"fs-10 zmdi zmdi-plus\"></em></div> </div></div></div></div>";
+            + "   data-id=\"" + productJson.pid + "\" "
+            + "   data-available=\"" + productJson.quantity + "\"> "
+            + "   <div class=\"row\"> "
+            + "   <div class=\"col-5\"> "
+            + "   <img src=\"images/products/" + productJson.detailsDTOs[0].productImage + "\"></div>"
+            + "   <div class=\"col-7\">"
+            + "   <div class=\"row\"><span class=\"cart-item-name\">" + productJson.name + "</span></div>"
+            + "   <div class=\"row mt-2\"><span class=\"cart-item-cost\">EGP " + productJson.price + "</span></div>"
+            + "   <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + productJson.discount + "</span></div>  </div> </div>"
+            + "   <div class=\"row mt-3 d-block\">"
+            + "   <div class=\"m-l-30 float-left\"><button type=\"button\"><i class=\"ti-trash fs-22\" onclick=\"removeFromCart(" + productJson.pid + ")\"></i></button></div>"
+            + "   <div class=\"m-l-40 float-left cl2 font-weight-bolder fs-17\">Available : <span class=\"cl3\">" + productJson.quantity + "</span></div>"
+            + "   <div class=\"m-r-20 pb-2 float-right\">"
+            + "   <div class=\"wrap-num-product flex-w\">"
+            + "   <div class=\"btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m\"><i class=\"fs-10 zmdi zmdi-minus\"></i></div>"
+            + "   <input id=\"cart-product-quantity-" + productJson.pid + "\" class=\"txt-center num-product\" type=\"number\" name=\"num-product\" value=\"1\" min=\"0\" max=" + productJson.quantity + ">"
+            + "   <div class=\"btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m\"><em class=\"fs-10 zmdi zmdi-plus\"></em></div> </div></div></div></div>";
 }
 
+function getProductHeaderCartItem(productJson) {
+    return '<li id="cart-product-header-' + productJson.pid + ' class="header-cart-item flex-w flex-t m-b-12">'
+            + '<div class="header-cart-item-img"><img src="images/products/' + productJson.detailsDTOs[0].productImage + '"></div>'
+            + '<div class="header-cart-item-txt p-t-8"><a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"> ' + productJson.name + ' </a> <span class="header-cart-item-info"> ' + productJson.price + '</span></div>'
+            + '</li> ';
+}
 
 //logic of cart form
 jQuery().ready(function () {
@@ -253,7 +263,7 @@ jQuery().ready(function () {
                     var summeryContentAfterUpdate = $(".cart-summary").html();
                     $("#cartform").html(summeryContentAfterUpdate);
                 }, 1000);
-            }else{
+            } else {
                 console.log("order failed !");
             }
 

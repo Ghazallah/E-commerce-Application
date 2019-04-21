@@ -6,7 +6,6 @@
 package controller.orderServlets;
 
 import com.google.gson.Gson;
-import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.dto.OrderProductDTO;
+import model.dto.OrderValidationDTO;
 import model.dto.ProductDTO;
 import model.entity.User;
 import services.OrderServices;
@@ -25,22 +25,27 @@ import services.OrderServices;
  *
  * @author ghazallah
  */
-@WebServlet(value = "/client/validateOrder")
+@WebServlet(value = "/client/validateProduct")
 public class ValidateOrder extends HttpServlet {
-    private OrderServices orderServices= new OrderServices();
+
+    private OrderServices orderServices = new OrderServices();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderServices orderServices = new OrderServices();
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
-        String orderProducts = (String) request.getAttribute("validateOrder");
-        HttpSession session =  request.getSession(false);
+        String orderStr = (String) request.getParameter("order");
+        HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
+        System.out.println(orderStr);
         Gson gson = new Gson();
-        List<OrderProductDTO> orderList = (List<OrderProductDTO>)gson.fromJson(orderProducts, OrderProductDTO.class);
-        orderList = orderServices.validateOrderQuantity(orderList,user);
-        String responseContent = gson.toJson (orderList);
-        out.println (responseContent);
+        OrderValidationDTO validationList = gson.fromJson(orderStr, OrderValidationDTO.class);
+        System.out.println(validationList);
+        orderServices.validateOrderQuantity(validationList, user);
+        String responseContent = gson.toJson(validationList);
+        System.out.println(responseContent);
+        out.println(responseContent);
     }
 
 }

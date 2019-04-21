@@ -143,13 +143,13 @@
                     </div>
                     <div class="row col-md-12">
 
-                        <table class="table table-striped table-bordered table-sm" >
+                        <table id="usersTable" class="table table-striped table-bordered table-sm" >
                             <tr>
                                 <th>User Name</th>
-                                <th>Address</th>
-                                <th>Email</th>
-                                <th>Gender</th>
-                                <th>Birth Day</th>
+                                <!--<th>Address</th>-->
+                                <!--<th>Email</th>-->
+                                <!--<th>Gender</th>-->
+                                <!--<th>Birth Day</th>-->
                                 <th>Phone</th>
                                 <th>User Credit</th>
                                 <th>User Wallet</th>
@@ -157,16 +157,16 @@
                             </tr>
 
                             <c:forEach items="${usersPagination}" var="current">
-                                <tr>
+                                <tr data-toggle="modal" data-target="#userModal">
                                     <td>${current.name}</td>
-                                    <td>${current.address}</td>
-                                    <td>${current.email}</td>    
-                                    <td>${current.gender}</td>    
-                                    <td>${current.birthday}</td>    
+                                    <td style="display: none;">${current.address}</td>
+                                    <td style="display: none;">${current.email}</td>    
+                                    <td style="display: none;">${current.gender}</td>    
+                                    <td style="display: none;">${current.birthday}</td>    
                                     <td>${current.phone}</td>    
                                     <td>${current.userCredit.creditcard}</td>    
                                     <td>${current.userCredit.wallet}</td>    
-                                    <td><img src="${current.picture}" style="width: 65px; height: 65px;" /></td>    
+                                    <td id="${current.picture}"><img src="${current.picture}" style="width: 65px; height: 65px;" /></td>    
                                 </tr>
                             </c:forEach>
                         </table>
@@ -267,6 +267,32 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="userDetails" class="modal-body">
+                        <!-- write details here -->
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -302,6 +328,7 @@
 
         <!-- Demo scripts for this page-->
         <script src="resources/js/demo/datatables-demo.js"></script>
+        <script src="resources/js/displayAllUsers.js"></script>
         <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>-->
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>-->
         <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>-->
