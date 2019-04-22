@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar ecommerce/target/dependency/webapp-runner.jar --port $PORT ecommerce/target/*.war
+web: java $JAVA_OPTS -jar EcommeceApplication/target/dependency/webapp-runner.jar --port $PORT EcommeceApplication/target/*.war
