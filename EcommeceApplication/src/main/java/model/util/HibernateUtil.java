@@ -6,6 +6,7 @@
 package model.util;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Date;
 import model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,6 +50,9 @@ public class HibernateUtil {
             user.setRole(1);
             user.setName("Muhammad");
             user.setPassword("123456");
+            user.setPicture("picture");
+            user.setRegisterationDate(new Date());
+            user.setBirthday(new Date());
             user.setEmail("ghazallah64@ggmail.com");
              try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
