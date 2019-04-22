@@ -5,6 +5,7 @@
  */
 package model.dal.dao;
 
+import java.util.Date;
 import java.util.List;
 import model.entity.Order;
 
@@ -14,7 +15,7 @@ import model.entity.Order;
  */
 public interface OrderDAO {
 
-    public void create(Order order);
+    public int create(Order order);
 
     public List<Order> retreive();
     
@@ -23,4 +24,6 @@ public interface OrderDAO {
     public void update(Order order);
 
     public void delete(Order order);
+    
+    public Order retreiveByDate (Date date);
 }

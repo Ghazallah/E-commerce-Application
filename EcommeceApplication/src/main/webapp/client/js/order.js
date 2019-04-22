@@ -1,6 +1,4 @@
-
-function checkQuantity()
-{
+function checkQuantity() {
     var cartproducts = $('#cart-products > div');
     var jsonContent = getJSONCurrentCartProduct(cartproducts);
 
@@ -8,30 +6,28 @@ function checkQuantity()
     return getRequestedOrderState(jsonContent, cartproducts);
 }
 
-function getJSONCurrentCartProduct(cartproducts)
-{
+function getJSONCurrentCartProduct(cartproducts) {
     var jsonContent = {
-        "sufficient" : false,
-        "products" : []
+        "sufficient": false,
+        "products": []
     };
 
-    for (var i = 0; i < cartproducts.length; i++)
-    {
+    for (var i = 0; i < cartproducts.length; i++) {
         var product = cartproducts[i];
         console.log(product);
 
         var pid = product.getAttribute('data-id');
         var pavailable = product.getAttribute('data-available');
-        var pquanitity = $("#cart-product-quantity-"+pid).val();
+        var pquanitity = $("#cart-product-quantity-" + pid).val();
 
         console.log(pid);
         console.log(pavailable);
         console.log(pquanitity);
         jsonContent.products.push({
-            "pid" : pid,
-            "available" : pavailable,
-            "quantity" : pquanitity,
-            "valid" : false
+            "pid": pid,
+            "available": pavailable,
+            "quantity": pquanitity,
+            "valid": false
         });
     }
 
@@ -40,22 +36,21 @@ function getJSONCurrentCartProduct(cartproducts)
     return jsonContent;
 }
 
-function getRequestedOrderState(jsonContent, cartProducts) 
-{
+function getRequestedOrderState(jsonContent, cartProducts) {
     var accept = true;
     console.log("Checking order state ..");
     //send to servlet to add to user cart
     $.ajax({
         type: 'POST',
         url: 'validateProduct',
-        data: {"order" : JSON.stringify(jsonContent)},
+        data: {"order": JSON.stringify(jsonContent)},
         dataType: 'json',
-        contentType:  "application/x-www-form-urlencoded",
+        contentType: "application/x-www-form-urlencoded",
         traditional: true,
         success: function (data) {
 
             var sufficient = data.sufficient;
-            if (sufficient == false){
+            if (sufficient == false) {
                 accept = false;
                 iziToast.error({
                     title: 'Info : ',
@@ -70,8 +65,7 @@ function getRequestedOrderState(jsonContent, cartProducts)
             var products = data.products;
             for (var i = 0; i < cartProducts.length; i++) {
                 var productvalid = products[i].valid;
-                if (productvalid == false)
-                {
+                if (productvalid == false) {
                     accept = false;
                     var productdiv = cartProducts[i];
                     var productavailable = products[i].available;
@@ -88,32 +82,71 @@ function getRequestedOrderState(jsonContent, cartProducts)
                     break;
                 }
             }
+        },
+        error: function (data) {
+            iziToast.error({
+                title: 'Info : ',
+                position: 'topCenter',
+                progressBar: false,
+                timeout: '3000',
+                transitionIn: 'bounceInDown',
+                message: 'Check your wallet first !'
+            });
         }
     });
 
     return accept;
 }
 
-function checkoutOrder()
-{
+function checkoutOrder() {
     var cartproducts = $('#cart-products > div');
     var jsonContent = getJSONCurrentCartProduct(cartproducts);
 
     // get the form data
     // there are many ways to get this data using jQuery (you can use the class or id also)
-    var formData = {
-        'name'              : $('input[name=name]').val(),
-        'email'             : $('input[name=email]').val(),
-        'superheroAlias'    : $('input[name=superheroAlias]').val()
+    var orderJson = {
+        'products': jsonContent.products,
+        'fname': $('#cart-fname').val(),
+        'lname': $('#cart-lname').val(),
+        'address': $('#cart-address').val(),
+        'country': $('#country').val(),
+        'city': $('#state').val(),
+        'postalcode': $('#cart-postalcode').val(),
+        'phone': $('#cart-phone').val(),
+        'creditcardnumber': $('#creditcardnumber').val()
     };
-
+    console.log(orderJson);
     // process the form
     $.ajax({
-        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        url         : 'process.php', // the url where we want to POST
+        type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        url: 'createOrder', // the url where we want to POST
         dataType: 'json',
-        contentType:  "application/x-www-form-urlencoded",
-        traditional: true
+        data: {"order": JSON.stringify(orderJson)},
+        contentType: "application/x-www-form-urlencoded",
+        traditional: true,
+        success: function (data) {
+            if (data != -1)
+            {
+                iziToast.success({
+                    title: 'Info : ',
+                    position: 'topCenter',
+                    progressBar: false,
+                    timeout: '3000',
+                    transitionIn: 'bounceInDown',
+                    message: 'Your Order is processed succeded, OrderID = '+data+' !'
+                });
+            }else{
+                iziToast.error({
+                    title: 'Info : ',
+                    position: 'topCenter',
+                    progressBar: false,
+                    timeout: '3000',
+                    transitionIn: 'bounceInDown',
+                    message: 'Failed to process your order, Try again later !'
+                });
+            }
+
+        }
     });
     return true;
 }

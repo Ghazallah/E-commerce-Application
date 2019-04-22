@@ -29,8 +29,15 @@
                                         </div>
                                         <div class="col-7">
                                             <div class="row"><span class="cart-item-name"><c:out value="${cart.product.name}"/></span></div>
-                                            <div class="row mt-2"><span class="cart-item-cost">EGP <c:out value="${cart.product.price}"/></span></div>
-                                            <div class="row mt-1"><span class="cart-item-discount">EGP <c:out value="${cart.product.discount}"/></span></div>
+                                             <c:choose>
+                                                <c:when test="${(cart.product.discount) eq 0}">
+                                                    <div class="row mt-2"><span class="cart-item-cost text-decoration-none">EGP <c:out value="${cart.product.price}"/></span></div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="row mt-2"><span class="cart-item-cost">EGP <c:out value="${cart.product.price}"/></span></div>
+                                                    <div class="row mt-1"><span class="cart-item-discount">EGP <c:out value="${(cart.product.price * cart.product.discount)/100}"/></span></div>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
                                     <div class="row mt-3 d-block">
@@ -80,13 +87,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-control-label">First name</label>
-                                    <input class="form-control" type="text" placeholder="Enter your first name" name="fname">
+                                    <input id="cart-fname" class="form-control" type="text" placeholder="Enter your first name" name="fname">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-control-label">Last name</label>
-                                    <input class="form-control" type="text" placeholder="Also your last name" name="lname">
+                                    <input id="cart-lname" class="form-control" type="text" placeholder="Also your last name" name="lname">
                                 </div>
                             </div>
                         </div>
@@ -94,7 +101,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label">Address</label>
-                                    <input class="form-control" type="text" placeholder="Address" name="address">
+                                    <input id="cart-address" class="form-control" type="text" placeholder="Address" name="address">
                                 </div>
                             </div>
                         </div>
@@ -122,13 +129,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Postal code</label>
-                                            <input name="postcode" class="form-control" type="tel" placeholder="five digits postal code">
+                                            <input id="cart-postalcode" name="postcode" class="form-control" type="tel" placeholder="five digits postal code">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Phone</label>
-                                            <input type="tel" name="phone" class="form-control" type="text" placeholder="01XXXXXXXXX">
+                                            <input id="cart-phone"  name="phone" class="form-control" type="number" placeholder="01XXXXXXXXX">
                                         </div>
                                     </div>
                                 </div>
