@@ -74,13 +74,9 @@ public class OrderServices {
         for (OrderProductDTO element : validationInput.getOrderProducts()) {
             Product product = productDAO.retreive(element.getPid());
             if (element.getAvailable() > product.getQuantity()) {
-
-                element.setAvailable(product.getQuantity());
                 element.setAvailable(product.getQuantity());
                 element.setValid(false);
-
             } else {
-
                 element.setValid(true);
                 totalAmount += product.getPrice() * element.getQuantity();
             }

@@ -204,7 +204,10 @@ jQuery().ready(function () {
     // Binding next button on first step
     $(".open1").click(function () {
         console.log("Checking quantity ..");
-        if (checkQuantity() == true) {
+        var isaccept = checkQuantity();
+        console.log("Order state = " + isaccept);
+
+        if (isaccept == true) {
             if (v.form()) {
                 $(".frm").hide("fast");
                 $(".cart-step1").removeClass("cart-form-active");

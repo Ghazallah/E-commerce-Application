@@ -39,6 +39,7 @@ public class ValidateOrder extends HttpServlet {
         OrderValidationDTO validationList = gson.fromJson(orderStr, OrderValidationDTO.class);
         orderServices.validateOrderQuantity(validationList, user);
         String responseContent = gson.toJson(validationList);
+        System.out.println("response : "+""+ responseContent);
         out.println(responseContent);
     }
 

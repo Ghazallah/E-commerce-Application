@@ -37,7 +37,7 @@ function getJSONCurrentCartProduct(cartproducts) {
 }
 
 function getRequestedOrderState(jsonContent, cartProducts) {
-    var accept = true;
+    var accept = false;
     console.log("Checking order state ..");
     //send to servlet to add to user cart
     $.ajax({
@@ -50,6 +50,8 @@ function getRequestedOrderState(jsonContent, cartProducts) {
         success: function (data) {
 
             var sufficient = data.sufficient;
+            console.log("server response to sufficient : " + sufficient);
+
             if (sufficient == false) {
                 accept = false;
                 iziToast.error({
@@ -60,11 +62,14 @@ function getRequestedOrderState(jsonContent, cartProducts) {
                     transitionIn: 'bounceInDown',
                     message: 'Insufficient funds to process this order, check your wallet !'
                 });
-            }
+            } else
+                accept = true;
 
             var products = data.products;
+            console.log(products);
             for (var i = 0; i < cartProducts.length; i++) {
                 var productvalid = products[i].valid;
+                console.log("Product "+i+" : valid = "+productvalid);
                 if (productvalid == false) {
                     accept = false;
                     var productdiv = cartProducts[i];
@@ -77,13 +82,16 @@ function getRequestedOrderState(jsonContent, cartProducts) {
                         progressBar: false,
                         timeout: '3000',
                         transitionIn: 'bounceInDown',
-                        message: 'Product Out-of-stock, Check availability of products !'
+                        message: 'Check availability of products !'
                     });
                     break;
+                } else {
+                    accept = true;
                 }
             }
         },
         error: function (data) {
+            accept = false;
             iziToast.error({
                 title: 'Info : ',
                 position: 'topCenter',
@@ -98,8 +106,7 @@ function getRequestedOrderState(jsonContent, cartProducts) {
     return accept;
 }
 
-function checkoutOrder()
-{
+function checkoutOrder() {
     var accept = true;
     var cartproducts = $('#cart-products > div');
     var jsonContent = getJSONCurrentCartProduct(cartproducts);
