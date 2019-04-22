@@ -35,7 +35,7 @@
                                     <label class="form-control-label">Password</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-key"></i></span> </div>
-                                        <input name="password" id="r-password" type="password" class="form-control" placeholder="********" required>
+                                        <input name="password" id="r-password" type="password" class="form-control" placeholder="********" required autocomplete="off">
                                         <div class="input-group-append"> </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                     <label class="form-control-label">Confirm password</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-key"></i></span> </div>
-                                        <input name="confirm_password"  type="password" class="form-control" id="r-input-password-confirm" placeholder="********" required>
+                                        <input name="confirm_password"  type="password" class="form-control" id="r-input-password-confirm" placeholder="********" required autocomplete="off">
                                     </div>
                                 </div>
 

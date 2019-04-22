@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"> <span class="input-group-text"><i class="ti-key"></i></span> </div>
-                                        <input name ="password" type="password" class="form-control" id="input-password" placeholder="Password">
+                                        <input name ="password" type="password" class="form-control" id="input-password" placeholder="Password" autocomplete="off">
                                         <div class="input-group-append"> </div>
                                     </div>
                                 </div>

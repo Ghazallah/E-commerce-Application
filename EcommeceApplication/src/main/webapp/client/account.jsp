@@ -41,7 +41,7 @@ Author     : solo
                                     <label class="form-control-label">New password</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="ti-key"></i></span></div>
-                                        <input name="new-password" value="" id="new-password" type="password" class="form-control" placeholder="********">
+                                        <input name="new-password" value="" id="new-password" type="password" class="form-control" placeholder="********" autocomplete="off">
                                         <div class="input-group-append"></div>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@ Author     : solo
                                     <label class="form-control-label">Confirm new password</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="ti-key"></i></span></div>
-                                        <input name="confirm-password" type="password" class="form-control" id="input-password-confirm" placeholder="********">
+                                        <input  name="confirm-password" type="password" class="form-control" id="input-password-confirm" placeholder="********" autocomplete="off">
                                     </div>
                                 </div>
 
@@ -67,7 +67,7 @@ Author     : solo
                                     <div class="input-group input-group-merge">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-credit-card"></i></span></div>
                                         <input value="${sessionScope.user.userCredit.creditcard}" pattern="^(\d{4}[- ]){3}\d{4}|\d{16}$"
-                                               name="creditcardnumber" id="usercreditcardnumber" type="tel" class="form-control" data-mask="0000 0000 0000 0000" placeholder="No linked card" autocomplete="off" maxlength="19">
+                                               name="creditcardnumber" id="user creditcardnumber" type="tel" class="form-control" data-mask="0000 0000 0000 0000" placeholder="No linked card" autocomplete="off" maxlength="19">
 
                                     </div>
                                     <label id="credit-validation"></label>
