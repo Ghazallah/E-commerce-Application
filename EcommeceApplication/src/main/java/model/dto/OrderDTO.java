@@ -18,7 +18,7 @@ public class OrderDTO {
     private String city;
     private String country;
     private String phone;
-    private String postcode;
+    private String postalcode;
     private String address;
     private String creditcardnumber;
     
@@ -66,12 +66,12 @@ public class OrderDTO {
         this.phone = phone;
     }
 
-    public String getPostcode() {
-        return postcode;
+    public String getPostalcode() {
+        return postalcode;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setPostalcode(String postalcode) {
+        this.postalcode = postalcode;
     }
 
     public String getAddress() {
