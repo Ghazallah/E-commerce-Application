@@ -1,4 +1,5 @@
 var numberOfProductsInCartID = document.getElementById("numberOfProductsInCartID").getAttribute("data-notify");
+
 function addToCart(productID, islogin) {
     event.preventDefault();
 
@@ -43,7 +44,7 @@ function addToCart(productID, islogin) {
                     $('#cart-products').append(getProductCartItem(jsonContent));
                     $('#headerCart').append(getProductHeaderCartItem(jsonContent));
                     numberOfProductsInCartID++;
-                    document.getElementById("numberOfProductsInCartID").setAttribute("data-notify",numberOfProductsInCartID);
+                    document.getElementById("numberOfProductsInCartID").setAttribute("data-notify", numberOfProductsInCartID);
 
                     productelement.attr('data-incart', "true");
 
@@ -81,8 +82,8 @@ function removeFromCart(productID) {
             $(productIdentifier).remove();
             $(productIdentifierHeader).remove();
             numberOfProductsInCartID--;
-            document.getElementById("numberOfProductsInCartID").setAttribute("data-notify",numberOfProductsInCartID);
-            
+            document.getElementById("numberOfProductsInCartID").setAttribute("data-notify", numberOfProductsInCartID);
+
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             iziToast.error({
@@ -100,39 +101,38 @@ function removeFromCart(productID) {
 function getProductCartItem(productJson) {
 
     var element = "  <div class=\"cart-item pt-4\" id=\"cart-product-" + productJson.pid + "\""
-            + "   data-id=\"" + productJson.pid + "\" "
-            + "   data-available=\"" + productJson.quantity + "\"> "
-            + "   <div class=\"row\"> "
-            + "   <div class=\"col-5\"> "
-            + "   <img src=\"images/products/" + productJson.detailsDTOs[0].productImage + "\"></div>"
-            + "   <div class=\"col-7\">"
-            + "   <div class=\"row\"><span class=\"cart-item-name\">" + productJson.name + "</span></div>";
+        + "   data-id=\"" + productJson.pid + "\" "
+        + "   data-available=\"" + productJson.quantity + "\"> "
+        + "   <div class=\"row\"> "
+        + "   <div class=\"col-5\"> "
+        + "   <img src=\"images/products/" + productJson.detailsDTOs[0].productImage + "\"></div>"
+        + "   <div class=\"col-7\">"
+        + "   <div class=\"row\"><span class=\"cart-item-name\">" + productJson.name + "</span></div>";
 
-            if (productJson.discount == 0)
-                element +=  " <div class=\"row mt-2\"><span class=\"cart-item-cost text-decoration-none\">EGP " + productJson.price + "</span></div>"
-            else{
-                element +=  " <div class=\"row mt-2\"><span class=\"cart-item-cost\">EGP " + productJson.price + "</span></div>"
-                    + " <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + ((productJson.price * productJson.discount) / 100) + "</span></div>  </div> </div>";
-            }
+    if (productJson.discount == 0)
+        element += " <div class=\"row mt-2\"><span class=\"cart-item-cost text-decoration-none\">EGP " + productJson.price + "</span></div>"
+    else {
+        element += " <div class=\"row mt-2\"><span class=\"cart-item-cost\">EGP " + productJson.price + "</span></div>"
+            + " <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + ((productJson.price * productJson.discount) / 100) + "</span></div>  </div> </div>";
+    }
 
     element += "   <div class=\"row mt-3 d-block\">"
-            + "   <div class=\"m-l-30 float-left\"><button type=\"button\"><i class=\"ti-trash fs-22\" onclick=\"removeFromCart(" + productJson.pid + ")\"></i></button></div>"
-            + "   <div class=\"m-l-40 float-left cl2 font-weight-bolder fs-17\">Available : <span class=\"cl3\">" + productJson.quantity + "</span></div>"
-            + "   <div class=\"m-r-20 pb-2 float-right\">"
-            + "   <div class=\"wrap-num-product flex-w\">"
-            + "   <div class=\"btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m\"><i class=\"fs-10 zmdi zmdi-minus\"></i></div>"
-            + "   <input id=\"cart-product-quantity-" + productJson.pid + "\" class=\"txt-center num-product\" type=\"number\" name=\"num-product\" value=\"1\" min=\"0\" max=" + productJson.quantity + ">"
-            + "   <div class=\"btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m\"><em class=\"fs-10 zmdi zmdi-plus\"></em></div> </div></div></div></div>";
+        + "   <div class=\"m-l-30 float-left\"><button type=\"button\"><i class=\"ti-trash fs-22\" onclick=\"removeFromCart(" + productJson.pid + ")\"></i></button></div>"
+        + "   <div class=\"m-l-40 float-left cl2 font-weight-bolder fs-17\">Available : <span class=\"cl3\">" + productJson.quantity + "</span></div>"
+        + "   <div class=\"m-r-20 pb-2 float-right\">"
+        + "   <div class=\"wrap-num-product flex-w\">"
+        + "   <div class=\"btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m\"><i class=\"fs-10 zmdi zmdi-minus\"></i></div>"
+        + "   <input id=\"cart-product-quantity-" + productJson.pid + "\" class=\"txt-center num-product\" type=\"number\" name=\"num-product\" value=\"1\" min=\"0\" max=" + productJson.quantity + ">"
+        + "   <div class=\"btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m\"><em class=\"fs-10 zmdi zmdi-plus\"></em></div> </div></div></div></div>";
     return element;
 }
 
-function getProductHeaderCartItem(productJson)
-{
+function getProductHeaderCartItem(productJson) {
     return '<li id="cart-product-header-' + productJson.pid + '" class="header-cart-item flex-w flex-t m-b-12">'
-            + '<div class="header-cart-item-img"><img src="images/products/' + productJson.detailsDTOs[0].productImage + '"></div>'
-            + '<div class="header-cart-item-txt p-t-8"><a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"> '
-            + productJson.name + ' </a> <span class="header-cart-item-info"> ' + productJson.price + '</span></div>'
-            + '</li> ';
+        + '<div class="header-cart-item-img"><img src="images/products/' + productJson.detailsDTOs[0].productImage + '"></div>'
+        + '<div class="header-cart-item-txt p-t-8"><a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"> '
+        + productJson.name + ' </a> <span class="header-cart-item-info"> ' + productJson.price + '</span></div>'
+        + '</li> ';
 }
 
 //logic of cart form
@@ -211,7 +211,7 @@ jQuery().ready(function () {
                 $("#sf2").show("slow");
                 $(".cart-step2").addClass("cart-form-active");
             }
-        }else{
+        } else {
             console.log("Not matched conditions");
         }
     });
@@ -268,17 +268,28 @@ jQuery().ready(function () {
     //when completing multi-form order cart
     $('.completeOrder').click(function () {
         $(".frm").hide("fast");
-        if (v.form())
-        {
+        if (v.form()) {
             //now checkout order now
             var isSuccess = checkoutOrder();
 
-            if (isSuccess)
-            {
+            if (isSuccess) {
                 console.log("order saved !");
 
+                //Order summary
                 setTimeout(function () {
                     var summeryContentAfterUpdate = $(".cart-summary").html();
+                    var ordersummaryitems = $("#order-summary-items");
+
+                    ordersummaryitems.html('');
+
+                    var cartproducts = $('#cart-products > div');
+                    for (var i = 0; i < cartproducts.length; i++) {
+                        var product = cartproducts[i];
+                        var pid = product.getAttribute('data-id');
+                        ordersummaryitems.append(getOrderSummeryElement(pid));  //dummy
+                        //set shipping cost
+                        //set total cost
+                    }
                     $("#cartform").html(summeryContentAfterUpdate);
                 }, 1000);
             } else {
@@ -290,3 +301,22 @@ jQuery().ready(function () {
         }
     });
 });
+
+function getOrderSummeryElement(pid)
+{
+    return '                            <div class="row mt-3 pt-3 delimiter-top">\n' +
+        '                                <div class="col-8">\n' +
+        '                                    <div class="media align-items-center"><img alt="Image placeholder" class="mr-2" src="images/product-02.jpg" style="width: 42px;">\n' +
+        '                                        <div class="media-body">\n' +
+        '                                            <div class="text-limit lh-100">\n' +
+        '                                                <small class="font-weight-bold mb-0">Women running shoes</small>\n' +
+        '                                            </div>\n' +
+        '                                            <small class="text-muted">2 x $49.50</small>\n' +
+        '                                        </div>\n' +
+        '                                    </div>\n' +
+        '                                </div>\n' +
+        '                                <div class="col-4 text-right lh-100">\n' +
+        '                                    <small class="text-dark">$99.00</small>\n' +
+        '                                </div>\n' +
+        '                            </div>\n';
+}

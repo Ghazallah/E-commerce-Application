@@ -359,14 +359,15 @@
                     <div class="card" id="card-summary">
                         <div class="card-header py-3">
                             <div class="row align-items-center">
-                                <div class="col-6 text-left"><span class="h6">Order ID : #23123</span></div>
-                                <div class="col-6 text-right"><span class="badge-success badge-pill pt-2 pb-2">3 items</span></div>
+                                <div class="col-6 text-left"><span class="h6">Order ID : <b id="order-summary-id"></b>  </span></div>
+                                <div class="col-6 text-right"><span class="badge-success badge-pill pt-2 pb-2"><b id="order-summary-number"></b> items</span></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-8">
-                                    <div class="media align-items-center"><img alt="Image placeholder" class="mr-2" src="images/product-01.jpg" style="width: 42px;">
+                                    <div class="media align-items-center">
+                                        <img alt="Image placeholder" class="mr-2" src="images/product-01.jpg" style="width: 42px;">
                                         <div class="media-body">
                                             <div class="text-limit lh-100">
                                                 <small class="font-weight-bold mb-0">Women running shoes</small>
@@ -378,8 +379,8 @@
                                 <div class="col-4 text-right lh-100 fs-14">
                                     <small class="text-dark">$46.00</small>
                                 </div>
-                            </div>
-                            <div class="row mt-3 pt-3 delimiter-top">
+                            </div> -->
+                            <!--<div class="row mt-3 pt-3 delimiter-top">
                                 <div class="col-8">
                                     <div class="media align-items-center"><img alt="Image placeholder" class="mr-2" src="images/product-02.jpg" style="width: 42px;">
                                         <div class="media-body">
@@ -408,6 +409,9 @@
                                 <div class="col-4 text-right lh-100">
                                     <small class="text-dark">$198.00</small>
                                 </div>
+                            </div> -->
+                            <div id="order-summary-items">
+
                             </div>
                             <!-- Subtotal -->
                             <div class="row mt-3 pt-3 border-top">

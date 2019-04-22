@@ -98,7 +98,9 @@ function getRequestedOrderState(jsonContent, cartProducts) {
     return accept;
 }
 
-function checkoutOrder() {
+function checkoutOrder()
+{
+    var accept = true;
     var cartproducts = $('#cart-products > div');
     var jsonContent = getJSONCurrentCartProduct(cartproducts);
 
@@ -125,17 +127,18 @@ function checkoutOrder() {
         contentType: "application/x-www-form-urlencoded",
         traditional: true,
         success: function (data) {
-            if (data != -1)
-            {
+            if (data != -1) {
+                accept = true;
                 iziToast.success({
                     title: 'Info : ',
                     position: 'topCenter',
                     progressBar: false,
                     timeout: '3000',
                     transitionIn: 'bounceInDown',
-                    message: 'Your Order is processed succeded, OrderID = '+data+' !'
+                    message: 'Your Order is processed succeded, OrderID = ' + data + ' !'
                 });
-            }else{
+            } else {
+                accept = false;
                 iziToast.error({
                     title: 'Info : ',
                     position: 'topCenter',
@@ -145,8 +148,18 @@ function checkoutOrder() {
                     message: 'Failed to process your order, Try again later !'
                 });
             }
-
+        },
+        error: function (data) {
+            accept = false;
+            iziToast.error({
+                title: 'Info : ',
+                position: 'topCenter',
+                progressBar: false,
+                timeout: '3000',
+                transitionIn: 'bounceInDown',
+                message: 'Failed to process your order, Try again later !'
+            });
         }
     });
-    return true;
+    return accept;
 }
