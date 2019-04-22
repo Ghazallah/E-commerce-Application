@@ -1,8 +1,6 @@
 function checkQuantity() {
     var cartproducts = $('#cart-products > div');
     var jsonContent = getJSONCurrentCartProduct(cartproducts);
-
-    console.log(jsonContent);
     return getRequestedOrderState(jsonContent, cartproducts);
 }
 
@@ -37,18 +35,19 @@ function getJSONCurrentCartProduct(cartproducts) {
 }
 
 function getRequestedOrderState(jsonContent, cartProducts) {
-    var accept = false;
+    var accept = true;
     console.log("Checking order state ..");
+
     //send to servlet to add to user cart
     $.ajax({
         type: 'POST',
         url: 'validateProduct',
         data: {"order": JSON.stringify(jsonContent)},
         dataType: 'json',
+        async : false,
         contentType: "application/x-www-form-urlencoded",
         traditional: true,
         success: function (data) {
-
             var sufficient = data.sufficient;
             console.log("server response to sufficient : " + sufficient);
 
@@ -62,31 +61,30 @@ function getRequestedOrderState(jsonContent, cartProducts) {
                     transitionIn: 'bounceInDown',
                     message: 'Insufficient funds to process this order, check your wallet !'
                 });
-            } else
-                accept = true;
+            } else {
+                var products = data.products;
+                console.log(products);
+                for (var i = 0; i < cartProducts.length; i++) {
+                    var productvalid = products[i].valid;
+                    console.log("Product "+i+" : valid = "+productvalid);
+                    if (productvalid == false) {
+                        accept = false;
+                        var productdiv = cartProducts[i];
+                        var productavailable = products[i].available;
+                        productdiv.setAttribute('data-available', productavailable);
 
-            var products = data.products;
-            console.log(products);
-            for (var i = 0; i < cartProducts.length; i++) {
-                var productvalid = products[i].valid;
-                console.log("Product "+i+" : valid = "+productvalid);
-                if (productvalid == false) {
-                    accept = false;
-                    var productdiv = cartProducts[i];
-                    var productavailable = products[i].available;
-                    productdiv.setAttribute('data-available', productavailable);
-
-                    iziToast.error({
-                        title: 'Info : ',
-                        position: 'topCenter',
-                        progressBar: false,
-                        timeout: '3000',
-                        transitionIn: 'bounceInDown',
-                        message: 'Check availability of products !'
-                    });
-                    break;
-                } else {
-                    accept = true;
+                        iziToast.error({
+                            title: 'Info : ',
+                            position: 'topCenter',
+                            progressBar: false,
+                            timeout: '3000',
+                            transitionIn: 'bounceInDown',
+                            message: 'Check availability of products !'
+                        });
+                        break;
+                    } else {
+                        accept = true;
+                    }
                 }
             }
         },
@@ -103,6 +101,7 @@ function getRequestedOrderState(jsonContent, cartProducts) {
         }
     });
 
+    console.log("after ajax request ... ");
     return accept;
 }
 
