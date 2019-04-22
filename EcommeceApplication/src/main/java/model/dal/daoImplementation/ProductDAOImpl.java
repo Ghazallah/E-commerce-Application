@@ -209,9 +209,10 @@ public class ProductDAOImpl implements ProductDAO {
         }
         return productCount;
     }
+
     /*
     azza
-    */
+     */
 
     @Override
     public List<Product> search(String input) {
@@ -222,6 +223,19 @@ public class ProductDAOImpl implements ProductDAO {
         Criteria criteria = session.createCriteria(Product.class);
         Criterion rest1 = Restrictions.like("name", input, MatchMode.ANYWHERE);
         criteria.add(rest1);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        List acountList = criteria.list();
+        return acountList;
+    }
+
+    @Override
+    public List<Product> filter(String price, String color, int brand) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Product.class);
+        criteria.add(Restrictions.and(Restrictions.like(
+                "productColor", color, MatchMode.ANYWHERE), (Restrictions.like(
+                        "brandID", brand)), Restrictions.like("price", price, MatchMode.ANYWHERE)));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         List acountList = criteria.list();
         return acountList;

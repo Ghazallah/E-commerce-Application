@@ -43,5 +43,6 @@ public interface ProductDAO {
     azza
     */
     public List<Product> search(String inptut);
+    public List<Product> filter(String price,String color,int brand);
 
 }

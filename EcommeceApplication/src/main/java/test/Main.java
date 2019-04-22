@@ -57,15 +57,15 @@ public class Main {
     private static void method() {
 
         User user = new User();
-        user.setAddress("Fayoum");
+        user.setAddress("Cairo");
         user.setBirthday(new Date());
-        user.setEmail("ahmedmcdr0@gmail.com");
+        user.setEmail("admin@gmail.com");
         user.setGender("male");
-        user.setName("Ahmed Abd Elkarim");
+        user.setName("Admin");
         user.setRole(1);
         user.setPicture("pic");
-        user.setPassword("123");
-        user.setPhone("01000");
+        user.setPassword("admin");
+        user.setPhone("01060707894");
 //        User user = new User();
 //        user.setAddress("Menoufia");
 //        user.setBirthday(new Date());
