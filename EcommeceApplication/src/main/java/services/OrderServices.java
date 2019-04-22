@@ -72,8 +72,10 @@ public class OrderServices {
         double discount = 0.0;
 
         for (OrderProductDTO element : validationInput.getOrderProducts()) {
+            System.out.println("checked !!");
             Product product = productDAO.retreive(element.getPid());
-            if (element.getAvailable() > product.getQuantity()) {
+            if (element.getQuantity() > product.getQuantity()) {
+                
                 element.setAvailable(product.getQuantity());
                 element.setValid(false);
             } else {
