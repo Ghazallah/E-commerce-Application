@@ -54,12 +54,12 @@ public class HibernateUtil {
             user.setRegisterationDate(new Date());
             user.setBirthday(new Date());
             user.setEmail("ghazallah64@ggmail.com");
-             try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            session.persist(user);
-            session.getTransaction().commit();
-            
-        }
+//             try (Session session = sessionFactory.openSession()) {
+//            session.beginTransaction();
+//            session.save(user);
+//            session.getTransaction().commit();
+//            
+//        }
             
             }catch (URISyntaxException ex) {
                     
