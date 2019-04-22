@@ -13,7 +13,7 @@
 
                     <c:choose>
                         <c:when test="${ (fn:length(sessionScope.user.carts) ==  0) }">
-                            <h4> You cart is empty ! </h4>
+                            <!-- <h4> You cart is empty ! </h4> -->
                         </c:when>
 
                         <c:otherwise>
@@ -25,17 +25,17 @@
                                      data-available="${cart.product.quantity}">
                                     <div class="row">
                                         <div class="col-5">
-                                            <img src="images/products/<c:out value="${cart.product.productDetails.iterator().next().productImage}"/>">
+                                            <img id="cart-product-image-<c:out value="${cart.product.pid}"/>" src="images/products/<c:out value="${cart.product.productDetails.iterator().next().productImage}"/>">
                                         </div>
                                         <div class="col-7">
-                                            <div class="row"><span class="cart-item-name"><c:out value="${cart.product.name}"/></span></div>
+                                            <div class="row"><span id="cart-product-name-<c:out value="${cart.product.pid}"/>" class="cart-item-name"><c:out value="${cart.product.name}"/></span></div>
                                              <c:choose>
                                                 <c:when test="${(cart.product.discount) eq 0}">
-                                                    <div class="row mt-2"><span class="cart-item-cost text-decoration-none">EGP <c:out value="${cart.product.price}"/></span></div>
+                                                    <div id="cart-product-price-<c:out value="${cart.product.pid}"/>" class="row mt-2"><span class="cart-item-cost text-decoration-none">EGP <b id="cart-product-price-<c:out value="${cart.product.pid}"/>"><c:out value="${cart.product.price}"/></b></span></div>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <div class="row mt-2"><span class="cart-item-cost">EGP <c:out value="${cart.product.price}"/></span></div>
-                                                    <div class="row mt-1"><span class="cart-item-discount">EGP <c:out value="${(cart.product.price * cart.product.discount)/100}"/></span></div>
+                                                    <div  class="row mt-2"><span class="cart-item-cost">EGP <b id="cart-product-price-<c:out value="${cart.product.pid}"/>"><c:out value="${cart.product.price}"/></b></span></div>
+                                                    <div class="row mt-1"><span  class="cart-item-discount">EGP <c:out value="${cart.product.price - ((cart.product.price * cart.product.discount)/100)}"/></span></div>
                                                 </c:otherwise>
                                             </c:choose>
                                         </div>

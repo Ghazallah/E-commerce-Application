@@ -418,7 +418,7 @@
                                 <div class="col-8 text-right">
                                     <small class="font-weight-bold cl2">Subtotal:</small>
                                 </div>
-                                <div class="col-4 text-right"><span class="text-sm font-weight-bold">$330.50</span></div>
+                                <div class="col-4 text-right"><span class="text-sm font-weight-bold">$<b id="order-summary-subtotal">330.50</b></span></div>
                             </div>
                             <!-- Shipping -->
                             <div class="row mt-3 pt-3 border-top">
@@ -432,14 +432,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 text-right"><span class="text-sm font-weight-bold">$25.00</span></div>
+                                <div class="col-4 text-right"><span class="text-sm font-weight-bold">$<b id="order-summary-shipping">25.00</b></span></div>
                             </div>
                             <!-- Subtotal -->
                             <div class="row mt-3 pt-3 border-top">
                                 <div class="col-8 text-right">
                                     <small class="text-uppercase font-weight-bold cl2">Total:</small>
                                 </div>
-                                <div class="col-4 text-right"><span class="text-sm font-weight-bold">$355.50</span></div>
+                                <div class="col-4 text-right"><span class="text-sm font-weight-bold">$<b id="order-summary-total">355.50</b></span></div>
                             </div>
                         </div>
                     </div>

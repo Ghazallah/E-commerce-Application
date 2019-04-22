@@ -105,15 +105,15 @@ function getProductCartItem(productJson) {
         + "   data-available=\"" + productJson.quantity + "\"> "
         + "   <div class=\"row\"> "
         + "   <div class=\"col-5\"> "
-        + "   <img src=\"images/products/" + productJson.detailsDTOs[0].productImage + "\"></div>"
+        + "   <img id=\"cart-product-image-" + productJson.pid + "\" src=\"images/products/" + productJson.detailsDTOs[0].productImage + "\"></div>"
         + "   <div class=\"col-7\">"
-        + "   <div class=\"row\"><span class=\"cart-item-name\">" + productJson.name + "</span></div>";
+        + "   <div class=\"row\"><span id='cart-product-name-" + productJson.name + "' class=\"cart-item-name\">" + productJson.name + "</span></div>";
 
     if (productJson.discount == 0)
-        element += " <div class=\"row mt-2\"><span class=\"cart-item-cost text-decoration-none\">EGP " + productJson.price + "</span></div>"
+        element += " <div  class=\"row mt-2\"><span  class=\"cart-item-cost text-decoration-none\">EGP <b id=\"cart-product-price-"+productJson.pid+"\">" + productJson.price + "</b></span></div>";
     else {
-        element += " <div class=\"row mt-2\"><span class=\"cart-item-cost\">EGP " + productJson.price + "</span></div>"
-            + " <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + ((productJson.price * productJson.discount) / 100) + "</span></div>  </div> </div>";
+        element += " <div  class=\"row mt-2\"><b  class=\"cart-item-cost\">EGP <b id=\"cart-product-price-"+productJson.pid+"\">" + productJson.price + "</b></span></div>"
+            + " <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + (productJson.price - ((productJson.price * productJson.discount)/100)) + "</span></div>  </div> </div>";
     }
 
     element += "   <div class=\"row mt-3 d-block\">"
@@ -274,27 +274,35 @@ jQuery().ready(function () {
         if (v.form()) {
             //now checkout order now
             var isSuccess = checkoutOrder();
-
             if (isSuccess) {
                 console.log("order saved !");
-
                 //Order summary
-                setTimeout(function () {
-                    var summeryContentAfterUpdate = $(".cart-summary").html();
-                    var ordersummaryitems = $("#order-summary-items");
+                $("#order-summary-items").html('');
+                var cartproducts = $('#cart-products > div');
+                console.log("products in order = "+cartproducts.length);
 
-                    ordersummaryitems.html('');
+                var subtotal = 0;
+                for (var i = 0; i < cartproducts.length; i++) {
+                    var product = cartproducts[i];
+                    var pid = product.getAttribute('data-id');
+                    var pname = $('#cart-product-name-'+pid).html();
+                    var price = $('#cart-product-price-'+pid).html();
+                    subtotal+=price;
+                    var quantity = $('#cart-product-quantity-'+pid).val();
+                    var img = $('#cart-product-image-'+pid).attr('src');
+                    var element = getOrderSummeryElement(pid,pname,price,quantity,img);
+                    console.log("to insert : "+element);
+                    $("#order-summary-items").append(element);  //dummy
+                    //set shipping cost
+                    //set total cost
+                }
+                //set number of item
+                $('#order-summary-number').html(cartproducts.length);
+                //display summary of cart
+                $("#cartform").html($(".cart-summary").html());
 
-                    var cartproducts = $('#cart-products > div');
-                    for (var i = 0; i < cartproducts.length; i++) {
-                        var product = cartproducts[i];
-                        var pid = product.getAttribute('data-id');
-                        ordersummaryitems.append(getOrderSummeryElement(pid));  //dummy
-                        //set shipping cost
-                        //set total cost
-                    }
-                    $("#cartform").html(summeryContentAfterUpdate);
-                }, 1000);
+                $('#order-summary-subtotal').html(subtotal);
+                $('#order-summary-total').html(subtotal + 25);  //dummy shipping
             } else {
                 console.log("order failed !");
             }
@@ -305,21 +313,20 @@ jQuery().ready(function () {
     });
 });
 
-function getOrderSummeryElement(pid)
-{
+function getOrderSummeryElement(pid, pname, price,quantity, img) {
     return '                            <div class="row mt-3 pt-3 delimiter-top">\n' +
         '                                <div class="col-8">\n' +
-        '                                    <div class="media align-items-center"><img alt="Image placeholder" class="mr-2" src="images/product-02.jpg" style="width: 42px;">\n' +
+        '                                    <div class="media align-items-center"><img alt="Image placeholder" class="mr-2" src="'+img+'" style="width: 42px;">\n' +
         '                                        <div class="media-body">\n' +
         '                                            <div class="text-limit lh-100">\n' +
-        '                                                <small class="font-weight-bold mb-0">Women running shoes</small>\n' +
+        '                                                <small class="font-weight-bold mb-0">'+pname+'</small>\n' +
         '                                            </div>\n' +
-        '                                            <small class="text-muted">2 x $49.50</small>\n' +
+        '                                            <small class="text-muted">'+quantity+' x '+price+'</small>\n' +
         '                                        </div>\n' +
         '                                    </div>\n' +
         '                                </div>\n' +
         '                                <div class="col-4 text-right lh-100">\n' +
-        '                                    <small class="text-dark">$99.00</small>\n' +
+        '                                    <small class="text-dark">$ '+(quantity * price)+'</small>\n' +
         '                                </div>\n' +
         '                            </div>\n';
 }
