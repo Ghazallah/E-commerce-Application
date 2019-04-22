@@ -106,7 +106,7 @@ public class OrderServices {
         order.setCity(orderDTO.getCity());
         order.setCountry(orderDTO.getCountry());
         order.setPhoneNumber(orderDTO.getPhone());
-        order.setPostcode(orderDTO.getPostcode());
+        order.setPostcode(orderDTO.getPostalcode());
         Date date = new Date();
         order.setDate(date);
         order.setUser(user);
@@ -138,6 +138,9 @@ public class OrderServices {
         }
 
         // reduce the wallet of the 
+        order.setId(orderID);
+        order.setTotalPrice(totalPrice);
+        orderDAO.update(order);
         UserCredit userCredit = user.getUserCredit();
         userCredit.setWallet(userCredit.getWallet() - totalPrice);
         userCreditDAO.update(userCredit);

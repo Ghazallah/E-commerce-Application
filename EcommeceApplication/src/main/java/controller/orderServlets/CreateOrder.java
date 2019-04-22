@@ -37,8 +37,8 @@ public class CreateOrder extends HttpServlet {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         Gson gson = new Gson();
-        OrderDTO  orderDTO = gson.fromJson(orderStr, OrderDTO.class);       
-        int orderID  = orderServices.addNewOrder (orderDTO, user);
+        OrderDTO orderDTO = gson.fromJson(orderStr, OrderDTO.class);
+        int orderID = orderServices.addNewOrder(orderDTO, user);
         User updatedUser = userServices.getUser(user.getEmail());
         session.setAttribute("user", updatedUser);
         out.print(orderID);
