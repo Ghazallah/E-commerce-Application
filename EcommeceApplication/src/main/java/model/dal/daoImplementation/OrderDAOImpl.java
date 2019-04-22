@@ -28,10 +28,12 @@ import org.hibernate.query.Query;
 public class OrderDAOImpl implements OrderDAO {
 
     @Override
-    public void create(Order order) {
+    public int create(Order order) {
+        Order createdOrder = null;
+        int id = -1;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.save(order);
+            id = (int) session.save(order);
             session.getTransaction().commit();
             //session.close();
         } catch (PersistenceException ex) {
@@ -42,6 +44,7 @@ public class OrderDAOImpl implements OrderDAO {
                 Logger.getLogger(OrderDAOImpl.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
+        return id;
     }
 
     @Override
@@ -122,11 +125,12 @@ public class OrderDAOImpl implements OrderDAO {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Order> query = builder.createQuery(Order.class);
             Root<Order> root = query.from(Order.class);
+            System.out.println("date in hibernate" + date);
             query.select(root).where(builder.equal(root.get("date"), date));
             Query<Order> q = session.createQuery(query);
-            order = q.uniqueResult();
+            order = q.getSingleResult();
             session.getTransaction().commit();
-            session.close();
+            //session.close();
         }
 
         return order;

@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import model.dal.dao.BrandDAO;
 import model.dal.dao.CartDAO;
 import model.dal.dao.CategoryDAO;
+import model.dal.dao.OrderDAO;
 import model.dal.dao.ProductDAO;
 import model.dal.dao.ProductDetailsDAO;
 import model.dal.dao.UserCreditDAO;
@@ -25,6 +26,7 @@ import model.dal.daoFactory.HibernateDAOFactory;
 import model.dal.daoImplementation.BrandDAOImpl;
 import model.dal.daoImplementation.CartDAOImpl;
 import model.dal.daoImplementation.CategoryDAOImpl;
+import model.dal.daoImplementation.OrderDAOImpl;
 import model.dal.daoImplementation.ProductDAOImpl;
 import model.dal.daoImplementation.ProductDetailsDAOImpl;
 import model.dal.daoImplementation.UserCreditDAOImpl;
@@ -33,6 +35,7 @@ import model.entity.Brand;
 import model.entity.Cart;
 import model.entity.CartId;
 import model.entity.Category;
+import model.entity.Order;
 import model.entity.Product;
 import model.entity.ProductDetails;
 import model.entity.User;
@@ -49,9 +52,9 @@ public class Main {
 
     public static void main(String[] args) throws UniqueExceptionEmplementation {
 
-    //   method();
-    method();
-        
+        //   method();
+        //  method();
+        orderMethod();
     }
 
     private static void method() {
@@ -79,13 +82,12 @@ public class Main {
 //
         UserDAO userDAO = new UserDAOImpl();
 //        userDAO.create(user);
-        
-    ArrayList<User> allUsers = new ArrayList<>();
-    allUsers = (ArrayList<User>) userDAO.getUsersPagenation(1,10);
+
+        ArrayList<User> allUsers = new ArrayList<>();
+        allUsers = (ArrayList<User>) userDAO.getUsersPagenation(1, 10);
         for (int i = 0; i < allUsers.size(); i++) {
             System.out.println(allUsers.get(i).getEmail());
         }
-        
 
 //         UserDAO userDAO = new UserDAOImpl();
 //         CartDAO cartDAO   =new CartDAOImpl();
@@ -94,20 +96,18 @@ public class Main {
 //         Cart cart = new Cart  ();
 //         cart.setId(id);
 //         cartDAO.create(cart);
-        
-
     }
-    
-    private static void method2 (){
+
+    private static void method2() {
         UserDAO userDAO = new UserDAOImpl();
         User user = userDAO.retrieve("m1@gmail.com");
         ProductDAO productDAO = new ProductDAOImpl();
-        
+
         Product product = productDAO.retreive(3);
         Set<Product> products = user.getProducts();
-      //  System.out.println(products.size());
+        //  System.out.println(products.size());
         for (Product object : products) {
-            if (object.getPid()==product.getPid()){
+            if (object.getPid() == product.getPid()) {
                 product = object;
             }
         }
@@ -115,7 +115,16 @@ public class Main {
         System.out.println(value);
         System.out.println(products.size());
         userDAO.update(user);
-                     
+
+    }
+
+    private static void orderMethod() {
+        Order order = new Order();
+        order.setFullName("Ghazallah");
+
+        OrderDAO orderDAO = new OrderDAOImpl();
+        int id = orderDAO.create(order);
+        System.out.println(order.getId());
     }
 
 }

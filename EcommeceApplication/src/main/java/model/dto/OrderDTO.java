@@ -20,6 +20,7 @@ public class OrderDTO {
     private String phone;
     private String postcode;
     private String address;
+    private String creditcardnumber;
     
     List<OrderProductDTO> products;
     public OrderDTO() {
@@ -87,6 +88,14 @@ public class OrderDTO {
 
     public void setProducts(List<OrderProductDTO> products) {
         this.products = products;
+    }
+
+    public String getCreditcardnumber() {
+        return creditcardnumber;
+    }
+
+    public void setCreditcardnumber(String creditcardnumber) {
+        this.creditcardnumber = creditcardnumber;
     }
 
    

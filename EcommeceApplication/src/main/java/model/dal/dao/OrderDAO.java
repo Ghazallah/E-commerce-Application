@@ -15,7 +15,7 @@ import model.entity.Order;
  */
 public interface OrderDAO {
 
-    public void create(Order order);
+    public int create(Order order);
 
     public List<Order> retreive();
     

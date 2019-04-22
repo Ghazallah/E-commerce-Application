@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.dal.dao.CartDAO;
 import model.dal.dao.OrderDAO;
 import model.dal.dao.OrderProductsDAO;
 import model.dal.dao.ProductDAO;
@@ -24,6 +25,7 @@ import model.dto.OrderDTO;
 import model.dto.OrderProductDTO;
 import model.dto.OrderValidationDTO;
 import model.entity.Cart;
+import model.entity.CartId;
 import model.entity.Order;
 import model.entity.OrderHasProducts;
 import model.entity.OrderHasProductsId;
@@ -43,6 +45,7 @@ public class OrderServices {
     UserDAO userDAO = dAOFactory.getUserDAO();
     OrderProductsDAO orderProductDAO = dAOFactory.getOrderProductsDAO();
     UserCreditDAO userCreditDAO = dAOFactory.getUserCreditDAO();
+    CartDAO cartDAO = dAOFactory.getCartDAO();
 
     public int getNewOrders() {
         return orderDAO.getNewOrders();
@@ -108,9 +111,9 @@ public class OrderServices {
         order.setDate(date);
         order.setUser(user);
         order.setStreet(orderDTO.getAddress());
-        orderDAO.create(order);
-        Order createdOrder = orderDAO.retreiveByDate(date);  //null pointer here
-        orderID = createdOrder.getId();
+        orderID =orderDAO.create(order);
+       // Order createdOrder = orderDAO.retreiveByDate(date);  //null pointer here
+       
 
         // update product quantities
         // set products in the order
@@ -119,6 +122,9 @@ public class OrderServices {
             Product product = productDAO.retreive(element.getPid());
             product.setQuantity(product.getQuantity() - element.getQuantity());
             totalPrice += product.getPrice() * element.getQuantity();
+            CartId cartId = new CartId(user.getId(), product.getPid());
+            Cart cart = new Cart(cartId, product, user);
+            cartDAO.delete(cart);
             try {
                 productDAO.update(product);
             } catch (UniqueExceptionEmplementation ex) {
