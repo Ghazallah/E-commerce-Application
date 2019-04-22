@@ -6,6 +6,8 @@
 package model.util;
 import java.net.URI;
 import java.net.URISyntaxException;
+import model.entity.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -40,6 +42,21 @@ public class HibernateUtil {
                                 "org.hibernate.dialect.PostgreSQLDialect");
             }
             sessionFactory = cfg.buildSessionFactory();
+            User user  = new User ();
+            user.setPhone("0100230409");
+            user.setAddress("Menofia");
+            user.setGender("male");
+            user.setRole(1);
+            user.setName("Muhammad");
+            user.setPassword("123456");
+            user.setEmail("ghazallah64@ggmail.com");
+             try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.persist(user);
+            session.getTransaction().commit();
+            
+        }
+            
             }catch (URISyntaxException ex) {
                     
           }
