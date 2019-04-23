@@ -209,4 +209,18 @@ public class OrderDAOImpl implements OrderDAO {
         }
         return productList;
     }
+    
+    @Override
+    public int getNewOrdersWeek() {
+        int orderCount = 0;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("select la from Order la where la.date > :date");
+            query.setParameter("date", new Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
+            orderCount = query.list().size();
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return orderCount;
+    }
 }

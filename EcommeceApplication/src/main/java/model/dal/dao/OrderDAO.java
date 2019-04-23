@@ -31,10 +31,11 @@ public interface OrderDAO {
     public int getNumberOfRows();
 
     public List<Order> getOrdersPagenation(int currentPage, int recordsPerPage);
-    
-    
+
     public int getNumberOfRowsOrderSearch(String productSearch);
 
     public List<Order> getOrderSearch(int currentPage, int recordsPerPage, String productSearch);
+
+    public int getNewOrdersWeek();
 
 }

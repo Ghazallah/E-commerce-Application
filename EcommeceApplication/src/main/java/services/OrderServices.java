@@ -158,7 +158,9 @@ public class OrderServices {
         return orderDAO.getNumberOfRows();
     }
     
-    
+    public int getNewOrdersWeek() {
+        return orderDAO.getNewOrdersWeek();
+    }
     
     
     

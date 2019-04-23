@@ -45,6 +45,11 @@ public class CreateOrder extends HttpServlet {
         User updatedUser = userServices.getUser(user.getEmail());
         session.setAttribute("user", updatedUser);
         out.print(orderID);
+        int newOrders = orderServices.getNewOrders();
+        session.setAttribute("newOrders", newOrders);
+
+        int newOrdersWeek = orderServices.getNewOrdersWeek();
+        session.setAttribute("newOrdersWeek", newOrdersWeek);
     }
 
     @Override
@@ -62,11 +67,11 @@ public class CreateOrder extends HttpServlet {
             OrderServices orderServices = new OrderServices();
 
             List<Order> ordersPagination = orderServices.getUsersPagenation(currentPage, recordsPerPage);
-            
+
             for (int i = 0; i < ordersPagination.size(); i++) {
                 System.out.println(ordersPagination.get(i).getFullName());
             }
-            
+
             request.setAttribute("ordersPagination", ordersPagination);
 
             int rows = orderServices.getNumberOfRows();
