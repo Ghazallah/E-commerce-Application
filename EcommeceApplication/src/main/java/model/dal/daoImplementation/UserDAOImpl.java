@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import model.dal.dao.UserDAO;
 import model.entity.Category;
@@ -118,11 +119,27 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public int getNumberOfRows() {
+
         Integer numOfRows = 0;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(User.class);
-        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
+            query.select(root);
+            Query<User> q = session.createQuery(query);
+            numOfRows = q.list().size();
+            System.out.println(numOfRows);
+            session.getTransaction().commit();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+        }
         return numOfRows;
+
+//        Integer numOfRows = 0;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(User.class);
+//        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+//        return numOfRows;
     }
 
     @Override
@@ -144,10 +161,6 @@ public class UserDAOImpl implements UserDAO {
             //session.close();
             System.out.println("donnnnnnnnnnnnnnnnnne");
         }
-//        for (int i = 0; i < userList.size(); i++) {
-//            System.out.println(userList.get(i).getAddress());
-//            System.out.println(userList.get(i).getName());
-//        }
 
         return userList;
 
@@ -167,41 +180,69 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public int getNumberOfRowsSearch(String searchTxt, String phoneTxt) {
+
         Integer numOfRows = 0;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(User.class);
-//        Criterion nameCriteria = Restrictions.eq("name", searchTxt);
-//        criteria.add(nameCriteria);
-
-        criteria.add(Restrictions.and(Restrictions.like(
-                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
-                        "phone", phoneTxt, MatchMode.ANYWHERE))));
-
-        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
+            Path<String> name = root.get("name");
+            Path<String> phone = root.get("phone");
+            query.select(root).where(builder.and(builder.like(root.get("name").as(String.class), "%" + searchTxt + "%"), builder.like(root.get("phone").as(String.class), "%" + phoneTxt + "%")));
+            Query<User> q = session.createQuery(query);
+            numOfRows = q.list().size();
+            System.out.println(numOfRows);
+            session.getTransaction().commit();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+        }
         return numOfRows;
+
+//        Integer numOfRows = 0;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(User.class);
+//        criteria.add(Restrictions.and(Restrictions.like(
+//                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
+//                        "phone", phoneTxt, MatchMode.ANYWHERE))));
+//
+//        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+//        return numOfRows;
     }
 
     @Override
     public List<User> getUserSearch(int currentPage, int recordsPerPage, String searchTxt, String phoneTxt) {
-        List<User> users = null;
 
+        List<User> userList;
         int start = currentPage * recordsPerPage - recordsPerPage;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
 
-//        try {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(User.class);
-        criteria.add(Restrictions.and(Restrictions.like(
-                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
-                        "phone", phoneTxt, MatchMode.ANYWHERE))));
-//
-//        Criterion nameCriteria = Restrictions.like("name", searchTxt, MatchMode.ANYWHERE);
-//        Criterion nameCriteria2 = Restrictions.like("phone", phoneTxt, MatchMode.ANYWHERE);
-//        criteria.add(nameCriteria);
-//        criteria.add(nameCriteria2);
-        criteria.setFirstResult(start);
-        criteria.setMaxResults(recordsPerPage);
-        users = criteria.list();
-        return users;
+            Path<String> name = root.get("name");
+            Path<String> phone = root.get("phone");
+
+            query.select(root).where(builder.and(builder.like(root.get("name").as(String.class), "%" + searchTxt + "%"), builder.like(root.get("phone").as(String.class), "%" + phoneTxt + "%")));
+            Query<User> q = session.createQuery(query);
+            q.setFirstResult(start);
+            q.setMaxResults(recordsPerPage);
+            userList = q.getResultList();
+            session.getTransaction().commit();
+            //session.close();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+        }
+        return userList;
+//        List<User> users = null;
+//        int start = currentPage * recordsPerPage - recordsPerPage;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(User.class);
+//        criteria.add(Restrictions.and(Restrictions.like(
+//                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
+//                        "phone", phoneTxt, MatchMode.ANYWHERE))));
+//        criteria.setFirstResult(start);
+//        criteria.setMaxResults(recordsPerPage);
+//        users = criteria.list();
+//        return users;
     }
-
 }

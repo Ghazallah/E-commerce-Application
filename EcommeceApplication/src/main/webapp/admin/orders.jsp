@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,13 +21,14 @@
         <title>SB Admin - Dashboard</title>
 
         <!-- Custom fonts for this template-->
-        <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="../admin/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
         <!-- Page level plugin CSS-->
-        <link href="resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="../admin/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="resources/css/sb-admin.css" rel="stylesheet">
+        <link href="../admin/resources/css/sb-admin.css" rel="stylesheet">
+        <link rel="stylesheet" href="../admin/resources/css/style.css">
 
     </head>
 
@@ -33,7 +36,7 @@
 
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-            <a class="navbar-brand mr-1" href="admin.jsp">Electro<span>.</span></a>
+            <a class="navbar-brand mr-1" href="../admin/admin.jsp">Electro<span>.</span></a>
 
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
@@ -53,7 +56,7 @@
                 <!-- admin image>-->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="resources/images/client.png" width="70px" height="70px" /></i>
+                        <img src="../admin/resources/images/client.png" width="70px" height="70px" /></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Update Profile</a>
@@ -70,7 +73,7 @@
             <!-- Sidebar -->
             <ul class="sidebar navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="admin.jsp">
+                    <a class="nav-link" href="../admin/admin.jsp">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
@@ -81,21 +84,21 @@
                         <span>Manage Products</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" href="add-category.jsp">Add Category</a>
-                        <a class="dropdown-item" href="add-brand.jsp">Add Brand</a>
-                        <a class="dropdown-item" href="add-product.jsp">Add Product</a>
-                        <a class="dropdown-item" href="CreateProduct?action=updateProduct&recordsPerPage=10&currentPage=1">Update Product</a>
-                        <a class="dropdown-item" href="CreateProduct?action=displayProduct&recordsPerPage=10&currentPage=1">Display All Product</a>
+                        <a class="dropdown-item" href="../admin/add-category.jsp">Add Category</a>
+                        <a class="dropdown-item" href="../admin/add-brand.jsp">Add Brand</a>
+                        <a class="dropdown-item" href="../admin/add-product.jsp">Add Product</a>
+                        <a class="dropdown-item" href="../admin/CreateProduct?action=updateProduct&recordsPerPage=10&currentPage=1">Update Product</a>
+                        <a class="dropdown-item" href="../admin/CreateProduct?action=displayProduct&recordsPerPage=10&currentPage=1">Display All Product</a>
 
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="orders.jsp">
+                    <a class="nav-link" href="createOrder?action=displayAllOrders&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Orders</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="UserController?action=displayAllUsers&recordsPerPage=10&currentPage=1">
+                    <a class="nav-link" href="../admin/UserController?action=displayAllUsers&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Display All Users</span></a>
                 </li>
@@ -121,11 +124,11 @@
                     </ol>
 
                     <div class="row col-sm-12">
-                        <form style="width: 100%;" method="Get" action="ProductSearch">
+                        <form style="width: 100%;" method="Get" action="OrderSearch">
                             <div class="form-group" style="width: 100%">
                                 <!--why required not working-->
-                                <text style="font-size: 20px;">Search : </text><br/>
-                                <input type="text" class="form-input" name="productSearchTxt" id="searchTxt"  value="${searchTxtValue}" placeholder="enter product name to search"/><br>
+                                <text style="font-size: 20px;">Search by user's city : </text><br/><br>
+                                <input type="text" class="form-input" name="orderSearchTxt" id="orderSearchTxt"  value="${searchTxtValue}" placeholder="enter user's City to search"/><br>
                                 <input type="hidden" class="form-input" name="currentPage" id="currentPage" value="1"/>
                                 <input type="hidden" class="form-input" name="recordsPerPage" id="recordsPerPage" value="10" />
                             </div>
@@ -134,7 +137,6 @@
                             </div>
                         </form>
                     </div>
-
                     <!-- DataTables Example -->
                     <div class="card mb-3">
                         <div class="card-header">
@@ -143,35 +145,36 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <div class="row col-md-12">
-                                    <table class="table table-striped table-bordered table-sm" >
+                                    <table id="ordersTable" class="table table-striped table-bordered table-sm" >
                                         <tr>
-                                            <th>Product Name</th>
-                                            <th>Price</th>
-                                            <th>Discount</th>
-                                            <th>Product Color</th>
-                                            <th>Product Quantity</th>
-                                            <th>Brand Name</th>
+                                            <th>Order Number</th>
+                                            <th>User Name</th>
+                                            <th>Address</th>
+                                            <th>Post Code</th>
+                                            <th>Total Price</th>
+                                            <th>Buy Date</th>
                                         </tr>
 
-                                        <c:forEach items="${orderPagination}" var="current">
+                                        <c:forEach items="${ordersPagination}" var="current">
                                             <tr>
-                                                <td>${current.name}</td>
-                                                <td>${current.price}</td>
-                                                <td>${current.discount}</td>    
-                                                <td>${current.productColor}</td>    
-                                                <td>${current.quantity}</td>    
-                                                <td>${current.brand.name}</td>    
+                                                <td>${current.id}</td>
+                                                <td>${current.fullName}</td>
+                                                <td>${current.country}, ${current.city}, ${current.street}</td>
+                                                <td>${current.postcode}</td>    
+                                                <td>${current.totalPrice}</td>    
+                                                <td>${current.date}</td>
+
                                             </tr>
                                         </c:forEach>
                                     </table>
                                 </div>
-                                <c:if test="${displayProducts == 'displayAllProducts'}">
+                                <c:if test="${displayOrders == 'displayAllOrders'}">
                                     <div class="row col-md-12">
                                         <nav aria-label="Navigation for countries">
                                             <ul class="pagination">
                                                 <c:if test="${currentPage != 1}">
                                                     <li class="page-item"><a class="page-link" 
-                                                                             href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                                                             href="../client/createOrder?action=displayAllOrders&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
                                                     </li>
                                                 </c:if>
 
@@ -184,7 +187,7 @@
                                                         </c:when>
                                                         <c:otherwise>
                                                             <li class="page-item"><a class="page-link" 
-                                                                                     href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                                                     href="../client/createOrder?action=displayAllOrders&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                                                             </li>
                                                         </c:otherwise>
                                                     </c:choose>
@@ -192,7 +195,7 @@
 
                                                 <c:if test="${currentPage lt noOfPages}">
                                                     <li class="page-item"><a class="page-link" 
-                                                                             href="CreateProduct?action=displayProduct&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                                                             href="../client/createOrder?action=displayAllOrders&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
                                                     </li>
                                                 </c:if>              
                                             </ul>
@@ -203,13 +206,13 @@
 
 
 
-                                <c:if test="${displayProducts == 'displaySearchProduct'}">
+                                <c:if test="${displayOrders == 'displaySearchOrder'}">
                                     <div class="row col-md-12">
                                         <nav aria-label="Navigation for countries">
                                             <ul class="pagination">
                                                 <c:if test="${currentPage != 1}">
                                                     <li class="page-item"><a class="page-link" 
-                                                                             href="ProductSearch?productSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
+                                                                             href="../client/OrderSearch?orderSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
                                                     </li>
                                                 </c:if>
 
@@ -222,7 +225,7 @@
                                                         </c:when>
                                                         <c:otherwise>
                                                             <li class="page-item"><a class="page-link" 
-                                                                                     href="ProductSearch?productSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
+                                                                                     href="../client/OrderSearch?orderSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${i}">${i}</a>
                                                             </li>
                                                         </c:otherwise>
                                                     </c:choose>
@@ -230,7 +233,7 @@
 
                                                 <c:if test="${currentPage lt noOfPages}">
                                                     <li class="page-item"><a class="page-link" 
-                                                                             href="ProductSearch?productSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
+                                                                             href="../client/OrderSearch?orderSearchTxt=${searchTxtValue}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}">Next</a>
                                                     </li>
                                                 </c:if>              
                                             </ul>
@@ -242,39 +245,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-                    <!--                    
-                                         we will Delete That 
-                                        <div class="row">
-                                            <div class="col-lg-8">
-                                                <div class="card mb-3">
-                                                    <div class="card-header">
-                                                        <i class="fas fa-chart-bar"></i>
-                                                        Bar Chart Example</div>
-                                                    <div class="card-body">
-                                                        <canvas id="myBarChart" width="100%" height="50"></canvas>
-                                                    </div>
-                                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="card mb-3">
-                                                    <div class="card-header">
-                                                        <i class="fas fa-chart-pie"></i>
-                                                        Pie Chart Example</div>
-                                                    <div class="card-body">
-                                                        <canvas id="myPieChart" width="100%" height="100"></canvas>
-                                                    </div>
-                                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                    
-                                        <p class="small text-center text-muted my-5">
-                                            <em>More chart examples coming soon...</em>
-                                        </p>-->
 
                 </div>
                 <!-- /.container-fluid -->
@@ -319,22 +289,17 @@
         </div>
 
         <!-- Bootstrap core JavaScript-->
-        <script src="resources/vendor/jquery/jquery.min.js"></script>
-        <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../admin/resources/vendor/jquery/jquery.min.js"></script>
+        <script src="../admin/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
-        <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Page level plugin JavaScript-->
-        <script src="resources/vendor/chart.js/Chart.min.js"></script>
+        <script src="../admin/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="resources/js/sb-admin.min.js"></script>
+        <script src="../admin/resources/js/sb-admin.min.js"></script>
+        <script src="../admin/resources/js/demo/datatables-demo.js"></script>
 
-        <!-- Demo scripts for this page-->
-        <script src="resources/js/demo/chart-area-demo.js"></script>
-        <script src="resources/js/demo/chart-bar-demo.js"></script>
-        <script src="resources/js/demo/chart-pie-demo.js"></script>
+        <script src="../admin/resources/js/displayAllOrders.js"></script>
 
     </body>
 

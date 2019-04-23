@@ -14,6 +14,7 @@ import java.util.Set;
 import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import model.dal.dao.ProductDAO;
 import model.entity.Brand;
@@ -110,11 +111,27 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public int getProductNumberOfRows() {
+
         Integer numOfRows = 0;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Product.class);
-        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Product> query = builder.createQuery(Product.class);
+            Root<Product> root = query.from(Product.class);
+            query.select(root);
+            Query<Product> q = session.createQuery(query);
+            numOfRows = q.list().size();
+            System.out.println(numOfRows);
+//            session.getTransaction().commit();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+        }
         return numOfRows;
+
+//        Integer numOfRows = 0;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(Product.class);
+//        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+//        return numOfRows;
     }
 
     @Override
@@ -123,7 +140,7 @@ public class ProductDAOImpl implements ProductDAO {
         List<Product> productList;
         int start = currentPage * recordsPerPage - recordsPerPage;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
+//            session.beginTransaction();
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Product> query = builder.createQuery(Product.class);
             Root<Product> root = query.from(Product.class);
@@ -132,7 +149,7 @@ public class ProductDAOImpl implements ProductDAO {
             q.setFirstResult(start);
             q.setMaxResults(recordsPerPage);
             productList = q.getResultList();
-            session.getTransaction().commit();
+//            session.getTransaction().commit();
             //session.close();
             System.out.println("donnnnnnnnnnnnnnnnnne");
         }
@@ -159,40 +176,65 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public int getNumberOfRowsProductSearch(String productSearch) {
-        Integer numOfRows = 0;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Product.class);
-        Criterion nameCriteria = Restrictions.like("name", productSearch, MatchMode.ANYWHERE);
-        criteria.add(nameCriteria);
 
-//        criteria.add(Restrictions.and(Restrictions.like(
-//                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
-//                        "phone", phoneTxt, MatchMode.ANYWHERE))));
-        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        Integer numOfRows = 0;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Product> query = builder.createQuery(Product.class);
+            Root<Product> root = query.from(Product.class);
+            Path<String> name = root.get("name");
+            query.select(root).where(builder.like(root.get("name").as(String.class), "%" + productSearch + "%"));
+            Query<Product> q = session.createQuery(query);
+            numOfRows = q.list().size();
+            System.out.println(numOfRows);
+//            session.getTransaction().commit();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+        }
         return numOfRows;
+
+//        Integer numOfRows = 0;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(Product.class);
+//        Criterion nameCriteria = Restrictions.like("name", productSearch, MatchMode.ANYWHERE);
+//        criteria.add(nameCriteria);
+//        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+//        return numOfRows;
     }
 
     @Override
     public List<Product> getProductSearch(int currentPage, int recordsPerPage, String productSearch) {
-        List<Product> products = null;
 
+        List<Product> productList;
         int start = currentPage * recordsPerPage - recordsPerPage;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Product> query = builder.createQuery(Product.class);
+            Root<Product> root = query.from(Product.class);
+            Path<String> name = root.get("name");
 
-//        try {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Product.class);
-//        criteria.add(Restrictions.and(Restrictions.like(
-//                "name", searchTxt, MatchMode.ANYWHERE), (Restrictions.like(
-//                        "phone", phoneTxt, MatchMode.ANYWHERE))));
-//
-        Criterion nameCriteria = Restrictions.like("name", productSearch, MatchMode.ANYWHERE);
-//        Criterion nameCriteria2 = Restrictions.like("phone", phoneTxt, MatchMode.ANYWHERE);
-        criteria.add(nameCriteria);
-//        criteria.add(nameCriteria2);
-        criteria.setFirstResult(start);
-        criteria.setMaxResults(recordsPerPage);
-        products = criteria.list();
-        return products;
+            query.select(root).where(builder.like(root.get("name").as(String.class), "%" + productSearch + "%"));
+            Query<Product> q = session.createQuery(query);
+            q.setFirstResult(start);
+            q.setMaxResults(recordsPerPage);
+            productList = q.getResultList();
+//            session.getTransaction().commit();
+            //session.close();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+        }
+        return productList;
+//        
+//        List<Product> products = null;
+//        int start = currentPage * recordsPerPage - recordsPerPage;
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(Product.class);
+//        Criterion nameCriteria = Restrictions.like("name", productSearch, MatchMode.ANYWHERE);
+//        criteria.add(nameCriteria);
+//        criteria.setFirstResult(start);
+//        criteria.setMaxResults(recordsPerPage);
+//        products = criteria.list();
+//        return products;
     }
 
     @Override
@@ -213,7 +255,6 @@ public class ProductDAOImpl implements ProductDAO {
     /*
     azza
      */
-
     @Override
     public List<Product> search(String input) {
         //SessionFactory sessionFactory = null;
