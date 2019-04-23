@@ -166,7 +166,7 @@
                                     <td>${current.phone}</td>    
                                     <td>${current.userCredit.creditcard}</td>    
                                     <td>${current.userCredit.wallet}</td>    
-                                    <td id="${current.picture}"><img src="../client/images/user_image/${current.picture}" style="width: 65px; height: 65px;" /></td>    
+                                    <td id="${current.picture}"><img src="../client/images/users_image/${current.picture}" style="width: 65px; height: 65px;" /></td>    
                                 </tr>
                             </c:forEach>
                         </table>
