@@ -51,7 +51,8 @@ import services.UserServices;
 public class CreateProduct extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -301,7 +302,8 @@ public class CreateProduct extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
@@ -355,6 +357,7 @@ public class CreateProduct extends HttpServlet {
             request.setAttribute("noOfPages", nOfPages);
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("recordsPerPage", recordsPerPage);
+            request.setAttribute("displayProducts", "displayAllProducts");
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("update-product.jsp");
             dispatcher.forward(request, response);

@@ -96,7 +96,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="orders.jsp">
+                    <a class="nav-link" href="../client/createOrder?action=displayAllOrders&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Orders</span></a>
                 </li>
@@ -166,7 +166,7 @@
                                     <td>${current.phone}</td>    
                                     <td>${current.userCredit.creditcard}</td>    
                                     <td>${current.userCredit.wallet}</td>    
-                                    <td id="${current.picture}"><img src="${current.picture}" style="width: 65px; height: 65px;" /></td>    
+                                    <td id="${current.picture}"><img src="../client/images/user_image/${current.picture}" style="width: 65px; height: 65px;" /></td>    
                                 </tr>
                             </c:forEach>
                         </table>

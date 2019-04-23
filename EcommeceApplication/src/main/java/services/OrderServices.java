@@ -147,17 +147,25 @@ public class OrderServices {
 
     }
 
-    //Ahmed Abdelkarim
-    /*
+    //start Ahmed Abdelkarim
+    
+    
+    public List<Order> getUsersPagenation(int currentPage,int recordsPerPage){
+        return orderDAO.getOrdersPagenation(currentPage,recordsPerPage);
+    }
+    
+    public int getNumberOfRows(){
+        return orderDAO.getNumberOfRows();
+    }
+    
+    public int getNewOrdersWeek() {
+        return orderDAO.getNewOrdersWeek();
+    }
     
     
     
     
-    
-    
-    
-    
-     */
+     // end 
     //Ghazalla
     /*
     

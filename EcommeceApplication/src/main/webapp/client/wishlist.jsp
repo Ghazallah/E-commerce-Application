@@ -24,7 +24,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <div class="row mt-2"><span class="cart-item-cost">EGP <c:out value="${product.price}"/></span></div>
-                                            <div class="row mt-1"><span class="cart-item-discount">EGP <c:out value="${(product.price * product.discount)/100}"/></span></div>
+                                            <div class="row mt-1"><span class="cart-item-discount">EGP <c:out value="${product.price - ((product.price * product.discount)/100)}"/></span></div>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>

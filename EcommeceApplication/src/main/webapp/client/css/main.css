@@ -3142,7 +3142,7 @@ input.num-product::-webkit-outer-spin-button, input.num-product::-webkit-inner-s
 }
 
 .hov-img0 img {
-    width: 100%;
+    width: 70%;
     -webkit-transition: transform 0.9s ease;
     -o-transition: transform 0.9s ease;
     -moz-transition: transform 0.9s ease;
@@ -4007,6 +4007,7 @@ ul, ol {
 }
 
 ._3VCBs .RaDM7 {
+    max-width: 100px;
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
@@ -4576,4 +4577,11 @@ label {
 .heart {
     font-size: 25px;
     color:red;
+}
+.product-img{
+    height: 200px;
+}
+
+.products-classify{
+    margin-top: 20px;
 }

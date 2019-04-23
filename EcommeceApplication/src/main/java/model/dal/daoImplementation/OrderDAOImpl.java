@@ -13,12 +13,17 @@ import java.util.logging.Logger;
 import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import model.dal.dao.OrderDAO;
 import model.entity.Order;
+import model.entity.Product;
+import model.entity.User;
 import model.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 
 /**
@@ -66,7 +71,7 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public void update(Order order) {
-         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.update(order);
             session.getTransaction().commit();
@@ -83,7 +88,7 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public void delete(Order order) {
-         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.delete(order);
             session.getTransaction().commit();
@@ -136,4 +141,86 @@ public class OrderDAOImpl implements OrderDAO {
         return order;
     }
 
+    @Override
+    public List<Order> getOrdersPagenation(int currentPage, int recordsPerPage) {
+        List<Order> orders;
+        int start = currentPage * recordsPerPage - recordsPerPage;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Order> query = builder.createQuery(Order.class);
+            Root<Order> root = query.from(Order.class);
+            query.select(root);
+            Query<Order> q = session.createQuery(query);
+            q.setFirstResult(start);
+            q.setMaxResults(recordsPerPage);
+            orders = q.getResultList();
+        }
+        return orders;
+    }
+
+    @Override
+    public int getNumberOfRows() {
+        Integer numOfRows = 0;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Order.class);
+        numOfRows = ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        return numOfRows;
+    }
+
+    @Override
+    public int getNumberOfRowsOrderSearch(String productSearch) {
+        Integer numOfRows = 0;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Order> query = builder.createQuery(Order.class);
+            Root<Order> root = query.from(Order.class);
+            Path<String> city = root.get("city");
+            query.select(root).where(builder.like(root.get("city").as(String.class), "%" + productSearch + "%"));
+            Query<Order> q = session.createQuery(query);
+            numOfRows = q.list().size();
+            System.out.println(numOfRows);
+//            session.getTransaction().commit();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+        }
+        return numOfRows;
+    }
+
+    @Override
+    public List<Order> getOrderSearch(int currentPage, int recordsPerPage, String productSearch) {
+        List<Order> productList;
+        int start = currentPage * recordsPerPage - recordsPerPage;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Order> query = builder.createQuery(Order.class);
+            Root<Order> root = query.from(Order.class);
+            Path<String> city = root.get("city");
+
+            query.select(root).where(builder.like(root.get("city").as(String.class), "%" + productSearch + "%"));
+            Query<Order> q = session.createQuery(query);
+            q.setFirstResult(start);
+            q.setMaxResults(recordsPerPage);
+            productList = q.getResultList();
+//            session.getTransaction().commit();
+            //session.close();
+            System.out.println("donnnnnnnnnnnnnnnnnne");
+
+        }
+        return productList;
+    }
+    
+    @Override
+    public int getNewOrdersWeek() {
+        int orderCount = 0;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("select la from Order la where la.date > :date");
+            query.setParameter("date", new Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
+            orderCount = query.list().size();
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return orderCount;
+    }
 }

@@ -70,9 +70,10 @@ function getRequestedOrderState(jsonContent, cartProducts) {
                     if (productvalid == false) {
                         accept = false;
                         var productdiv = cartProducts[i];
+                        console.log("available = "+ products[i].available);
                         var productavailable = products[i].available;
                         productdiv.setAttribute('data-available', productavailable);
-
+                        $('#cart-product-available-'+products[i].pid).html(productavailable);
                         iziToast.error({
                             title: 'Info : ',
                             position: 'topCenter',
@@ -106,7 +107,7 @@ function getRequestedOrderState(jsonContent, cartProducts) {
 }
 
 function checkoutOrder() {
-    var accept = true;
+    var accept = false;
     var cartproducts = $('#cart-products > div');
     var jsonContent = getJSONCurrentCartProduct(cartproducts);
 
@@ -123,16 +124,19 @@ function checkoutOrder() {
         'phone': $('#cart-phone').val(),
         'creditcardnumber': $('#creditcardnumber').val()
     };
-    console.log(orderJson);
+    console.log("Order request Json : "+orderJson);
     // process the form
     $.ajax({
         type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
         url: 'createOrder', // the url where we want to POST
         dataType: 'json',
+        async : false,
         data: {"order": JSON.stringify(orderJson)},
         contentType: "application/x-www-form-urlencoded",
         traditional: true,
         success: function (data) {
+            console.log("Order data received from server = "+data);
+            $('#order-summary-id').html('#'+data);
             if (data != -1) {
                 accept = true;
                 iziToast.success({

@@ -108,7 +108,7 @@ function getWishlistElement(productJson) {
             + productJson.price + "</span></div>";
     else {
         element += "<div class=\"row mt-2\"><span class=\"cart-item-cost\">EGP " + productJson.price + "</span></div>"
-            + "<div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + ((productJson.price * productJson.discount) / 100) + "</span></div>"
+            + "<div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + (productJson.price-((productJson.price * productJson.discount) / 100)) + "</span></div>"
     }
 
     element += "</div> </div> "
