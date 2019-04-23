@@ -70,9 +70,10 @@ function getRequestedOrderState(jsonContent, cartProducts) {
                     if (productvalid == false) {
                         accept = false;
                         var productdiv = cartProducts[i];
+                        console.log("available = "+ products[i].available);
                         var productavailable = products[i].available;
                         productdiv.setAttribute('data-available', productavailable);
-
+                        $('#cart-product-available-'+products[i].pid).html(productavailable);
                         iziToast.error({
                             title: 'Info : ',
                             position: 'topCenter',

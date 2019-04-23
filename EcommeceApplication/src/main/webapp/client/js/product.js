@@ -8,8 +8,6 @@ function showProductDetails() {
     event.preventDefault();
     console.log("click on product : " + event.target.id);
     var ss = "#product-"+event.target.id;
-    console.log(ss);
-    console.log($(ss));
     var jsonContent = $(ss).attr('data-product');
     renderShowProductDetails(jsonContent);
 }

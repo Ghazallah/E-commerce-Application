@@ -1,3 +1,13 @@
+/* ============= iziToast =========== */
+iziToast.info({
+    title: '',
+    position: 'topCenter',
+    progressBar: false,
+    timeout: '8000',
+    pauseOnHover: false,
+    message: 'We recommend to run this web application on mobile !'
+});
+
 /* ================   PerfectScrollbar ======================*/
 $('.js-pscroll').each(function () {
     $(this).css('position', 'relative');

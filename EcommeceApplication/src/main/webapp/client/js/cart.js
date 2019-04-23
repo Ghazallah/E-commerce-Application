@@ -113,12 +113,12 @@ function getProductCartItem(productJson) {
         element += " <div  class=\"row mt-2\"><span  class=\"cart-item-cost text-decoration-none\">EGP <b id=\"cart-product-price-"+productJson.pid+"\">" + productJson.price + "</b></span></div>";
     else {
         element += " <div  class=\"row mt-2\"><b  class=\"cart-item-cost\">EGP <b id=\"cart-product-price-"+productJson.pid+"\">" + productJson.price + "</b></span></div>"
-            + " <div class=\"row mt-1\"><span class=\"cart-item-discount\">EGP " + (productJson.price - ((productJson.price * productJson.discount)/100)) + "</span></div>  </div> </div>";
+            + " <div class=\"row mt-1\"><span class=\"cart-item-discount text-decoration-none\">EGP " + (productJson.price - ((productJson.price * productJson.discount)/100)) + "</span></div>  </div> </div>";
     }
 
     element += "   <div class=\"row mt-3 d-block\">"
         + "   <div class=\"m-l-30 float-left\"><button type=\"button\"><i class=\"ti-trash fs-22\" onclick=\"removeFromCart(" + productJson.pid + ")\"></i></button></div>"
-        + "   <div class=\"m-l-40 float-left cl2 font-weight-bolder fs-17\">Available : <span class=\"cl3\">" + productJson.quantity + "</span></div>"
+        + "   <div class=\"m-l-40 float-left cl2 font-weight-bolder fs-17\">Available : <span id=\"cart-product-available-"+productJson.pid+"\" class=\"cl3\">" + productJson.quantity + "</span></div>"
         + "   <div class=\"m-r-20 pb-2 float-right\">"
         + "   <div class=\"wrap-num-product flex-w\">"
         + "   <div class=\"btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m\"><i class=\"fs-10 zmdi zmdi-minus\"></i></div>"
@@ -271,49 +271,65 @@ jQuery().ready(function () {
     //when completing multi-form order cart
     $('.completeOrder').click(function () {
         $(".frm").hide("fast");
-        if (v.form()) {
-            //now checkout order now
-            var isSuccess = checkoutOrder();
-            if (isSuccess) {
-                console.log("order saved !");
-                //Order summary
-                $("#order-summary-items").html('');
-                var cartproducts = $('#cart-products > div');
-                console.log("products in order = "+cartproducts.length);
+        var isstillaccepted = checkQuantity();
+        if (isstillaccepted == true) {
+            if (v.form()) {
+                //now checkout order now
+                var isSuccess = checkoutOrder();
+                if (isSuccess) {
+                    console.log("order saved !");
+                    //Order summary
+                    var cartproducts = $('#cart-products > div');
+                    console.log("products in order = " + cartproducts.length);
 
-                var subtotal = 0;
-                for (var i = 0; i < cartproducts.length; i++) {
-                    var product = cartproducts[i];
-                    var pid = product.getAttribute('data-id');
-                    var pname = $('#cart-product-name-'+pid).html();
-                    var price = $('#cart-product-price-'+pid).html();
-                    subtotal+=price;
-                    var quantity = $('#cart-product-quantity-'+pid).val();
-                    var img = $('#cart-product-image-'+pid).attr('src');
-                    var element = getOrderSummeryElement(pid,pname,price,quantity,img);
-                    console.log("to insert : "+element);
-                    $("#order-summary-items").append(element);  //dummy
-                    //set shipping cost
-                    //set total cost
+                    var subtotal = 0;
+                    for (var i = 0; i < cartproducts.length; i++)
+                    {
+                        var product = cartproducts[i];
+                        var pid = product.getAttribute('data-id');
+                        var pname = $('#cart-product-name-' + pid).html();
+                        var price = $('#cart-product-price-' + pid).html();
+                        subtotal += price;
+                        var quantity = $('#cart-product-quantity-' + pid).val();
+                        var img = $('#cart-product-image-' + pid).attr('src');
+                        var element = getOrderSummeryElement(pid, pname, price, quantity, img);
+                        console.log("to insert : " + element);
+                        $("#order-summary-items").append(element);  //dummy
+                        //set shipping cost
+                        //set total cost
+                    }
+                    //set number of item
+                    $('#order-summary-number').html(cartproducts.length);
+                    $('#order-summary-subtotal').html(subtotal);
+                    $('#order-summary-total').html(subtotal + 25);  //dummy shipping
+
+                    //display summary of cart
+                    //$("#cartform").html($(".cart-summary").html());
+                    $(".frm").hide("fast");
+                    $(".cart-step4").removeClass("cart-form-active");
+                    $("#sf5").show("slow");
+                    $(".cart-step1").addClass("cart-form-active");
+
+                    setTimeout(rendercartafterorder, 10000);
+                } else {
+                    console.log("order failed !");
                 }
-                //set number of item
-                $('#order-summary-number').html(cartproducts.length);
-                //display summary of cart
-                $("#cartform").html($(".cart-summary").html());
 
-                $('#order-summary-subtotal').html(subtotal);
-                $('#order-summary-total').html(subtotal + 25);  //dummy shipping
-            } else {
-                console.log("order failed !");
+                // Remove this if you are not using ajax method for submitting values
+                return false;
             }
-
-            // Remove this if you are not using ajax method for submitting values
-            return false;
+        }else{
+            console.log("failed to ordering another user buy products");
+            $(".frm").hide("fast");
+            $(".cart-step4").removeClass("cart-form-active");
+            $("#sf1").show("slow");
+            $(".cart-step1").addClass("cart-form-active");
         }
     });
 });
 
-function getOrderSummeryElement(pid, pname, price,quantity, img) {
+function getOrderSummeryElement(pid, pname, price,quantity, img)
+{
     return '                            <div class="row mt-3 pt-3 delimiter-top">\n' +
         '                                <div class="col-8">\n' +
         '                                    <div class="media align-items-center"><img alt="Image placeholder" class="mr-2" src="'+img+'" style="width: 42px;">\n' +
@@ -329,4 +345,23 @@ function getOrderSummeryElement(pid, pname, price,quantity, img) {
         '                                    <small class="text-dark">$ '+(quantity * price)+'</small>\n' +
         '                                </div>\n' +
         '                            </div>\n';
+}
+
+function rendercartafterorder() {
+    $(".frm").hide("fast");
+    $("#order-summary-items").html('');
+
+    var cartproducts = $('#cart-products > div');
+    for (var i = 0; i < cartproducts.length; i++)
+    {
+        var pid = cartproducts[i].getAttribute('data-id');
+        var productelement = $("#product-" + pid);
+        productelement.attr('data-incart', false);
+    }
+    $('#cart-products').html('');
+
+    //switch to first item in list
+    $(".cart-step4").removeClass("cart-form-active");
+    $("#sf1").show("slow");
+    $(".cart-step1").addClass("cart-form-active");
 }

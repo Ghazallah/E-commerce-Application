@@ -29,13 +29,13 @@
                                         </div>
                                         <div class="col-7">
                                             <div class="row"><span id="cart-product-name-<c:out value="${cart.product.pid}"/>" class="cart-item-name"><c:out value="${cart.product.name}"/></span></div>
-                                             <c:choose>
+                                            <c:choose>
                                                 <c:when test="${(cart.product.discount) eq 0}">
                                                     <div id="cart-product-price-<c:out value="${cart.product.pid}"/>" class="row mt-2"><span class="cart-item-cost text-decoration-none">EGP <b id="cart-product-price-<c:out value="${cart.product.pid}"/>"><c:out value="${cart.product.price}"/></b></span></div>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <div  class="row mt-2"><span class="cart-item-cost">EGP <b id="cart-product-price-<c:out value="${cart.product.pid}"/>"><c:out value="${cart.product.price}"/></b></span></div>
-                                                    <div class="row mt-1"><span  class="cart-item-discount">EGP <c:out value="${cart.product.price - ((cart.product.price * cart.product.discount)/100)}"/></span></div>
+                                                    <div class="row mt-2"><span class="cart-item-cost">EGP <b id="cart-product-price-<c:out value="${cart.product.pid}"/>"><c:out value="${cart.product.price}"/></b></span></div>
+                                                    <div class="row mt-1"><span class="cart-item-discount text-decoration-none">EGP <c:out value="${cart.product.price - ((cart.product.price * cart.product.discount)/100)}"/></span></div>
                                                 </c:otherwise>
                                             </c:choose>
                                         </div>
@@ -44,7 +44,7 @@
                                         <div class="m-l-30 float-left"><a href="#">
                                             <i class="ti-trash fs-22" onclick="removeFromCart(<c:out value="${cart.product.pid}"/>)"></i>
                                         </a></div>
-                                        <div class="m-l-40 float-left cl2 font-weight-bolder fs-17">Available : <span class="cl3"><c:out value="${cart.product.quantity}"/></span></div>
+                                        <div class="m-l-40 float-left cl2 font-weight-bolder fs-17">Available : <span id="cart-product-available-<c:out value="${cart.product.pid}"/>" class="cl3"><c:out value="${cart.product.quantity}"/></span></div>
                                         <div class="m-r-20 pb-2 float-right">
                                             <div class="wrap-num-product flex-w">
                                                 <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"><i class="fs-10 zmdi zmdi-minus"></i></div>
@@ -135,7 +135,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Phone</label>
-                                            <input id="cart-phone"  name="phone" class="form-control" type="number" placeholder="01XXXXXXXXX">
+                                            <input id="cart-phone" name="phone" class="form-control" type="number" placeholder="01XXXXXXXXX">
                                         </div>
                                     </div>
                                 </div>
@@ -277,5 +277,55 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- order summery -->
+
+    <div id="sf5" class="frm bg-white" style="display: none;">
+        <div class="container cart-summary">
+            <div data-toggle="sticky" data-sticky-offset="30">
+                <div class="card" id="card-summary">
+                    <div class="card-header py-3">
+                        <div class="row align-items-center">
+                            <div class="col-6 text-left"><span class="h6">Order ID : <b id="order-summary-id"></b>  </span></div>
+                            <div class="col-6 text-right"><span class="badge-success badge-pill pt-2 pb-2"><b id="order-summary-number"></b> items</span></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="order-summary-items">
+
+                        </div>
+                        <!-- Subtotal -->
+                        <div class="row mt-3 pt-3 border-top">
+                            <div class="col-8 text-right">
+                                <small class="font-weight-bold cl2">Subtotal:</small>
+                            </div>
+                            <div class="col-4 text-right"><span class="text-sm font-weight-bold">$<b id="order-summary-subtotal"></b></span></div>
+                        </div>
+                        <!-- Shipping -->
+                        <div class="row mt-3 pt-3 border-top">
+                            <div class="col-8 text-right">
+                                <div class="media align-items-center"><i class="far fa-shipping-fast"></i>
+                                    <div class="media-body">
+                                        <div class="text-limit lh-100">
+                                            <small class="font-weight-bold mb-0 cl2">Shipping</small>
+                                        </div>
+                                        <small class="text-muted">Fast Delivery</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 text-right"><span class="text-sm font-weight-bold">$<b id="order-summary-shipping">25.0</b></span></div>
+                        </div>
+                        <!-- Subtotal -->
+                        <div class="row mt-3 pt-3 border-top">
+                            <div class="col-8 text-right">
+                                <small class="text-uppercase font-weight-bold cl2">Total:</small>
+                            </div>
+                            <div class="col-4 text-right"><span class="text-sm font-weight-bold">$<b id="order-summary-total"></b></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </form>

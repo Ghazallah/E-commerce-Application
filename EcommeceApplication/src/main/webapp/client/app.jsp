@@ -72,7 +72,7 @@
     <!-- ------------------------------------------------ -->
 
     <!-- Home Page -->
-    <section id="homepage" class="active-menu tab-pane active">
+    <section id="homepage" class="active-menu tab-pane p-b-150 active">
         <!-- Header -->
         <header class="home-header">
             <!-- Header Mobile -->
@@ -173,7 +173,7 @@
     <!-- ------------------------------------------------ -->
 
     <!-- Category Page -->
-    <section id="categorypage" class="active-menu tab-pane fade">
+    <section id="categorypage" class="active-menu tab-pane p-b-150 fade">
 
         <!-- Content -->
         <section class="bg0 p-t-23 p-b-140 bg-silver">
@@ -182,125 +182,17 @@
         </section>
 
         <!-- Load more -->
-        <div class="flex-c-m flex-w w-full p-t-45"><a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"> Load More </a></div>
-
-        <!-- view product Modal -->
-        <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-            <div class="overlay-modal1 js-hide-modal1"></div>
-
-            <div class="container">
-                <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-                    <button class="how-pos3 hov3 trans-04 js-hide-modal1">
-                        <img src="images/icons/icon-close.png" alt="CLOSE">
-                    </button>
-
-                    <div class="row">
-                        <div class="col-md-6 col-lg-7 p-b-30">
-                            <div class="p-l-25 p-r-30 p-lr-0-lg" id="show-product-images">
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-5 p-b-30">
-                            <div class="p-r-50 p-t-5 p-lr-0-lg" id="show-product-details">
-                                <h4 class="mtext-105 cl2 js-name-detail p-b-14" id="show-product-name"> Lightweight Jacket </h4>
-                                <span class="mtext-106 cl3" id="show-product-price"> $58.79 </span>
-                                <p class="stext-102 cl2 p-t-23" id="show-product-desc">
-                                    Fully immersive, completely impressive
-                                    Clarity on display: Enjoy the crisp detail of 15.6" FHD non-touch anti-glare display to see everything better, especially outside or in bright light.
-                                    Stream seamlessly: SmartByte technology makes your gaming and streaming smooth and uninterrupted, so you never miss a second.
-                                </p>
-
-                                <!-- product specification -->
-                                <div class="p-t-33">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Specification</th>
-                                            <th>Value</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th>Processor</th>
-                                            <td id="show-product-processor">8th Generation Intel® Core™ i7 8550U 8M Cache, up to 4.00 GHz</td>
-                                        </tr>
-                                        <tr>
-                                            <th>RAM</th>
-                                            <td id="show-product-ram">8 GB DDR4 2400MHz</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Graphic card</th>
-                                            <td id="show-product-vga">Intel UHD Graphics 620</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Storage</th>
-                                            <td id="show-product-storage">256GB</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Operating System</th>
-                                            <td id="show-product-os">Win 10</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-
-                                <div class="p-t-33">
-                                    <!-- Product color -->
-                                    <div class="flex-w flex-r-m p-b-10">
-                                        <div class="size-203 flex-c-m respon6"> Color</div>
-                                        <div class="size-204 respon6-next">
-                                            <div class="rs1-select2 bor8 bg0">
-                                                <select class="js-select2" name="time" id="show-product-colours">
-                                                    <option>Choose an option</option>
-                                                    <option>Red</option>
-                                                    <option>Blue</option>
-                                                    <option>White</option>
-                                                    <option>Grey</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Product Quantity -->
-                                    <div class="flex-w flex-r-m p-b-10">
-                                        <div class="size-203 flex-c-m respon6"> Quantity</div>
-
-                                        <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-minus"></i>
-                                            </div>
-
-                                            <input id="show-product-quantity" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" min="1" value="1" max="1">
-
-                                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-plus"></i>
-                                            </div>
-                                        </div>
-
-
-                                        <div id="show-product-id">
-                                            <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+        <!--
+        <div class="flex-c-m flex-w w-full p-t-45">
+            <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"> Load More </a>
+        </div> -->
     </section>
 
     <!-- ------------------------------------------------ -->
     <!-- ------------------------------------------------ -->
 
     <!-- Wishlist Page -->
-    <section id="wishlistpage" class="active-menu tab-pane fade">
+    <section id="wishlistpage" class="active-menu tab-pane p-b-150 fade">
         <header class="header-account-page bg-primary d-flex align-items-end pt-2">
             <!-- Header container -->
             <div class="container">
@@ -323,7 +215,7 @@
     <!-- ------------------------------------------------ -->
 
     <!-- Cart Page -->
-    <section id="cartpage" class="active-menu tab-pane fade">
+    <section id="cartpage" class="active-menu tab-pane p-b-150 fade">
         <header class="header-account-page bg-primary d-flex align-items-end pt-2">
             <!-- Header container -->
             <div class="container">
@@ -353,98 +245,6 @@
             <!-- Include shopping cart page -->
             <%@ include file="cart.jsp" %>
 
-            <!-- order summery -->
-            <div class="container cart-summary d-none">
-                <div data-toggle="sticky" data-sticky-offset="30">
-                    <div class="card" id="card-summary">
-                        <div class="card-header py-3">
-                            <div class="row align-items-center">
-                                <div class="col-6 text-left"><span class="h6">Order ID : <b id="order-summary-id"></b>  </span></div>
-                                <div class="col-6 text-right"><span class="badge-success badge-pill pt-2 pb-2"><b id="order-summary-number"></b> items</span></div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <!-- <div class="row">
-                                <div class="col-8">
-                                    <div class="media align-items-center">
-                                        <img alt="Image placeholder" class="mr-2" src="images/product-01.jpg" style="width: 42px;">
-                                        <div class="media-body">
-                                            <div class="text-limit lh-100">
-                                                <small class="font-weight-bold mb-0">Women running shoes</small>
-                                            </div>
-                                            <small class="text-muted">2 x $23.00</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-right lh-100 fs-14">
-                                    <small class="text-dark">$46.00</small>
-                                </div>
-                            </div> -->
-                            <!--<div class="row mt-3 pt-3 delimiter-top">
-                                <div class="col-8">
-                                    <div class="media align-items-center"><img alt="Image placeholder" class="mr-2" src="images/product-02.jpg" style="width: 42px;">
-                                        <div class="media-body">
-                                            <div class="text-limit lh-100">
-                                                <small class="font-weight-bold mb-0">Women running shoes</small>
-                                            </div>
-                                            <small class="text-muted">2 x $49.50</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-right lh-100">
-                                    <small class="text-dark">$99.00</small>
-                                </div>
-                            </div>
-                            <div class="row mt-3 pt-3 delimiter-top">
-                                <div class="col-8">
-                                    <div class="media align-items-center"><img alt="Image placeholder" class=" mr-2" src="images/product-03.jpg" style="width: 42px;">
-                                        <div class="media-body">
-                                            <div class="text-limit lh-100">
-                                                <small class="font-weight-bold mb-0">Women running shoes</small>
-                                            </div>
-                                            <small class="text-muted">2 x $99.00</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-right lh-100">
-                                    <small class="text-dark">$198.00</small>
-                                </div>
-                            </div> -->
-                            <div id="order-summary-items">
-
-                            </div>
-                            <!-- Subtotal -->
-                            <div class="row mt-3 pt-3 border-top">
-                                <div class="col-8 text-right">
-                                    <small class="font-weight-bold cl2">Subtotal:</small>
-                                </div>
-                                <div class="col-4 text-right"><span class="text-sm font-weight-bold">$<b id="order-summary-subtotal">330.50</b></span></div>
-                            </div>
-                            <!-- Shipping -->
-                            <div class="row mt-3 pt-3 border-top">
-                                <div class="col-8 text-right">
-                                    <div class="media align-items-center"><i class="far fa-shipping-fast"></i>
-                                        <div class="media-body">
-                                            <div class="text-limit lh-100">
-                                                <small class="font-weight-bold mb-0 cl2">Shipping</small>
-                                            </div>
-                                            <small class="text-muted">Fast Delivery</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-right"><span class="text-sm font-weight-bold">$<b id="order-summary-shipping">25.00</b></span></div>
-                            </div>
-                            <!-- Subtotal -->
-                            <div class="row mt-3 pt-3 border-top">
-                                <div class="col-8 text-right">
-                                    <small class="text-uppercase font-weight-bold cl2">Total:</small>
-                                </div>
-                                <div class="col-4 text-right"><span class="text-sm font-weight-bold">$<b id="order-summary-total">355.50</b></span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </main>
     </section>
 
@@ -452,13 +252,121 @@
     <!-- ------------------------------------------------ -->
 
     <!-- Account Page -->
-    <section id="accountpage" class="active-menu tab-pane fade">
+    <section id="accountpage" class="active-menu tab-pane p-b-150 fade">
         <main class="p-b-100">
             <%@ include file="account.jsp" %>
         </main>
     </section>
 
     <!-- ------------------------------------------------ -->
+    <!-- view product Modal -->
+    <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+        <div class="overlay-modal1 js-hide-modal1"></div>
+
+        <div class="container">
+            <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+                <button class="how-pos3 hov3 trans-04 js-hide-modal1">
+                    <img src="images/icons/icon-close.png" alt="CLOSE">
+                </button>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-7 p-b-30">
+                        <div class="p-l-25 p-r-30 p-lr-0-lg" id="show-product-images">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-5 p-b-30">
+                        <div class="p-r-50 p-t-5 p-lr-0-lg" id="show-product-details">
+                            <h4 class="mtext-105 cl2 js-name-detail p-b-14" id="show-product-name"> Lightweight Jacket </h4>
+                            <span class="mtext-106 cl3" id="show-product-price"> $58.79 </span>
+                            <p class="stext-102 cl2 p-t-23" id="show-product-desc">
+                                Fully immersive, completely impressive
+                                Clarity on display: Enjoy the crisp detail of 15.6" FHD non-touch anti-glare display to see everything better, especially outside or in bright light.
+                                Stream seamlessly: SmartByte technology makes your gaming and streaming smooth and uninterrupted, so you never miss a second.
+                            </p>
+
+                            <!-- product specification -->
+                            <div class="p-t-33">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Value</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>Processor</th>
+                                        <td id="show-product-processor">8th Generation Intel® Core™ i7 8550U 8M Cache, up to 4.00 GHz</td>
+                                    </tr>
+                                    <tr>
+                                        <th>RAM</th>
+                                        <td id="show-product-ram">8 GB DDR4 2400MHz</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Graphic card</th>
+                                        <td id="show-product-vga">Intel UHD Graphics 620</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Storage</th>
+                                        <td id="show-product-storage">256GB</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Operating System</th>
+                                        <td id="show-product-os">Win 10</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div class="p-t-33">
+                                <!-- Product color -->
+                                <div class="flex-w flex-r-m p-b-10">
+                                    <div class="size-203 flex-c-m respon6"> Color</div>
+                                    <div class="size-204 respon6-next">
+                                        <div class="rs1-select2 bor8 bg0">
+                                            <select class="js-select2" name="time" id="show-product-colours">
+                                                <option>Choose an option</option>
+                                                <option>Red</option>
+                                                <option>Blue</option>
+                                                <option>White</option>
+                                                <option>Grey</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Quantity -->
+                                <div class="flex-w flex-r-m p-b-10">
+                                    <div class="size-203 flex-c-m respon6"> Quantity</div>
+
+                                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                        </div>
+
+                                        <input id="show-product-quantity" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" min="1" value="1" max="1">
+
+                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                        </div>
+                                    </div>
+
+
+                                    <div id="show-product-id">
+                                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> Add to cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ------------------------------------------------ -->
 
 </main>
