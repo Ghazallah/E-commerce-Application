@@ -96,7 +96,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="orders.jsp">
+                    <a class="nav-link" href="../client/createOrder?action=displayAllOrders&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Orders</span></a>
                 </li>

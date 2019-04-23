@@ -90,7 +90,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="orders.jsp">
+                    <a class="nav-link" href="../client/createOrder?action=displayAllOrders&recordsPerPage=10&currentPage=1">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Orders</span></a>
                 </li>
@@ -176,10 +176,10 @@
                                     <div class="card-body-icon">
                                         <i class="fas fa-fw fa-life-ring"></i>
                                     </div>
-                                    <div class="mr-5">13 New Tickets!</div>
+                                    <div class="mr-5">${sessionScope.newOrdersWeek} New Orders!</div>
                                 </div>
                                 <a class="card-footer text-white clearfix small z-1" href="#">
-                                    <span class="float-left">View Details</span>
+                                    <span class="float-left">Last Week</span>
                                     <span class="float-right">
                                         <i class="fas fa-angle-right"></i>
                                     </span>
