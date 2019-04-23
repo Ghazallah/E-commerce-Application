@@ -278,3 +278,12 @@
     });
 
 })(jQuery);
+
+//solve categorypage active error
+var isotopeButton = $('.filter-tope-group button');
+
+for(var i=0; i<isotopeButton.length; i++) {
+    $(isotopeButton[i]).removeClass('how-active1');
+}
+
+$('#catbtn').addClass('how-active1');

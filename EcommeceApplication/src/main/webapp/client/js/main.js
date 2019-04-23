@@ -282,3 +282,8 @@
     });  
 
 })(jQuery);
+
+
+var $topeContainer = $('.isotope-grid');
+var filterValue = $('#catbtn').attr('data-filter');
+$topeContainer.isotope({filter: filterValue});

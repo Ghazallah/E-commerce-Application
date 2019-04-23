@@ -115,7 +115,7 @@ public class UpdateAccount extends HttpServlet {
                                 targetFile.delete();
                             item.write(targetFile);
                         } else {
-                            user.setPicture(user.getGender());
+                            user.setPicture(user.getPicture());
                         }
 
                     } catch (Exception ex) {

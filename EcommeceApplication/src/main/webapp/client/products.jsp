@@ -8,117 +8,15 @@
 <p class="wxgAm" style="color: rgba(253,248,248,1.00);">Pick from millions of deals</p>
 </a></div> -->
 
-
 <div class="products-classify">
-    <!-- divider products by titles -->
-    <div class="divide-section card">
-        <div class="container">
+<!-- divider products by titles -->
+<div class="divide-section card">
+    <div class="container">
 
-            <!-- 1 x 2 Grid -->
-            <div class="row">
-                <div class="col-12 py-3">
-                    <img class="img-fluid" src="images/adv1.jpg">
-                </div>
-
-                <!-- 2 X 1 Grid-->
-                <div class="col-6">
-                    <div class="row">
-                        <p class="divide-title">Top Selection</p>
-                        <!-- 1 x 2 Grid -->
-                        <div class="divide-row">
-                            <ul class="flex">
-                                <c:choose>
-                                    <c:when test="${ (fn:length(requestScope.products) > 0) }">
-                                        <c:forEach items="${requestScope.products}" begin="0" end="1" var="product">
-                                            <div class="col-6 _3VCBs titledsection">
-                                                <li class="RaDM7">
-                                                    <div><a href="#" onclick="showProductDetails()" class="js-show-modal1">
-                                                        <img id="${product.pid}" src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>" width="100%"></a></div>
-                                                    <div class="_3VO8c"><a href="#">
-                                                        <div class="divide-price">EGP <c:out value="${product.price}"/></div>
-                                                    </a></div>
-                                                </li>
-                                            </div>
-                                        </c:forEach>
-                                    </c:when>
-                                </c:choose>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <p class="divide-title">Top Selection</p>
-                        <div class="divide-row">
-                            <ul class="flex">
-                                <c:choose>
-                                    <c:when test="${ (fn:length(requestScope.products) > 2) }">
-                                        <c:forEach items="${requestScope.products}" begin="2" end="3" var="product">
-                                            <div class="col-6 _3VCBs titledsection">
-                                                <li class="RaDM7">
-                                                    <div><a href="#" onclick="showProductDetails()" class="js-show-modal1">
-                                                        <img id="${product.pid}" src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>" width="100%"></a></div>
-                                                    <div class="_3VO8c">
-                                                        <a href="#">
-                                                            <div class="divide-price">EGP <c:out value="${product.price}"/></div>
-                                                        </a></div>
-                                                </li>
-                                            </div>
-                                        </c:forEach>
-                                    </c:when>
-                                </c:choose>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2 X 1 Grid-->
-                <div class="col-6">
-                    <div class="row">
-                        <p class="divide-title">Top Selection</p>
-                        <div class="divide-row">
-                            <ul class="flex">
-                                <c:choose>
-                                    <c:when test="${ (fn:length(requestScope.products) > 3) }">
-                                        <c:forEach items="${requestScope.products}" begin="4" end="5" var="product">
-                                            <div class="col-6 _3VCBs titledsection">
-                                                <li class="RaDM7">
-                                                    <div><a href="#" onclick="showProductDetails()" class="js-show-modal1">
-                                                        <img id="${product.pid}" src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>" width="100%"></a></div>
-                                                    <div class="_3VO8c"><a href="#">
-                                                        <div class="divide-price">EGP <c:out value="${product.price}"/></div>
-                                                    </a></div>
-                                                </li>
-                                            </div>
-                                        </c:forEach>
-                                    </c:when>
-                                </c:choose>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <p class="divide-title">Top Selection</p>
-                        <div class="divide-row">
-                            <ul class="flex">
-                                <c:choose>
-                                    <c:when test="${ (fn:length(requestScope.products) > 5) }">
-                                        <c:forEach items="${requestScope.products}" begin="6" end="7" var="product">
-                                            <div class="col-6 _3VCBs titledsection">
-                                                <li class="RaDM7">
-                                                    <div><a href="#" onclick="showProductDetails()" class="js-show-modal1">
-                                                        <img id="${product.pid}" src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>" width="100%"></a></div>
-                                                    <div class="_3VO8c">
-                                                        <a href="#">
-                                                            <div class="divide-price">EGP <c:out value="${product.price}"/></div>
-                                                        </a></div>
-                                                </li>
-                                            </div>
-                                        </c:forEach>
-                                    </c:when>
-                                </c:choose>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        <!-- 1 x 2 Grid -->
+        <div class="row">
+            <div class="col-12 py-3">
+                <img class="img-fluid" src="images/adv1.jpg">
             </div>
         </div>
     </div>
@@ -126,7 +24,7 @@
 
 <div class="anniv-sales m-t-20 p-t-10">
     <c:choose>
-        <c:when test="${ (fn:length(requestScope.products) >  8) }">
+        <c:when test="${ (fn:length(requestScope.products) >  0) }">
             <div id="single-row-product1" class="p-l-10 p-r-10">
                 <div data-role="single-row-product">
                     <div class="card _3VCBs">
@@ -138,7 +36,7 @@
                         <div class="container">
                             <ul class="row flex">
                                 <!-- Products inserted here ... -->
-                                <c:forEach items="${requestScope.products}" begin="8" end="11" var="product">
+                                <c:forEach items="${requestScope.products}" begin="0" end="3" var="product">
                                     <div class="col-3">
                                         <li class="RaDM7">
                                             <div class="_2v-hL">
@@ -161,7 +59,7 @@
         </c:when>
     </c:choose>
     <c:choose>
-        <c:when test="${ (fn:length(requestScope.products) >  11) }">
+        <c:when test="${ (fn:length(requestScope.products) >  3) }">
             <div id="single-row-product2">
                 <div data-role="single-row-product" data-spm="flash-deals" class="_3KVHY" data-aplus-ae="x5_5778879e" data-spm-anchor-id="a2g0n.home.0.flash-deals">
                     <div class="_3VCBs card">
@@ -174,20 +72,25 @@
                         </a></div> -->
                         <p class="_1ZMkG text-left">Ideas For Your First Order</p>
                         <br>
-                        <ul class="flex">
-                            <c:forEach items="${requestScope.products}" begin="12" end="15" var="product">
-                                <li class="RaDM7">
-                                    <div class="_2v-hL">
-                                        <a href="#" onclick="showProductDetails()" class="js-show-modal1">
-                                            <img id="${product.pid}" src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>">
-                                        </a>
+                        <div class="container">
+
+                            <ul class="flex">
+                                <c:forEach items="${requestScope.products}" begin="4" end="7" var="product">
+                                    <div class="col-3">
+                                        <li class="RaDM7">
+                                            <div class="_2v-hL">
+                                                <a href="#" onclick="showProductDetails()" class="js-show-modal1">
+                                                    <img id="${product.pid}" src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>">
+                                                </a>
+                                            </div>
+                                            <div class="_3VO8c"><a href="#">
+                                                <div class="_3hVOG">EGP <c:out value="${product.price}"/></div>
+                                            </a></div>
+                                        </li>
                                     </div>
-                                    <div class="_3VO8c"><a href="#">
-                                        <div class="_3hVOG">EGP <c:out value="${product.price}"/></div>
-                                    </a></div>
-                                </li>
-                            </c:forEach>
-                        </ul>
+                                </c:forEach>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -196,7 +99,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${ (fn:length(requestScope.products) >  16) }">
+    <c:when test="${ (fn:length(requestScope.products) >  7) }">
         <div id="single-row-product4">
             <div data-role="single-row-product">
                 <div class="card _3VCBs">
@@ -206,7 +109,7 @@
                         <div></div>
                     </div>
                     <ul class="flex">
-                        <c:forEach items="${requestScope.products}" begin="16" var="product">
+                        <c:forEach items="${requestScope.products}" begin="8" var="product">
                             <li class="RaDM7">
                                 <div class="_2v-hL"><a href="#" onclick="showProductDetails()" class="js-show-modal1">
                                     <img id="${product.pid}" src="images/products/<c:out value="${product.detailsDTOs.iterator().next().productImage}"/>"></a>

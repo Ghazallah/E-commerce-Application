@@ -42,24 +42,24 @@ public class HibernateUtil {
                         .setProperty("hibernate.dialect",
                                 "org.hibernate.dialect.PostgreSQLDialect");
             }
-            sessionFactory = cfg.buildSessionFactory();
-            User user  = new User ();
-            user.setPhone("0100230409");
-            user.setAddress("Menofia");
-            user.setGender("male");
-            user.setRole(1);
-            user.setName("Muhammad");
-            user.setPassword("123456");
-            user.setPicture("picture");
-            user.setRegisterationDate(new Date());
-            user.setBirthday(new Date());
-            user.setEmail("ghazallah64@ggmail.com");
-             try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            session.save(user);
-            session.getTransaction().commit();
-            
-        }
+//            sessionFactory = cfg.buildSessionFactory();
+//            User user  = new User ();
+//            user.setPhone("0100230409");
+//            user.setAddress("Menofia");
+//            user.setGender("male");
+//            user.setRole(1);
+//            user.setName("Muhammad");
+//            user.setPassword("123456");
+//            user.setPicture("picture");
+//            user.setRegisterationDate(new Date());
+//            user.setBirthday(new Date());
+//            user.setEmail("ghazallah64@ggmail.com");
+//             try (Session session = sessionFactory.openSession()) {
+//            session.beginTransaction();
+//            session.save(user);
+//            session.getTransaction().commit();
+//
+//        }
             
             }catch (URISyntaxException ex) {
                     
